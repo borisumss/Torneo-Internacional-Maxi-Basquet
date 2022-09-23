@@ -23,15 +23,6 @@ header{
     height: 40px;
 }
 
-/*#capa1{
-    background-color: white;
-    padding: 0px !important;
-}
-
-#capa2{
-    background-color: rgba(0, 57, 117, 0.1);
-}*/
-
 #banner{
     padding-top: 33%;
     background-image: url('./imagenes/banner.jpg');
@@ -56,7 +47,7 @@ section{
     margin:0px;
 }
 
-article{   
+#capa2{   
     border-radius: 40px;
     padding: 20px !important;
     background-color: rgba(0, 57, 117, 0.5);
@@ -72,6 +63,8 @@ section{
     background-color: rgba(0, 57, 117, 0.1);
     margin:0px;
     width: 100%;
+}
+.organizador{
     display: grid;
     grid-template-columns: 50% 50%;
     text-align: left;
@@ -86,7 +79,6 @@ section{
 
 article{
     width: 90% !important;
-   
     margin-left: auto;
     margin-right: auto;
 }
@@ -99,13 +91,44 @@ label{
 #pais{
     color: white !important;
     background-color: #003975;
-    width: 30%;
+    width: 40%;
     padding: 8px;
 }
 
-@media screen and (max-width: 500px) {
-    section{ 
+#form2{
+    width: 100% !important;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    text-align: left;
+}
+
+
+.column{
+    width: 90% !important;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.torneo{
+    height: 270px;
+}
+
+@media screen and (max-width: 800px) {
+    .organizador, #form2{ 
         display: inline-block !important;
+    }
+
+    .organizador{
+        height: 390px;
+        margin-bottom: 30px;
+    }
+
+    .column{
+        margin-bottom: 15px;
+    }
+
+    .torneo{
+        height: 540px;
     }
 
 }
