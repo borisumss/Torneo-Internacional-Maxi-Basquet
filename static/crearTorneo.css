@@ -120,8 +120,41 @@ label{
     display: flex;
    align-items: center;
 }
+#form3{
+    display: grid;
+    grid-template-columns: 50% 50%;
+    text-align: left;
+    width: 100%!important;
+}
+
+.archivo{
+    width: 90% !important;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.categorias{
+    height: 100%;
+}
+
+.izqui{
+    text-align: left;
+    margin: 0px;
+}
+
+.dere{
+    text-align: right;
+    padding: 0px 12px;
+}
+
+.listaCategorias{
+    margin-top: 20px;
+    padding-bottom: 30px;
+}
+
+
 @media screen and (max-width: 800px) {
-    .organizador, #form2{ 
+    .organizador, #form2, #form3{ 
         display: inline-block !important;
     }
 
