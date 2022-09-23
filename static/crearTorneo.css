@@ -71,10 +71,41 @@ section{
     border-radius: 10px;
     background-color: rgba(0, 57, 117, 0.1);
     margin:0px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    text-align: left;
 }
 
-article{   
+#capa2{   
     border-radius: 40px;
     padding: 20px !important;
     background-color: white;
+}
+
+
+article{
+    width: 90% !important;
+   
+    margin-left: auto;
+    margin-right: auto;
+}
+
+label{
+    color: #003975;
+    font-weight: bold;
+}
+
+#pais{
+    color: white !important;
+    background-color: #003975;
+    width: 30%;
+    padding: 8px;
+}
+
+@media screen and (max-width: 500px) {
+    section{ 
+        display: inline-block !important;
+    }
+
 }

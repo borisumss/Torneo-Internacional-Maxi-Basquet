@@ -20,22 +20,68 @@
     </header>
     <main>
         <div class="contain" id="banner">
-            
-                    
-                        <article class="container-fluid" id="capa2">
-                            <form id="formulario">
-                                <section class="organizador"></section>
-                                <br>
-                                <section class="torneo"></section>
-                                <br/>
-                                <section class="categorias"></section>
-                                <br/>
-                                <a name="" id="button-crear" class="btn btn-danger" href="#" role="button">Crear Torneo</a>
-                            </form>
+            <div class="container-fluid" id="capa2">
+                <form class="needs-validation" id="formulario">
+                    <section class="organizador">
+                        <article class="mb-3" id="form1">
+                            <br>
+                            <div >
+                                <label class="primera" id="organizador_label" for="nombre">Nombre del
+                                    organizador:</label>
+                                <input type="text" class="primer form-control" name="nombre" id="organizador_input"
+                                    placeholder="Ingrese su nombre" required>
+                            </div>
+                            <br>
+                            <div>
+                                <label class="primera" id="numero_label" for="telef">Número telefónico: </label>
+                                <input type="text" class="primer form-control" name="telef" id="numero_input"
+                                    placeholder="Ingrese su número telefonico" required>
+                            </div>
                         </article>
+                        
+                        
+                        <article class="mb-3">
+                            <br>
+                            <div class="">
+                                <label class="primera" id="email_label" for="email">Correo Electrónico:</label>
+                                <input type="email" class="form-control" name="email" id="email_input"
+                                    placeholder="Ingrese su E-mail" required>
+                            </div>
+                            <br>
+                            <div>
+                                <label class="" id="pais_label" for="pais">Seleecione el país de origen</label>
+                                <select class="form-select form-select-sm " id="pais" name="pais" required>
+                                    <option selected value="">Seleccione país</option>
+                                    <option value="Argentina">Argentina</option>
+                                    <option value="Bolivia">Bolivia</option>
+                                    <option value="Brasil">Brasil</option>
+                                    <option value="Chile">Chile</option>
+                                    <option value="Colombia">Colombia</option>
+                                    <option value="Ecuador">Ecuador</option>
+                                    <option value="Paraguay">Paraguay</option>
+                                    <option value="Perú">Perú</option>
+                                    <option value="Uruguay">Uruguay</option>
+                                    <option value="Venezuela">Venezuela</option>
+                                    <option value="Venezuela">Otro</option>
+                                </select>
 
+                            </div>
+                        </article>
+                    </section>
+                    <br>
+                    <section class="torneo">
+                        
+                    </section>
+                    <br />
+                    <section class="categorias"></section>
+                    <br />
                     
-             
+                    <button class="btn btn-danger" type="submit" name="Registrar" id="button-crear">Crear Torneo</button>
+                </form>
+            </div>
+
+
+
         </div>
     </main>
 
