@@ -5,7 +5,7 @@ blanco: #FFFFFF
 azul: #003975
 */
 body{
-    background-color: #ED1C24;
+    background-color: #ED1C24 !important;
     background-image: url('./imagenes/fondo.png');
     background-repeat: no-repeat;
     background-size: auto;
@@ -103,7 +103,7 @@ label{
 }
 
 
-.column{
+.column, #formatsSection{
     width: 90% !important;
     margin-left: auto;
     margin-right: auto;
@@ -113,6 +113,13 @@ label{
     height: 270px;
 }
 
+.dolares{
+    margin: 0px !important;
+    padding: 0px !important;
+    text-align: left;
+    display: flex;
+   align-items: center;
+}
 @media screen and (max-width: 800px) {
     .organizador, #form2{ 
         display: inline-block !important;

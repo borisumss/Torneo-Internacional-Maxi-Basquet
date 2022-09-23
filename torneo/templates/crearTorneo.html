@@ -22,10 +22,10 @@
         <div class="contain" id="banner">
             <div class="container-fluid" id="capa2">
                 <form class="needs-validation" id="formulario">
-                    <section class="organizador">
+                    <section class="organizador form-group">
                         <article class="mb-3" id="form1">
                             <br>
-                            <div >
+                            <div>
                                 <label class="primera" id="organizador_label" for="nombre">Nombre del
                                     organizador:</label>
                                 <input type="text" class="primer form-control" name="nombre" id="organizador_input"
@@ -38,8 +38,8 @@
                                     placeholder="Ingrese su número telefonico" required>
                             </div>
                         </article>
-                        
-                        
+
+
                         <article class="mb-3">
                             <br>
                             <div class="">
@@ -68,7 +68,7 @@
                         </article>
                     </section>
                     <br>
-                    <section class="torneo">
+                    <section class="torneo form-group">
                         <br>
                         <article class="mb-3" id="form2">
                             <div class="column">
@@ -77,45 +77,92 @@
                                 <input type="text" class="primer form-control" name="torneo" id="torneo_input"
                                     placeholder="Ingrese nombre del torneo" required>
                             </div>
-                            <div class="column">
-                                <label class="primera" id="fechaTor_label" for="fechaTor">Fecha del torneo: </label>
-                                <input type="text" class="primer form-control" name="fechaTor" id="fecha_torneo_input"
-                                    placeholder="Ingrese las fechas del torneo" required>
+                            <div class="md-form md-outline input-with-post-icon datepicker" id="formatsSection">
+                                <label class="primera" id="fecha_label" for="fecha_torneo">Fecha del Torneo:</label>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <input type="date" id="fecha_input" name="fecha_torneo" class="form-control"
+                                            placeholder="Inicio" required>
+                                    </div>
+                                    <div class="col-6">
+                                        <input type="date" id="fecha_input" name="fecha_torneo" class="form-control"
+                                            placeholder="Fin" required>
+                                    </div>
+                                </div>
                             </div>
                         </article>
-                        
+
                         <article class="mb-3" id="form2">
                             <div class="column">
-                                <label class="primera" id="montoPre_label" for="montoPre">Monto 
+                                <label class="primera" id="montoPre_label" for="montoPre">Monto
                                     Pre-inscripción:</label>
-                                <input type="text" class="primer form-control" name="montoPre" id="montoPre_input"
-                                    placeholder="Ingrese el costo de Pre-inscripción" required>
+                                <div class="row">
+                                    <div class="col-10">
+                                        <input type="text" class="primer form-control" name="montoPre"
+                                            id="montoPre_input" placeholder="Ingrese el costo de Pre-inscripción"
+                                            required>
+                                    </div>
+                                    <div class="dolares col-2">
+                                        <label id="montoPre_label" for="montoPre">$us.</label>
+                                    </div>
+                                </div>
+
                             </div>
                             <div class="column">
-                                <label class="primera" id="fechaPre_label" for="fechaPre">Fecha Pre-inscripción: </label>
-                                <input type="text" class="primer form-control" name="fechaPre" id="fechaPre_input"
-                                    placeholder="Ingrese las fechas del torneo" required>
+                                <label class="primera" id="fechaPre_label" for="fechaPre">Fecha Pre-inscripción:
+                                </label>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <input type="date" id="fechaPre_input" name="fechaPre" class="form-control"
+                                            placeholder="Inicio" required>
+                                    </div>
+                                    <div class="col-6">
+                                        <input type="date" id="fechaPre_input" name="fechaPre" class="form-control"
+                                            placeholder="Fin" required>
+                                    </div>
+                                </div>
                             </div>
                         </article>
 
                         <article class="mb-3" id="form2">
                             <div class="column">
                                 <label class="primera" id="montoIns_label" for="montoIns">Monto Rezagados:</label>
-                                <input type="text" class="primer form-control" name="montoIns" id="montoIns_input"
-                                    placeholder="Ingrese el costo para Rezagados" required>
+
+                                <div class="row">
+                                    <div class="col-10">
+                                        <input type="text" class="primer form-control" name="montoIns"
+                                            id="montoIns_input" placeholder="Ingrese el costo para Rezagados" required>
+                                    </div>
+                                    <div class="dolares col-2">
+                                        <label id="montoPre_label" for="montoPre">$us.</label>
+                                    </div>
+                                </div>
+
+
                             </div>
                             <div class="column">
-                                <label class="primera" id="fechaPre_label" for="fechaPre">Fecha Rezagados e Inscripciones: </label>
-                                <input type="text" class="primer form-control" name="fechaPre" id="fechaPre_input"
-                                    placeholder="Ingrese las fechas del torneo" required>
+                                <label class="primera" id="fechaIns_label" for="fechaIns">Fecha Rezagados e
+                                    Inscripciones: </label>
+
+                                <div class="row">
+                                    <div class="col-6">
+                                        <input type="date" id="fechaIns_input" name="fechaIns" class="form-control"
+                                            placeholder="Inicio" required>
+                                    </div>
+                                    <div class="col-6">
+                                        <input type="date" id="fechaIns_input" name="fechaIns" class="form-control"
+                                            placeholder="Fin" required>
+                                    </div>
+                                </div>
                             </div>
                         </article>
                     </section>
                     <br />
-                    <section class="categorias"></section>
+                    <section class="categorias form-group"></section>
                     <br />
-                    
-                    <button class="btn btn-danger" type="submit" name="Registrar" id="button-crear">Crear Torneo</button>
+
+                    <button class="btn btn-danger" type="submit" name="Registrar" id="button-crear">Crear
+                        Torneo</button>
                 </form>
             </div>
 
