@@ -1,5 +1,33 @@
 body{
     background-color: #ED1C24 !important;
+    background-image: url('/static/images/basquetbolmujeres_fondo.jpg');
+    height: auto !important;
+    width: auto !important;
+}
+.navbar{
+    background-color: #003975 !important;
+}
+.navbar a{
+    color: white;
+}
+.navbar a.nav-link{
+    color: white;
+}
+.navbar-brand.disabled{
+    color: white;
+}
+.container{
+    background-color: white !important;
+}
+.card{
+    width: auto !important;
+    position: absolute !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important; 
+}
+/*body{
+    background-color: #ED1C24 !important;
     min-height: auto;
 }
 
@@ -48,3 +76,4 @@ input{
     background-color: white !important;
 }
 
+*/
