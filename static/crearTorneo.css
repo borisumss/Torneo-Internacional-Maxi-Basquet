@@ -151,7 +151,9 @@ label{
     margin-top: 20px;
     padding-bottom: 30px;
 }
-
+.confModal{
+    text-align: left !important;
+}
 
 @media screen and (max-width: 800px) {
     .organizador, #form2, #form3{ 

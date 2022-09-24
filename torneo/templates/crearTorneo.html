@@ -21,7 +21,7 @@
     <main>
         <div class="contain" id="banner">
             <div class="container-fluid" id="capa2">
-                <form class="needs-validation" id="formulario">
+                <form class="needs-validation" id="formulario" name="formulario">
                     <section class="organizador form-group">
                         <article class="mb-3" id="form1">
                             <br>
@@ -29,13 +29,14 @@
                                 <label class="primera" id="organizador_label" for="nombre">Nombre del
                                     organizador:</label>
                                 <input type="text" class="primer form-control" name="nombre" id="organizador_input"
-                                    placeholder="Ingrese su nombre" required>
+                                    placeholder="Ingrese su nombre" pattern="^(?!\s)[a-zA-ZÁáÉéÍíÓóÚú\s]{5,50}"
+                                    required>
                             </div>
                             <br>
                             <div>
                                 <label class="primera" id="numero_label" for="telef">Número telefónico: </label>
                                 <input type="text" class="primer form-control" name="telef" id="numero_input"
-                                    placeholder="Ingrese su número telefonico" required>
+                                    placeholder="Ingrese su número telefonico" pattern="^(?!\s)[0-9\+]{10,50}" required>
                             </div>
                         </article>
 
@@ -45,7 +46,7 @@
                             <div class="">
                                 <label class="primera" id="email_label" for="email">Correo Electrónico:</label>
                                 <input type="email" class="form-control" name="email" id="email_input"
-                                    placeholder="Ingrese su E-mail" required>
+                                    placeholder="Ingrese su E-mail" minlength="5" maxlength="50" required>
                             </div>
                             <br>
                             <div>
@@ -75,7 +76,8 @@
                                 <label class="primera" id="torneo_label" for="torneo">Nombre del
                                     Torneo:</label>
                                 <input type="text" class="primer form-control" name="torneo" id="torneo_input"
-                                    placeholder="Ingrese nombre del torneo" required>
+                                    placeholder="Ingrese nombre del torneo" pattern="^(?!\s)[a-zA-ZÁáÉéÍíÓóÚú\s]{5,50}"
+                                    required>
                             </div>
                             <div class="md-form md-outline input-with-post-icon datepicker" id="formatsSection">
                                 <label class="primera" id="fecha_label" for="fecha_torneo">Fecha del Torneo:</label>
@@ -98,9 +100,9 @@
                                     Pre-inscripción:</label>
                                 <div class="row">
                                     <div class="col-10">
-                                        <input type="text" class="primer form-control" name="montoPre"
-                                            id="montoPre_input" placeholder="Ingrese el costo de Pre-inscripción"
-                                            required>
+                                        <input type="number" class="primer form-control" name="montoPre"
+                                            id="montoPre_input" min="0"
+                                            placeholder="Ingrese el costo de Pre-inscripción" required>
                                     </div>
                                     <div class="dolares col-2">
                                         <label id="montoPre_label" for="montoPre">$us.</label>
@@ -130,8 +132,9 @@
 
                                 <div class="row">
                                     <div class="col-10">
-                                        <input type="text" class="primer form-control" name="montoIns"
-                                            id="montoIns_input" placeholder="Ingrese el costo para Rezagados" required>
+                                        <input type="number" class="primer form-control" name="montoIns"
+                                            id="montoIns_input" min="0" placeholder="Ingrese el costo para Rezagados"
+                                            required>
                                     </div>
                                     <div class="dolares col-2">
                                         <label id="montoPre_label" for="montoPre">$us.</label>
@@ -179,8 +182,49 @@
                                         <label for="añadir" class="">Categorías por Edades:</label>
                                     </div>
                                     <div class="col-6 dere">
-                                        <button class="btn btn-success" type="button" onclick="insertarFila()" name="añadir"
-                                            id="button-añadir">Agregar Categoría</button>
+                                        <button class="btn btn-success" type="button" name="añadir" id="button-añadir"
+                                            data-bs-toggle="modal" data-bs-target="#exampleModal">Agregar
+                                            Categoría</button>
+
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="exampleModal" tabindex="-1"
+                                            aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">CATEGORIA</h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                            aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body confModal">
+                                                        <label class="primera" id="nombreModal_label"
+                                                            for="nombreModal_input">Nombre de la categoria:</label>
+                                                        <input type="text" class="primer form-control"
+                                                            name="nombreModal_input" id="nombreModal_input"
+                                                            placeholder="Ingrese nombre de la categoría"
+                                                            pattern="^(?!\s)[a-zA-ZÁáÉéÍíÓóÚú\s]{5,10}" required>
+                                                        <br>
+                                                        <label class="primera" id="minimoModal_label"
+                                                            for="minimoModal">Edad mímina:</label>
+                                                        <input type="number" class="primer form-control"
+                                                            name="minimoModal" id="minimoModal_input"
+                                                            placeholder="Ingrese la edad mínima" min="30" onchange="validacionMin()" required>
+                                                        <br>
+                                                        <label class="primera" id="maximoModal_label"
+                                                            for="maximoModal">Edad máxima:</label>
+                                                        <input type="number" class="primer form-control"
+                                                            name="maximoModal" id="maximoModal_input"
+                                                            placeholder="Ingrese la edad máxima" min="31" onchange="validacionMax()" required>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-danger"
+                                                            data-bs-dismiss="modal" id="modalCancelar">Cancelar</button>
+                                                        <button type="button" class="btn btn-primary"
+                                                            onclick="insertarFila()">Confirmar</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -204,7 +248,7 @@
                                             </tr>
                                         </thead>
                                         <tbody class="table-group-divider">
-                                            
+
                                         </tbody>
 
                                     </table>
@@ -215,7 +259,8 @@
                     </section>
                     <br />
 
-                    <button class="btn btn-danger" type="submit" name="Registrar" id="button-crear">Crear
+                    <button class="btn btn-danger" type="submit"  name="Registrar"
+                        id="button-crear">Crear
                         Torneo</button>
                 </form>
             </div>
@@ -225,16 +270,51 @@
         </div>
     </main>
     <script>
-        function insertarFila(){
-            let tablaCategorias = document.getElementById('tablaCategorias').insertRow(1);
-            let name = tablaCategorias.insertCell(0);
-            let min = tablaCategorias.insertCell(1);
-            let max = tablaCategorias.insertCell(2);
-
-            name.innerHTML = 'Recibir nombre';
-            min.innerHTML = 'Recibir min';
-            max.innerHTML = 'Recibir max';
+        var nroCate = 0;
+        function validacionMin(){
+            let min = document.getElementById('minimoModal_input');
+            if(min.value<30){
+                   min.value = 30;
+            }
         }
+
+        function validacionMax(){
+            let max = document.getElementById('maximoModal_input');
+            if(max.value < 31){
+                max.value =31;
+            }
+        }
+
+        function insertarFila() {
+            let tablaCategorias = document.getElementById('tablaCategorias').insertRow(1);
+            let name = document.getElementById('nombreModal_input').value;
+            let min = document.getElementById('minimoModal_input').value;
+            let max = document.getElementById('maximoModal_input').value;
+
+            if (name.length > 0 && min.length > 0 && max.length > 0) {
+                if (min >= max) {
+                    alert('La edad minima no puede ser mayor o igual a la maxima');
+                }else if(min<30 && max < 31){
+                    alert('La edad minima es de 30 años');
+                } else {
+                    let nameCell = tablaCategorias.insertCell(0);
+                    let minCell = tablaCategorias.insertCell(1);
+                    let maxCell = tablaCategorias.insertCell(2);
+                    nameCell.innerHTML = name;
+                    minCell.innerHTML = min;
+                    maxCell.innerHTML = max;
+                    nroCate = nroCate + 1;
+                    let cerrar= document.getElementById('modalCancelar');
+                    cerrar.click();
+                }
+
+            } else {
+                alert("LLene todos los campos")
+            }
+
+        }
+
+    
     </script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js"
         integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous">
