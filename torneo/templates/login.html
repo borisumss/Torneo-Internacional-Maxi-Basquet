@@ -11,27 +11,49 @@
   <!--  Bootstrap 5 -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
-    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>
 </head>
 
 <body>
   <!-- Navbar -->
-  <nav class="navbar navbar-expand-lg">
-    <div class="container-fluid">
-      <a class="navbar-brand disabled">Torneo nacional de maxi basquet</a>
-      <div class="d-flex justify-content-end" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item ">
-            <a class="nav-link ">Inicio</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
-<br><br><br>
+  <header>
+    <!-- place navbar here -->
+    <nav class="navbar navbar-expand-lg navbar-custom">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Torneo Internacional Maxi Basquet</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="d-flex justify-content-end">
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#">Inicio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Nosotros</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Contacto</a>
+                        </li>
+                        <li class="nav-item">
+                            <!--
+                        <a class="nav-link" href="#">Ingresar</a>
+                      -->
+                            <button type="button" class="btn btn-danger">Ingresar</button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>
+
   <div class="container-fluid">
     <div class="row">
-      <div class="col-12" id="formulario">
+      <div class="col-6" id="formulario">
+        
         <h3 class="">Inicio de sesión</h3>
         <hr>
         <form action="">
@@ -44,31 +66,22 @@
             </div>
           </div>
           <div class="mb-4">
-            <div class="mb-3">
-              <label for="contraseña" class="form-label">Contraseña:</label>
-              <div class="input-group flex-nowrap" id="contra">
-                  <input id="contraseña" type="password" class="form-control" placeholder="Ingrese su Contraseña" required>
-                  <span class="input-group-text" id="ver_clave" onclick="verClave()"><i id="icono"
-                          class="fa fa-eye"></i></span>
-              </div>
+            <label for="contraseña" class="form-label">Contraseña:</label>
+            <div class="input-group flex-nowrap" id="contra">
+              <input id="contraseña" type="password" class="form-control" placeholder="Ingrese su Contraseña" required>
+              <span class="input-group-text" id="ver_clave" onclick="verClave()"><i id="icono"
+                  class="fa fa-eye"></i></span>
             </div>
           </div>
-          <div class="mb-4">
-            <div class="mb-3">
-              <div class="d-grid">
-                <button type="submit" class="btn btn-primary" id="Ingresar">Ingresar</button>
-                
-              </div>
-            </div>
+          <div class="boton">
+            <button type="submit" class="btn btn-primary" id="Ingresar">Ingresar</button>
           </div>
-
-          <div class="my-3">
-            <span></span>
-          </div>
+          
         </form>
 
 
       </div>
+      <div class="col-6"></div>
     </div>
 
   </div>
@@ -111,18 +124,18 @@
 <script>
   let con = true
   function verClave() {
-      let ver = document.getElementById("ver_clave");
-      let clave = document.getElementById("contraseña")
-      let icono = document.getElementById("icono")
-      if (con == true) {
-          clave.type = "text"
-          icono.classList.add("fa-eye-slash")
-          con = false
-      } else {
-          clave.type = "password"
-          icono.classList.remove("fa-eye-slash")
-          con = true
-      }
+    let ver = document.getElementById("ver_clave");
+    let clave = document.getElementById("contraseña")
+    let icono = document.getElementById("icono")
+    if (con == true) {
+      clave.type = "text"
+      icono.classList.add("fa-eye-slash")
+      con = false
+    } else {
+      clave.type = "password"
+      icono.classList.remove("fa-eye-slash")
+      con = true
+    }
 
   }
 </script>
