@@ -1,5 +1,4 @@
 body{
-    background-color: #ED1C24  !important;
     background-image: url('/static/images/fondo5.jpg');
     background-repeat: no-repeat;
     background-position: center;
@@ -43,11 +42,11 @@ body{
 h3{
     text-align: center;
     padding: 15px 0px 0px 0px;
-    color: #003975;
+    color: black;
     font-weight: bolder;
 }
 label{
-    color: #003975;
+    color: black;
     font-weight: bolder;
 }
 
@@ -133,3 +132,35 @@ input{
     border-radius: 20px;
     z-index: -11;
 }
+
+#formulario input[type='email'] ,
+#formulario input[type='password'], #formulario input[type='text'], #ver_clave{
+    border: none;
+    border-bottom: solid 1px #1b7be1;
+    transition: all 0.3s ease;
+}
+#formulario input[type='email']:focus ,
+#formulario input[type='password']:focus, #formulario input[type='text']:focus{
+    padding: 10px 10px;
+}
+
+#icono{
+    color: #003975
+}
+
+#ver_clave{
+    background-color: white;
+}
+
+.linea {
+    border-top:1px solid black;
+    position: relative;
+    top:10px;
+    float:left;
+    }
+  
+  .leyenda {
+    font-weight:bold;
+    float:left;
+   }
+
