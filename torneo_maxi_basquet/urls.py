@@ -21,5 +21,9 @@ from torneo import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index),
+
+    path('admin2/Torneos/Crear/', views.crearTorneo),
+
     path('login/', views.login)
+
 ]
