@@ -62,12 +62,13 @@
           <div class="col-5 linea">&nbsp;</div>
         </div>
         <br>
-        <form action="">
+        <form action="/login/" method="POST">
+          {% csrf_token %}
           <div class="mb-4">
             <div class="mb-3">
               <label for="" class="form-label">Correo electrónico:</label>
               
-              <input type="email" class="form-control" name="" id="inputForm" aria-describedby="emailHelpId"
+              <input type="email" class="form-control" name="email" id="inputForm" aria-describedby="emailHelpId"
                 placeholder="Ingrese su Correo electrónico" required>
               <!--<small id="emailHelpId" class="form-text text-muted">Help text</small>-->
             </div>
@@ -75,13 +76,13 @@
           <div class="mb-4">
             <label for="contraseña" class="form-label">Contraseña:</label>
             <div class="input-group flex-nowrap" id="contra">
-              <input id="contraseña" type="password" class="form-control" placeholder="Ingrese su Contraseña" required>
+              <input id="contraseña" type="password" class="form-control" name="password" placeholder="Ingrese su Contraseña" required>
               <span class="input-group-text" id="ver_clave" onclick="verClave()"><i id="icono"
                   class="fa fa-eye"></i></span>
             </div>
           </div>
           <div class="boton">
-            <button type="submit" class="btn btn-primary" id="Ingresar">Ingresar</button>
+            <button type="submit" name="signin" class="btn btn-primary" id="Ingresar">Ingresar</button>
           </div>
           
         </form>
