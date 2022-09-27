@@ -40,10 +40,23 @@ def login(request):
 def crear_torneo(request):
     #print(request.user.is_authenticated)
     #print(request.user.is_anonymous)
-    if not request.user.is_anonymous:
-        if not request.user.email.endswith('@admin.com'):
-            return redirect('login')
+    if request.method == 'GET':
+        if not request.user.is_anonymous:
+            if not request.user.email.endswith('@admin.com'):
+                return redirect('login')
+            else:
+                return render(request, 'crearTorneo.html')
         else:
-            return render(request, 'crearTorneo.html')
-    else:
-        return redirect('login')
+            return redirect('login')
+    elif request.method == 'POST':
+        print(request.POST)
+        
+        if not request.user.is_anonymous:
+            if not request.user.email.endswith('@admin.com'):
+                return redirect('login')
+            else:
+                return render(request, 'crearTorneo.html')
+        else:
+            return redirect('login')
+        
+    

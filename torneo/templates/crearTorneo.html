@@ -60,21 +60,23 @@
     <main>
         <div class="contain" id="banner">
             <div class="container-fluid" id="capa2">
-                <form class="needs-validation" id="formulario" name="formulario">
+                <form class="needs-validation" id="formulario" name="formulario" method="POST">
+                    {% csrf_token %}
+
                     <section class="organizador form-group">
                         <article class="mb-3" id="form1">
                             <br>
                             <div>
                                 <label class="primera" id="organizador_label" for="nombre">Nombre del
                                     organizador:</label>
-                                <input type="text" class="primer form-control" name="nombre" id="organizador_input"
+                                <input type="text" class="primer form-control" name="nombre_organizador" id="organizador_input"
                                     placeholder="Ingrese su nombre" pattern="^(?!\s)[a-zA-ZÁáÉéÍíÓóÚú\s]{5,50}"
                                     required>
                             </div>
                             <br>
                             <div>
                                 <label class="primera" id="numero_label" for="telef">Número telefónico: </label>
-                                <input type="text" class="primer form-control" name="telef" id="numero_input"
+                                <input type="text" class="primer form-control" name="telefono" id="numero_input"
                                     placeholder="Ingrese su número telefonico" pattern="^(?!\s)[0-9\+]{10,50}" required>
                             </div>
                         </article>
@@ -114,7 +116,7 @@
                             <div class="column">
                                 <label class="primera" id="torneo_label" for="torneo">Nombre del
                                     Torneo:</label>
-                                <input type="text" class="primer form-control" name="torneo" id="torneo_input"
+                                <input type="text" class="primer form-control" name="torneo_nombre" id="torneo_input"
                                     placeholder="Ingrese nombre del torneo" pattern="^(?!\s)[a-zA-ZÁáÉéÍíÓóÚú\s]{5,50}"
                                     required>
                             </div>
@@ -122,11 +124,11 @@
                                 <label class="primera" id="fecha_label" for="fecha_torneo">Fecha del Torneo:</label>
                                 <div class="row">
                                     <div class="col-6">
-                                        <input type="date" id="fecha_input" name="fecha_torneo" class="form-control"
+                                        <input type="date" id="fecha_input" name="fecha_torneo_inicio" class="form-control"
                                             placeholder="Inicio" required>
                                     </div>
                                     <div class="col-6">
-                                        <input type="date" id="fecha_input" name="fecha_torneo" class="form-control"
+                                        <input type="date" id="fecha_input" name="fecha_torneo_fin" class="form-control"
                                             placeholder="Fin" required>
                                     </div>
                                 </div>
@@ -139,7 +141,7 @@
                                     Pre-inscripción:</label>
                                 <div class="row">
                                     <div class="col-10">
-                                        <input type="number" class="primer form-control" name="montoPre"
+                                        <input type="number" class="primer form-control" name="monto_preinscripcion"
                                             id="montoPre_input" min="0"
                                             placeholder="Ingrese el costo de Pre-inscripción" required>
                                     </div>
@@ -154,11 +156,11 @@
                                 </label>
                                 <div class="row">
                                     <div class="col-6">
-                                        <input type="date" id="fechaPre_input" name="fechaPre" class="form-control"
+                                        <input type="date" id="fechaPre_input" name="fecha_preinscripcion_inicio" class="form-control"
                                             placeholder="Inicio" required>
                                     </div>
                                     <div class="col-6">
-                                        <input type="date" id="fechaPre_input" name="fechaPre" class="form-control"
+                                        <input type="date" id="fechaPre_input" name="fecha_preinscripcion_fin" class="form-control"
                                             placeholder="Fin" required>
                                     </div>
                                 </div>
@@ -171,7 +173,7 @@
 
                                 <div class="row">
                                     <div class="col-10">
-                                        <input type="number" class="primer form-control" name="montoIns"
+                                        <input type="number" class="primer form-control" name="monto_inscripcion"
                                             id="montoIns_input" min="0" placeholder="Ingrese el costo para Rezagados"
                                             required>
                                     </div>
@@ -188,11 +190,11 @@
 
                                 <div class="row">
                                     <div class="col-6">
-                                        <input type="date" id="fechaIns_input" name="fechaIns" class="form-control"
+                                        <input type="date" id="fechaIns_input" name="fecha_inscripcion_inicio" class="form-control"
                                             placeholder="Inicio" required>
                                     </div>
                                     <div class="col-6">
-                                        <input type="date" id="fechaIns_input" name="fechaIns" class="form-control"
+                                        <input type="date" id="fechaIns_input" name="fecha_inscripcion_fin" class="form-control"
                                             placeholder="Fin" required>
                                     </div>
                                 </div>
@@ -239,21 +241,21 @@
                                                         <label class="primera" id="nombreModal_label"
                                                             for="nombreModal_input">Nombre de la categoria:</label>
                                                         <input type="text" class="primer form-control"
-                                                            name="nombreModal_input" id="nombreModal_input"
+                                                            name="nombre_categoria" id="nombreModal_input"
                                                             placeholder="Ingrese nombre de la categoría"
                                                             pattern="^(?!\s)[a-zA-ZÁáÉéÍíÓóÚú\s]{5,10}" required>
                                                         <br>
                                                         <label class="primera" id="minimoModal_label"
                                                             for="minimoModal">Edad mímina:</label>
                                                         <input type="number" class="primer form-control"
-                                                            name="minimoModal" id="minimoModal_input"
+                                                            name="edad_minima" id="minimoModal_input"
                                                             placeholder="Ingrese la edad mínima" min="30"
                                                             onchange="validacionMin()" required>
                                                         <br>
                                                         <label class="primera" id="maximoModal_label"
                                                             for="maximoModal">Edad máxima:</label>
                                                         <input type="number" class="primer form-control"
-                                                            name="maximoModal" id="maximoModal_input"
+                                                            name="edad_maxima" id="maximoModal_input"
                                                             placeholder="Ingrese la edad máxima" min="31"
                                                             onchange="validacionMax()" required>
                                                     </div>
