@@ -46,4 +46,5 @@ def crear_torneo(request):
         else:
             return render(request, 'crearTorneo.html')
     else:
-        return redirect('login')
+        #return redirect('login')
+        return render(request, 'crearTorneo.html')

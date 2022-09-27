@@ -1,36 +1,78 @@
-body{
+body {
     background-image: url('/static/images/fondo5.jpg');
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
     background-attachment: fixed;
-    height: auto !important;
-    width: auto !important;
+}
+
+main {
+    margin-top: 280px;
+}
+
+nav.navbar {
+    background-color: #003975;
+}
+
+.navbar .getstarted {
+    background: #003975;
+    margin-left: 30px;
+    border-radius: 4px;
+    font-weight: 400;
+    color: #ffffff;
+    text-decoration: none;
+    padding: .5rem 1rem;
+    line-height: 2.3;
+}
+
+.navbar-nav a {
+    font-size: 15px;
+    text-transform: uppercase;
+    font-weight: 500;
+}
+
+.navbar-light .navbar-brand {
+    color: #000;
+    font-size: 25px !important;
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.navbar-light .navbar-brand:focus,
+.navbar-light .navbar-brand:hover {
+    color: #000;
+}
+
+.navbar-light .navbar-nav .nav-link {
+    color: #fff !important;
+}
+
+.navbar-light .navbar-nav .nav-link:focus,
+.navbar-light .navbar-nav .nav-link:hover {
+    color: #000 !important;
+}
+
+.w-100 {
+    height: 100vh;
+}
+
+.navbar-toggler {
+    padding: 1px 5px;
+    font-size: 18px;
+    line-height: 0.3;
+    background: #003975;
 }
 
 
-.navbar{
-    background-color: #003975df !important;
-    margin-bottom: 200px;
-}
-.navbar a{
-    color: white;
-}
-.navbar a.nav-link{
-    color: white;
-}
-.navbar-brand.disabled{
-    color: white;
-}
-
-#formulario{
+#formulario {
     background-color: white;
     width: 50%;
     margin: 0px auto;
 }
 
 
-#Ingresar{
+#Ingresar {
     width: 50%;
     margin: 0px auto;
     font-weight: bold;
@@ -39,22 +81,23 @@ body{
     border: none;
 }
 
-h3{
+h3 {
     text-align: center;
     padding: 15px 0px 0px 0px;
     color: black;
     font-weight: bolder;
 }
-label{
+
+label {
     color: black;
     font-weight: bolder;
 }
 
-form{
+form {
     text-align: left;
 }
 
-.boton{
+.boton {
     text-align: center !important;
 }
 
@@ -116,8 +159,9 @@ input{
     background: #FFF;
     text-align: center;
     border-radius: 100% 100% 40px 40px / 35% 0% 40px 40px;
-    /*border-radius: 100% 0% 0% 0% / 55% 0% 0% 0%;*/
+
 }
+
 #formulario::after {
     content: '';
     position: absolute;
@@ -128,39 +172,48 @@ input{
     height: 420px;
     background-image: url('/static/images/loginFondo.jpg');
     background-position: top;
-    background-size: contain; 
+    background-size: contain;
     border-radius: 20px;
     z-index: -11;
 }
 
-#formulario input[type='email'] ,
-#formulario input[type='password'], #formulario input[type='text'], #ver_clave{
+#formulario input[type='email'],
+#formulario input[type='password'],
+#formulario input[type='text'],
+#ver_clave {
     border: none;
     border-bottom: solid 1px #1b7be1;
     transition: all 0.3s ease;
 }
-#formulario input[type='email']:focus ,
-#formulario input[type='password']:focus, #formulario input[type='text']:focus{
+
+#formulario input[type='email']:focus,
+#formulario input[type='password']:focus,
+#formulario input[type='text']:focus {
     padding: 10px 10px;
 }
 
-#icono{
+#icono {
     color: #003975
 }
 
-#ver_clave{
+#ver_clave {
     background-color: white;
 }
 
 .linea {
-    border-top:1px solid black;
+    border-top: 1px solid black;
     position: relative;
-    top:10px;
-    float:left;
-    }
-  
-  .leyenda {
-    font-weight:bold;
-    float:left;
-   }
+    top: 10px;
+    float: left;
+}
 
+.leyenda {
+    font-weight: bold;
+    float: left;
+}
+
+@media only screen and (max-height: 753px) {
+    main{
+        margin-top: 235px;
+    }
+}
