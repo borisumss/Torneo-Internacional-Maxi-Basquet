@@ -109,7 +109,8 @@ def administracion(request):
             if not request.user.email.endswith('@admin.com'):
                 return redirect('login')
             else:
-                return render(request, 'panelAdmin.html')
+                torneos = Torneo.objects.all()
+                return render(request, 'panelAdmin.html',{"torneos":torneos})
         else:
             return redirect('login')
     
