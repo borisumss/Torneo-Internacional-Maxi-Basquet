@@ -23,5 +23,5 @@ urlpatterns = [
     path('', views.index, name='home'),
     path('login/', views.login, name='login'),
     path('admin2/Torneos/Crear/', views.crear_torneo, name='crear_torneo')
-
+    
 ]
