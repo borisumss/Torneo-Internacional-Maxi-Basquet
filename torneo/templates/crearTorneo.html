@@ -15,15 +15,16 @@
     <!-- iconos bootstrap 5 -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css" />
     <!--- MDBootstrap  -->
-    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.min.js"></script>
 </head>
 
 <body>
-   
+
     <main>
         <div class="contain" id="banner">
             <div class="container-fluid" id="capa2">
-                <form class="needs-validation" id="formulario" name="formulario" method="POST" enctype="multipart/form-data">
+                <form class="needs-validation" id="formulario" name="formulario" method="POST"
+                    enctype="multipart/form-data">
                     {% csrf_token %}
 
                     <section class="organizador form-group">
@@ -32,15 +33,16 @@
                             <div>
                                 <label class="primera" id="organizador_label" for="nombre">Nombre del
                                     organizador:</label>
-                                <input type="text" class="primer form-control" name="nombre_organizador" id="organizador_input"
-                                    placeholder="Ingrese su nombre" pattern="^(?!\s)[a-zA-ZÁáÉéÍíÓóÚú\s]{5,50}"
-                                    required>
+                                <input type="text" class="primer form-control" name="nombre_organizador"
+                                    id="organizador_input" placeholder="Ingrese su nombre"
+                                    pattern="^(?!\s)[a-zA-ZÁáÉéÍíÓóÚú\s]{5,50}" required>
                             </div>
                             <br>
                             <div>
                                 <label class="primera" id="numero_label" for="telef">Número telefónico: </label>
-                                <input type="text" class="primer form-control" name="telefono_organizador" id="numero_input"
-                                    placeholder="Ingrese su número telefonico" pattern="^(?!\s)[0-9\+]{10,50}" required>
+                                <input type="text" class="primer form-control" name="telefono_organizador"
+                                    id="numero_input" placeholder="Ingrese su número telefonico"
+                                    pattern="^(?!\s)[0-9\+]{10,50}" required>
                             </div>
                         </article>
 
@@ -87,12 +89,13 @@
                                 <label class="primera" id="fecha_label" for="fecha_torneo">Fecha del Torneo:</label>
                                 <div class="row">
                                     <div class="col-6">
-                                        <input type="date" id="fecha_input" name="fecha_torneo_inicio" class="form-control"
-                                            placeholder="Inicio" required>
+                                        <input type="date" id="fechaIni_input" name="fecha_torneo_inicio"
+                                            class="form-control" placeholder="Inicio" onchange="fechasTorneo()"
+                                            required>
                                     </div>
                                     <div class="col-6">
-                                        <input type="date" id="fecha_input" name="fecha_torneo_fin" class="form-control"
-                                            placeholder="Fin" required>
+                                        <input type="date" id="fechaFin_input" name="fecha_torneo_fin"
+                                            class="form-control" placeholder="Fin" onchange="fechasTorneo()" required>
                                     </div>
                                 </div>
                             </div>
@@ -119,12 +122,14 @@
                                 </label>
                                 <div class="row">
                                     <div class="col-6">
-                                        <input type="date" id="fechaPre_input" name="fecha_preinscripcion_inicio" class="form-control"
-                                            placeholder="Inicio" required>
+                                        <input type="date" id="fechaPreIni_input" name="fecha_preinscripcion_inicio"
+                                            class="form-control" placeholder="Inicio" onchange="fechasTorneoPre()"
+                                            required>
                                     </div>
                                     <div class="col-6">
-                                        <input type="date" id="fechaPre_input" name="fecha_preinscripcion_fin" class="form-control"
-                                            placeholder="Fin" required>
+                                        <input type="date" id="fechaPreFin_input" name="fecha_preinscripcion_fin"
+                                            class="form-control" placeholder="Fin" onchange="fechasTorneoPre()"
+                                            required>
                                     </div>
                                 </div>
                             </div>
@@ -153,12 +158,12 @@
 
                                 <div class="row">
                                     <div class="col-6">
-                                        <input type="date" id="fechaIns_input" name="fecha_inscripcion_inicio" class="form-control"
-                                            placeholder="Inicio" required>
+                                        <input type="date" id="fechaInsIni_input" name="fecha_inscripcion_inicio"
+                                            class="form-control" placeholder="Inicio" onchange="fechasTorneoRez()" required>
                                     </div>
                                     <div class="col-6">
-                                        <input type="date" id="fechaIns_input" name="fecha_inscripcion_fin" class="form-control"
-                                            placeholder="Fin" required>
+                                        <input type="date" id="fechaInsFin_input" name="fecha_inscripcion_fin"
+                                            class="form-control" placeholder="Fin" onchange="fechasTorneoRez()" required>
                                     </div>
                                 </div>
                             </div>
@@ -170,8 +175,8 @@
                         <article class="mb-3" id="form3">
                             <div class="archivo">
                                 <label for="convocatoria" class="">Inserte la convocatoria digital</label>
-                                <input type="file" class="form-control" value="upload" id="convocatoria" name="invitacion_documento"
-                                    accept="doctype" required>
+                                <input type="file" class="form-control" value="upload" id="convocatoria"
+                                    name="invitacion_documento" accept="doctype" required>
                             </div>
                             <div class="archivo">
 
@@ -192,7 +197,7 @@
 
                                         <!-- Modal -->
                                         <div class="modal fade" id="exampleModal" tabindex="-1"
-                                            aria-labelledby="exampleModalLabel" aria-hidden="true" >
+                                            aria-labelledby="exampleModalLabel" aria-hidden="true">
                                             <div class="modal-dialog">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
@@ -237,10 +242,10 @@
                             <div class="col-1"></div>
                         </div>
 
-                        <div class="listaCategorias row" >
+                        <div class="listaCategorias row">
                             <div class="col-1"></div>
                             <div class="col-10">
-                                <div class="table-responsive" >
+                                <div class="table-responsive">
                                     <table class="table table-striped
                                 table-hover	
                                 table-borderless
@@ -318,6 +323,115 @@
             }
 
         }
+        let inicio = document.getElementById('fechaIni_input');
+        let fin = document.getElementById('fechaFin_input');
+        let inicioPre = document.getElementById('fechaPreIni_input');
+        let finPre = document.getElementById('fechaPreFin_input');
+        let inicioRez = document.getElementById('fechaInsIni_input');
+        let finRez = document.getElementById('fechaInsFin_input');
+
+        let fechaActual = new Date(Date.now());
+        let now = moment(fechaActual).format('YYYY-MM-DD')
+
+        function fechasTorneoRez() {
+            if(inicio.value.length==0 && fin.value.length==0 && inicioPre.value.length==0 && finPre.value.length==0){
+                alert("Debe llenar primero las anteriores fechas");
+                finRez.value = "";
+                inicioRez.value = "";
+            }else{
+                if (finRez.value.length > 0 && inicioRez.value.length > 0) {
+                    if(inicioRez.value<=finPre.value || inicioRez.value>=fin.value || finRez.value<=finPre.value || finRez.value>=fin.value){
+                        alert("Las fechas de rezagados tiene que estar dentro los limites")
+                            finRez.value = "";
+                            inicioRez.value = "";
+                    }else{
+                        if (finRez.value < inicioRez.value) {
+                            alert("La fecha final de Rezagados tiene que ser mayor a la de inicio")
+                            finRez.value = "";
+                        }
+                    }
+                } else {
+                    if (finRez.value.length == 0) {
+                        if(inicioRez.value<=finPre.value || inicioRez.value>=fin.value){
+                            alert("Las fechas de rezagados tiene que estar dentro los limites")
+                            finRez.value = "";
+                            inicioRez.value = "";
+                        }
+                    } else {
+                        if(finRez.value<=finPre.value || finRez.value>=fin.value){
+                            alert("Las fechas de rezagados tiene que estar dentro los limites")
+                            finRez.value = "";
+                            inicioRez.value = "";
+                        }
+                    }
+                }
+            }
+        }
+
+        function fechasTorneoPre() {
+            if(inicio.value.length==0 && fin.value.length==0){
+                alert("Debe llenar primero las fechas del torneo");
+                finPre.value = "";
+                inicioPre.value = "";
+            }else{
+                if (finPre.value.length > 0 && inicioPre.value.length > 0) {
+                    if(inicioPre.value<inicio.value || inicioPre.value>=fin.value || finPre.value<=inicio.value || finPre.value>=fin.value){
+                        alert("Las fechas de pre-inscripcion tiene que estar dentro el limite de las fechas del torneo")
+                            finPre.value = "";
+                            inicioPre.value = "";
+                    }else{
+                        if (finPre.value < inicioPre.value) {
+                            alert("La fecha final de Pre-inscripcion tiene que ser mayor a la de inicio")
+                            finPre.value = "";
+                        }
+                    }
+                } else {
+                    if (finPre.value.length == 0) {
+                        if(inicioPre.value<inicio.value || inicioPre.value>=fin.value){
+                            alert("Las fechas de pre-inscripcion tiene que estar dentro el limite de las fechas del torneo")
+                            finPre.value = "";
+                            inicioPre.value = "";
+                        }
+                    } else {
+                        if(finPre.value<=inicio.value || finPre.value>=fin.value){
+                            alert("Las fechas de pre-inscripcion tiene que estar dentro el limite de las fechas del torneo")
+                            finPre.value = "";
+                            inicioPre.value = "";
+                        }
+                    }
+                }
+            }
+        }
+
+        function fechasTorneo() {
+
+            if (fin.value.length > 0 && inicio.value.length > 0) {
+                if (inicio.value < now) {
+                    alert("No se permiten fechas pasadas")
+                    inicio.value = "";
+                    fin.value = "";
+                } else {
+                    if (fin.value <= inicio.value) {
+                        alert("La fecha final del torneo tiene que ser mayor a la de inicio")
+                        fin.value = "";
+                    }
+                }
+            } else {
+                if (fin.value.length == 0) {
+                    if (inicio.value < now) {
+                        alert("No se permiten fechas pasadas")
+                        inicio.value = now;
+                        fin.value = "";
+                    }
+                } else {
+                    if (fin.value < now) {
+                        alert("No se permiten fechas pasadas")
+                        inicio.value = "";
+                        fin.value = now;
+                    }
+                }
+            }
+        }
 
 
     </script>
@@ -328,6 +442,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js"
         integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK" crossorigin="anonymous">
         </script>
-   </body>
+</body>
 
 </html>
