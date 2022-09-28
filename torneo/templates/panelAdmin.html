@@ -56,10 +56,57 @@
 
         </div>
     </div>
-    <div id="content">
-        <div id="box">
-            
+    <div class="container" id="content">
+      <div class="row">
+        <div class="col-12">
+          <div id="box">
+            <div class="card">
+              <div class="card-header">
+                <a name="" id="" class="btn btn-success" href="{% url 'crear_torneo' %}" role="button">Crear Torneo</a>
+            </div>
+              <div class="card-body">
+                <h4 class="card-title">Torneos</h4>
+                <div class="table-responsive">
+                  <table class="table">
+                    <thead>
+                      <tr id="cabeza">
+                        <th scope="col">ID</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Organizador</th>
+                        <th scope="col">Contacto</th>
+                        <th scope="col">Fecha Inicio</th>
+                        <th scope="col">Estado</th>
+                        <th scope="col">Acciones</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {% for torneo in torneos %}
+                      <tr class="">
+                        <td scope="row">{{torneo.id}}</td>
+                        <td>{{torneo.nombre_torneo}}</td>
+                        <td>{{torneo.id_organizador.nombre_organizador}}</td>
+                        <td>{{torneo.id_organizador.telefono_organizador}}</td>
+                        <td>{{torneo.fecha_torneo_inicio}}</td>
+                        {% if torneo.torneo_estado == True %}
+                           <td>En Progreso</td>
+                        {% else %}
+                          <td>Terminado</td>
+                        {% endif %}
+                        <td><a name="" id="btn-ver" class="btn btn-info" href="#" role="button"><span class="text-white"><i class="fa fa-sign-in"></i></span></a> 
+                          <a name="" id="btn-editar" class="btn btn-danger" href="#" role="button"><span class="text-white"><i class="fa fa-edit"></i></span></a></td>
+                      </tr>
+                      {% endfor %}
+                    </tbody>
+                  </table>
+                </div>
+                
+              </div>
+              <div class="card-footer text-muted">
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
     </div>
   </div>
   
