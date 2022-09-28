@@ -1,0 +1,52 @@
+body{
+    min-height: 100vh;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    font-family: Verdana;
+
+}
+
+.navbar-custom {
+    background-color: #003975;
+}
+
+.navbar-brand{
+    color: white !important;
+}
+
+#side_nav{
+    background: #003975;
+    min-width: 350px;
+    max-width: 350px;
+}
+
+#content{
+    width: 100%;
+    background: linear-gradient(rgba(237, 28, 36, .5), rgba(237, 28, 36, .5)),url('../images/basquetbolrecorte.jpg'); 
+    align-items: center;
+    display: flex;
+}
+
+.title-sidebar{
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.list-unstyled{
+    font-size: 23px;
+}
+
+.item{
+    padding-top: 7px;
+    padding-bottom: 7px;
+
+}
+
+#box{
+    width: 800px;
+    height: 500px;
+    background-color: #003975;
+    margin: 0px auto;
+    opacity: .7;
+    border-radius: 30px;
+}
