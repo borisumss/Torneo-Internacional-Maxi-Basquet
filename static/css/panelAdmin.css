@@ -2,9 +2,11 @@ body{
     min-height: 100vh;
     display: grid;
     grid-template-rows: auto 1fr auto;
-    font-family: Verdana;
+    font-family:'Montserrat', sans-serif;
+    
 
 }
+
 
 .navbar-custom {
     background-color: #003975;

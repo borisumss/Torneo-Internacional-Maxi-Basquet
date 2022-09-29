@@ -4,7 +4,9 @@ rojo: #ED1C24
 blanco: #FFFFFF
 azul: #003975
 */
-
+* {
+    font-family: 'Montserrat', sans-serif;
+}
 
 #intro{
     background-image: url('/static/images/basquetbolmujeres_fondo.jpg');

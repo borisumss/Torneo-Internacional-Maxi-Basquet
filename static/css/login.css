@@ -5,6 +5,9 @@ body {
     background-size: cover;
     background-attachment: fixed;
 }
+* {
+    font-family: 'Montserrat', sans-serif;
+}
 
 main {
     margin-top: 280px;
