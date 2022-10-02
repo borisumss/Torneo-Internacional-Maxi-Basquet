@@ -1,14 +1,26 @@
 body{
-    min-height: 100vh;
+    height: 100%;
     display: grid;
-    grid-template-rows: auto 1fr auto;
-    font-family:'Montserrat', sans-serif;
     
-
+    font-family:'Montserrat', sans-serif;
 }
 
+#content{
+    width: 100%;
+    background: linear-gradient(rgba(237, 28, 36, .5), rgba(237, 28, 36, .5)),url('../images/basquetbolrecorte.jpg'); 
+    align-items: center;  
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: left;
+}
 
-
+.filaCuadro{
+    height: 100% !important;
+}
+.secciones{
+    height: 80%;
+    margin: 0px auto;
+}
 
 .active{
     background-color: #0d77e8;
@@ -41,11 +53,6 @@ body{
     max-width: 350px;
 }
 
-#content{
-    width: 100%;
-    background: linear-gradient(rgba(237, 28, 36, .5), rgba(237, 28, 36, .5)),url('../images/basquetbolrecorte.jpg'); 
-    align-items: center;
-}
 
 .title-sidebar{
     padding-top: 20px;
@@ -64,16 +71,16 @@ body{
 
 #box{
     width: 100%;
-    height: 100%;
+    height: 100% !important;
     background-color: #003975;
-    margin: 50px auto 0px;
+    margin: 0px auto 0px;
     opacity: 1;
     border-radius: 30px;
 }
 
 .card{
     width: 97%;
-    height: 100%;
+    max-height: 95%;
     margin: 0px auto;
     border-radius: 0px;
     background-color: #00397500;
@@ -82,7 +89,7 @@ body{
 
 .card-body{
     background-color: white;
-   
+    overflow:scroll;
 }
 .table{
     min-width: 1000px;

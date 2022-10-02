@@ -79,6 +79,8 @@
           }
 
       } else {
+        let formu = document.getElementById('formulario');
+          formu.classList.add('was-validated')
           Swal.fire('LLene correctamente todos los campos', '', 'error');
       }
 
