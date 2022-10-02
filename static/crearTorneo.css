@@ -39,10 +39,10 @@ body{
     background-color: #ED1C24 !important;
     background-image: url('./imagenes/fondo.png');
     background-repeat: no-repeat;
-    background-size: auto;
+    background-size: cover;
     background-position: center;
     background-attachment: fixed;
-    
+    min-height: 100vh;
 }
 
 main{

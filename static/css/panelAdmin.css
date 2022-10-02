@@ -8,10 +8,29 @@ body{
 }
 
 
+
+
+.active{
+    background-color: #0d77e8;
+    margin: 0px;
+    padding: 0px;
+    width: 100%;
+}
+
 .navbar-custom {
     background-color: #003975;
 }
+.tabs{
+    padding: 0px !important;
+    margin: 0px;
+}
+.header-box{
+    padding: 16px 0px 24px !important;
+}
 
+.item{
+    padding: 16px;
+}
 .navbar-brand{
     color: white !important;
 }
