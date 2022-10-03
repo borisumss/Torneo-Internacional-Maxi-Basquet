@@ -1,0 +1,114 @@
+body{
+    height: 100%;
+    display: grid;
+    
+    font-family:'Montserrat', sans-serif;
+}
+
+#content{
+    width: 100%;
+    background: linear-gradient(rgba(237, 28, 36, .5), rgba(237, 28, 36, .5)),url('../images/basquetbolrecorte.jpg'); 
+    align-items: center;  
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: left;
+}
+
+.filaCuadro{
+    height: 100% !important;
+}
+.secciones{
+    height: 80%;
+    margin: 0px auto;
+}
+
+.active{
+    background-color: #0d77e8;
+    margin: 0px;
+    padding: 0px;
+    width: 100%;
+}
+
+.navbar-custom {
+    background-color: #003975;
+}
+.tabs{
+    padding: 0px !important;
+    margin: 0px;
+}
+.header-box{
+    padding: 16px 0px 24px !important;
+}
+
+.item{
+    padding: 16px;
+}
+.navbar-brand{
+    color: white !important;
+}
+
+#side_nav{
+    background: #003975;
+    min-width: 350px;
+    max-width: 350px;
+}
+
+
+.title-sidebar{
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.list-unstyled{
+    font-size: 23px;
+}
+
+.item{
+    padding-top: 7px;
+    padding-bottom: 7px;
+
+}
+
+#box{
+    width: 100%;
+    height: 100% !important;
+    background-color: #003975;
+    margin: 0px auto 0px;
+    opacity: 1;
+    border-radius: 30px;
+}
+
+.card{
+    width: 97%;
+    max-height: 95%;
+    margin: 0px auto;
+    border-radius: 0px;
+    background-color: #00397500;
+    border: none;
+}
+
+.card-body{
+    background-color: white;
+    overflow:scroll;
+}
+.table{
+    min-width: 1000px;
+}
+
+
+th{
+    font-weight: bold !important;
+}
+
+#cabeza{
+    border-bottom: 2px solid black; 
+}
+
+.card-header{
+    padding: 15px 0px;
+}
+
+#btn-ver, #btn-editar{
+    padding: 5px 0px;
+    width: 30px;
+}

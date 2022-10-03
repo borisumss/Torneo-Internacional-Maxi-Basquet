@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-305_+qfegnqpy8o&099&m*b^)iuy*7+%v3(s3ppbs4%&2a!26%
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
+MESSAGE_STORAGE = "django.contrib.messages.storage.cookie.CookieStorage"
 
 # Application definition
 
@@ -101,6 +101,8 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+## Login with email ## 
+##AUTHENTICATION_BACKENDS = ['django.contrib.auth.backends.ModelBackend']
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/

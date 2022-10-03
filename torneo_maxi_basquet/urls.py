@@ -20,6 +20,10 @@ from torneo import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.index),
-    path('login/', views.login)
+    path('', views.index, name='home'),
+    path('login/', views.login, name='login'),
+    path('administracion/torneos/crear', views.crear_torneo, name='crear_torneo'),
+    path('administracion/', views.administracion, name='administracion'),
+    path('delegacion/', views.delegacion, name='delegacion')
+    
 ]
