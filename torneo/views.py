@@ -1,5 +1,6 @@
 #import email
 #from typing_extensions import Self
+from pickle import FALSE, TRUE
 from unicodedata import category, name
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth import authenticate, login as auth_login
@@ -8,15 +9,32 @@ from django.db import IntegrityError
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.decorators import user_passes_test
 from .models import Organizador, Torneo, Etapa_Inscripcion, Categorias_Torneo
+from django.contrib import messages
 #def email_check(user):
 #   return user.email.endswith('@admin2.com')
 # Create your views here.
 def index(request):
-    return render(request, 'index.html')
+    if request.method == 'GET':
+        if not request.user.is_anonymous:
+            if request.user.email.endswith('@delegacion.com'):
+                return redirect('delegacion')
+            elif request.user.email.endswith('@admin.com'):
+                return redirect('administracion')
+        else:
+            return render(request, 'index.html')
+    
+    
 
 def login(request):
     if request.method == 'GET':
-        return render(request, 'login.html')
+        if not request.user.is_anonymous:
+            if request.user.email.endswith('@delegacion.com'):
+                return redirect('delegacion')
+            elif request.user.email.endswith('@admin.com'):
+                return redirect('administracion')
+        else:
+            return render(request, 'login.html')
+            
     elif request.method == 'POST':
         email = request.POST.get('email')
         password = request.POST.get('password')
@@ -28,6 +46,7 @@ def login(request):
             elif request.user.email.endswith('@admin.com'):
                 return redirect('administracion')
         else:
+            messages.warning(request, "Algo salio mal, intente nuevamente")
             return render(request, 'login.html')
 
 
