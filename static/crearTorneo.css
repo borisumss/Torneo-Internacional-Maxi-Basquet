@@ -194,7 +194,11 @@ label{
 .confModal{
     text-align: left !important;
 }
-
+.tablaInput{
+    background-color: #CFE2FF !important;
+    border: none !important;
+    text-align: center;
+}
 @media screen and (max-width: 800px) {
     .organizador, #form2, #form3{ 
         display: inline-block !important;

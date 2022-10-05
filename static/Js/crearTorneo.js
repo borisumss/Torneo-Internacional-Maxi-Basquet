@@ -67,19 +67,20 @@
           } else if (min.value < 30 && max.value < 30) {
             Swal.fire('La edad mínima es de 30 años', '', 'error');  
           } else {
-              let nameCell = tablaCategorias.insertCell(0);
+              const nameCell = tablaCategorias.insertCell(0);
               let minCell = tablaCategorias.insertCell(1);
               let maxCell = tablaCategorias.insertCell(2);
-              nameCell.innerHTML = name.value;
-              minCell.innerHTML = min.value;
-              maxCell.innerHTML = max.value;
               nroCate = nroCate + 1;
+              
+              nameCell.innerHTML = "<input class='tablaInput form-control' value='"+name.value+"' name='"+"nombreCategoria"+"'  >";
+              minCell.innerHTML = "<input class='tablaInput form-control' value='"+min.value+"' name='"+"minCategoria"+"' >";
+              maxCell.innerHTML = "<input class='tablaInput form-control' value='"+max.value+"' name='"+"maxCategoria"+"'>";
               let cerrar = document.getElementById('modalCancelar');
               cerrar.click();
           }
 
       } else {
-        let formu = document.getElementById('formulario');
+        let formu = document.getElementById('modalValid');
           formu.classList.add('was-validated')
           Swal.fire('LLene correctamente todos los campos', '', 'error');
       }

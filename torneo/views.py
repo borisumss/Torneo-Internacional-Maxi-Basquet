@@ -111,11 +111,10 @@ def crear_torneo(request):
                 inscripcion = Etapa_Inscripcion(tipo_inscripcion=tipo_inscripcion_ins, fecha_inicio=fecha_inicio_ins, fecha_fin=fecha_fin_ins, monto_inscripcion=monto_inscripcion_ins, id_torneo=torneo)
                 inscripcion.save()
 
-                nombre_categoria = request.POST.get('nombre_categoria')
-                edad_minima = request.POST.get('edad_minima')
-                edad_maxima = request.POST.get('edad_maxima')
-                categoria = Categorias_Torneo(nombre_categoria=nombre_categoria, edad_minima=edad_minima, edad_maxima=edad_maxima, id_torneo=torneo)
-                categoria.save()
+                largo = len(request.POST.getlist('nombreCategoria'))
+                for i in range(largo):
+                    categoria = Categorias_Torneo(nombre_categoria=request.POST.getlist('nombreCategoria')[i], edad_minima=request.POST.getlist('minCategoria')[i], edad_maxima=request.POST.getlist('maxCategoria')[i], id_torneo=torneo)
+                    categoria.save()
 
                 return redirect('administracion')
         else:
