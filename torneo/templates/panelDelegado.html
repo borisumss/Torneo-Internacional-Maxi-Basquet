@@ -28,32 +28,35 @@
     <!-- place navbar here -->
     <nav class="navbar navbar-expand-lg navbar-custom">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#">Delegación - Torneo Internacional Maxi Basquet</a>
+        <div class="menu d-flex"> 
+          <div class="navbar-brand burger"> <span class="text-white"><i class="fa fa-navicon"></i> </span></div>
+          <a class="navbar-brand" id="Titulo" href="#">Delegación - Torneo Internacional Maxi Basquet</a>
+      </div>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
           aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
+          <span class="text-white fa fa-navicon"></span>
         </button>
         <div class="d-flex justify-content-end">
           <div class="collapse navbar-collapse" id="navbarNav">
             <!--<a class="nav-link" href="#">Username</a>-->
-            <a class="navbar-brand" href="#">Username</a>
+            <a class="navbar-brand" href="#">{{user.email}}</a>
           </div>
         </div>
       </div>
     </nav>
   </header>
-  <div class="main-container d-flex">
-    <div class="sidebar" id="side_nav">
+  <main>
+    <div class="sidebar menu-collapsed" id="side_nav">
         <div class="header-box px-2 pt-3 pb-4">
             <div class="title-sidebar">
-                <h1 class="fs-4"><span class="text-white">Nombre Torneo</span></h1>
+                <h1 class="fs-4"><span class="text-white opciones">Nombre Torneo</span></h1>
             </div>
             
             <ul class="tabs list-unstyled px-3">
-                <li class="item"><a href="#Tab1" class="text-decoration-none"><span class="text-white"><i class="bi bi-trophy-fill"></i> Torneo Actual</span></a></li>
-                <li class="item"><a href="#Tab2" class="text-decoration-none"><span class="text-white"><i class="bi bi-person-square"></i> Equipo</span></a></li>
-                <li class="item"><a href="#Tab3" class="text-decoration-none"><span class="text-white"><i class="bi bi-postcard-fill"></i> Generar Credenciales</span></a></li>
-                <li class="item"><a href="#Tab4" class="text-decoration-none"><span class="text-white"><i class="bi bi-menu-button-wide-fill"></i> Menú Principal</span></a></li>
+                <li class="item"><a href="#Tab1" class="text-decoration-none"><i class="text-white bi bi-trophy-fill"></i><span class="text-white opciones"> Torneo Actual</span></a></li>
+                <li class="item"><a href="#Tab2" class="text-decoration-none"><i class="text-white bi bi-person-square"></i><span class="text-white opciones"> Equipo</span></a></li>
+                <li class="item"><a href="#Tab3" class="text-decoration-none"><i class="text-white bi bi-postcard-fill"></i><span class="text-white opciones"> Generar Credenciales</span></a></li>
+                <li class="item"><a href="#Tab4" class="text-decoration-none"><i class="text-white bi bi-menu-button-wide-fill"></i><span class="text-white opciones"> Menú Principal</span></a></li>
             </ul>
 
         </div>
@@ -68,7 +71,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </main>
   
 </body>
 <!-- Bootstrap JavaScript Libraries -->

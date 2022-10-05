@@ -15,3 +15,17 @@ $('ul.tabs li').click(function(){
     $(activeTab).show();
     return false;
 });
+
+$('.burger').click(function(){
+    
+    let x = $('#side_nav').width();
+    if(x<=55){
+        $('#side_nav').addClass('menu-expanded');
+        $('#side_nav').removeClass('menu-collapsed');
+    }else{
+        $('#side_nav').addClass('menu-collapsed');
+        $('#side_nav').removeClass('menu-expanded');
+    }
+
+    return false;
+});

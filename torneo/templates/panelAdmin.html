@@ -28,92 +28,96 @@
     <!-- place navbar here -->
     <nav class="navbar navbar-expand-lg navbar-custom">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#">Administración - Torneo Internacional Maxi Basquet</a>
+        <div class="menu d-flex"> 
+            <div class="navbar-brand burger"> <span class="text-white"><i class="fa fa-navicon"></i> </span></div>
+            <a class="navbar-brand" id="Titulo" href="#">Administración - Torneo Internacional Maxi Basquet</a>
+        </div>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
           aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
+          <span class="text-white fa fa-navicon"></span>
         </button>
-        <div class="d-flex justify-content-end">
+        <div class="">
           <div class="collapse navbar-collapse" id="navbarNav">
             <!--<a class="nav-link" href="#">Username</a>-->
-            <a class="navbar-brand" href="#">Username</a>
+            <a class="navbar-brand" id="usuario" href="#">{{user.email}}</a>
           </div>
         </div>
       </div>
     </nav>
   </header>
-  <div class="main-container d-flex">
-    <div class="sidebar" id="side_nav">
+  <main>
+    <div class="sidebar menu-collapsed" id="side_nav">
         <div class="header-box px-2 pt-3 pb-4">
-            
             <ul class="tabs list-unstyled px-3">
-                <li class="item"><a href="#box" class="text-decoration-none"><span class="text-white"><i class="bi bi-trophy-fill"></i> Torneos</span></a></li>
-                <li class="item"><a href="#Tab2" class="text-decoration-none"><span class="text-white"><i class="bi bi-trophy-fill"></i> Torneos Terminados</span></a></li>
-                <li class="item"><a href="#Tab3" class="text-decoration-none"><span class="text-white"><i class="bi bi-card-heading"></i> Cuentas Delegados</span></a></li>
-                <li class="item"><a href="#Tab4" class="text-decoration-none"><span class="text-white"><i class="bi bi-clipboard2-plus-fill"></i> Equipos Inscritos</span></a></li>
-                <li class="item"><a href="#Tab5" class="text-decoration-none"><span class="text-white"><i class="bi bi-mailbox2"></i> Solicitudes</span></a></li>
+                <li class="item"><a href="#box" class="text-decoration-none"> <i class="text-white bi bi-trophy-fill"></i><span class="text-white opciones"> Torneos</span></a></li>
+                <li class="item"><a href="#Tab2" class="text-decoration-none"><i class="text-white fa fa-medal"></i><span class="text-white opciones"> Torneos Terminados</span></a></li>
+                <li class="item"><a href="#Tab3" class="text-decoration-none"><i class="text-white bi bi-card-heading"></i><span class="text-white opciones"> Cuentas Delegados</span></a></li>
+                <li class="item"><a href="#Tab4" class="text-decoration-none"><i class="text-white bi bi-clipboard2-plus-fill"></i><span class="text-white opciones"> Equipos Inscritos</span></a></li>
+                <li class="item"><a href="#Tab5" class="text-decoration-none"><i class="text-white bi bi-mailbox2"></i><span class="text-white opciones"> Solicitudes</span></a></li>
             </ul>
-
+  
         </div>
     </div>
-    <div class="container  align-items-center justify-content-center"id="content">
-      <div class="row filaCuadro align-items-center justify-content-center">
-        <div class="secciones col-12  align-items-center justify-content-center">
-          <article class="test" id="box">
-            <div class="card">
-              <div class="card-header">
-                <a name="" id="" class="btn btn-success" href="{% url 'crear_torneo' %}" role="button">Crear Torneo</a>
-            </div>
-              <div class="card-body">
-                <h4 class="card-title">Torneos</h4>
-                <div class="table-responsive">
-                  <table class="table">
-                    <thead>
-                      <tr id="cabeza">
-                        <th scope="col">ID</th>
-                        <th scope="col">Nombre</th>
-                        <th scope="col">Organizador</th>
-                        <th scope="col">Contacto</th>
-                        <th scope="col">Fecha Inicio</th>
-                        <th scope="col">Estado</th>
-                        <th scope="col">Acciones</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {% for torneo in torneos %}
-                      <tr class="">
-                        <td scope="row">{{torneo.id}}</td>
-                        <td>{{torneo.nombre_torneo}}</td>
-                        <td>{{torneo.id_organizador.nombre_organizador}}</td>
-                        <td>{{torneo.id_organizador.telefono_organizador}}</td>
-                        <td>{{torneo.fecha_torneo_inicio}}</td>
-                        {% if torneo.torneo_estado == True %}
-                           <td>En Progreso</td>
-                        {% else %}
-                          <td>Terminado</td>
-                        {% endif %}
-                        <td><a name="" id="btn-ver" class="btn btn-info" href="#" role="button"><span class="text-white"><i class="fa fa-sign-in"></i></span></a> 
-                          <a name="" id="btn-editar" class="btn btn-danger" href="#" role="button"><span class="text-white"><i class="fa fa-edit"></i></span></a></td>
-                      </tr>
-                      {% endfor %}
-                    </tbody>
-                  </table>
-                </div>
-                
-              </div>
-              <div class="card-footer text-muted">
-              </div>
-            </div>
-          </article>
+
+    <div class="container" id="content">
+      <div class="row">
+        <div class="col-12 secciones align-items-center justify-content-center">
           
-          <article id="Tab2"> <h1>TORNEOS TERMINADOS AQUI</h1></article>
-          <article id="Tab3"> <h1>CUENTAS PARA DELEGADOS AQUI</h1></article>
-          <article id="Tab4"> <h1>EQUIPOS INSCRITOS AQUI</h1></article>
-          <article id="Tab5"> <h1>SOLICITUDES</h1></article>
+            <article class="test" id="box">
+                <div class="card">
+                  <div class="card-header">
+                    <a name="" id="" class="btn btn-success" href="{% url 'crear_torneo' %}" role="button">Crear Torneo</a>
+                </div>
+                  <div class="card-body table-responsive">
+                    <h4 class="card-title">Torneos</h4>
+                    <div class="">
+                      <table class="table">
+                        <thead>
+                          <tr id="cabeza">
+                            <th scope="col">ID</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Organizador</th>
+                            <th scope="col">Contacto</th>
+                            <th scope="col">Fecha Inicio</th>
+                            <th scope="col">Estado</th>
+                            <th scope="col">Acciones</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {% for torneo in torneos %}
+                          <tr class="">
+                            <td scope="row">{{torneo.id}}</td>
+                            <td>{{torneo.nombre_torneo}}</td>
+                            <td>{{torneo.id_organizador.nombre_organizador}}</td>
+                            <td>{{torneo.id_organizador.telefono_organizador}}</td>
+                            <td>{{torneo.fecha_torneo_inicio}}</td>
+                            {% if torneo.torneo_estado == True %}
+                               <td>En Progreso</td>
+                            {% else %}
+                              <td>Terminado</td>
+                            {% endif %}
+                            <td><a name="" id="btn-ver" class="btn btn-info" href="#" role="button"><span class="text-white"><i class="fa fa-sign-in"></i></span></a> 
+                              <a name="" id="btn-editar" class="btn btn-danger" href="#" role="button"><span class="text-white"><i class="fa fa-edit"></i></span></a></td>
+                          </tr>
+                          {% endfor %}
+                        </tbody>
+                      </table>
+                    </div>
+                    
+                  </div>
+                </div>
+              </article>
+              
+              <article id="Tab2"> <h1>TORNEOS TERMINADOS AQUI</h1></article>
+              <article id="Tab3"> <h1>CUENTAS PARA DELEGADOS AQUI</h1></article>
+              <article id="Tab4"> <h1>EQUIPOS INSCRITOS AQUI</h1></article>
+              <article id="Tab5"> <h1>SOLICITUDES</h1></article>
+              
         </div>
       </div>
     </div>
-  </div>
+  
+  </main>
 </body>
 <!-- Bootstrap JavaScript Libraries -->
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js"
