@@ -24,6 +24,6 @@ urlpatterns = [
     path('login/', views.login, name='login'),
     path('administracion/torneos/crear', views.crear_torneo, name='crear_torneo'),
     path('administracion/', views.administracion, name='administracion'),
-    path('delegacion/', views.delegacion, name='delegacion')
-    
+    path('delegacion/', views.delegacion, name='delegacion'),
+    path('logout/', views.cerrarSesion, name='logout')
 ]

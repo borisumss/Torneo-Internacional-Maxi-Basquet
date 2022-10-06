@@ -3,7 +3,7 @@
 from pickle import FALSE, TRUE
 from unicodedata import category, name
 from django.shortcuts import render, get_object_or_404, redirect
-from django.contrib.auth import authenticate, login as auth_login
+from django.contrib.auth import logout, authenticate, login as auth_login
 from django.contrib.auth.models import User
 from django.db import IntegrityError
 from django.contrib.auth.decorators import login_required
@@ -143,4 +143,8 @@ def delegacion(request):
                 return render(request, 'panelDelegado.html')
         else:
             return redirect('login')
-    
+
+
+def cerrarSesion(request):
+    logout(request)
+    return redirect('login')
