@@ -49,7 +49,7 @@
     <div class="sidebar menu-collapsed" id="side_nav">
         <div class="header-box px-2 pt-3 pb-4">
             <ul class="tabs list-unstyled px-3">
-                <li class="item"><a href="#box" class="text-decoration-none"> <i class="text-white bi bi-trophy-fill"></i><span class="text-white opciones"> Torneos</span></a></li>
+                <li class="item"><a href="#Tab1" class="text-decoration-none"> <i class="text-white bi bi-trophy-fill"></i><span class="text-white opciones"> Torneos</span></a></li>
                 <li class="item"><a href="#Tab2" class="text-decoration-none"><i class="text-white fa fa-medal"></i><span class="text-white opciones"> Torneos Terminados</span></a></li>
                 <li class="item"><a href="#Tab3" class="text-decoration-none"><i class="text-white bi bi-card-heading"></i><span class="text-white opciones"> Cuentas Delegados</span></a></li>
                 <li class="item"><a href="#Tab4" class="text-decoration-none"><i class="text-white bi bi-clipboard2-plus-fill"></i><span class="text-white opciones"> Equipos Inscritos</span></a></li>
@@ -63,13 +63,13 @@
       <div class="row">
         <div class="col-12 secciones align-items-center justify-content-center">
           
-            <article class="test" id="box">
+            <article class="box" id="Tab1">
                 <div class="card">
                   <div class="card-header">
                     <a name="" id="" class="btn btn-success" href="{% url 'crear_torneo' %}" role="button">Crear Torneo</a>
                 </div>
                   <div class="card-body table-responsive">
-                    <h4 class="card-title">Torneos</h4>
+                    <h4 class="card-title">Torneos en Progreso</h4>
                     <div class="">
                       <table class="table">
                         <thead>
@@ -91,8 +91,8 @@
                             <td>{{torneo.id_organizador.nombre_organizador}}</td>
                             <td>{{torneo.id_organizador.telefono_organizador}}</td>
                             <td>{{torneo.fecha_torneo_inicio}}</td>
-                            {% if torneo.torneo_estado == True %}
-                               <td>En Progreso</td>
+                            {% if torneo.torneo_estado == 1 %}
+                               <td>En Proceso</td>
                             {% else %}
                               <td>Terminado</td>
                             {% endif %}
@@ -108,7 +108,40 @@
                 </div>
               </article>
               
-              <article id="Tab2"> <h1>TORNEOS TERMINADOS AQUI</h1></article>
+              <article class="box" id="Tab2">
+                <div class="card">
+                  <div class="card-header">
+                      </div>
+                  <div class="card-body table-responsive">
+                    <h4 class="card-title">Torneos Concluidos</h4>
+                    <div class="">
+                      <table class="table">
+                        <thead>
+                          <tr id="cabeza">
+                            <th scope="col">Nombre del Torneo</th>
+                            <th scope="col">País</th>
+                            <th scope="col">Fecha Final</th>
+                            <th scope="col">Ganador</th>
+                            <th scope="col">Acciones</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {% for torneo in torneosTerminados %}
+                          <tr class="">
+                            <td scope="row">{{torneo.nombre_torneo}}</td>
+                            <td>{{torneo.pais_torneo}}</td>
+                            <td>{{torneo.fecha_torneo_fin}}</td>
+                            <td>Equipo A </td>
+                            <td><a name="" id="" class="btn btn-info" href="#" role="button"><span class="text-white">Ver Torneo</span></a></td>
+                          </tr>
+                          {% endfor %}
+                        </tbody>
+                      </table>
+                    </div>
+                    
+                  </div>
+                </div>
+              </article>
               <article id="Tab3"> <h1>CUENTAS PARA DELEGADOS AQUI</h1></article>
               <article id="Tab4"> <h1>EQUIPOS INSCRITOS AQUI</h1></article>
               <article id="Tab5"> <h1>SOLICITUDES</h1></article>

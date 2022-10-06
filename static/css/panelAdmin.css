@@ -96,7 +96,7 @@ body{
     background-attachment: fixed !important;
 }
 
-#box{
+.box{
     height: 580px;
     background-color: #003975b4;
     
@@ -106,16 +106,21 @@ body{
 }
 .card{
     width: 97%;
-    max-height: 95%;
+    height: 480px;
     margin: 0px auto;
     border-radius: 0px;
     background-color: #00397500;
     border: none;
 }
 
+#Tab2 .card{
+    height: 520px;
+}
+
 .card-body{
     background-color: white;
     overflow: scroll;
+    min-height: 100%;
     
 }
 .table{
@@ -160,7 +165,7 @@ th{
 }
 
 @media only screen and (max-height: 680px) {
-    #box{
+    .box{
         height: 500px;
     }
 }
