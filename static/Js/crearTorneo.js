@@ -208,3 +208,16 @@ function cerrarModal(){
     max.value="";
     cerrar.click();
 }
+
+function validarLogo() {
+
+    var archivoInput = document.getElementById("logoTorneo");
+    var archivoRuta = archivoInput.value;
+    var extesiones = /(.jpg|.jpeg|.png)$/i;;
+
+    if (!extesiones.exec(archivoRuta)) {
+        Swal.fire('Sólo se permiten imágenes (.jpg .jpeg .png)', '', 'error'); 
+        archivoInput.value = '';
+        return false;
+    }
+}

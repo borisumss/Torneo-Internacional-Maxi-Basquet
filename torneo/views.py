@@ -92,8 +92,9 @@ def crear_torneo(request):
                 fecha_torneo_fin = request.POST.get('fecha_torneo_fin')
                 pais_torneo = request.POST.get('pais_torneo')
                 invitacion_documento = request.FILES.get('invitacion_documento')
+                logo = request.FILES.get('logo')
                 id_organizador = organizador.pk
-                torneo = Torneo(nombre_torneo=nombre_torneo, fecha_torneo_inicio=fecha_torneo_inicio, fecha_torneo_fin=fecha_torneo_fin, pais_torneo=pais_torneo, invitacion_documento=invitacion_documento, id_organizador=organizador)
+                torneo = Torneo(nombre_torneo=nombre_torneo, fecha_torneo_inicio=fecha_torneo_inicio, fecha_torneo_fin=fecha_torneo_fin, pais_torneo=pais_torneo, invitacion_documento=invitacion_documento, logo=logo ,id_organizador=organizador)
                 torneo.save()
                 
                 tipo_inscripcion_pre = 'pre inscripcion'

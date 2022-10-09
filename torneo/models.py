@@ -20,7 +20,8 @@ class Torneo(models.Model):
     fecha_torneo_fin = models.DateField(null=True)
     pais_torneo = models.CharField(max_length=30)
     torneo_estado = models.BooleanField(default=True)
-    invitacion_documento = models.FileField(upload_to='static/imagenes/', verbose_name='Convocatoria')
+    invitacion_documento = models.FileField(upload_to='static/imagenes/convocatorias/', verbose_name='Convocatoria')
+    logo = models.ImageField(upload_to='static/imagenes/logos/', verbose_name='LogoTorneo', null=True)
     id_organizador = models.ForeignKey(Organizador, on_delete=models.CASCADE)
 
     def __str__(self):
