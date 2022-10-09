@@ -3,7 +3,7 @@
 from pickle import FALSE, TRUE
 from unicodedata import category, name
 from django.shortcuts import render, get_object_or_404, redirect
-from django.contrib.auth import authenticate, login as auth_login
+from django.contrib.auth import logout, authenticate, login as auth_login
 from django.contrib.auth.models import User
 from django.db import IntegrityError
 from django.contrib.auth.decorators import login_required
@@ -92,8 +92,9 @@ def crear_torneo(request):
                 fecha_torneo_fin = request.POST.get('fecha_torneo_fin')
                 pais_torneo = request.POST.get('pais_torneo')
                 invitacion_documento = request.FILES.get('invitacion_documento')
+                logo = request.FILES.get('logo')
                 id_organizador = organizador.pk
-                torneo = Torneo(nombre_torneo=nombre_torneo, fecha_torneo_inicio=fecha_torneo_inicio, fecha_torneo_fin=fecha_torneo_fin, pais_torneo=pais_torneo, invitacion_documento=invitacion_documento, id_organizador=organizador)
+                torneo = Torneo(nombre_torneo=nombre_torneo, fecha_torneo_inicio=fecha_torneo_inicio, fecha_torneo_fin=fecha_torneo_fin, pais_torneo=pais_torneo, invitacion_documento=invitacion_documento, logo=logo ,id_organizador=organizador)
                 torneo.save()
                 
                 tipo_inscripcion_pre = 'pre inscripcion'
@@ -111,11 +112,10 @@ def crear_torneo(request):
                 inscripcion = Etapa_Inscripcion(tipo_inscripcion=tipo_inscripcion_ins, fecha_inicio=fecha_inicio_ins, fecha_fin=fecha_fin_ins, monto_inscripcion=monto_inscripcion_ins, id_torneo=torneo)
                 inscripcion.save()
 
-                nombre_categoria = request.POST.get('nombre_categoria')
-                edad_minima = request.POST.get('edad_minima')
-                edad_maxima = request.POST.get('edad_maxima')
-                categoria = Categorias_Torneo(nombre_categoria=nombre_categoria, edad_minima=edad_minima, edad_maxima=edad_maxima, id_torneo=torneo)
-                categoria.save()
+                largo = len(request.POST.getlist('nombreCategoria'))
+                for i in range(largo):
+                    categoria = Categorias_Torneo(nombre_categoria=request.POST.getlist('nombreCategoria')[i], edad_minima=request.POST.getlist('minCategoria')[i], edad_maxima=request.POST.getlist('maxCategoria')[i], id_torneo=torneo)
+                    categoria.save()
 
                 return redirect('administracion')
         else:
@@ -128,8 +128,9 @@ def administracion(request):
             if not request.user.email.endswith('@admin.com'):
                 return redirect('login')
             else:
-                torneos = Torneo.objects.all()
-                return render(request, 'panelAdmin.html',{"torneos":torneos})
+                torneosProgreso = Torneo.objects.filter(torneo_estado=1)
+                torneosTerminados = Torneo.objects.filter(torneo_estado=0)
+                return render(request, 'panelAdmin.html',{"torneos":torneosProgreso, "torneosTerminados":torneosTerminados})
         else:
             return redirect('login')
     
@@ -143,4 +144,8 @@ def delegacion(request):
                 return render(request, 'panelDelegado.html')
         else:
             return redirect('login')
-    
+
+
+def cerrarSesion(request):
+    logout(request)
+    return redirect('login')

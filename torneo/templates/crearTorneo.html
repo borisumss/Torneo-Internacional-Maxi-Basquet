@@ -36,19 +36,19 @@
                                 <input type="text" class="primer form-control" name="nombre_organizador"
                                     id="organizador_input" placeholder="Ingrese su nombre"
                                     pattern="^(?!\s)[a-zA-ZÁáÉéÍíÓóÚú\s]{5,50}" required>
-                                    <div class="invalid-tooltip">
-                                        Máximo 50 caracteres de A-Z
-                                      </div>
+                                <div class="invalid-tooltip">
+                                    Máximo 50 caracteres de A-Z
+                                </div>
                             </div>
                             <br>
                             <div class="position-relative">
                                 <label class="primera" id="numero_label" for="telef">Número Telefónico: </label>
                                 <input type="text" class="primer form-control" name="telefono_organizador"
-                                    id="numero_input" placeholder="+59170346288"
-                                    pattern="^(?!\s)[0-9\+]{8,15}" required>
-                                    <div class="invalid-tooltip">
-                                        Máximo 15 números incluyendo el simbolo "+"
-                                      </div>
+                                    id="numero_input" placeholder="+59170346288" pattern="^(?!\s)[0-9\+]{8,15}"
+                                    required>
+                                <div class="invalid-tooltip">
+                                    Máximo 15 números incluyendo el simbolo "+"
+                                </div>
                             </div>
                         </article>
 
@@ -59,9 +59,9 @@
                                 <label class="primera" id="email_label" for="email">Correo Electrónico:</label>
                                 <input type="email" class="form-control" name="correo_organizador" id="email_input"
                                     placeholder="Ingrese su e-mail" minlength="5" required>
-                                    <div class="invalid-tooltip">
-                                        Llene este campo.
-                                      </div>
+                                <div class="invalid-tooltip">
+                                    Llene este campo.
+                                </div>
                             </div>
                             <br>
                             <div class="position-relative">
@@ -82,7 +82,7 @@
                                 </select>
                                 <div class="invalid-tooltip">
                                     Ningún país seleccionado.
-                                  </div>
+                                </div>
                             </div>
                         </article>
                     </section>
@@ -94,11 +94,10 @@
                                 <label class="primera" id="torneo_label" for="torneo">Nombre del
                                     Torneo:</label>
                                 <input type="text" class="primer form-control" name="nombre_torneo" id="torneo_input"
-                                    placeholder="Ingrese nombre del torneo" minlength="5" maxlength="50"
-                                    required>
-                                    <div class="invalid-tooltip">
-                                        Máximo 50 caracteres
-                                      </div>
+                                    placeholder="Ingrese nombre del torneo" minlength="5" maxlength="50" required>
+                                <div class="invalid-tooltip">
+                                    Máximo 50 caracteres
+                                </div>
                             </div>
                             <div class="md-form md-outline input-with-post-icon datepicker" id="formatsSection">
                                 <label class="primera" id="fecha_label" for="fecha_torneo">Fecha del Torneo:</label>
@@ -107,16 +106,16 @@
                                         <input type="date" id="fechaIni_input" name="fecha_torneo_inicio"
                                             class="form-control" placeholder="Inicio" onchange="fechasTorneo()"
                                             required>
-                                            <div class="invalid-tooltip">
-                                                Llene este campo.
-                                              </div>
+                                        <div class="invalid-tooltip">
+                                            Llene este campo.
+                                        </div>
                                     </div>
                                     <div class="col-6 position-relative">
                                         <input type="date" id="fechaFin_input" name="fecha_torneo_fin"
                                             class="form-control" placeholder="Fin" onchange="fechasTorneo()" required>
-                                            <div class="invalid-tooltip">
-                                                Llene este campo.
-                                              </div>
+                                        <div class="invalid-tooltip">
+                                            Llene este campo.
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -131,9 +130,9 @@
                                         <input type="number" class="primer form-control" name="monto_preinscripcion"
                                             id="montoPre_input" min="0" max="1000000"
                                             placeholder="Ingrese el costo de pre-inscripción" required>
-                                            <div class="invalid-tooltip">
-                                                Valores desde 0-1000000
-                                              </div>
+                                        <div class="invalid-tooltip">
+                                            Valores desde 0-1000000
+                                        </div>
                                     </div>
                                     <div class="dolares col-2">
                                         <label id="montoPre_label" for="montoPre">$us.</label>
@@ -149,17 +148,17 @@
                                         <input type="date" id="fechaPreIni_input" name="fecha_preinscripcion_inicio"
                                             class="form-control" placeholder="Inicio" onchange="fechasTorneoPre()"
                                             required>
-                                            <div class="invalid-tooltip">
-                                                Llene este campo.
-                                              </div>
+                                        <div class="invalid-tooltip">
+                                            Llene este campo.
+                                        </div>
                                     </div>
                                     <div class="col-6 position-relative">
                                         <input type="date" id="fechaPreFin_input" name="fecha_preinscripcion_fin"
                                             class="form-control" placeholder="Fin" onchange="fechasTorneoPre()"
                                             required>
-                                            <div class="invalid-tooltip">
-                                                Llene este campo.
-                                              </div>
+                                        <div class="invalid-tooltip">
+                                            Llene este campo.
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -172,11 +171,11 @@
                                 <div class="row">
                                     <div class="col-10 position-relative">
                                         <input type="number" class="primer form-control" name="monto_inscripcion"
-                                            id="montoIns_input" min="0" max="1000000" placeholder="Ingrese el costo para rezagados"
-                                            required>
-                                            <div class="invalid-tooltip">
-                                                Valores desde 0-1000000
-                                              </div>
+                                            id="montoIns_input" min="0" max="1000000"
+                                            placeholder="Ingrese el costo para rezagados" required>
+                                        <div class="invalid-tooltip">
+                                            Valores desde 0-1000000
+                                        </div>
                                     </div>
                                     <div class="dolares col-2">
                                         <label id="montoPre_label" for="montoPre">$us.</label>
@@ -192,17 +191,19 @@
                                 <div class="row">
                                     <div class="col-6 position-relative">
                                         <input type="date" id="fechaInsIni_input" name="fecha_inscripcion_inicio"
-                                            class="form-control" placeholder="Inicio" onchange="fechasTorneoRez()" required>
-                                            <div class="invalid-tooltip">
-                                                Llene este campo.
-                                              </div>
+                                            class="form-control" placeholder="Inicio" onchange="fechasTorneoRez()"
+                                            required>
+                                        <div class="invalid-tooltip">
+                                            Llene este campo.
+                                        </div>
                                     </div>
                                     <div class="col-6 position-relative">
                                         <input type="date" id="fechaInsFin_input" name="fecha_inscripcion_fin"
-                                            class="form-control" placeholder="Fin" onchange="fechasTorneoRez()" required>
-                                            <div class="invalid-tooltip">
-                                                Llene este campo.
-                                              </div>
+                                            class="form-control" placeholder="Fin" onchange="fechasTorneoRez()"
+                                            required>
+                                        <div class="invalid-tooltip">
+                                            Llene este campo.
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -216,9 +217,18 @@
                                 <label for="convocatoria" class="">Inserte la convocatoria digital</label>
                                 <input type="file" class="form-control" value="upload" id="convocatoria"
                                     name="invitacion_documento" accept="doctype" required>
-                                    <div class="invalid-tooltip">
-                                        Adjunte la convocatoria del torneo
-                                      </div>
+                                <div class="invalid-tooltip">
+                                    Adjunte la convocatoria del torneo
+                                </div>
+                            </div>
+
+                            <div class="archivo position-relative">
+                                <label for="logoTorneo" class="">Inserte el logo del torneo</label>
+                                <input type="file" accept="doctype" class="form-control" value="upload" id="logoTorneo"
+                                    name="logo"  onchange="validarLogo()" required>
+                                <div class="invalid-tooltip">
+                                    Adjunte el logo del torneo
+                                </div>
                             </div>
                             <div class="archivo">
 
@@ -238,65 +248,7 @@
                                             Categoría</button>
 
                                         <!-- Modal -->
-                                        <div class="container-fluid align-items-center justify-content-center modal fade" id="exampleModal" tabindex="-1"
-                                            aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                            <div class="row align-items-center justify-content-center modal-dialog">
-                                                <div class="col-12 modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="exampleModalLabel">CATEGORÍA</h5>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                            aria-label="Close"></button>
-                                                    </div>
-                                                    <div class="modal-body confModal">
-                                                        <div class="position-relative">
 
-                                                            <label class="primera" id="nombreModal_label"
-                                                                for="nombreModal_input">Nombre de la Categoría:</label>
-                                                            <input type="text" class="primer form-control"
-                                                                name="nombre_categoria" id="nombreModal_input"
-                                                                placeholder="Ingrese nombre de la categoría"
-                                                                pattern="^(?!\s)[a-zA-ZÁáÉéÍíÓóÚú\s]{5,20}" required>
-                                                                <div class="invalid-tooltip">
-                                                                    Máximo 20 caracteres de la A-Z
-                                                                  </div>
-                                                        </div>
-                                                        <br>
-                                                        <div class="position-relative">
-
-                                                            <label class="primera" id="minimoModal_label"
-                                                                for="minimoModal">Edad mímina:</label>
-                                                            <input type="number" class="primer form-control"
-                                                                name="edad_minima" id="minimoModal_input"
-                                                                placeholder="Ingrese la edad mínima" min="30" max="60"
-                                                                onchange="validacionMin()" required>
-                                                                <div class="invalid-tooltip">
-                                                                    Número entero entre 30 y 60 años
-                                                                  </div>
-                                                        </div>
-                                                            
-                                                        <br>
-                                                        <div class="position-relative">
-                                                            <label class="primera" id="maximoModal_label"
-                                                                for="maximoModal">Edad máxima:</label>
-                                                            <input type="number" class="primer form-control"
-                                                                name="edad_maxima" id="maximoModal_input"
-                                                                placeholder="Ingrese la edad máxima" min="30" max="60"
-                                                                onchange="validacionMax()" required>
-                                                                <div class="invalid-tooltip">
-                                                                    Número entero entre 30 y 60 años
-                                                                  </div>
-                                                        </div>
-                                                            
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-danger"
-                                                            data-bs-dismiss="modal"  id="modalCancelar">Cancelar</button>
-                                                        <button type="button" class="btn btn-primary"
-                                                            onclick="insertarFila()">Confirmar</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -336,12 +288,63 @@
                 </form>
             </div>
 
+            <div class="container-fluid align-items-center justify-content-center modal fade" id="exampleModal"
+                tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="row align-items-center justify-content-center modal-dialog">
+                    <div class="col-12 modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">CATEGORÍA</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body confModal" id="modalValid">
+                            <div class="position-relative">
 
+                                <label class="primera" id="nombreModal_label" for="nombreModal_input">Nombre de la
+                                    Categoría:</label>
+                                <input type="text" class="primer form-control" name="nombre_categoria"
+                                    id="nombreModal_input" placeholder="Ingrese nombre de la categoría"
+                                    pattern="^(?!\s)[a-zA-ZÁáÉéÍíÓóÚú\s]{5,20}" required>
+                                <div class="invalid-tooltip">
+                                    Máximo 20 caracteres de la A-Z
+                                </div>
+                            </div>
+                            <br>
+                            <div class="position-relative">
+
+                                <label class="primera" id="minimoModal_label" for="minimoModal">Edad mímina:</label>
+                                <input type="number" class="primer form-control" name="edad_minima"
+                                    id="minimoModal_input" placeholder="Ingrese la edad mínima" min="30" max="60"
+                                    onchange="validacionMin()" required>
+                                <div class="invalid-tooltip">
+                                    Número entero entre 30 y 60 años
+                                </div>
+                            </div>
+
+                            <br>
+                            <div class="position-relative">
+                                <label class="primera" id="maximoModal_label" for="maximoModal">Edad máxima:</label>
+                                <input type="number" class="primer form-control" name="edad_maxima"
+                                    id="maximoModal_input" placeholder="Ingrese la edad máxima" min="30" max="60"
+                                    onchange="validacionMax()" required>
+                                <div class="invalid-tooltip">
+                                    Número entero entre 30 y 60 años
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal"
+                                id="modalCancelar" onclick="cerrarModal()">Cancelar</button>
+                            <button type="button" class="btn btn-primary" onclick="insertarFila()">Confirmar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
         </div>
     </main>
     <script>
-       
+
     </script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js"
         integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous">
@@ -352,7 +355,7 @@
         </script>
 
     <script src="../../../static/Js/crearTorneo.js">
-        </script>
+    </script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 
