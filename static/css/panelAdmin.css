@@ -144,6 +144,73 @@ th{
     width: 25px;
 }
 
+/*DISEÑO TAB5 SOLICITUDES*/
+#Tab5{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+
+.solicitud{
+    display: grid;
+    grid-template-columns: 40% 60%;
+    text-align: center;
+    width: 530px;
+    height: 285px;
+    background-color: white;
+    margin: 22px auto;
+    border-radius: 20px;
+}
+
+.informacion{
+    text-align: left !important;
+    
+}
+.solicitud{
+    padding: 0px 15px;
+}
+.padre {
+    display: flex;
+    align-items: center;
+ }
+
+.hijo{
+    margin: 0px auto;
+}
+.img_comprobante, #img{
+    height: 200px;
+    width: 100%;
+}
+
+.etiquetas{
+    color: black;
+    font-weight: bold;
+}
+.datos{
+    color: #003975;
+    
+}
+
+.botones .col-12{
+    margin-top: 10px;
+    padding: 0px !important;
+}
+.test{
+    margin-top: -8px !important;
+    margin-bottom: 5px !important;
+}
+
+.modal-dialog{
+    height: 100%;
+    margin: 0px auto;
+}
+
+@media only screen and (max-width: 775px) {
+    .informacion{
+        margin-top: 10px;
+        font-size: 14px;
+    }
+}
 @media only screen and (max-width:600px) {
     #Titulo, #usuario{
         font-size: 15px !important;
@@ -158,14 +225,37 @@ th{
     }
 }
 
+@media only screen and (max-width: 500px) {
+    .informacion{
+        margin-top: 30px;
+        font-size: 12px;
+    }
+
+    .informacion .btn{
+        width: 80px;
+        height: 30px;
+        font-size: 8px;
+        padding: 10px 0px;
+        text-align: center;
+    }
+
+    .padre .etiquetas{
+
+        font-size: 12px;
+    }
+}
+
+
 @media only screen and (max-width:475px) {
     #Titulo, #usuario{
         font-size: 10px !important;
     }
 }
 
-@media only screen and (max-height: 680px) {
+@media only screen and (height: 680px) {
     .box{
-        height: 500px;
+        height: 500px !important;
     }
 }
+
+

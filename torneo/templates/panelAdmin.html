@@ -10,7 +10,7 @@
   <!-- Bootstrap CSS v5.2.0-beta1 -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css"
     integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous" />
- 
+
   <!-- iconos bootstrap 5 -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css" />
   <!--- MDBootstrap  -->
@@ -28,9 +28,9 @@
     <!-- place navbar here -->
     <nav class="navbar navbar-expand-lg navbar-custom">
       <div class="container-fluid">
-        <div class="menu d-flex"> 
-            <div class="navbar-brand burger"> <span class="text-white"><i class="fa fa-navicon"></i> </span></div>
-            <a class="navbar-brand" id="Titulo" href="#">Administración - Torneo Internacional Maxi Basquet</a>
+        <div class="menu d-flex">
+          <div class="navbar-brand burger"> <span class="text-white"><i class="fa fa-navicon"></i> </span></div>
+          <a class="navbar-brand" id="Titulo" href="#">Administración - Torneo Internacional Maxi Basquet</a>
         </div>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
           aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -47,109 +47,235 @@
   </header>
   <main>
     <div class="sidebar menu-collapsed" id="side_nav">
-        <div class="header-box px-2 pt-3 pb-4">
-            <ul class="tabs list-unstyled px-3">
-                <li class="item"><a href="#Tab1" class="text-decoration-none"> <i class="text-white bi bi-trophy-fill"></i><span class="text-white opciones"> Torneos</span></a></li>
-                <li class="item"><a href="#Tab2" class="text-decoration-none"><i class="text-white fa fa-medal"></i><span class="text-white opciones"> Torneos Terminados</span></a></li>
-                <li class="item"><a href="#Tab3" class="text-decoration-none"><i class="text-white bi bi-card-heading"></i><span class="text-white opciones"> Cuentas Delegados</span></a></li>
-                <li class="item"><a href="#Tab4" class="text-decoration-none"><i class="text-white bi bi-clipboard2-plus-fill"></i><span class="text-white opciones"> Equipos Inscritos</span></a></li>
-                <li class="item"><a href="#Tab5" class="text-decoration-none"><i class="text-white bi bi-mailbox2"></i><span class="text-white opciones"> Solicitudes</span></a></li>
-            </ul>
-  
-        </div>
+      <div class="header-box px-2 pt-3 pb-4">
+        <ul class="tabs list-unstyled px-3">
+          <li class="item"><a href="#Tab1" class="text-decoration-none"> <i
+                class="text-white bi bi-trophy-fill"></i><span class="text-white opciones"> Torneos</span></a></li>
+          <li class="item"><a href="#Tab2" class="text-decoration-none"><i class="text-white fa fa-medal"></i><span
+                class="text-white opciones"> Torneos Terminados</span></a></li>
+          <li class="item"><a href="#Tab3" class="text-decoration-none"><i
+                class="text-white bi bi-card-heading"></i><span class="text-white opciones"> Cuentas
+                Delegados</span></a></li>
+          <li class="item"><a href="#Tab4" class="text-decoration-none"><i
+                class="text-white bi bi-clipboard2-plus-fill"></i><span class="text-white opciones"> Equipos
+                Inscritos</span></a></li>
+          <li class="item"><a href="#Tab5" class="text-decoration-none"><i class="text-white bi bi-mailbox2"></i><span
+                class="text-white opciones"> Solicitudes</span></a></li>
+        </ul>
+
+      </div>
     </div>
 
     <div class="container" id="content">
       <div class="row">
         <div class="col-12 secciones align-items-center justify-content-center">
-          
-            <article class="box" id="Tab1">
-                <div class="card">
-                  <div class="card-header">
-                    <a name="" id="" class="btn btn-success" href="{% url 'crear_torneo' %}" role="button">Crear Torneo</a>
+
+          <article class="box" id="Tab1">
+            <div class="card">
+              <div class="card-header">
+                <a name="" id="" class="btn btn-success" href="{% url 'crear_torneo' %}" role="button">Crear Torneo</a>
+              </div>
+              <div class="card-body table-responsive">
+                <h4 class="card-title">Torneos en Progreso</h4>
+                <div class="">
+                  <table class="table">
+                    <thead>
+                      <tr id="cabeza">
+                        <th scope="col">ID</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Organizador</th>
+                        <th scope="col">Contacto</th>
+                        <th scope="col">Fecha Inicio</th>
+                        <th scope="col">Estado</th>
+                        <th scope="col">Acciones</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {% for torneo in torneos %}
+                      <tr class="">
+                        <td scope="row">{{torneo.id}}</td>
+                        <td>{{torneo.nombre_torneo}}</td>
+                        <td>{{torneo.id_organizador.nombre_organizador}}</td>
+                        <td>{{torneo.id_organizador.telefono_organizador}}</td>
+                        <td>{{torneo.fecha_torneo_inicio}}</td>
+                        {% if torneo.torneo_estado == 1 %}
+                        <td>En Proceso</td>
+                        {% else %}
+                        <td>Terminado</td>
+                        {% endif %}
+                        <td><a name="" id="btn-ver" class="btn btn-info" href="#" role="button"><span
+                              class="text-white"><i class="fa fa-sign-in"></i></span></a>
+                          <a name="" id="btn-editar" class="btn btn-danger" href="#" role="button"><span
+                              class="text-white"><i class="fa fa-edit"></i></span></a>
+                        </td>
+                      </tr>
+                      {% endfor %}
+                    </tbody>
+                  </table>
                 </div>
-                  <div class="card-body table-responsive">
-                    <h4 class="card-title">Torneos en Progreso</h4>
-                    <div class="">
-                      <table class="table">
-                        <thead>
-                          <tr id="cabeza">
-                            <th scope="col">ID</th>
-                            <th scope="col">Nombre</th>
-                            <th scope="col">Organizador</th>
-                            <th scope="col">Contacto</th>
-                            <th scope="col">Fecha Inicio</th>
-                            <th scope="col">Estado</th>
-                            <th scope="col">Acciones</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          {% for torneo in torneos %}
-                          <tr class="">
-                            <td scope="row">{{torneo.id}}</td>
-                            <td>{{torneo.nombre_torneo}}</td>
-                            <td>{{torneo.id_organizador.nombre_organizador}}</td>
-                            <td>{{torneo.id_organizador.telefono_organizador}}</td>
-                            <td>{{torneo.fecha_torneo_inicio}}</td>
-                            {% if torneo.torneo_estado == 1 %}
-                               <td>En Proceso</td>
-                            {% else %}
-                              <td>Terminado</td>
-                            {% endif %}
-                            <td><a name="" id="btn-ver" class="btn btn-info" href="#" role="button"><span class="text-white"><i class="fa fa-sign-in"></i></span></a> 
-                              <a name="" id="btn-editar" class="btn btn-danger" href="#" role="button"><span class="text-white"><i class="fa fa-edit"></i></span></a></td>
-                          </tr>
-                          {% endfor %}
-                        </tbody>
-                      </table>
-                    </div>
-                    
+
+              </div>
+            </div>
+          </article>
+
+          <article class="box" id="Tab2">
+            <div class="card">
+              <div class="card-header">
+              </div>
+              <div class="card-body table-responsive">
+                <h4 class="card-title">Torneos Concluidos</h4>
+                <div class="">
+                  <table class="table">
+                    <thead>
+                      <tr id="cabeza">
+                        <th scope="col">Nombre del Torneo</th>
+                        <th scope="col">País</th>
+                        <th scope="col">Fecha Final</th>
+                        <th scope="col">Ganador</th>
+                        <th scope="col">Acciones</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {% for torneo in torneosTerminados %}
+                      <tr class="">
+                        <td scope="row">{{torneo.nombre_torneo}}</td>
+                        <td>{{torneo.pais_torneo}}</td>
+                        <td>{{torneo.fecha_torneo_fin}}</td>
+                        <td>Equipo A </td>
+                        <td><a name="" id="" class="btn btn-info" href="#" role="button"><span class="text-white">Ver
+                              Torneo</span></a></td>
+                      </tr>
+                      {% endfor %}
+                    </tbody>
+                  </table>
+                </div>
+
+              </div>
+            </div>
+          </article>
+          <article id="Tab3">
+            <h1>CUENTAS PARA DELEGADOS AQUI</h1>
+          </article>
+          <article id="Tab4">
+            <h1>EQUIPOS INSCRITOS AQUI</h1>
+          </article>
+          <article  id="Tab5">
+            {% for i in torneos %}
+            <div class="solicitud">
+              <div class="padre">
+                <div class="hijo">
+                  <label class="etiquetas" id="" for="">Comprobante de pago</label>
+                  <a class="img_comprobante"><img src="/static/imagenes/logos/mapa-fcyt-3-1.png" alt="imagen" id="img"></a>
+                </div>
+              </div>
+              <div class="container-fluid informacion">
+                <br>
+                <div class="row">
+                  <div class="col-12">
+                    <div><label class="etiquetas" id="" for="">Nombre:</label></div>
+                    <div class="test"><label class="datos" id="" for="">Juan Perez Lagarto Esperanza</label></div>
                   </div>
                 </div>
-              </article>
-              
-              <article class="box" id="Tab2">
-                <div class="card">
-                  <div class="card-header">
-                      </div>
-                  <div class="card-body table-responsive">
-                    <h4 class="card-title">Torneos Concluidos</h4>
-                    <div class="">
-                      <table class="table">
-                        <thead>
-                          <tr id="cabeza">
-                            <th scope="col">Nombre del Torneo</th>
-                            <th scope="col">País</th>
-                            <th scope="col">Fecha Final</th>
-                            <th scope="col">Ganador</th>
-                            <th scope="col">Acciones</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          {% for torneo in torneosTerminados %}
-                          <tr class="">
-                            <td scope="row">{{torneo.nombre_torneo}}</td>
-                            <td>{{torneo.pais_torneo}}</td>
-                            <td>{{torneo.fecha_torneo_fin}}</td>
-                            <td>Equipo A </td>
-                            <td><a name="" id="" class="btn btn-info" href="#" role="button"><span class="text-white">Ver Torneo</span></a></td>
-                          </tr>
-                          {% endfor %}
-                        </tbody>
-                      </table>
-                    </div>
-                    
+                
+                <div class="row">
+                  <div class="col-12">
+                    <div><label class="etiquetas" id="" for="">Correo Electrónico:</label></div>
+                    <div class="test"><label class="datos" id="" for="">JuanPeasdasd@gmail.com</label></div>
                   </div>
                 </div>
-              </article>
-              <article id="Tab3"> <h1>CUENTAS PARA DELEGADOS AQUI</h1></article>
-              <article id="Tab4"> <h1>EQUIPOS INSCRITOS AQUI</h1></article>
-              <article id="Tab5"> <h1>SOLICITUDES</h1></article>
-              
+                
+                <div class="row">
+                  <div class="col-6">
+                    <div><label class="etiquetas" id="" for="">C.I:</label></div>
+                    <div class="test"><label class="datos" id="" for="">88888888:</label></div>
+                  </div>
+                  <div class="col-6">
+                    <div><label class="etiquetas" id="" for="">Telefóno:</label></div>
+                    <div class="test"><label class="datos" id="" for="">+591 66666666</label></div>
+                  </div>
+                </div>
+                
+                <div class="row">
+                  <div class="col-12">
+                   <div><label class="etiquetas" id="" for="">Torneo Solicitado:</label></div> 
+                  <div class="test"><label class="datos" id="" for="">Torneo Amateur UMSS a</label></div>
+                  </div>
+                </div>
+                
+                <div class="row botones">
+                  <div class="col-12 text-center">
+                    <button type="button" class="btn btn-primary"  data-bs-toggle="modal" data-bs-target="#exampleModal">Confirmar</button>
+                    <button type="button" class="btn btn-danger">Rechazar</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+            <form class="needs-validation" id="formulario" name="formulario" method="POST"
+            enctype="multipart/form-data" novalidate>
+            {% csrf_token %}
+            <div class="container-fluid align-items-center justify-content-center modal fade" id="exampleModal"
+                tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="row align-items-center justify-content-center modal-dialog">
+                    <div class="col-12 modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">SOLICITUD</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body confModal" id="modalValid">
+                            <div class="position-relative">
+
+                                <label class="primera" id="correo_modal" for="correo_modalInput">Correo Institucional:</label>
+                                <input type="email" class="primer form-control" name="correo"
+                                    id="correo_modalInput" placeholder="Ingrese el correo a proporcionar"
+                                    required>
+                                <div class="invalid-tooltip">
+                                    Ingrese un E-mail válido
+                                </div>
+                            </div>
+                            <br>
+                            <div class="position-relative">
+
+                              <label class="primera" id="name_modal" for="name_modalInput">Nombre de Usuario:</label>
+                              <input type="text" class="primer form-control" name="username"
+                                  id="name_modalInput" placeholder="Ingrese el correo a proporcionar"
+                                  pattern="^(?!\s)[a-zA-Z0-9ÁáÉéÍíÓóÚú\s]{5,20}" required>
+                              <div class="invalid-tooltip">
+                                  Máximo 20 caracteres de la A-Z
+                              </div>
+                            </div>
+
+                            <br>
+                            <div class="position-relative">
+                              <label class="primera" id="pass_modal" for="pass_modalInput">Contraseña:</label>
+                              <input type="text" class="primer form-control" name="password"
+                                  id="pass_modalInput" placeholder="Contraseña cifrada"
+                                  required>
+                              <div class="invalid-tooltip">
+                                  Máximo 20 caracteres de la A-Z
+                              </div>
+                            </div>
+
+                        </div>
+                        <div class="modal-footer justify-content-center">
+                          
+                            <button type="submit"  class="btn btn-success"
+                            id="modalEnviar">Enviar</button>
+                           
+                          
+                            
+                           
+                        </div>
+                    </div>
+                </div>
+            </div>
+          </form>
+          </article>
+
         </div>
       </div>
     </div>
-  
+
   </main>
 </body>
 <!-- Bootstrap JavaScript Libraries -->
@@ -158,11 +284,12 @@
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js"
   integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK" crossorigin="anonymous"></script>
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
-  
-  <!--- MDBootstrap  -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+
+<!--- MDBootstrap  -->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/5.0.0/mdb.min.js"></script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <!--- MDBootstrap  -->
 <script type="text/javascript" src="../../../static/Js/menuAdmin.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </html>
