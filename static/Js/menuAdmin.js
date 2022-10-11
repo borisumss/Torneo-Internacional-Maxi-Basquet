@@ -81,16 +81,38 @@ $('.burger').click(function(){
 
 
 $('#Tab5 .tarjeta .back').click(function(){
-  $('#Tab5 .tarjeta .front').removeClass('girar');
-  $('#Tab5 .tarjeta .back').removeClass('girarDoble');
+  //'#Tab5 .tarjeta .front'
+  $(this.parentElement.children[0]).removeClass('girar');
+  //'#Tab5 .tarjeta .back'
+  $(this).removeClass('girarDoble');
+
+  return false;
+});
+
+let fullImg = document.getElementById('imgFull');
+
+$('#Tab5 .tarjeta .back .card .card-body #img').click(function(){
+  fullImg.src = this.src;
+  return false;
+});
+
+$('#Tab5 .tarjeta .front .card .card-body').click(function(){
+  //'#Tab5 .tarjeta .front'
+  $(this.parentElement.parentElement).addClass('girar');
+  
+  //'#Tab5 .tarjeta .back'
+  $(this.parentElement.parentElement.parentElement.children[1]).addClass('girarDoble');
   
 
   return false;
 });
 
-$('#Tab5 .tarjeta .front').click(function(){
-  $('#Tab5 .tarjeta .front').addClass('girar');
-  $('#Tab5 .tarjeta .back').addClass('girarDoble');
+$('#Tab5 .tarjeta .front .card .card-header').click(function(){
+  //'#Tab5 .tarjeta .front'
+  $(this.parentElement.parentElement).addClass('girar');
+  
+  //'#Tab5 .tarjeta .back'
+  $(this.parentElement.parentElement.parentElement.children[1]).addClass('girarDoble');
   
 
   return false;

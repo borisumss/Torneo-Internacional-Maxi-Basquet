@@ -207,8 +207,14 @@ th{
 .test{
     line-height: px;
 }
-
-
+#modalValid{
+    padding-top: 0px;
+ }
+.modal-header{
+   width: 100%;
+   margin: 0;
+   padding: 20px 20px 0px 0px;
+}
 .modal-dialog{
     height: 100%;
     margin: 0px auto;
@@ -247,7 +253,6 @@ th{
 #Tab5 .tarjeta .front .card, #Tab5 .tarjeta .back .card{
     width: 100%;
     height: 100%;
-    cursor: pointer !important;
     background-image: url(../images/fondoCard2.jpg);
     background-repeat: no-repeat !important;
     background-size: cover !important;
@@ -293,8 +298,13 @@ th{
  #cuerpoTarjeta{
     padding: 0px ;
     padding-top: 10px;
+    cursor: pointer !important;
     
  }
+ #Tab5 .tarjeta .back .card, #Tab5 .tarjeta .front .card .card-header{
+    cursor: pointer !important;
+ }
+
  #cuerpoBack{
     padding: 15px 0px ;
     margin: 0px auto;
@@ -317,7 +327,46 @@ th{
     width: 105px;
     height: 35px;
     padding: 4px 0px 2px;
+    transition: all 450ms ease !important;
 }
+
+#boton-confirmar:hover{
+    background-color: green;
+    color: white;
+    transition: all 450ms ease !important;
+}
+
+#boton-rechazar:hover{
+    background-color: #ED1C24;
+    color: white;
+    transition: all 450ms ease !important;
+}
+
+
+#fotoExp{
+    width: 80%;
+    
+    background-color: rgba(0, 0, 0, 0.9);
+    color: white !important;
+    position: fixed;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /*overflow: scroll;*/
+}
+
+#imgFull{
+    width: 100%;
+    max-width: 900px;
+    min-width: 500px;
+    
+}
+.btn-close{
+    background-color: white;
+    color: white !important;
+}
+
 @media only screen and (max-width: 775px) {
     .informacion{
         margin-top: 10px;

@@ -203,9 +203,9 @@
                     </div>
                   </div>
                   <div class="card-footer text-muted text-center">
-                    <button type="button" id="boton-confirmar" class="btn btn-success" data-bs-toggle="modal"
+                    <button type="button" id="boton-confirmar" class="btn btn-outline-success" data-bs-toggle="modal"
                       data-bs-target="#exampleModal">Confirmar</button>
-                    <button type="button" id="boton-rechazar" class="btn btn-danger">Rechazar</button>
+                    <button type="button" id="boton-rechazar" class="btn btn-outline-danger">Rechazar</button>
                   </div>
                 </div>
               </div>
@@ -217,10 +217,9 @@
                   <div class="card-body justify-content-center" id="cuerpoBack">
                     
 
-                      <img src="/static/imagenes/banner.jpg" alt="imagen"
-                           id="img">
-                     
-                    
+                      <img src="/{{i.invitacion_documento}}" alt="imagen"
+                           id="img" data-bs-toggle="modal"
+                           data-bs-target="#exampleModal2">                    
                   </div>
                 </div>
               </div>
@@ -285,6 +284,22 @@
                 </div>
               </div>
             </form>
+
+            <div class="container-fluid modal modal fade" id="exampleModal2"
+                tabindex="-1" aria-labelledby="modal2Label" aria-hidden="true">
+                <div class="row align-items-center justify-content-center modal-dialog">
+                  <div class="col-12 modal-content" id="fotoExp">
+                    <div class="modal-header">
+                      <h5>Comprobante de pago de Juan Perez Alconaa</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body confModal" id="modalValid">
+                      <img src="/static/imagenes/banner.jpg" alt="imagen"
+                           id="imgFull">
+                    </div>
+                  </div>
+                </div>
+              </div>
           </article>
 
         </div>
