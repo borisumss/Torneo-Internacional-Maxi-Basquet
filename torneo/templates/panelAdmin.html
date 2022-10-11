@@ -23,7 +23,7 @@
   <link rel="stylesheet" href="../../static/css/panelAdmin.css">
 </head>
 
-<body>
+<body class="body">
   <header>
     <!-- place navbar here -->
     <nav class="navbar navbar-expand-lg navbar-custom">
@@ -159,117 +159,132 @@
           <article id="Tab4">
             <h1>EQUIPOS INSCRITOS AQUI</h1>
           </article>
-          <article  id="Tab5">
+          <article id="Tab5">
             {% for i in torneos %}
-            <div class="solicitud">
-              <div class="padre">
-                <div class="hijo">
-                  <label class="etiquetas" id="" for="">Comprobante de pago</label>
-                  <a class="img_comprobante"><img src="/static/imagenes/logos/mapa-fcyt-3-1.png" alt="imagen" id="img"></a>
+            <div class="tarjeta">
+              <div class="front">
+                <div class="card">
+                    <div class="card-header text-center" id="tituloCompro">
+                      INFORMACION SOLICITUD
+                    </div>
+                  <div class="card-body" id="cuerpoTarjeta">
+                    <div class="container-fluid informacion">
+                      <div class="row">
+                        <div class="col-12">
+                          <div><label class="etiquetas" id="" for="">Nombre:</label></div>
+                          <div class="test"><label class="datos" id="" for="">Juan Perez Lagarto Esperanza asdasdasdas</label></div>
+                        </div>
+                      </div>
+      
+                      <div class="row">
+                        <div class="col-12">
+                          <div><label class="etiquetas" id="" for="">Correo Electrónico:</label></div>
+                          <div class="test"><label class="datos" id="" for="">JuanPeasdasasdasdd@gmail.com</label></div>
+                        </div>
+                      </div>
+      
+                      <div class="row">
+                        <div class="col-6">
+                          <div><label class="etiquetas" id="" for="">C.I:</label></div>
+                          <div class="test"><label class="datos" id="" for="">88888888:</label></div>
+                        </div>
+                        <div class="col-6">
+                          <div><label class="etiquetas" id="" for="">Telefóno:</label></div>
+                          <div class="test"><label class="datos" id="" for="">+591 66666666</label></div>
+                        </div>
+                      </div>
+      
+                      <div class="row">
+                        <div class="col-12">
+                          <div><label class="etiquetas" id="" for="">Torneo Solicitado:</label></div>
+                          <div class="test"><label class="datos" id="" for="">Torneo Amateur UMSS aasda asdasdasdasdad</label></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card-footer text-muted text-center">
+                    <button type="button" id="boton-confirmar" class="btn btn-success" data-bs-toggle="modal"
+                      data-bs-target="#exampleModal">Confirmar</button>
+                    <button type="button" id="boton-rechazar" class="btn btn-danger">Rechazar</button>
+                  </div>
                 </div>
               </div>
-              <div class="container-fluid informacion">
-                <br>
-                <div class="row">
-                  <div class="col-12">
-                    <div><label class="etiquetas" id="" for="">Nombre:</label></div>
-                    <div class="test"><label class="datos" id="" for="">Juan Perez Lagarto Esperanza</label></div>
+              <div class="back">
+                <div class="card">
+                  <div class="card-header text-center" id="tituloCompro">
+                    COMPROBANTE DE PAGO
                   </div>
-                </div>
-                
-                <div class="row">
-                  <div class="col-12">
-                    <div><label class="etiquetas" id="" for="">Correo Electrónico:</label></div>
-                    <div class="test"><label class="datos" id="" for="">JuanPeasdasd@gmail.com</label></div>
-                  </div>
-                </div>
-                
-                <div class="row">
-                  <div class="col-6">
-                    <div><label class="etiquetas" id="" for="">C.I:</label></div>
-                    <div class="test"><label class="datos" id="" for="">88888888:</label></div>
-                  </div>
-                  <div class="col-6">
-                    <div><label class="etiquetas" id="" for="">Telefóno:</label></div>
-                    <div class="test"><label class="datos" id="" for="">+591 66666666</label></div>
-                  </div>
-                </div>
-                
-                <div class="row">
-                  <div class="col-12">
-                   <div><label class="etiquetas" id="" for="">Torneo Solicitado:</label></div> 
-                  <div class="test"><label class="datos" id="" for="">Torneo Amateur UMSS a</label></div>
-                  </div>
-                </div>
-                
-                <div class="row botones">
-                  <div class="col-12 text-center">
-                    <button type="button" class="btn btn-primary"  data-bs-toggle="modal" data-bs-target="#exampleModal">Confirmar</button>
-                    <button type="button" class="btn btn-danger">Rechazar</button>
+                  <div class="card-body justify-content-center" id="cuerpoBack">
+                    
+
+                      <img src="/static/imagenes/banner.jpg" alt="imagen"
+                           id="img">
+                     
+                    
                   </div>
                 </div>
               </div>
             </div>
             {% endfor %}
-            <form class="needs-validation" id="formulario" name="formulario" method="POST"
-            enctype="multipart/form-data" novalidate>
-            {% csrf_token %}
-            <div class="container-fluid align-items-center justify-content-center modal fade" id="exampleModal"
+
+            
+            
+            <form class="needs-validation" id="formulario" name="formulario" method="POST" enctype="multipart/form-data"
+              novalidate>
+              {% csrf_token %}
+              <div class="container-fluid align-items-center justify-content-center modal fade" id="exampleModal"
                 tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="row align-items-center justify-content-center modal-dialog">
-                    <div class="col-12 modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">SOLICITUD</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body confModal" id="modalValid">
-                            <div class="position-relative">
-
-                                <label class="primera" id="correo_modal" for="correo_modalInput">Correo Institucional:</label>
-                                <input type="email" class="primer form-control" name="correo"
-                                    id="correo_modalInput" placeholder="Ingrese el correo a proporcionar"
-                                    required>
-                                <div class="invalid-tooltip">
-                                    Ingrese un E-mail válido
-                                </div>
-                            </div>
-                            <br>
-                            <div class="position-relative">
-
-                              <label class="primera" id="name_modal" for="name_modalInput">Nombre de Usuario:</label>
-                              <input type="text" class="primer form-control" name="username"
-                                  id="name_modalInput" placeholder="Ingrese el correo a proporcionar"
-                                  pattern="^(?!\s)[a-zA-Z0-9ÁáÉéÍíÓóÚú\s]{5,20}" required>
-                              <div class="invalid-tooltip">
-                                  Máximo 20 caracteres de la A-Z
-                              </div>
-                            </div>
-
-                            <br>
-                            <div class="position-relative">
-                              <label class="primera" id="pass_modal" for="pass_modalInput">Contraseña:</label>
-                              <input type="text" class="primer form-control" name="password"
-                                  id="pass_modalInput" placeholder="Contraseña cifrada"
-                                  required>
-                              <div class="invalid-tooltip">
-                                  Máximo 20 caracteres de la A-Z
-                              </div>
-                            </div>
-
-                        </div>
-                        <div class="modal-footer justify-content-center">
-                          
-                            <button type="submit"  class="btn btn-success"
-                            id="modalEnviar">Enviar</button>
-                           
-                          
-                            
-                           
-                        </div>
+                  <div class="col-12 modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">SOLICITUD</h5>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
+                    <div class="modal-body confModal" id="modalValid">
+                      <div class="position-relative">
+
+                        <label class="primera" id="correo_modal" for="correo_modalInput">Correo Institucional:</label>
+                        <input type="email" class="primer form-control" name="correo" id="correo_modalInput"
+                          placeholder="Ingrese el correo a proporcionar" required>
+                        <div class="invalid-tooltip">
+                          Ingrese un E-mail válido
+                        </div>
+                      </div>
+                      <br>
+                      <div class="position-relative">
+
+                        <label class="primera" id="name_modal" for="name_modalInput">Nombre de Usuario:</label>
+                        <input type="text" class="primer form-control" name="username" id="name_modalInput"
+                          placeholder="Ingrese el correo a proporcionar" pattern="^(?!\s)[a-zA-Z0-9ÁáÉéÍíÓóÚú\s]{5,20}"
+                          required>
+                        <div class="invalid-tooltip">
+                          Máximo 20 caracteres de la A-Z
+                        </div>
+                      </div>
+
+                      <br>
+                      <div class="position-relative">
+                        <label class="primera" id="pass_modal" for="pass_modalInput">Contraseña:</label>
+                        <input type="text" class="primer form-control" name="password" id="pass_modalInput"
+                          placeholder="Contraseña cifrada" required>
+                        <div class="invalid-tooltip">
+                          Máximo 20 caracteres de la A-Z
+                        </div>
+                      </div>
+
+                    </div>
+                    <div class="modal-footer justify-content-center">
+
+                      <button type="submit" class="btn btn-success" id="modalEnviar">Enviar</button>
+
+
+
+
+                    </div>
+                  </div>
                 </div>
-            </div>
-          </form>
+              </div>
+            </form>
           </article>
 
         </div>
@@ -292,4 +307,5 @@
 <!--- MDBootstrap  -->
 <script type="text/javascript" src="../../../static/Js/menuAdmin.js"></script>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 </html>

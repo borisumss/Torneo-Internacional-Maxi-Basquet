@@ -89,7 +89,7 @@ header, #side_nav{
 body{
     /*min-height: 92vh;
     height: 100%;*/
-    background: linear-gradient(rgba(237, 28, 36, .5), rgba(237, 28, 36, .5)),url('../images/basquetbolrecorte.jpg') !important; 
+    background: linear-gradient(rgba(237, 28, 35, 0.103), rgba(237, 28, 36, .5)),url('../images/basquetbolrecorte.jpg') !important; 
     background-repeat: no-repeat !important;
     background-size: cover !important;
     background-position: top !important;
@@ -104,7 +104,7 @@ body{
     border-radius: 20px;
     
 }
-.card{
+#Tab1 .card, #Tab2 .card{
     width: 97%;
     height: 480px;
     margin: 0px auto;
@@ -114,10 +114,10 @@ body{
 }
 
 #Tab2 .card{
-    height: 520px;
+    height: 520px !important;
 }
 
-.card-body{
+#Tab1 .card-body, #Tab2 .card-body{
     background-color: white;
     overflow: scroll;
     min-height: 100%;
@@ -135,7 +135,7 @@ th{
     border-bottom: 2px solid black; 
 }
 
-.card-header{
+#Tab1 .card-header{
     padding: 15px 0px;
 }
 
@@ -156,10 +156,19 @@ th{
     grid-template-columns: 40% 60%;
     text-align: center;
     width: 530px;
-    height: 285px;
+    height: 310px;
     background-color: white;
     margin: 22px auto;
     border-radius: 20px;
+}
+
+#Tab5 .tarjeta{
+    position: relative;
+    width: 530px !important;
+    height: 310px !important;
+    background-color: rgba(255, 255, 255, 0) !important; 
+    margin: 22px auto !important;
+    border-radius: 20px !important;
 }
 
 .informacion{
@@ -178,7 +187,7 @@ th{
     margin: 0px auto;
 }
 .img_comprobante, #img{
-    height: 200px;
+    height: 240px;
     width: 100%;
 }
 
@@ -196,15 +205,119 @@ th{
     padding: 0px !important;
 }
 .test{
-    margin-top: -8px !important;
-    margin-bottom: 5px !important;
+    line-height: px;
 }
+
 
 .modal-dialog{
     height: 100%;
     margin: 0px auto;
 }
 
+.fondoTab1{
+    background: linear-gradient(rgba(237, 28, 35, 0.103), rgba(237, 28, 36, .5)),url('../images/basquetbolrecorte.jpg') !important; 
+    
+}
+
+.fondoTab2{
+    background-image: url(../images/fondoMix.jpg)!important; 
+    
+}
+
+.fondoTab3{
+    background-image:url(../images/basket.jpg) !important;
+    background-position: center !important;
+}
+
+.fondoTab4{
+    background-image:url(../images/fondoMix.jpg) !important;
+}
+
+.fondoTab5{
+    background-image: url(../images/fondoSol.jpg) !important;
+    
+}
+
+#Tab5 .tarjeta{
+    height: 100%;
+    width: 100%;
+    padding: 0 !important;
+}
+
+#Tab5 .tarjeta .front .card, #Tab5 .tarjeta .back .card{
+    width: 100%;
+    height: 100%;
+    cursor: pointer !important;
+    background-image: url(../images/fondoCard2.jpg);
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+    background-position: center !important;
+    background-attachment: fixed !important;
+    border-bottom: none !important;
+}
+#Tab5 .tarjeta .front{
+    position: absolute;
+    
+    display: flex; 
+    backface-visibility: hidden;
+    transition: .5s;
+    transform: perspective(500px) rotateY(0deg);
+ }
+
+.back, .front{
+    width: 100%;
+    
+    height: 310px;
+    border-radius:20px !important;
+}
+#Tab5 .tarjeta .back{
+    position: absolute;
+    display: flex; 
+    backface-visibility: hidden;
+    transition: .5s;
+   align-items: center;
+   justify-content: center;
+   transform: perspective(500px) rotateY(180deg);
+}
+/*#Tab5 .tarjeta:hover .front */
+.girar {
+   
+    transform: perspective(500px) rotateY(180deg) !important;
+ }
+
+ .girarDoble{
+    
+    transform: perspective(500px) rotateY(360deg) !important;
+ }
+
+ #cuerpoTarjeta{
+    padding: 0px ;
+    padding-top: 10px;
+    
+ }
+ #cuerpoBack{
+    padding: 15px 0px ;
+    margin: 0px auto;
+ }
+
+
+#tituloCompro{
+    padding: 6px 0px;
+    font-weight: bold;
+    color: white;
+    background-color: #009eb1;
+}
+
+.card-footer{
+    border-top: none !important;
+    padding: 8px 0px 6px;
+}
+
+#boton-confirmar, #boton-rechazar{
+    width: 105px;
+    height: 35px;
+    padding: 4px 0px 2px;
+}
 @media only screen and (max-width: 775px) {
     .informacion{
         margin-top: 10px;
