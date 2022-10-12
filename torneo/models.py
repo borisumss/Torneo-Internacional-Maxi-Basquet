@@ -31,14 +31,42 @@ class Torneo(models.Model):
     #    ordering = ['']
 
 class Etapa_Inscripcion(models.Model):
-    tipo_inscripcion = models.CharField(max_length=10)
     fecha_inicio = models.DateField(auto_now=False, auto_now_add=False)
     fecha_fin = models.DateField(auto_now=False, auto_now_add=False)
     monto_inscripcion = models.DecimalField(max_digits=10, decimal_places=2)
     id_torneo = models.ForeignKey(Torneo, on_delete=models.CASCADE)
 
     def __str__(self):
-        return "%s del %s al %s" % (self.tipo_inscripcion, self.fecha_inicio, self.fecha_fin)
+        return "Rezagados del %s al %s" % (self.fecha_inicio, self.fecha_fin)
+
+class Etapa_PreInscripcion(models.Model):
+    fecha_inicioPre = models.DateField(auto_now=False, auto_now_add=False)
+    fecha_finPre = models.DateField(auto_now=False, auto_now_add=False)
+    monto_Preinscripcion = models.DecimalField(max_digits=10, decimal_places=2)
+    id_torneo = models.ForeignKey(Torneo, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return "Preinscripción del %s al %s" % (self.fecha_inicioPre, self.fecha_finPre)
+
+class delegado_Inscripcion(models.Model):
+    nombre_delegado_inscripcion = models.CharField(max_length=50)
+    estado_delegado_inscripcion = models.CharField(max_length=15)
+    correo_delegado_inscripcion = models.CharField(max_length=50)
+    ci_delegado_inscripcion = models.CharField(max_length=15)
+    telefono_delegado_inscripcion = models.CharField(max_length=15)
+    id_etapa_inscripcion = models.ForeignKey(Etapa_Inscripcion, on_delete=models.CASCADE)
+    recibo_inscripcion = models.ImageField(upload_to='static/imagenes/Comprobantes/', verbose_name='Recibo Rezagados', null=True)
+
+
+class delegado_PreInscripcion(models.Model):
+    nombre_delegado_Preinscripcion = models.CharField(max_length=50)
+    estado_delegado_Preinscripcion = models.CharField(max_length=15)#Estados: ACEPTADO, RECHAZADO, PENDIENTE
+    correo_delegado_Preinscripcion = models.CharField(max_length=50)
+    ci_delegado_Preinscripcion = models.CharField(max_length=15)
+    telefono_delegado_Preinscripcion = models.CharField(max_length=15)
+    id_etapa_Preinscripcion = models.ForeignKey(Etapa_PreInscripcion, on_delete=models.CASCADE)
+    recibo_Preinscripcion = models.ImageField(upload_to='static/imagenes/Comprobantes/', verbose_name='Recibo Preinscripción', null=True)
+
 
 class Categorias_Torneo(models.Model):
     nombre_categoria = models.CharField(max_length=20)

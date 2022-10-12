@@ -8,7 +8,7 @@ from django.contrib.auth.models import User
 from django.db import IntegrityError
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.decorators import user_passes_test
-from .models import Organizador, Torneo, Etapa_Inscripcion, Categorias_Torneo
+from .models import Organizador, Torneo, Etapa_Inscripcion, Categorias_Torneo, Etapa_PreInscripcion, delegado_Inscripcion, delegado_PreInscripcion
 from django.contrib import messages
 #def email_check(user):
 #   return user.email.endswith('@admin2.com')
@@ -97,19 +97,19 @@ def crear_torneo(request):
                 torneo = Torneo(nombre_torneo=nombre_torneo, fecha_torneo_inicio=fecha_torneo_inicio, fecha_torneo_fin=fecha_torneo_fin, pais_torneo=pais_torneo, invitacion_documento=invitacion_documento, logo=logo ,id_organizador=organizador)
                 torneo.save()
                 
-                tipo_inscripcion_pre = 'pre inscripcion'
+                #tipo_inscripcion_pre = 'pre inscripcion'
                 fecha_inicio_pre = request.POST.get('fecha_preinscripcion_inicio')
                 fecha_fin_pre = request.POST.get('fecha_preinscripcion_fin')
                 monto_inscripcion_pre = request.POST.get('monto_preinscripcion')
                 id_torneo = torneo.pk
-                pre_inscripcion = Etapa_Inscripcion(tipo_inscripcion=tipo_inscripcion_pre, fecha_inicio=fecha_inicio_pre, fecha_fin=fecha_fin_pre, monto_inscripcion=monto_inscripcion_pre, id_torneo=torneo)
+                pre_inscripcion = Etapa_PreInscripcion(fecha_inicioPre=fecha_inicio_pre, fecha_finPre=fecha_fin_pre, monto_Preinscripcion=monto_inscripcion_pre, id_torneo=torneo)
                 pre_inscripcion.save()
 
-                tipo_inscripcion_ins = 'inscripcion'
+                #tipo_inscripcion_ins = 'inscripcion'
                 fecha_inicio_ins = request.POST.get('fecha_inscripcion_inicio')
                 fecha_fin_ins = request.POST.get('fecha_inscripcion_fin')
                 monto_inscripcion_ins = request.POST.get('monto_inscripcion')
-                inscripcion = Etapa_Inscripcion(tipo_inscripcion=tipo_inscripcion_ins, fecha_inicio=fecha_inicio_ins, fecha_fin=fecha_fin_ins, monto_inscripcion=monto_inscripcion_ins, id_torneo=torneo)
+                inscripcion = Etapa_Inscripcion(fecha_inicio=fecha_inicio_ins, fecha_fin=fecha_fin_ins, monto_inscripcion=monto_inscripcion_ins, id_torneo=torneo)
                 inscripcion.save()
 
                 largo = len(request.POST.getlist('nombreCategoria'))
@@ -130,7 +130,14 @@ def administracion(request):
             else:
                 torneosProgreso = Torneo.objects.filter(torneo_estado=1)
                 torneosTerminados = Torneo.objects.filter(torneo_estado=0)
-                return render(request, 'panelAdmin.html',{"torneos":torneosProgreso, "torneosTerminados":torneosTerminados})
+                solicitudPre = delegado_PreInscripcion.objects.filter(estado_delegado_Preinscripcion='PENDIENTE')
+                solicitudRez = delegado_Inscripcion.objects.filter(estado_delegado_inscripcion='PENDIENTE')
+                return render(request, 'panelAdmin.html',{
+                    "torneos":torneosProgreso, 
+                    "torneosTerminados":torneosTerminados,
+                    "solPre":solicitudPre,
+                    "solRez":solicitudRez
+                    })
         else:
             return redirect('login')
     
@@ -149,3 +156,52 @@ def delegacion(request):
 def cerrarSesion(request):
     logout(request)
     return redirect('login')
+
+
+def enviarSolicitud(request):
+    if request.method == 'GET':
+        if not request.user.is_anonymous:
+            if not request.user.email.endswith('@admin.com'):
+                return redirect('login')
+            else:
+                return render(request, '')#La vista correspondiente
+        else:
+            return redirect('login')
+    elif request.method == 'POST':
+        if not request.user.is_anonymous:
+            if not request.user.email.endswith('@admin.com'):
+                return redirect('login')
+            else:
+                #recibir por el POST si es "rezagados" o "preinscripcion"
+                estado = request.POST.get('rezagados o preinscripcion')
+                if estado == 'rezagados':
+                    nombre_delegado_inscripcion = request.POST.get('atributo name del input del html')
+                    estado_delegado_inscripcion = "PENDIENTE"
+                    correo_delegado_inscripcion = request.POST.get('atributo name del input del html')
+                    ci_delegado_inscripcion = request.POST.get('atributo name del input del html')
+                    telefono_delegado_inscripcion = request.POST.get('atributo name del input del html')
+                    id_etapa_inscripcion = request.POST.get('atributo name del input del html')
+                    recibo_inscripcion = request.Files.get('atributo name del input del html')
+
+                    solicitud = delegado_Inscripcion(nombre_delegado_inscripcion=nombre_delegado_inscripcion, estado_delegado_inscripcion=estado_delegado_inscripcion, correo_delegado_inscripcion=correo_delegado_inscripcion, ci_delegado_inscripcion=ci_delegado_inscripcion, telefono_delegado_inscripcion=telefono_delegado_inscripcion, id_etapa_inscripcion=id_etapa_inscripcion ,recibo_inscripcion=recibo_inscripcion)
+                    solicitud.save()
+                
+
+                    return redirect('Vista correspondiente')
+                else:
+                    nombre_delegado_Preinscripcion = request.POST.get('atributo name del input del html')
+                    estado_delegado_Preinscripcion = "PENDIENTE"
+                    correo_delegado_Preinscripcion = request.POST.get('atributo name del input del html')
+                    ci_delegado_Preinscripcion = request.POST.get('atributo name del input del html')
+                    telefono_delegado_Preinscripcion = request.POST.get('atributo name del input del html')
+                    id_etapa_Preinscripcion = request.POST.get('atributo name del input del html')
+                    recibo_Preinscripcion = request.Files.get('atributo name del input del html')
+
+                    solicitud = delegado_PreInscripcion(nombre_delegado_Preinscripcion=nombre_delegado_Preinscripcion, estado_delegado_Preinscripcion=estado_delegado_Preinscripcion, correo_delegado_Preinscripcion=correo_delegado_Preinscripcion, ci_delegado_Preinscripcion=ci_delegado_Preinscripcion, telefono_delegado_Preinscripcion=telefono_delegado_Preinscripcion, id_etapa_Preinscripcion=id_etapa_Preinscripcion ,recibo_Preinscripcion=recibo_Preinscripcion)
+                    solicitud.save()
+                
+
+                    return redirect('Vista correspondiente')
+               
+        else:
+            return redirect('login')

@@ -160,44 +160,44 @@
             <h1>EQUIPOS INSCRITOS AQUI</h1>
           </article>
           <article id="Tab5">
-            {% for i in torneos %}
+            {% for i in solPre %}
             <div class="tarjeta">
               <div class="front">
                 <div class="card">
                     <div class="card-header text-center" id="tituloCompro">
-                      INFORMACION SOLICITUD
+                      INFORMACION SOLICITUD PRE-INSCRIPCION
                     </div>
                   <div class="card-body" id="cuerpoTarjeta">
                     <div class="container-fluid informacion">
                       <div class="row">
                         <div class="col-12">
                           <div><label class="etiquetas" id="" for="">Nombre:</label></div>
-                          <div class="test"><label class="datos" id="" for="">Juan Perez Lagarto Esperanza asdasdasdas</label></div>
+                          <div class="test"><label class="datos" id="" for="">{{i.nombre_delegado_Preinscripcion}}</label></div>
                         </div>
                       </div>
       
                       <div class="row">
                         <div class="col-12">
                           <div><label class="etiquetas" id="" for="">Correo Electrónico:</label></div>
-                          <div class="test"><label class="datos" id="" for="">JuanPeasdasasdasdd@gmail.com</label></div>
+                          <div class="test"><label class="datos" id="" for="">{{i.correo_delegado_Preinscripcion}}</label></div>
                         </div>
                       </div>
       
                       <div class="row">
                         <div class="col-6">
                           <div><label class="etiquetas" id="" for="">C.I:</label></div>
-                          <div class="test"><label class="datos" id="" for="">88888888:</label></div>
+                          <div class="test"><label class="datos" id="" for="">{{i.ci_delegado_Preinscripcion}}</label></div>
                         </div>
                         <div class="col-6">
                           <div><label class="etiquetas" id="" for="">Telefóno:</label></div>
-                          <div class="test"><label class="datos" id="" for="">+591 66666666</label></div>
+                          <div class="test"><label class="datos" id="" for="">{{i.telefono_delegado_Preinscripcion}}</label></div>
                         </div>
                       </div>
       
                       <div class="row">
                         <div class="col-12">
                           <div><label class="etiquetas" id="" for="">Torneo Solicitado:</label></div>
-                          <div class="test"><label class="datos" id="" for="">Torneo Amateur UMSS aasda asdasdasdasdad</label></div>
+                          <div class="test"><label class="datos" id="" for="">{{i.id_etapa_Preinscripcion.id_torneo.nombre_torneo}}</label></div>
                         </div>
                       </div>
                     </div>
@@ -217,7 +217,7 @@
                   <div class="card-body justify-content-center" id="cuerpoBack">
                     
 
-                      <img src="/{{i.invitacion_documento}}" alt="imagen"
+                      <img src="/{{i.recibo_Preinscripcion}}" alt="imagen"
                            id="img" data-bs-toggle="modal"
                            data-bs-target="#exampleModal2">                    
                   </div>
@@ -225,7 +225,71 @@
               </div>
             </div>
             {% endfor %}
+            {% for i in solRez %}
+            <div class="tarjeta">
+              <div class="front">
+                <div class="card">
+                    <div class="card-header text-center" id="tituloCompro">
+                      INFORMACION SOLICITUD REZAGADOS
+                    </div>
+                  <div class="card-body" id="cuerpoTarjeta">
+                    <div class="container-fluid informacion">
+                      <div class="row">
+                        <div class="col-12">
+                          <div><label class="etiquetas" id="" for="">Nombre:</label></div>
+                          <div class="test"><label class="datos" id="" for="">{{i.nombre_delegado_inscripcion}}</label></div>
+                        </div>
+                      </div>
+      
+                      <div class="row">
+                        <div class="col-12">
+                          <div><label class="etiquetas" id="" for="">Correo Electrónico:</label></div>
+                          <div class="test"><label class="datos" id="" for="">{{i.correo_delegado_inscripcion}}</label></div>
+                        </div>
+                      </div>
+      
+                      <div class="row">
+                        <div class="col-6">
+                          <div><label class="etiquetas" id="" for="">C.I:</label></div>
+                          <div class="test"><label class="datos" id="" for="">{{i.ci_delegado_inscripcion}}</label></div>
+                        </div>
+                        <div class="col-6">
+                          <div><label class="etiquetas" id="" for="">Telefóno:</label></div>
+                          <div class="test"><label class="datos" id="" for="">{{i.telefono_delegado_inscripcion}}</label></div>
+                        </div>
+                      </div>
+      
+                      <div class="row">
+                        <div class="col-12">
+                          <div><label class="etiquetas" id="" for="">Torneo Solicitado:</label></div>
+                          <div class="test"><label class="datos" id="" for="">{{i.id_etapa_inscripcion.id_torneo.nombre_torneo}}</label></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card-footer text-muted text-center">
+                    <button type="button" id="boton-confirmar" class="btn btn-outline-success" data-bs-toggle="modal"
+                      data-bs-target="#exampleModal">Confirmar</button>
+                    <button type="button" id="boton-rechazar" class="btn btn-outline-danger">Rechazar</button>
+                  </div>
+                </div>
+              </div>
+              <div class="back">
+                <div class="card">
+                  <div class="card-header text-center" id="tituloCompro">
+                    COMPROBANTE DE PAGO
+                  </div>
+                  <div class="card-body justify-content-center" id="cuerpoBack">
+                    
 
+                      <img src="/{{i.recibo_inscripcion}}" alt="imagen"
+                           id="img" data-bs-toggle="modal"
+                           data-bs-target="#exampleModal2">                    
+                  </div>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
             
             
             <form class="needs-validation" id="formulario" name="formulario" method="POST" enctype="multipart/form-data"
