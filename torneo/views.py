@@ -8,11 +8,17 @@ from django.contrib.auth.models import User
 from django.db import IntegrityError
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.decorators import user_passes_test
-from .models import Organizador, Torneo, Etapa_Inscripcion, Categorias_Torneo
+from .models import Organizador, Torneo, Inscripcion, Pre_Inscripcion, Categorias_Torneo
 from django.contrib import messages
 #def email_check(user):
 #   return user.email.endswith('@admin2.com')
 # Create your views here.
+
+"""
+user = User.objects.create_user(username= ,password= ,email=)
+user.save()
+"""
+
 def index(request):
     if request.method == 'GET':
         if not request.user.is_anonymous:
@@ -97,19 +103,19 @@ def crear_torneo(request):
                 torneo = Torneo(nombre_torneo=nombre_torneo, fecha_torneo_inicio=fecha_torneo_inicio, fecha_torneo_fin=fecha_torneo_fin, pais_torneo=pais_torneo, invitacion_documento=invitacion_documento, logo=logo ,id_organizador=organizador)
                 torneo.save()
                 
-                tipo_inscripcion_pre = 'pre inscripcion'
+                #tipo_inscripcion_pre = 'pre inscripcion'
                 fecha_inicio_pre = request.POST.get('fecha_preinscripcion_inicio')
                 fecha_fin_pre = request.POST.get('fecha_preinscripcion_fin')
                 monto_inscripcion_pre = request.POST.get('monto_preinscripcion')
                 id_torneo = torneo.pk
-                pre_inscripcion = Etapa_Inscripcion(tipo_inscripcion=tipo_inscripcion_pre, fecha_inicio=fecha_inicio_pre, fecha_fin=fecha_fin_pre, monto_inscripcion=monto_inscripcion_pre, id_torneo=torneo)
+                pre_inscripcion = Pre_Inscripcion(fecha_inicio=fecha_inicio_pre, fecha_fin=fecha_fin_pre, monto_inscripcion=monto_inscripcion_pre, id_torneo=torneo)
                 pre_inscripcion.save()
 
-                tipo_inscripcion_ins = 'inscripcion'
+                #tipo_inscripcion_ins = 'inscripcion'
                 fecha_inicio_ins = request.POST.get('fecha_inscripcion_inicio')
                 fecha_fin_ins = request.POST.get('fecha_inscripcion_fin')
                 monto_inscripcion_ins = request.POST.get('monto_inscripcion')
-                inscripcion = Etapa_Inscripcion(tipo_inscripcion=tipo_inscripcion_ins, fecha_inicio=fecha_inicio_ins, fecha_fin=fecha_fin_ins, monto_inscripcion=monto_inscripcion_ins, id_torneo=torneo)
+                inscripcion = Inscripcion(fecha_inicio=fecha_inicio_ins, fecha_fin=fecha_fin_ins, monto_inscripcion=monto_inscripcion_ins, id_torneo=torneo)
                 inscripcion.save()
 
                 largo = len(request.POST.getlist('nombreCategoria'))

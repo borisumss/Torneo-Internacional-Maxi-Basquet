@@ -30,6 +30,8 @@ class Torneo(models.Model):
     #class Meta:
     #    ordering = ['']
 
+"""
+
 class Etapa_Inscripcion(models.Model):
     tipo_inscripcion = models.CharField(max_length=10)
     fecha_inicio = models.DateField(auto_now=False, auto_now_add=False)
@@ -39,6 +41,53 @@ class Etapa_Inscripcion(models.Model):
 
     def __str__(self):
         return "%s del %s al %s" % (self.tipo_inscripcion, self.fecha_inicio, self.fecha_fin)
+
+"""
+## REVISAR EL CAMPO DE 'DateField, BooleanField si ocurrieran errores'
+class Inscripcion(models.Model):
+    fecha_inicio = models.DateField(auto_now=False, auto_now_add=False)
+    fecha_fin = models.DateField(auto_now=False, auto_now_add=False)
+    monto_inscripcion = models.DecimalField(max_digits=10, decimal_places=2)
+    estado_inscripcion = models.BooleanField(default=False)
+    id_torneo = models.ForeignKey(Torneo, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return "Inscripcion del %s al %s" % (self.fecha_inicio, self.fecha_fin)
+
+class Pre_Inscripcion(models.Model):
+    fecha_inicio = models.DateField(auto_now=False, auto_now_add=False)
+    fecha_fin = models.DateField(auto_now=False, auto_now_add=False)
+    monto_inscripcion = models.DecimalField(max_digits=10, decimal_places=2)
+    estado_inscripcion = models.BooleanField(default=True)
+    id_torneo = models.ForeignKey(Torneo, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return "Pre-Inscripcion del %s al %s" % (self.fecha_inicio, self.fecha_fin)
+
+
+## REVISAR EL CAMPO DE 'ImageField si ocurrieran errores'
+class Delegado_Pre_Inscripccion(models.Model):
+    nombre_delegado = models.CharField(max_length=50)
+    correo_delegado = models.CharField(max_length=30)
+    ci_delegado = models.CharField(max_length=15)
+    telefono_delegado = models.CharField(max_length=15)
+    recibo = models.ImageField(upload_to='static/imagenes/logos/', verbose_name='LogoTorneo', null=True)
+    id_pre_inscripcion = models.ForeignKey(Pre_Inscripcion, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return "Pre-Inscripcion de %s" % (self.nombre_delegado)
+
+class Delegado_Inscripccion(models.Model):
+    nombre_delegado = models.CharField(max_length=50)
+    correo_delegado = models.CharField(max_length=30)
+    ci_delegado = models.CharField(max_length=15)
+    telefono_delegado = models.CharField(max_length=15)
+    recibo = models.ImageField(upload_to='static/imagenes/logos/', verbose_name='LogoTorneo', null=True)
+    id_inscripcion = models.ForeignKey(Inscripcion, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return "Inscripcion de %s" % (self.nombre_delegado)
+
 
 class Categorias_Torneo(models.Model):
     nombre_categoria = models.CharField(max_length=20)
