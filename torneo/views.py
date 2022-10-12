@@ -205,3 +205,42 @@ def enviarSolicitud(request):
                
         else:
             return redirect('login')
+
+
+def rechazar(request, tipo, id):
+        
+    if request.method == 'GET':
+        if not request.user.is_anonymous:
+            if not request.user.email.endswith('@admin.com'):
+                return redirect('login')
+            else:
+                if tipo == 'REZAGADOS':
+                    solicitud = delegado_Inscripcion.objects.filter(id=id)
+                    solicitud.update(estado_delegado_inscripcion='RECHAZADO')
+                    messages.success(request, "Solictud rechazada correctamente")
+        
+                elif tipo == 'PREINSCRIPCION':
+                    solicitud = delegado_PreInscripcion.objects.filter(id=id)
+                    solicitud.update(estado_delegado_Preinscripcion='RECHAZADO')
+                    messages.success(request, "Solictud rechazada correctamente")
+                return redirect('administracion')
+        else:
+            return redirect('login')
+    elif request.method == 'POST':
+        if not request.user.is_anonymous:
+            if not request.user.email.endswith('@admin.com'):
+                return redirect('login')
+            else:
+                #recibir por el POST si es "rezagados" o "preinscripcion"
+                if tipo == 'REZAGADOS':
+                    solicitud = delegado_Inscripcion.objects.filter(id=id)
+                    solicitud.update(estado_delegado_inscripcion='RECHAZADO')
+                    messages.success(request, "Solictud rechazada correctamente")
+        
+                elif tipo == 'PREINSCRIPCION':
+                    solicitud = delegado_PreInscripcion.objects.filter(id=id)
+                    solicitud.update(estado_delegado_Preinscripcion='RECHAZADO')
+                    messages.success(request, "Solictud rechazada correctamente")
+                return redirect('administracion')
+        else:
+            return redirect('login')

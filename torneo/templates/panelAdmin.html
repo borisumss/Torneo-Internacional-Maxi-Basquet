@@ -69,7 +69,14 @@
     <div class="container" id="content">
       <div class="row">
         <div class="col-12 secciones align-items-center justify-content-center">
-
+          <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+          {% if messages %}
+          {% for m in messages %}
+            <script>
+              Swal.fire('Solictud rechazada correctamente', '', 'success');
+            </script>
+          {% endfor %}
+        {% endif %}
           <article class="box" id="Tab1">
             <div class="card">
               <div class="card-header">
@@ -205,7 +212,7 @@
                   <div class="card-footer text-muted text-center">
                     <button type="button" id="boton-confirmar" class="btn btn-outline-success" data-bs-toggle="modal"
                       data-bs-target="#exampleModal">Confirmar</button>
-                    <button type="button" id="boton-rechazar" class="btn btn-outline-danger">Rechazar</button>
+                    <a href= "{% url 'Solicitud_Rechazada'  'PREINSCRIPCION' i.id %}" type="button" id="boton-rechazar" class="btn btn-outline-danger">Rechazar</a>
                   </div>
                 </div>
               </div>
@@ -270,7 +277,7 @@
                   <div class="card-footer text-muted text-center">
                     <button type="button" id="boton-confirmar" class="btn btn-outline-success" data-bs-toggle="modal"
                       data-bs-target="#exampleModal">Confirmar</button>
-                    <button type="button" id="boton-rechazar" class="btn btn-outline-danger">Rechazar</button>
+                    <a  href= "{% url 'Solicitud_Rechazada'  'REZAGADOS' i.id %}" type="button" id="boton-rechazar" class="btn btn-outline-danger" target="" >Rechazar</a>
                   </div>
                 </div>
               </div>
@@ -386,5 +393,6 @@
 <!--- MDBootstrap  -->
 <script type="text/javascript" src="../../../static/Js/menuAdmin.js"></script>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 
 </html>

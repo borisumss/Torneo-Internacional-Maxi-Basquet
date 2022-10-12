@@ -320,14 +320,16 @@ th{
 
 .card-footer{
     border-top: none !important;
-    padding: 8px 0px 6px;
+    padding: 0px 0px 15px;
 }
 
 #boton-confirmar, #boton-rechazar{
     width: 105px;
     height: 35px;
     padding: 4px 0px 2px;
+    margin: 0px;
     transition: all 450ms ease !important;
+    font-size: 14px;
 }
 
 #boton-confirmar:hover{
