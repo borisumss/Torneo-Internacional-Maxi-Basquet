@@ -125,40 +125,53 @@
             </div>
           </article>
 
-          <article class="box" id="Tab2">
-            <div class="card">
-              <div class="card-header">
-              </div>
-              <div class="card-body table-responsive">
-                <h4 class="card-title">Torneos Concluidos</h4>
-                <div class="">
-                  <table class="table">
-                    <thead>
-                      <tr id="cabeza">
-                        <th scope="col">Nombre del Torneo</th>
-                        <th scope="col">País</th>
-                        <th scope="col">Fecha Final</th>
-                        <th scope="col">Ganador</th>
-                        <th scope="col">Acciones</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {% for torneo in torneosTerminados %}
-                      <tr class="">
-                        <td scope="row">{{torneo.nombre_torneo}}</td>
-                        <td>{{torneo.pais_torneo}}</td>
-                        <td>{{torneo.fecha_torneo_fin}}</td>
-                        <td>Equipo A </td>
-                        <td><a name="" id="" class="btn btn-info" href="#" role="button"><span class="text-white">Ver
-                              Torneo</span></a></td>
-                      </tr>
-                      {% endfor %}
-                    </tbody>
-                  </table>
+          <article id="Tab2">
+            {% for i in torneosTerminados %}
+            <div class="tarjeta2">
+              <a id="card2H" href="{% url 'Torneo' i.id %}">
+                <div class="card" id="card2">
+                    <div class="card-header text-center" id="tab2header">
+                      <img src="/{{i.logo}}" alt="imagen"
+                      class="img_logo" data-bs-toggle="modal"
+                      data-bs-target="#exampleModal3">  
+                    </div>
+                  <div class="card-body" id="tab2body">
+                    <div class="container-fluid">
+                      <div class="row">
+                        <div class="col-12">
+                          <h5 class="text-center">{{i.nombre_torneo}}</h5>
+                          <br>
+                          <p>
+                            Torneo realizado en el país de "{{i.pais_torneo}}"
+                          </p>
+                          <p>Fecha de inicio: {{i.fecha_torneo_inicio}} </p>
+                            <p>Fecha final: {{i.fecha_torneo_fin}}</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card-footer text-muted text-center" id="ganador">
+                  <span class="text-white"> 
+                    <i class="text-white fa fa-trophy"></i> Nombre equipo ganador</span>
+                  </div>
                 </div>
-
-              </div>
+              </a>
             </div>
+            {% endfor %}
+            <div class="container-fluid modal modal fade" id="exampleModal3"
+                tabindex="-1" aria-labelledby="modal3Label" aria-hidden="true">
+                <div class="row align-items-center justify-content-center modal-dialog">
+                  <div class="col-12 modal-content" id="fotoExp2">
+                    <div class="modal-header" id="modalTab2Header">
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body confModal" id="modalValid">
+                      <img src="" alt="imagen"
+                           id="imgFull2">
+                    </div>
+                  </div>
+                </div>
+              </div>
           </article>
           <article id="Tab3">
             <h1>CUENTAS PARA DELEGADOS AQUI</h1>
@@ -365,7 +378,7 @@
                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body confModal" id="modalValid">
-                      <img src="/static/imagenes/banner.jpg" alt="imagen"
+                      <img src="" alt="imagen"
                            id="imgFull">
                     </div>
                   </div>
