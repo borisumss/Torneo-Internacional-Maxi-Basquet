@@ -29,7 +29,16 @@ def index(request):
         else:
             return render(request, 'index.html')
     
-    
+def preinscripcion(request):
+    if request.method == 'GET':
+        if not request.user.is_anonymous:
+            if request.user.email.endswith('@delegacion.com'):
+                return redirect('delegacion')
+            elif request.user.email.endswith('@admin.com'):
+                return redirect('administracion')
+        else:
+            return render(request, 'pagoPreinscripcion.html')
+
 
 def login(request):
     if request.method == 'GET':
