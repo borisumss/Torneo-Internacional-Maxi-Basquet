@@ -142,12 +142,12 @@ th{
 }
 
 .fondoTab1{
-    background: linear-gradient(rgba(237, 28, 35, 0.103), rgba(237, 28, 36, .5)),url('../images/basquetbolrecorte.jpg') !important; 
     
+    background: linear-gradient(rgba(237, 28, 35, 0.103), rgba(237, 28, 36, .5)),url('../images/zz.jpg') !important;
 }
 
 .fondoTab2{
-    background-image: url(../images/fondoMix.jpg)!important;     
+    background-image:url(../images/test2.jpg) !important;
 }
 
 .fondoTab3{
@@ -372,14 +372,15 @@ th{
     display: flex;
     flex-wrap: wrap;
     margin: 0px auto;
+    margin-top: 50px;
 }
 
 #Tab2 .tarjeta2{
     position: relative;
     width: 350px !important;
     height: 500px !important;
-    background-color: rgba(255, 255, 255, 0) !important; 
-    margin: 22px 10px !important;
+    background-color: rgba(25, 219, 25, 0) !important; 
+    margin: 22px auto !important;
     border-radius: 20px !important;
 }
 
@@ -387,12 +388,16 @@ th{
     width: 100%;
     height: 100%;
 }
+
+#card2{
+    background-color: rgba(255, 255, 255, 0);
+}
 #tab2header{
     margin: 0px;
     padding: 0px;
     height: 150px;
     overflow: hidden;
-
+    border-bottom: none;
 }
 .img_logo{
     
@@ -418,10 +423,28 @@ th{
 #ganador{
     background-color: #cda434;
     color: white !important;
+    border-top: none;
 }
 
 #tab2body{
     padding: 15px 5px;
+    border-radius: 50% 50% 100% 100% / 35% 35% 0% 0%;
+    background-color: white;
+    border:solid 5px #cda434;
+    border-bottom: none;
+}
+
+#Tab2 p{
+    color: #000 !important;
+}
+
+#Tab2 h5{
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+#Tab2 hr{
+    color: #000;
 }
 @media only screen and (max-width: 775px) {
     .informacion{
