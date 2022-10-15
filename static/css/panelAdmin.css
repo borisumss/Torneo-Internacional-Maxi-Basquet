@@ -83,7 +83,21 @@ header{
 header, #side_nav{
     z-index: 50;
 }
-
+#triggerId{
+    background-color: rgba(255, 255, 255, 0);
+    border: none;
+    color: white;
+    font-size: 20px;
+}
+#triggerIdD{
+    background-color:white ;
+    padding: 0px 10px;
+    text-align: right;
+}
+#usuario{
+    font-size: 16px !important;
+    color: #003975 !important;
+}
 
 /*DISEÑO  CONTENEDOR*/
 body{
@@ -395,6 +409,9 @@ th{
 #tab2header{
     margin: 0px;
     padding: 0px;
+    border: solid 10px #cda434;
+    border-bottom: none;
+    border-top: none;
     height: 150px;
     overflow: hidden;
     border-bottom: none;
@@ -430,7 +447,7 @@ th{
     padding: 15px 5px;
     border-radius: 50% 50% 100% 100% / 35% 35% 0% 0%;
     background-color: white;
-    border:solid 5px #cda434;
+    border:solid 10px #cda434;
     border-bottom: none;
 }
 
