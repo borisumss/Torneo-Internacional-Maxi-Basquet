@@ -250,3 +250,9 @@ def rechazar(request, tipo, id):
                 return redirect('administracion')
         else:
             return redirect('login')
+
+def verTorneo(request, id):
+    torneo = Torneo.objects.filter(id=id)
+    return render(request, 'Torneo.html',{
+                    "torneo":torneo
+                    })
