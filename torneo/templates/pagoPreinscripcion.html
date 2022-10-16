@@ -43,10 +43,11 @@
         <div class="row">
             <!--columna izq-->
             <div class="col-12 col-lg-6">
-                <form id="formulario" name="formulario" method="POST">
+                <form class="needs-validation" id="formulario" name="formulario" method="POST" enctype="multipart/form-data" novalidate>
+                    {% csrf_token %}
                     <div class="position-relative">
                         <label for="nombreDel">Nombre Delegado:</label>
-                        <input type="text" name="nombre_delegado" id="delagado_input" 
+                        <input type="text" name="nombre_delegado" id="delagado_input"  class="form-control" 
                         placeholder="Ingrese nombre" pattern="^(?!\s)[a-zA-ZÁáÉéÍíÓóÚú\s]{5,50}" required>
                         <div class="invalid-tooltip">
                             Máximo 50 caracteres de A-Z
@@ -56,7 +57,7 @@
                     <div class="position-relative">
                         <label for="email">Correo:</label>
                         <input type="email" name="correo_delegado" id="correo_input" minlength="5" 
-                        placeholder="Ingrese su correo" required>
+                        placeholder="Ingrese su correo" class="form-control" required>
                         <div class="invalid-tooltip">
                             Llene este campo.
                         </div>
@@ -65,7 +66,7 @@
                     <div class="position-relative">
                         <label for="ci" id="ci_label">Número de carnet de identidad:</label>
                         <input type="text" name="ci_delegado" id="ci_input" pattern="^(?!\s)[0-9]{7,15}"
-                        placeholder="Ingrese su numero de CI" required>
+                        placeholder="Ingrese su numero de CI" class="form-control"  required>
                         <div class="invalid-tooltip">
                             Llene este campo.
                         </div>
@@ -73,7 +74,7 @@
                     <br>
                     <div class="position-relative">
                         <label for="telef" id="telef_label">Teléfono de contacto:</label>
-                        <input type="text" name="telef_delegado" id="telef_input" pattern="^(?!\s)[0-9\+]{8,15}"
+                        <input type="text" class="form-control"  name="telef_delegado" id="telef_input" pattern="^(?!\s)[0-9\+]{8,15}"
                         placeholder="Ingrese el teléfono" required>
                         <div class="invalid-tooltip">
                             Máximo 15 números incluyendo el simbolo "+"
@@ -82,9 +83,9 @@
                     <br>
                     <div class="position-relative">
                         <label for="torneo" id="torneo_label">Torneo a inscribirse:</label>
-                        <select class="" id="torneo" name="torneo_selec" required>
+                        <select class="form-control"  id="torneo" name="torneo_selec" required>
                             <option selected value="">Escoger Torneo</option>
-                            <option value=""> {{torneo}} </option>
+                            <option value="{{torneo}}"> {{torneo}} </option>
                         </select>
                         <div class="invalid-tooltip">
                             Ningún torneo seleccionado.
@@ -93,7 +94,8 @@
                     <br>
                     <div class="position-relative">
                         <label for="recibo" id="recibo_label">Imagen recibo de pago:</label>
-                        <input type="file" id="voucher" name="img_comprobante" required>
+                        <input class="form-control"  type="file"  onchange="validarComprobante()" 
+                        id="voucher" accept="doctype" name="img_comprobante" value="upload" required>
                         <div class="invalid-tooltip">
                             Adjunte su comprobante de pago
                         </div>
@@ -101,7 +103,7 @@
                     <br>
                     <div class="footer-form">
                         <button type="submit" class="btn btn-danger" name="Confirmar" 
-                        id="button-pago">Confirmar pago</button>
+                        id="button-pago" value="{{etapa}}" >Confirmar pago</button>
                     </div>
                 </form>
             </div>

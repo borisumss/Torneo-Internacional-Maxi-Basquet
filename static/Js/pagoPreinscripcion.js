@@ -1,25 +1,31 @@
-function validarQR(){
-    let divQR = document.getElementById("qr")
-    let infoPago = document.getElementById("info")
-    const tiempoTranscurrido = Date.now() //Obtiene el tiempo actual en milisegundos
-    const hoy = new Date(tiempoTranscurrido) //Convierte en formato "DiaSemana Mes Dia Año GTM"
-    let fechaActual = hoy.toLocaleDateString() //Convierte en formato "dia/mes/año"
-    let fechaRezBD = "20/10/2022"  //Extraer de la BD,ultima fecha pago monto minimo 
-    let fechaLimRezBD = "25/10/2022" //Ultima fecha de rezagados y cierre de preinscripcion
+(function () {
+    'use strict'
+  
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    var forms = document.querySelectorAll('.needs-validation')
+    // Loop over them and prevent submission
+    Array.prototype.slice.call(forms)
+      .forEach(function (form) {
+        form.addEventListener('submit', function (event) {
+          if (!form.checkValidity()) {
+            event.preventDefault()
+            event.stopPropagation()
+          }
+          form.classList.add('was-validated')
+        
+        }, false)
+      })
+  })()
 
-    if(fechaActual <= fechaRezBD){
-        divQR.innerHTML = '<img class="qr" src="/static/imagenes/qrs/qrcode_classroom.png">'
-        infoPago.innerHTML = 'Esta en etapa de pre-inscripción, el monto es {250}$'
+  function validarComprobante() {
 
-    }else if(fechaActual > fechaRezBD && fechaActual <= fechaLimRezBD){
-        divQR.innerHTML = '<img class="qr" src="/static/imagenes/qrs/qrcode_websis.png">'
-        infoPago.innerHTML = 'Esta en etapa de pre-inscripción, el monto es {400}$'
+    var archivoInput = document.getElementById("voucher");
+    var archivoRuta = archivoInput.value;
+    var extesiones = /(.jpg|.jpeg|.png)$/i;;
 
-    }else{
-        let mensaje = document.getElementById("principal")
-        mensaje.innerHTML = 
-        `<div class="container d-flex align-items-center justify-content-center vh-100">
-            Lo sentimos, termino el plazo para pre-inscripcion
-        </div>`
+    if (!extesiones.exec(archivoRuta)) {
+        Swal.fire('Sólo se permiten imágenes (.jpg .jpeg .png)', '', 'error'); 
+        archivoInput.value = '';
+        return false;
     }
 }

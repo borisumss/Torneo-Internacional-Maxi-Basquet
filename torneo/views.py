@@ -60,14 +60,14 @@ def preinscripcion(request, id):
             if(len(Preins)==1 and len(Ins)==1):
                 if(now >= Preins[0].fecha_inicioPre and now <= Preins[0].fecha_finPre):
                     return render(request, 'pagoPreinscripcion.html',
-                    {'etapa':"Pre-Inscripción",
+                    {'etapa':"PRE-INSCRIPCION",
                      'monto':Preins[0].monto_Preinscripcion,
                      'torneo': Preins[0].id_torneo.nombre_torneo,
                      'qr':"qrcode_classroom.png"
                      })
                 elif(now >= Ins[0].fecha_inicio and now <= Ins[0].fecha_fin):
                     return render(request, 'pagoPreinscripcion.html',
-                    {'etapa':"Rezagados", 
+                    {'etapa':"REZAGADOS", 
                     'monto':Ins[0].monto_inscripcion,
                     'torneo': Ins[0].id_torneo.nombre_torneo,
                     'qr':"qrcode_websis.png"
@@ -78,6 +78,8 @@ def preinscripcion(request, id):
             else:
                 messages.warning(request, "Algo salio mal")
                 return redirect('home')
+    elif request.method == 'POST':
+        return enviarSolicitud(request,id)
 
 def login(request):
     if request.method == 'GET':
@@ -212,54 +214,42 @@ def cerrarSesion(request):
     return redirect('login')
 
 
-def enviarSolicitud(request):
-    if request.method == 'GET':
-        if not request.user.is_anonymous:
-            if not request.user.email.endswith('@admin.com'):
-                return redirect('login')
-            else:
-                return render(request, '')#La vista correspondiente
-        else:
-            return redirect('login')
-    elif request.method == 'POST':
-        if not request.user.is_anonymous:
-            if not request.user.email.endswith('@admin.com'):
-                return redirect('login')
-            else:
+def enviarSolicitud(request, id):
                 #recibir por el POST si es "rezagados" o "preinscripcion"
-                estado = request.POST.get('rezagados o preinscripcion')
-                if estado == 'rezagados':
-                    nombre_delegado_inscripcion = request.POST.get('atributo name del input del html')
+                estado = request.POST.get('Confirmar')
+                if estado == 'REZAGADOS':
+                    print(request.FILES)
+                    aux = Inscripcion.objects.filter(id_torneo_id=id)
+                    nombre_delegado_inscripcion = request.POST.get('nombre_delegado')
                     estado_delegado_inscripcion = "PENDIENTE"
-                    correo_delegado_inscripcion = request.POST.get('atributo name del input del html')
-                    ci_delegado_inscripcion = request.POST.get('atributo name del input del html')
-                    telefono_delegado_inscripcion = request.POST.get('atributo name del input del html')
-                    id_etapa_inscripcion = request.POST.get('atributo name del input del html')
-                    recibo_inscripcion = request.Files.get('atributo name del input del html')
-
-                    solicitud = delegado_Inscripcion(nombre_delegado_inscripcion=nombre_delegado_inscripcion, estado_delegado_inscripcion=estado_delegado_inscripcion, correo_delegado_inscripcion=correo_delegado_inscripcion, ci_delegado_inscripcion=ci_delegado_inscripcion, telefono_delegado_inscripcion=telefono_delegado_inscripcion, id_etapa_inscripcion=id_etapa_inscripcion ,recibo_inscripcion=recibo_inscripcion)
+                    correo_delegado_inscripcion = request.POST.get('correo_delegado')
+                    ci_delegado_inscripcion = request.POST.get('ci_delegado')
+                    telefono_delegado_inscripcion = request.POST.get('telef_delegado')
+                    id_etapa_inscripcion = aux[0]
+                    recibo_inscripcion = request.FILES.get('img_comprobante')
+                    print(recibo_inscripcion)
+                    solicitud = delegado_Inscripcion(nombre_delegado_inscripcion=nombre_delegado_inscripcion, estado_delegado_inscripcion=estado_delegado_inscripcion, correo_delegado_inscripcion=correo_delegado_inscripcion, ci_delegado_inscripcion=ci_delegado_inscripcion, telefono_delegado_inscripcion=telefono_delegado_inscripcion, id_inscripcion=id_etapa_inscripcion ,recibo_inscripcion=recibo_inscripcion)
                     solicitud.save()
                 
-
-                    return redirect('Vista correspondiente')
-                else:
-                    nombre_delegado_Preinscripcion = request.POST.get('atributo name del input del html')
+                    messages.success(request, "Solictud Enviada correctamente")
+                    return redirect('home')
+                elif estado == 'PRE-INSCRIPCION':
+                    aux = Pre_Inscripcion.objects.filter(id_torneo_id=id)
+                    nombre_delegado_Preinscripcion = request.POST.get('nombre_delegado')
                     estado_delegado_Preinscripcion = "PENDIENTE"
-                    correo_delegado_Preinscripcion = request.POST.get('atributo name del input del html')
-                    ci_delegado_Preinscripcion = request.POST.get('atributo name del input del html')
-                    telefono_delegado_Preinscripcion = request.POST.get('atributo name del input del html')
-                    id_etapa_Preinscripcion = request.POST.get('atributo name del input del html')
-                    recibo_Preinscripcion = request.Files.get('atributo name del input del html')
+                    correo_delegado_Preinscripcion = request.POST.get('correo_delegado')
+                    ci_delegado_Preinscripcion = request.POST.get('ci_delegado')
+                    telefono_delegado_Preinscripcion = request.POST.get('telef_delegado')
+                    id_etapa_Preinscripcion = aux[0]
+                    recibo_Preinscripcion = request.FILES.get('img_comprobante')
 
-                    solicitud = delegado_PreInscripcion(nombre_delegado_Preinscripcion=nombre_delegado_Preinscripcion, estado_delegado_Preinscripcion=estado_delegado_Preinscripcion, correo_delegado_Preinscripcion=correo_delegado_Preinscripcion, ci_delegado_Preinscripcion=ci_delegado_Preinscripcion, telefono_delegado_Preinscripcion=telefono_delegado_Preinscripcion, id_etapa_Preinscripcion=id_etapa_Preinscripcion ,recibo_Preinscripcion=recibo_Preinscripcion)
+                    #print(recibo_Preinscripcion)
+                    solicitud = delegado_PreInscripcion(nombre_delegado_Preinscripcion=nombre_delegado_Preinscripcion, estado_delegado_Preinscripcion=estado_delegado_Preinscripcion, correo_delegado_Preinscripcion=correo_delegado_Preinscripcion, ci_delegado_Preinscripcion=ci_delegado_Preinscripcion, telefono_delegado_Preinscripcion=telefono_delegado_Preinscripcion, id_Pre_inscripcion=id_etapa_Preinscripcion ,recibo_Preinscripcion=recibo_Preinscripcion)
+                    
                     solicitud.save()
                 
-
-                    return redirect('Vista correspondiente')
-               
-        else:
-            return redirect('login')
-
+                    messages.success(request, "Solictud Enviada correctamente")
+                    return redirect('home')
 
 def rechazar(request, tipo, id):
         
