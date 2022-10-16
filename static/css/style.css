@@ -108,6 +108,18 @@ nav.navbar {
     background: #003975;
 }
 
+#actual{
+    background-color: rgb(237, 233, 233);
+    padding: 10px 0px;
+}
+
+.img-fluid{
+    width: 100% !important;
+}
+
+.about-img{
+ height: 100%;
+}
 @media only screen and (min-width: 768px) and (max-width: 991px) {
     .carousel-caption {
         bottom: 370px;

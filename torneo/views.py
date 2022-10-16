@@ -27,9 +27,16 @@ def index(request):
             elif request.user.email.endswith('@admin.com'):
                 return redirect('administracion')
         else:
-            return render(request, 'index.html')
+            torneosProgreso = Torneo.objects.filter(torneo_estado=1)
+            aux = []
+            for i in range(len(torneosProgreso)):
+                aux.append(i+1)
+            return render(request, 'index.html',{
+                "torneos": torneosProgreso,
+                 "longitud": aux
+            })
     
-def preinscripcion(request):
+def preinscripcion(request, id):
     if request.method == 'GET':
         if not request.user.is_anonymous:
             if request.user.email.endswith('@delegacion.com'):
@@ -259,3 +266,9 @@ def rechazar(request, tipo, id):
                 return redirect('administracion')
         else:
             return redirect('login')
+
+def verTorneo(request, id):
+    torneo = Torneo.objects.filter(id=id)
+    return render(request, 'Torneo.html',{
+                    "torneo":torneo
+                    })
