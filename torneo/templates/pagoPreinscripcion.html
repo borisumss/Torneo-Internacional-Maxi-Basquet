@@ -17,7 +17,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.min.js"></script>
 </head>
 
-<body onload="validarQR()">
+<body onload="">
     <header>
         <!-- place navbar here -->
         <nav class="navbar navbar-expand-lg navbar-custom">
@@ -84,8 +84,7 @@
                         <label for="torneo" id="torneo_label">Torneo a inscribirse:</label>
                         <select class="" id="torneo" name="torneo_selec" required>
                             <option selected value="">Escoger Torneo</option>
-                            <option value="">Torneo 1</option>
-                            <option value="">Torneo 2</option>
+                            <option value=""> {{torneo}} </option>
                         </select>
                         <div class="invalid-tooltip">
                             Ningún torneo seleccionado.
@@ -110,11 +109,11 @@
             <div class="col-12 col-lg-6 side">
                 <h4>¡Escanea y paga desde tu celular!</h4>
                 <div id="qr">
-
+                    <img class="qr" src="/static/imagenes/qrs/{{qr}}">
                 </div>
                 <div>
                     <p id="info">
-                        
+                        Esta en etapa de <b>{{etapa}}</b>, el monto es <b>{{monto}}$</b> 
                     </p>
                 </div>
             </div>

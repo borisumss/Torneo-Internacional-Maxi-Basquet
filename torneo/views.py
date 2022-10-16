@@ -10,6 +10,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.decorators import user_passes_test
 from .models import Organizador, Torneo, Inscripcion, Categorias_Torneo, Pre_Inscripcion, delegado_Inscripcion, delegado_PreInscripcion
 from django.contrib import messages
+from datetime import date
 #def email_check(user):
 #   return user.email.endswith('@admin2.com')
 # Create your views here.
@@ -44,8 +45,30 @@ def preinscripcion(request, id):
             elif request.user.email.endswith('@admin.com'):
                 return redirect('administracion')
         else:
-            return render(request, 'pagoPreinscripcion.html')
-
+            Preins = Pre_Inscripcion.objects.filter(id_torneo_id=id)
+            Ins = Inscripcion.objects.filter(id_torneo_id=id)
+            now = date.today()
+            if(len(Preins)==1 and len(Ins)==1):
+                if(now >= Preins[0].fecha_inicioPre and now <= Preins[0].fecha_finPre):
+                    return render(request, 'pagoPreinscripcion.html',
+                    {'etapa':"Pre-Inscripción",
+                     'monto':Preins[0].monto_Preinscripcion,
+                     'torneo': Preins[0].id_torneo.nombre_torneo,
+                     'qr':"qrcode_classroom.png"
+                     })
+                elif(now >= Ins[0].fecha_inicio and now <= Ins[0].fecha_fin):
+                    return render(request, 'pagoPreinscripcion.html',
+                    {'etapa':"Rezagados", 
+                    'monto':Ins[0].monto_inscripcion,
+                    'torneo': Ins[0].id_torneo.nombre_torneo,
+                    'qr':"qrcode_websis.png"
+                    })
+                else:
+                    messages.warning(request, "Esta fuera de las fechas de Pre-inscripción")
+                    return redirect('home')
+            else:
+                messages.warning(request, "Algo salio mal")
+                return redirect('home')
 
 def login(request):
     if request.method == 'GET':
