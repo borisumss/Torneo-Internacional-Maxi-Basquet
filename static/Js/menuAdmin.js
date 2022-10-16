@@ -90,6 +90,11 @@ $('#Tab5 .tarjeta .back').click(function(){
 });
 
 let fullImg = document.getElementById('imgFull');
+let fullImg2 = document.getElementById('imgFull2');
+$('#Tab2 .tarjeta2 #card2H .card .card-header .img_logo').click(function(){
+  fullImg2.src = this.src;
+  return false;
+});
 
 $('#Tab5 .tarjeta .back .card .card-body #img').click(function(){
   fullImg.src = this.src;

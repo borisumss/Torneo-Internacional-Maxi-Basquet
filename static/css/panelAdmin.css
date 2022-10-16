@@ -83,7 +83,21 @@ header{
 header, #side_nav{
     z-index: 50;
 }
-
+#triggerId{
+    background-color: rgba(255, 255, 255, 0);
+    border: none;
+    color: white;
+    font-size: 20px;
+}
+#triggerIdD{
+    background-color:white ;
+    padding: 0px 10px;
+    text-align: right;
+}
+#usuario{
+    font-size: 16px !important;
+    color: #003975 !important;
+}
 
 /*DISEÑO  CONTENEDOR*/
 body{
@@ -104,7 +118,7 @@ body{
     border-radius: 20px;
     
 }
-#Tab1 .card, #Tab2 .card{
+#Tab1 .card{
     width: 97%;
     height: 480px;
     margin: 0px auto;
@@ -113,11 +127,8 @@ body{
     border: none;
 }
 
-#Tab2 .card{
-    height: 520px !important;
-}
 
-#Tab1 .card-body, #Tab2 .card-body{
+#Tab1 .card-body{
     background-color: white;
     overflow: scroll;
     min-height: 100%;
@@ -144,6 +155,28 @@ th{
     width: 25px;
 }
 
+.fondoTab1{
+    
+    background: linear-gradient(rgba(237, 28, 35, 0.103), rgba(237, 28, 36, .5)),url('../images/zz.jpg') !important;
+}
+
+.fondoTab2{
+    background-image:url(../images/test2.jpg) !important;
+}
+
+.fondoTab3{
+    background-image:url(../images/basket.jpg) !important;
+    background-position: center !important;
+}
+
+.fondoTab4{
+    background-image:url(../images/fondoMix.jpg) !important;
+}
+
+.fondoTab5{
+    background-image: url(../images/fondoSol.jpg) !important;
+    
+}
 /*DISEÑO TAB5 SOLICITUDES*/
 #Tab5{
     display: flex;
@@ -220,29 +253,6 @@ th{
     margin: 0px auto;
 }
 
-.fondoTab1{
-    background: linear-gradient(rgba(237, 28, 35, 0.103), rgba(237, 28, 36, .5)),url('../images/basquetbolrecorte.jpg') !important; 
-    
-}
-
-.fondoTab2{
-    background-image: url(../images/fondoMix.jpg)!important; 
-    
-}
-
-.fondoTab3{
-    background-image:url(../images/basket.jpg) !important;
-    background-position: center !important;
-}
-
-.fondoTab4{
-    background-image:url(../images/fondoMix.jpg) !important;
-}
-
-.fondoTab5{
-    background-image: url(../images/fondoSol.jpg) !important;
-    
-}
 
 #Tab5 .tarjeta{
     height: 100%;
@@ -318,7 +328,7 @@ th{
     background-color: #009eb1;
 }
 
-.card-footer{
+#Tab5 .tarjeta .front .card .card-footer{
     border-top: none !important;
     padding: 0px 0px 15px;
 }
@@ -369,6 +379,90 @@ th{
     color: white !important;
 }
 
+
+
+/*DISEÑO TAB2 TORNEOS TERMINADOS*/
+#Tab2{
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0px auto;
+    margin-top: 50px;
+}
+
+#Tab2 .tarjeta2{
+    position: relative;
+    width: 350px !important;
+    height: 500px !important;
+    background-color: rgba(25, 219, 25, 0) !important; 
+    margin: 22px auto !important;
+    border-radius: 20px !important;
+}
+
+#card2, #card2H{
+    width: 100%;
+    height: 100%;
+}
+
+#card2{
+    background-color: rgba(255, 255, 255, 0);
+}
+#tab2header{
+    margin: 0px;
+    padding: 0px;
+    border: solid 10px #cda434;
+    border-bottom: none;
+    border-top: none;
+    height: 150px;
+    overflow: hidden;
+    border-bottom: none;
+}
+.img_logo{
+    
+    width: 100%;
+}
+
+#imgFull2{
+    width: 100%;  
+    max-height: 650px;
+}
+
+#fotoExp2{
+    background-color: rgba(0, 0, 0, 0.9);
+    color: white !important;
+    
+}
+
+#modalTab2Header{
+    border-bottom: none;
+    padding: 20px;
+}
+
+#ganador{
+    background-color: #cda434;
+    color: white !important;
+    border-top: none;
+}
+
+#tab2body{
+    padding: 15px 5px;
+    border-radius: 50% 50% 100% 100% / 35% 35% 0% 0%;
+    background-color: white;
+    border:solid 10px #cda434;
+    border-bottom: none;
+}
+
+#Tab2 p{
+    color: #000 !important;
+}
+
+#Tab2 h5{
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+#Tab2 hr{
+    color: #000;
+}
 @media only screen and (max-width: 775px) {
     .informacion{
         margin-top: 10px;
