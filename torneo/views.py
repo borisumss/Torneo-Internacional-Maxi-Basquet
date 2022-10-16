@@ -11,13 +11,22 @@ from django.contrib.auth.decorators import user_passes_test
 from .models import Organizador, Torneo, Inscripcion, Categorias_Torneo, Pre_Inscripcion, delegado_Inscripcion, delegado_PreInscripcion
 from django.contrib import messages
 from datetime import date
+from django.core.mail import send_mail
+from django.conf import settings
 #def email_check(user):
 #   return user.email.endswith('@admin2.com')
 # Create your views here.
 
 """
+# CODIGO PARA GUARDAR USUARIO
 user = User.objects.create_user(username= ,password= ,email=)
 user.save()
+# CODIGO PARA MANDAR EMAIL
+subject = 'Bienvenido al Torneo de Maxi Basquet'
+message = f'Hola delegado estas son sus credenciales para acceder y registrr su equipo en el torneo nombre de usuario: {username} contraseña: {password}'
+from_email = settings.EMAIL_HOST_USER
+recipient_list = [email]
+send_mail(subject, message, from_email, recipient_list, fail_silently=False)
 """
 
 def index(request):
