@@ -73,10 +73,10 @@ def preinscripcion(request, id):
                     'qr':"qrcode_websis.png"
                     })
                 else:
-                    messages.warning(request, "Esta fuera de las fechas de Pre-inscripción")
+                    messages.warning(request, "Lo sentimos, termino el plazo para la pre-inscripcion")
                     return redirect('home')
             else:
-                messages.warning(request, "Algo salio mal")
+                messages.warning(request, "Algo salio mal, intente nuevamente")
                 return redirect('home')
     elif request.method == 'POST':
         return enviarSolicitud(request,id)

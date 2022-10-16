@@ -53,8 +53,15 @@
   {% if messages %}
     {% for m in messages %}
       <script>
-        Swal.fire('Lo sentimos, termino el plazo para pre-inscripcion', '', 'error');
+        if('{{m}}'=='Solictud Enviada correctamente'){
+          Swal.fire('{{m}}', '', 'success');
+        }else{
+          Swal.fire('{{m}}', '', 'error');
+        }
+        
       </script>
+      
+      
     {% endfor %}
   {% endif %}
 
