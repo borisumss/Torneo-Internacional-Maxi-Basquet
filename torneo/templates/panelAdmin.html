@@ -82,7 +82,7 @@
           {% if messages %}
           {% for m in messages %}
             <script>
-              Swal.fire('Solictud rechazada correctamente', '', 'success');
+              Swal.fire('{{m}}', '', 'success');
             </script>
           {% endfor %}
         {% endif %}
@@ -337,6 +337,7 @@
                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body confModal" id="modalValid">
+                      <br>
                       <div class="position-relative">
 
                         <label class="primera" id="correo_modal" for="correo_modalInput">Correo Institucional:</label>
@@ -351,31 +352,18 @@
 
                         <label class="primera" id="name_modal" for="name_modalInput">Nombre de Usuario:</label>
                         <input type="text" class="primer form-control" name="username" id="name_modalInput"
-                          placeholder="Ingrese el correo a proporcionar" pattern="^(?!\s)[a-zA-Z0-9ÁáÉéÍíÓóÚú\s]{5,20}"
+                          placeholder="Ingrese el usuario a proporcionar" minlength="5" maxlength="20"
                           required>
                         <div class="invalid-tooltip">
-                          Máximo 20 caracteres de la A-Z
+                          Máximo 20 caracteres
                         </div>
                       </div>
 
-                      <br>
-                      <div class="position-relative">
-                        <label class="primera" id="pass_modal" for="pass_modalInput">Contraseña:</label>
-                        <input type="text" class="primer form-control" name="password" id="pass_modalInput"
-                          placeholder="Contraseña cifrada" required>
-                        <div class="invalid-tooltip">
-                          Máximo 20 caracteres de la A-Z
-                        </div>
-                      </div>
-
+    
                     </div>
                     <div class="modal-footer justify-content-center">
 
-                      <button type="submit" class="btn btn-success" id="modalEnviar">Enviar</button>
-
-
-
-
+                      <button type="submit" name="email" class="btn btn-success" id="modalEnviar">Enviar</button>
                     </div>
                   </div>
                 </div>
@@ -387,9 +375,10 @@
                 <div class="row align-items-center justify-content-center modal-dialog">
                   <div class="col-12 modal-content" id="fotoExp">
                     <div class="modal-header">
-                      <h5>Comprobante de pago de Juan Perez Alconaa</h5>
+                      <h5 id="nombreComprobante">Comprobante de pago de Juan Perez Alconaa</h5>
                       <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
+                    <br>
                     <div class="modal-body confModal" id="modalValid">
                       <img src="" alt="imagen"
                            id="imgFull">

@@ -98,6 +98,10 @@ $('#Tab2 .tarjeta2 #card2H .card .card-header .img_logo').click(function(){
 
 $('#Tab5 .tarjeta .back .card .card-body #img').click(function(){
   fullImg.src = this.src;
+  let name = this.parentElement.parentElement.parentElement.parentElement.children[0].children[0].children[1].children[0].children[0].children[0].children[1].textContent;
+  let Lname = document.getElementById('nombreComprobante');
+  
+  Lname.innerHTML="Comprobante de pago de"+name;
   return false;
 });
 
@@ -123,18 +127,10 @@ $('#Tab5 .tarjeta .front .card .card-header').click(function(){
   return false;
 });
 
-function enviar() {
-    let mail = document.getElementById('correo_modalInput');
-    let name = document.getElementById('name_modalInput');
-    let pass = document.getElementById('pass_modalInput');
-   
-    if (mail.checkValidity() && name.checkValidity() && pass.checkValidity()) {
-        
-
-    } else {
-        let formu = document.getElementById('modalValid');
-        formu.classList.add('was-validated')
-        
-    }
-
-}
+$('#Tab5 .tarjeta .front .card .card-footer #boton-confirmar').click(function() {
+    let email = this.parentElement.parentElement.children[1].children[0].children[1].children[0].children[1].textContent;
+    let formu = document.getElementById('modalEnviar');
+    formu.value = email;
+    alert(formu.value)
+    return false;
+});

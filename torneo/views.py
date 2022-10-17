@@ -196,7 +196,16 @@ def administracion(request):
                     })
         else:
             return redirect('login')
-    
+    elif request.method == 'POST':
+        print(request.POST)
+        subject = 'Bienvenido al Torneo de Maxi Basquet'
+        message = f'Tenga coordiales saludos. A continuación se presenta sus credenciales para acceder y registrar a su equipo en el torneo. "Nombre de usuario: "'+ request.POST.get('username')+' "Contraseña: asdefg"'
+        from_email = settings.EMAIL_HOST_USER
+        recipient_list = [request.POST.get('email')]
+        send_mail(subject, message, from_email, recipient_list, fail_silently=False)
+
+        messages.success(request, "Solicitud Aceptada correctamente")
+        return redirect('administracion')
 
 def delegacion(request):
     if request.method == 'GET':

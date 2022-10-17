@@ -361,14 +361,16 @@ th{
     background-color: rgba(0, 0, 0, 0.9);
     color: white !important;
     position: fixed;
-    
+
     display: flex;
     align-items: center;
     justify-content: center;
     max-height: 100vh !important;
-
+    
 }
-
+#fotoExp #modalValid{
+    overflow: scroll;
+}
 
 #imgFull{
     width: 100%;
@@ -464,6 +466,11 @@ th{
 
 #Tab2 hr{
     color: #000;
+}
+
+#correo_modal, #name_modal, #exampleModalLabel{
+    color: #003975 !important;
+    font-weight: bold !important;
 }
 @media only screen and (max-width: 775px) {
     .informacion{
