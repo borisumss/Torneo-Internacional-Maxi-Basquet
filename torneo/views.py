@@ -378,18 +378,17 @@ def aceptar(request, tipo, id):
         contrasenia = ''.join(rd.sample(unido,10))
         correo = request.POST.get('correo')
         usuario = request.POST.get('username')
-
-        
+        user = User.objects.create_user(username= usuario,password=contrasenia ,email=correo)        
+        user.save()
         if tipo == 'REZAGADOS':
             solicitud = delegado_Inscripcion.objects.filter(id=id)
-            solicitud.update(estado_delegado_inscripcion='ACEPTADO')
+            solicitud.update(estado_delegado_inscripcion='ACEPTADO',id_delegadoIns_id=user.id)
             
                   
         elif tipo == 'PREINSCRIPCION':            
             solicitud = delegado_PreInscripcion.objects.filter(id=id)
-            solicitud.update(estado_delegado_Preinscripcion='ACEPTADO')
-        user = User.objects.create_user(username= usuario,password=contrasenia ,email=correo)
-        user.save()
+            solicitud.update(estado_delegado_Preinscripcion='ACEPTADO',id_delegadoPreIns_id=user.id)
+        
         subject = 'Bienvenido al Torneo de Maxi Basquet'
         message = f'Tenga coordiales saludos.\n\nA continuación se presenta sus credenciales para acceder y registrar a su equipo en el torneo.\n\nNombre de usuario: '+ usuario +'\nContraseña: '+contrasenia+'\nEmail: '+correo+'\n\nAtte: '+ request.user.username +", "+request.user.email  
         from_email = settings.EMAIL_HOST_USER
