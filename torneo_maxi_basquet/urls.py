@@ -26,7 +26,8 @@ urlpatterns = [
     path('administracion/', views.administracion, name='administracion'),
     path('delegacion/', views.delegacion, name='delegacion'),
     path('logout/', views.cerrarSesion, name='logout'),
-    path('administracion/solicitudRechazada/<str:tipo>/<int:id>', views.rechazar, name='Solicitud_Rechazada'),
+    path('administracion/solicitudes/rechazadas/<str:tipo>/<int:id>', views.rechazar, name='Solicitud_Rechazada'),
+    path('administracion/solicitudes/aceptadas/<str:tipo>/<int:id>', views.aceptar, name='Solicitud_Aceptada'),
     path('MaxiBasket/<int:id>', views.verTorneo, name='Torneo'),
     path('preinscripcion/<int:id>', views.preinscripcion, name='preinscripcion'),
 ]

@@ -42,7 +42,7 @@
             <div class="navbar-brand dropdown">
               <button class="dropdown-toggle" type="button" id="triggerId" data-bs-toggle="dropdown" aria-haspopup="true"
                   aria-expanded="false">
-                  {{user.email}}
+                  {{user.username}}
                   </button>
               <div class="dropdown-menu" id="triggerIdD"  aria-labelledby="triggerId">
                 <a class="navbar-brand" id="usuario" href="{% url 'logout' %}">Cerrar Sesión</a>
@@ -236,8 +236,7 @@
                     </div>
                   </div>
                   <div class="card-footer text-muted text-center">
-                    <button type="button" id="boton-confirmar" class="btn btn-outline-success" data-bs-toggle="modal"
-                      data-bs-target="#exampleModal">Confirmar</button>
+                    <a href= "{% url 'Solicitud_Aceptada'  'PREINSCRIPCION' i.id %}" type="button" id="boton-confirmar" class="btn btn-outline-success">Confirmar</a>
                     <a href= "{% url 'Solicitud_Rechazada'  'PREINSCRIPCION' i.id %}" type="button" id="boton-rechazar" class="btn btn-outline-danger">Rechazar</a>
                   </div>
                 </div>
@@ -301,8 +300,7 @@
                     </div>
                   </div>
                   <div class="card-footer text-muted text-center">
-                    <button type="button" id="boton-confirmar" class="btn btn-outline-success" data-bs-toggle="modal"
-                      data-bs-target="#exampleModal">Confirmar</button>
+                    <a href= "{% url 'Solicitud_Aceptada'  'REZAGADOS' i.id %}" type="button" id="boton-confirmar" class="btn btn-outline-success">Confirmar</a>
                     <a  href= "{% url 'Solicitud_Rechazada'  'REZAGADOS' i.id %}" type="button" id="boton-rechazar" class="btn btn-outline-danger" target="" >Rechazar</a>
                   </div>
                 </div>

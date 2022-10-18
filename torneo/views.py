@@ -1,5 +1,6 @@
 #import email
 #from typing_extensions import Self
+import email
 from pickle import FALSE, TRUE
 from unicodedata import category, name
 from django.shortcuts import render, get_object_or_404, redirect
@@ -13,6 +14,7 @@ from django.contrib import messages
 from datetime import date
 from django.core.mail import send_mail
 from django.conf import settings
+import random as rd
 #def email_check(user):
 #   return user.email.endswith('@admin2.com')
 # Create your views here.
@@ -197,9 +199,16 @@ def administracion(request):
         else:
             return redirect('login')
     elif request.method == 'POST':
-        print(request.POST)
+        letras= "abcdefghijklmnopqestuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+        numeros = "0123456789"
+        unido = f'{letras}{numeros}'
+        contrasenia = ''.join(rd.sample(unido,10))
+        correo = request.POST.get('email')
+        usuario = request.POST.get('username')
+        user = User.objects.create_user(username= usuario,password=contrasenia ,email=correo)
+        user.save()
         subject = 'Bienvenido al Torneo de Maxi Basquet'
-        message = f'Tenga coordiales saludos. A continuación se presenta sus credenciales para acceder y registrar a su equipo en el torneo. "Nombre de usuario: "'+ request.POST.get('username')+' "Contraseña: asdefg"'
+        message = f'Tenga coordiales saludos. A continuación se presenta sus credenciales para acceder y registrar a su equipo en el torneo.\nNombre de usuario: '+ request.POST.get('username')+'\nContraseña: '+contrasenia
         from_email = settings.EMAIL_HOST_USER
         recipient_list = [request.POST.get('email')]
         send_mail(subject, message, from_email, recipient_list, fail_silently=False)
@@ -268,35 +277,100 @@ def rechazar(request, tipo, id):
                 return redirect('login')
             else:
                 if tipo == 'REZAGADOS':
-                    solicitud = delegado_Inscripcion.objects.filter(id=id)
-                    solicitud.update(estado_delegado_inscripcion='RECHAZADO')
-                    messages.success(request, "Solictud rechazada correctamente")
+                    ins = delegado_Inscripcion.objects.filter(id=id)
+                    if len(ins)==0:
+                        return redirect('administracion')
+                    else:
+                        return render(request, 'emails.html',{
+                        "email":ins[0].correo_delegado_inscripcion,
+                        "tipo":"RECHAZO"
+                        })
+                        """solicitud = delegado_Inscripcion.objects.filter(id=id)
+                        solicitud.update(estado_delegado_inscripcion='RECHAZADO')
+                        messages.success(request, "Solictud rechazada correctamente")"""
         
                 elif tipo == 'PREINSCRIPCION':
-                    solicitud = delegado_PreInscripcion.objects.filter(id=id)
+                    preIns = delegado_PreInscripcion.objects.filter(id=id)
+                    if len(preIns)==0:
+                        return redirect('administracion')
+                    else:
+                        return render(request, 'emails.html',{
+                        "email":preIns[0].correo_delegado_Preinscripcion,
+                        "tipo":"RECHAZO"
+                        })
+                    """solicitud = delegado_PreInscripcion.objects.filter(id=id)
                     solicitud.update(estado_delegado_Preinscripcion='RECHAZADO')
-                    messages.success(request, "Solictud rechazada correctamente")
-                return redirect('administracion')
+                    messages.success(request, "Solictud rechazada correctamente")"""
+                else:
+                    return redirect('administracion')
+                
         else:
             return redirect('login')
     elif request.method == 'POST':
+        if tipo == 'REZAGADOS':
+            solicitud = delegado_Inscripcion.objects.filter(id=id)
+            correo = request.POST.get('email')
+            solicitud.update(estado_delegado_inscripcion='RECHAZADO')
+            subject = 'Solicitud Rechazada para el Torneo de Maxi Basquet'
+            message = f'Tenga coordiales saludos.\n\nA continuación se presenta el motivo de su rechazo:\n'+ request.POST.get('motivo') +'\n\nAtte: '+ request.user.username +", "+request.user.email
+            from_email = settings.EMAIL_HOST_USER
+            recipient_list = [correo]
+            send_mail(subject, message, from_email, recipient_list, fail_silently=False)
+            messages.success(request, "Solictud rechazada correctamente")
+                  
+        elif tipo == 'PREINSCRIPCION':            
+            solicitud = delegado_PreInscripcion.objects.filter(id=id)
+            correo = request.POST.get('email')
+            solicitud.update(estado_delegado_Preinscripcion='RECHAZADO')
+
+            subject = 'Solicitud Rechazada para el Torneo de Maxi Basquet'
+            message = f'Tenga coordiales saludos. A continuación se presenta el motivo de su rechazo:\n'+ request.POST.get('motivo')
+            from_email = settings.EMAIL_HOST_USER
+            recipient_list = [correo]
+            send_mail(subject, message, from_email, recipient_list, fail_silently=False)
+            messages.success(request, "Solictud rechazada correctamente")
+        return redirect('administracion')  
+
+def aceptar(request, tipo, id):
+    if request.method == 'GET':
         if not request.user.is_anonymous:
             if not request.user.email.endswith('@admin.com'):
                 return redirect('login')
             else:
-                #recibir por el POST si es "rezagados" o "preinscripcion"
                 if tipo == 'REZAGADOS':
-                    solicitud = delegado_Inscripcion.objects.filter(id=id)
-                    solicitud.update(estado_delegado_inscripcion='RECHAZADO')
-                    messages.success(request, "Solictud rechazada correctamente")
+                    ins = delegado_Inscripcion.objects.filter(id=id)
+                    if len(ins)==0:
+                        return redirect('administracion')
+                    else:
+                        return render(request, 'emails.html',{
+                        "email":ins[0].correo_delegado_inscripcion,
+                        "tipo":"ACEPTADO"
+                        })
+                        """solicitud = delegado_Inscripcion.objects.filter(id=id)
+                        solicitud.update(estado_delegado_inscripcion='RECHAZADO')
+                        messages.success(request, "Solictud rechazada correctamente")"""
         
                 elif tipo == 'PREINSCRIPCION':
-                    solicitud = delegado_PreInscripcion.objects.filter(id=id)
+                    preIns = delegado_PreInscripcion.objects.filter(id=id)
+                    if len(preIns)==0:
+                        return redirect('administracion')
+                    else:
+                        return render(request, 'emails.html',{
+                        "email":preIns[0].correo_delegado_Preinscripcion,
+                        "tipo":"ACEPTADO"
+                        })
+                    """solicitud = delegado_PreInscripcion.objects.filter(id=id)
                     solicitud.update(estado_delegado_Preinscripcion='RECHAZADO')
-                    messages.success(request, "Solictud rechazada correctamente")
-                return redirect('administracion')
+                    messages.success(request, "Solictud rechazada correctamente")"""
+                else:
+                    return redirect('administracion')
+                
         else:
             return redirect('login')
+    elif request.method == 'POST':
+        print("POST")
+        return redirect('administracion')  
+
 
 def verTorneo(request, id):
     torneo = Torneo.objects.filter(id=id)

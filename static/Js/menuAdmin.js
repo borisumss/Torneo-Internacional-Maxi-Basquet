@@ -127,10 +127,3 @@ $('#Tab5 .tarjeta .front .card .card-header').click(function(){
   return false;
 });
 
-$('#Tab5 .tarjeta .front .card .card-footer #boton-confirmar').click(function() {
-    let email = this.parentElement.parentElement.children[1].children[0].children[1].children[0].children[1].textContent;
-    let formu = document.getElementById('modalEnviar');
-    formu.value = email;
-    alert(formu.value)
-    return false;
-});
