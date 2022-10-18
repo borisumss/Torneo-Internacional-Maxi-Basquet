@@ -16,3 +16,16 @@
         }, false)
       })
   })()
+
+  $('#btn-Generar').click(function(){
+    let email = document.getElementById('correo_modalInput');
+    let user = document.getElementById('name_modalInput');
+    let correo = document.getElementById('modalEnviar').value;
+    email.value = correo.split('@')[0]+"@delegacion.com";
+    user.value = correo.split('@')[0]+"-"+document.getElementById('boton-rechazar').name;
+    document.getElementById('boton-rechazar').name = null;
+    $(this).hide();
+    $('#boton-rechazar').show();
+    $('#modalEnviar').show();
+    return false;
+});

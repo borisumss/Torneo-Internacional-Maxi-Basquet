@@ -283,7 +283,8 @@ def rechazar(request, tipo, id):
                     else:
                         return render(request, 'emails.html',{
                         "email":ins[0].correo_delegado_inscripcion,
-                        "tipo":"RECHAZO"
+                        "tipo":"RECHAZO",
+                        "id":ins[0].correo_delegado_inscripcion
                         })
                         """solicitud = delegado_Inscripcion.objects.filter(id=id)
                         solicitud.update(estado_delegado_inscripcion='RECHAZADO')
@@ -296,7 +297,8 @@ def rechazar(request, tipo, id):
                     else:
                         return render(request, 'emails.html',{
                         "email":preIns[0].correo_delegado_Preinscripcion,
-                        "tipo":"RECHAZO"
+                        "tipo":"RECHAZO",
+                        "id":preIns[0].correo_delegado_Preinscripcion
                         })
                     """solicitud = delegado_PreInscripcion.objects.filter(id=id)
                     solicitud.update(estado_delegado_Preinscripcion='RECHAZADO')
@@ -344,7 +346,8 @@ def aceptar(request, tipo, id):
                     else:
                         return render(request, 'emails.html',{
                         "email":ins[0].correo_delegado_inscripcion,
-                        "tipo":"ACEPTADO"
+                        "tipo":"ACEPTADO",
+                        "id":id
                         })
                         """solicitud = delegado_Inscripcion.objects.filter(id=id)
                         solicitud.update(estado_delegado_inscripcion='RECHAZADO')
@@ -357,7 +360,8 @@ def aceptar(request, tipo, id):
                     else:
                         return render(request, 'emails.html',{
                         "email":preIns[0].correo_delegado_Preinscripcion,
-                        "tipo":"ACEPTADO"
+                        "tipo":"ACEPTADO",
+                        "id":id
                         })
                     """solicitud = delegado_PreInscripcion.objects.filter(id=id)
                     solicitud.update(estado_delegado_Preinscripcion='RECHAZADO')
@@ -368,7 +372,30 @@ def aceptar(request, tipo, id):
         else:
             return redirect('login')
     elif request.method == 'POST':
-        print("POST")
+        letras= "abcdefghijklmnopqestuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+        numeros = "0123456789"
+        unido = f'{letras}{numeros}'
+        contrasenia = ''.join(rd.sample(unido,10))
+        correo = request.POST.get('correo')
+        usuario = request.POST.get('username')
+
+        
+        if tipo == 'REZAGADOS':
+            solicitud = delegado_Inscripcion.objects.filter(id=id)
+            solicitud.update(estado_delegado_inscripcion='ACEPTADO')
+            
+                  
+        elif tipo == 'PREINSCRIPCION':            
+            solicitud = delegado_PreInscripcion.objects.filter(id=id)
+            solicitud.update(estado_delegado_Preinscripcion='ACEPTADO')
+        user = User.objects.create_user(username= usuario,password=contrasenia ,email=correo)
+        user.save()
+        subject = 'Bienvenido al Torneo de Maxi Basquet'
+        message = f'Tenga coordiales saludos.\n\nA continuación se presenta sus credenciales para acceder y registrar a su equipo en el torneo.\n\nNombre de usuario: '+ usuario +'\nContraseña: '+contrasenia+'\nEmail: '+correo+'\n\nAtte: '+ request.user.username +", "+request.user.email  
+        from_email = settings.EMAIL_HOST_USER
+        recipient_list = [request.POST.get('email')]
+        send_mail(subject, message, from_email, recipient_list, fail_silently=False)
+        messages.success(request, "Solictud Aceptada correctamente")
         return redirect('administracion')  
 
 

@@ -29,63 +29,121 @@
     <nav class="navbar navbar-expand-lg navbar-custom">
       <div class="container-fluid">
         <div class="menu d-flex" id="TituloPadre">
-          <a class="navbar-brand" id="Titulo" href="{% url 'administracion' %}">Administración - Torneo Internacional Maxi Basquet</a>
+          <a class="navbar-brand" id="Titulo" href="{% url 'administracion' %}">Administración - Torneo Internacional
+            Maxi Basquet</a>
         </div>
-    
+
         <div class="">
           <div class="text-end collapse navbar-collapse" id="navbarNav">
             <!--<a class="nav-link" href="#">Username</a>-->
             <div class="navbar-brand dropdown">
-              <button class="dropdown-toggle" type="button" id="triggerId" data-bs-toggle="dropdown" aria-haspopup="true"
-                  aria-expanded="false">
-                  {{user.username}}
-                  </button>
-              <div class="dropdown-menu" id="triggerIdD"  aria-labelledby="triggerId">
+              <button class="dropdown-toggle" type="button" id="triggerId" data-bs-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                {{user.username}}
+              </button>
+              <div class="dropdown-menu" id="triggerIdD" aria-labelledby="triggerId">
                 <a class="navbar-brand" id="usuario" href="{% url 'logout' %}">Cerrar Sesión</a>
               </div>
             </div>
-            
+
           </div>
         </div>
       </div>
     </nav>
   </header>
-    <div class="container" id="content">
-      <div class="row">
-        <div class="col-12">
-          <article>
-            {% if tipo == 'RECHAZO' %}
-                <form class="needs-validation" id="formulario" name="formulario" method="POST" enctype="multipart/form-data"
-                novalidate>
-                {% csrf_token %}
-                    <div class="card">
-                        <div class="card-header  text-center">
-                            <h5>SOLICITUD RECHAZADA</h5>
-                            
-                        </div>
-                        <div class="card-body">
-                            <b>Correo destino:</b> {{email}}
-                            <br><br>
-                            <div class="position-relative">
-                                
-                                <label class="primera" id="motivo_label" for="motivo_input" ><b>Motivo del rechazo:</b></label>
-                                  <textarea class="form-control" minlength="75" maxlength="800" name="motivo" id="motivo_input" rows="9" required></textarea>
-                                  <div class="invalid-tooltip">
-                                    Mínimo 75 caracteres
-                                  </div>
-                    
-                            </div>                            
-                        </div>
-                        <div class="card-footer text-muted  text-center">
-                            <a href= "{% url 'administracion'%}" type="button" id="boton-rechazar" class="btn btn-danger">Cancelar</a>
-                            <button type="submit" name="email" value="{{email}}" class="btn btn-primary" id="modalEnviar">Enviar</button>
-                        </div>
-                    </div>
-              </form>
-            {% else %}
-                <H2>AQUI EL FORM PARA ACEPTAR</H2>
-            {% endif %}
-          </article>
+  <div class="container" id="content">
+    <div class="row">
+      <div class="col-12">
+        <article>
+          {% if tipo == 'RECHAZO' %}
+          <form class="needs-validation" id="formulario" name="formulario" method="POST" enctype="multipart/form-data"
+            novalidate>
+            {% csrf_token %}
+            <div class="card">
+              <div class="card-header  text-center">
+                <h5>SOLICITUD RECHAZADA</h5>
+
+              </div>
+              <div class="card-body">
+                <b>Correo destino:</b> {{email}}
+                <br><br>
+                <div class="position-relative">
+
+                  <label class="primera" id="motivo_label" for="motivo_input"><b>Motivo del rechazo:</b></label>
+                  <textarea class="form-control" minlength="75" maxlength="800" name="motivo" id="motivo_input" rows="9"
+                    required></textarea>
+                  <div class="invalid-tooltip">
+                    Mínimo 75 caracteres
+                  </div>
+
+                </div>
+              </div>
+              <div class="card-footer text-muted  text-center">
+                <a href="{% url 'administracion'%}" type="button" id="btn-rechazar"
+                  class="btn btn-danger">Cancelar</a>
+                <button type="submit" name="email" value="{{email}}" class="btn btn-primary"
+                  id="btn-enviar">Enviar</button>
+              </div>
+            </div>
+          </form>
+          {% else %}
+          <form class="needs-validation" id="formulario" name="formulario" method="POST" enctype="multipart/form-data"
+            novalidate>
+            {% csrf_token %}
+            <div class="card"  id="aceptados">
+              <div class="card-header  text-center">
+                <h5>SOLICITUD ACEPTADA</h5>
+
+              </div>
+              <div class="card-body">
+                <b>Correo destino:</b> {{email}}
+                <br><br>
+                <div class="position-relative">
+
+                  
+                  <label class="primera" id="correo_modal" for="correo_modalInput"><b>Correo Institucional:</b></label>
+
+                  <input type="email" class="primer form-control" name="correo" id="correo_modalInput"
+                    placeholder="Ingrese el correo a proporcionar" 
+                    onfocus="this.blur()" required>
+                  <div class="invalid-tooltip">
+                    Mínimo 75 caracteres
+                  </div>
+
+                </div>
+
+                  
+                
+                <br>
+              
+                <div class="position-relative">
+
+                  <label class="primera" id="name_modal" for="name_modalInput"><b>Nombre de Usuario:</b></label>
+                  <input type="text" class="primer form-control" name="username" id="name_modalInput"
+                    placeholder="Ingrese el usuario a proporcionar" minlength="5" maxlength="20" aria-disabled="true"
+                    onfocus="this.blur()" required>
+                  
+                  <div class="invalid-tooltip">
+                    Mínimo 75 caracteres
+                  </div>
+                </div>
+                <br>
+
+              </div>
+              <div class="card-footer text-muted  text-center">
+                <a href="{% url 'administracion'%}" name="{{id}}" type="button" id="boton-rechazar"
+                  class="btn btn-danger"  >
+                  
+                  Cancelar</a>
+                <button type="submit" name="email" value="{{email}}" class="btn btn-primary"
+                  id="modalEnviar">Enviar</button>
+                  <button type="button" id="btn-Generar" class="btn btn-success">Generar credencial</button>
+              
+              </div>
+            </div>
+          </form>
+          {% endif %}
+        </article>
 
 </body>
 <!-- Bootstrap JavaScript Libraries -->

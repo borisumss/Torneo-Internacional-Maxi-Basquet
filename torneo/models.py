@@ -60,17 +60,17 @@ class delegado_Inscripcion(models.Model):
     telefono_delegado_inscripcion = models.CharField(max_length=15)
     id_inscripcion = models.ForeignKey(Inscripcion, on_delete=models.CASCADE)
     recibo_inscripcion = models.ImageField(upload_to='static/imagenes/Comprobantes/', verbose_name='Recibo Rezagados', null=True)
-
+    id_delegadoIns = models.ForeignKey(User, on_delete=models.CASCADE)
 
 class delegado_PreInscripcion(models.Model):
     nombre_delegado_Preinscripcion = models.CharField(max_length=50)
-    estado_delegado_Preinscripcion = models.CharField(max_length=15)#Estados: ACEPTADO, RECHAZADO, PENDIENTE
+    estado_delegado_Preinscripcion = models.CharField(max_length=15)#Estados: ACEPTADO, RECHAZADO, PENDIENTE, BAJA
     correo_delegado_Preinscripcion = models.CharField(max_length=50)
     ci_delegado_Preinscripcion = models.CharField(max_length=15)
     telefono_delegado_Preinscripcion = models.CharField(max_length=15)
     id_Pre_inscripcion = models.ForeignKey(Pre_Inscripcion, on_delete=models.CASCADE)
     recibo_Preinscripcion = models.ImageField(upload_to='static/imagenes/Comprobantes/', verbose_name='Recibo Preinscripción', null=True)
-
+    id_delegadoPreIns = models.ForeignKey(User, on_delete=models.CASCADE)
 
 
 class Categorias_Torneo(models.Model):
