@@ -75,7 +75,10 @@ def preinscripcion(request, id):
                     'qr':"qrcode_websis.png"
                     })
                 else:
-                    messages.warning(request, "Lo sentimos, termino el plazo para la pre-inscripcion")
+                    if (now < Ins[0].fecha_inicio) or (now < Preins[0].fecha_inicioPre):
+                        messages.warning(request, "Aún faltan días para la Pre-Inscripción")
+                    else:
+                        messages.warning(request, "Lo sentimos, termino el plazo para la pre-inscripcion")
                     return redirect('home')
             else:
                 messages.warning(request, "Algo salio mal, intente nuevamente")
