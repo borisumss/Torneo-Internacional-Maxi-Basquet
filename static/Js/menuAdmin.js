@@ -17,7 +17,7 @@
       })
   })()
 
-$(function(){
+/*$(function(){
     $('ul.tabs li:first').addClass('active');
     $('.secciones article').hide();
     $('.secciones article:first').show();
@@ -63,7 +63,7 @@ $('ul.tabs li').click(function(){
    
     $(activeTab).show();
     return false;
-});
+});*/
 
 $('.burger').click(function(){
     

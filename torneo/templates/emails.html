@@ -29,7 +29,7 @@
     <nav class="navbar navbar-expand-lg navbar-custom">
       <div class="container-fluid">
         <div class="menu d-flex" id="TituloPadre">
-          <a class="navbar-brand" id="Titulo" href="{% url 'administracion' %}">Administración - Torneo Internacional
+          <a class="navbar-brand" id="Titulo" href="{% url 'solicitudes' %}">Administración - Torneo Internacional
             Maxi Basquet</a>
         </div>
 
@@ -79,7 +79,7 @@
                 </div>
               </div>
               <div class="card-footer text-muted  text-center">
-                <a href="{% url 'administracion'%}" type="button" id="btn-rechazar"
+                <a href="{% url 'solicitudes'%}" type="button" id="btn-rechazar"
                   class="btn btn-danger">Cancelar</a>
                 <button type="submit" name="email" value="{{email}}" class="btn btn-primary"
                   id="btn-enviar">Enviar</button>
@@ -131,7 +131,7 @@
 
               </div>
               <div class="card-footer text-muted  text-center">
-                <a href="{% url 'administracion'%}" name="{{id}}" type="button" id="boton-rechazar"
+                <a href="{% url 'solicitudes'%}" name="{{id}}" type="button" id="boton-rechazar"
                   class="btn btn-danger"  >
                   
                   Cancelar</a>

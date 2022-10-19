@@ -37,7 +37,7 @@ def index(request):
             if request.user.email.endswith('@delegacion.com'):
                 return redirect('delegacion')
             elif request.user.email.endswith('@admin.com'):
-                return redirect('administracion')
+                return redirect('torneos')
         else:
             torneosProgreso = Torneo.objects.filter(torneo_estado=1)
             aux = []
@@ -54,7 +54,7 @@ def preinscripcion(request, id):
             if request.user.email.endswith('@delegacion.com'):
                 return redirect('delegacion')
             elif request.user.email.endswith('@admin.com'):
-                return redirect('administracion')
+                return redirect('torneos')
         else:
             Preins = Pre_Inscripcion.objects.filter(id_torneo_id=id)
             Ins = Inscripcion.objects.filter(id_torneo_id=id)
@@ -92,7 +92,7 @@ def login(request):
             if request.user.email.endswith('@delegacion.com'):
                 return redirect('delegacion')
             elif request.user.email.endswith('@admin.com'):
-                return redirect('administracion')
+                return redirect('torneos')
         else:
             return render(request, 'login.html')
             
@@ -105,7 +105,7 @@ def login(request):
             if request.user.email.endswith('@delegacion.com'):
                 return redirect('delegacion')
             elif request.user.email.endswith('@admin.com'):
-                return redirect('administracion')
+                return redirect('torneos')
         else:
             messages.warning(request, "Algo salio mal, intente nuevamente")
             return render(request, 'login.html')
@@ -178,7 +178,7 @@ def crear_torneo(request):
                     categoria = Categorias_Torneo(nombre_categoria=request.POST.getlist('nombreCategoria')[i], edad_minima=request.POST.getlist('minCategoria')[i], edad_maxima=request.POST.getlist('maxCategoria')[i], id_torneo=torneo)
                     categoria.save()
 
-                return redirect('administracion')
+                return redirect('torneos')
         else:
             return redirect('login')
         
@@ -189,35 +189,10 @@ def administracion(request):
             if not request.user.email.endswith('@admin.com'):
                 return redirect('login')
             else:
-                torneosProgreso = Torneo.objects.filter(torneo_estado=1)
-                torneosTerminados = Torneo.objects.filter(torneo_estado=0)
-                solicitudPre = delegado_PreInscripcion.objects.filter(estado_delegado_Preinscripcion='PENDIENTE')
-                solicitudRez = delegado_Inscripcion.objects.filter(estado_delegado_inscripcion='PENDIENTE')
-                return render(request, 'panelAdmin.html',{
-                    "torneos":torneosProgreso, 
-                    "torneosTerminados":torneosTerminados,
-                    "solPre":solicitudPre,
-                    "solRez":solicitudRez
-                    })
+                return redirect('torneos')
         else:
             return redirect('login')
-    elif request.method == 'POST':
-        letras= "abcdefghijklmnopqestuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
-        numeros = "0123456789"
-        unido = f'{letras}{numeros}'
-        contrasenia = ''.join(rd.sample(unido,10))
-        correo = request.POST.get('email')
-        usuario = request.POST.get('username')
-        user = User.objects.create_user(username= usuario,password=contrasenia ,email=correo)
-        user.save()
-        subject = 'Bienvenido al Torneo de Maxi Basquet'
-        message = f'Tenga coordiales saludos. A continuación se presenta sus credenciales para acceder y registrar a su equipo en el torneo.\nNombre de usuario: '+ request.POST.get('username')+'\nContraseña: '+contrasenia
-        from_email = settings.EMAIL_HOST_USER
-        recipient_list = [request.POST.get('email')]
-        send_mail(subject, message, from_email, recipient_list, fail_silently=False)
-
-        messages.success(request, "Solicitud Aceptada correctamente")
-        return redirect('administracion')
+    
 
 def delegacion(request):
     if request.method == 'GET':
@@ -282,7 +257,7 @@ def rechazar(request, tipo, id):
                 if tipo == 'REZAGADOS':
                     ins = delegado_Inscripcion.objects.filter(id=id)
                     if len(ins)==0:
-                        return redirect('administracion')
+                        return redirect('solicitudes')
                     else:
                         return render(request, 'emails.html',{
                         "email":ins[0].correo_delegado_inscripcion,
@@ -296,7 +271,7 @@ def rechazar(request, tipo, id):
                 elif tipo == 'PREINSCRIPCION':
                     preIns = delegado_PreInscripcion.objects.filter(id=id)
                     if len(preIns)==0:
-                        return redirect('administracion')
+                        return redirect('solicitudes')
                     else:
                         return render(request, 'emails.html',{
                         "email":preIns[0].correo_delegado_Preinscripcion,
@@ -307,7 +282,7 @@ def rechazar(request, tipo, id):
                     solicitud.update(estado_delegado_Preinscripcion='RECHAZADO')
                     messages.success(request, "Solictud rechazada correctamente")"""
                 else:
-                    return redirect('administracion')
+                    return redirect('solicitudes')
                 
         else:
             return redirect('login')
@@ -334,7 +309,7 @@ def rechazar(request, tipo, id):
             recipient_list = [correo]
             send_mail(subject, message, from_email, recipient_list, fail_silently=False)
             messages.success(request, "Solictud rechazada correctamente")
-        return redirect('administracion')  
+        return redirect('solicitudes')  
 
 def aceptar(request, tipo, id):
     if request.method == 'GET':
@@ -345,7 +320,7 @@ def aceptar(request, tipo, id):
                 if tipo == 'REZAGADOS':
                     ins = delegado_Inscripcion.objects.filter(id=id)
                     if len(ins)==0:
-                        return redirect('administracion')
+                        return redirect('solicitudes')
                     else:
                         return render(request, 'emails.html',{
                         "email":ins[0].correo_delegado_inscripcion,
@@ -359,7 +334,7 @@ def aceptar(request, tipo, id):
                 elif tipo == 'PREINSCRIPCION':
                     preIns = delegado_PreInscripcion.objects.filter(id=id)
                     if len(preIns)==0:
-                        return redirect('administracion')
+                        return redirect('solicitudes')
                     else:
                         return render(request, 'emails.html',{
                         "email":preIns[0].correo_delegado_Preinscripcion,
@@ -370,7 +345,7 @@ def aceptar(request, tipo, id):
                     solicitud.update(estado_delegado_Preinscripcion='RECHAZADO')
                     messages.success(request, "Solictud rechazada correctamente")"""
                 else:
-                    return redirect('administracion')
+                    return redirect('solicitudes')
                 
         else:
             return redirect('login')
@@ -398,7 +373,7 @@ def aceptar(request, tipo, id):
         recipient_list = [request.POST.get('email')]
         send_mail(subject, message, from_email, recipient_list, fail_silently=False)
         messages.success(request, "Solictud Aceptada correctamente")
-        return redirect('administracion')  
+        return redirect('solicitudes')  
 
 
 def verTorneo(request, id):
@@ -406,3 +381,72 @@ def verTorneo(request, id):
     return render(request, 'Torneo.html',{
                     "torneo":torneo
                     })
+
+
+def administracionTorneos(request):
+    if request.method == 'GET':
+        if not request.user.is_anonymous:
+            if not request.user.email.endswith('@admin.com'):
+                return redirect('login')
+            else:
+                torneosProgreso = Torneo.objects.filter(torneo_estado=1)
+                return render(request, 'Tab1.html',{
+                    "torneos":torneosProgreso, 
+                    })
+        else:
+            return redirect('login')
+
+def administracionTorneosTerminados(request):
+    if request.method == 'GET':
+        if not request.user.is_anonymous:
+            if not request.user.email.endswith('@admin.com'):
+                return redirect('login')
+            else:
+                torneosTerminados = Torneo.objects.filter(torneo_estado=0)
+                return render(request, 'Tab2.html',{
+                    "torneosTerminados":torneosTerminados
+                    })
+        else:
+            return redirect('login')
+
+def administracionSolicitudes(request):
+    if request.method == 'GET':
+        if not request.user.is_anonymous:
+            if not request.user.email.endswith('@admin.com'):
+                return redirect('login')
+            else:
+                solicitudPre = delegado_PreInscripcion.objects.filter(estado_delegado_Preinscripcion='PENDIENTE')
+                solicitudRez = delegado_Inscripcion.objects.filter(estado_delegado_inscripcion='PENDIENTE')
+                return render(request, 'Tab5.html',{
+                    "solPre":solicitudPre,
+                    "solRez":solicitudRez
+                    })
+        else:
+            return redirect('login')
+    elif request.method == 'POST':
+        letras= "abcdefghijklmnopqestuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+        numeros = "0123456789"
+        unido = f'{letras}{numeros}'
+        contrasenia = ''.join(rd.sample(unido,10))
+        correo = request.POST.get('email')
+        usuario = request.POST.get('username')
+        user = User.objects.create_user(username= usuario,password=contrasenia ,email=correo)
+        user.save()
+        subject = 'Bienvenido al Torneo de Maxi Basquet'
+        message = f'Tenga coordiales saludos. A continuación se presenta sus credenciales para acceder y registrar a su equipo en el torneo.\nNombre de usuario: '+ request.POST.get('username')+'\nContraseña: '+contrasenia
+        from_email = settings.EMAIL_HOST_USER
+        recipient_list = [request.POST.get('email')]
+        send_mail(subject, message, from_email, recipient_list, fail_silently=False)
+
+        messages.success(request, "Solicitud Aceptada correctamente")
+        return redirect('solicitudes')
+
+def administracionDelegados(request):
+    if request.method == 'GET':
+        if not request.user.is_anonymous:
+            if not request.user.email.endswith('@admin.com'):
+                return redirect('login')
+            else:
+               return render(request, 'Tab3.html')
+        else:
+            return redirect('login')

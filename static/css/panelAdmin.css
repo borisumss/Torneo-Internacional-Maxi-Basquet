@@ -32,6 +32,9 @@ header{
 .header-box{
     padding: 16px 0px 24px !important;
 }
+#enlaces{
+    width: 23px;
+}
 
 .item{
     padding: 16px;
@@ -157,7 +160,7 @@ th{
 
 .fondoTab1{
     
-    background: linear-gradient(rgba(237, 28, 35, 0.103), rgba(237, 28, 36, .5)),url('../images/zz.jpg') !important;
+    background: linear-gradient(rgba(237, 28, 35, 0.103), rgba(237, 28, 36, .5)),url('../images/basquetbolrecorte.jpg') !important; 
 }
 
 .fondoTab2{
