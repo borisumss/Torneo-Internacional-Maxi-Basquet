@@ -33,7 +33,7 @@
           </li>
 
           <li class="nav-item">
-            <a class="nav-link" href="#about">Nosotros</a>
+            <a class="nav-link" href="#about">Torneos</a>
           </li>
 
           <li>
@@ -88,10 +88,14 @@
       <div class="carousel-item active">
         <img src="../../static/images/fondo.jpg" class="d-block w-100" alt="...">
         <div class="carousel-caption">
-          <h5>Liga de Torneos Internacionales Maxi Básquetball</h5>
+          <h5>Liga Internacional Maxi Básquetball</h5><br>
           <p>
-            3er Torneo Internacion de Maxi Basquet, Cochabamba - Bolivia<br>
-          </p>
+            Evento de carácter internacional, que hasta el momento ha manifestado interés por participar equipos
+            provenientes
+            no sólo de Bolivia, sino de también Argentina y otros países de Sud América.<br><br>
+            Ofrece distintas categorías en las ramas masculinas y femeninas, también separadas por edades<br>
+            
+          </p><br>
           <a href="#" class="btn btn-primary mt-3">Ver Torneos</a>
         </div>
       </div>
@@ -100,12 +104,26 @@
     {% for i in torneos %}
       <div class="carousel-item">
         <img src="../../static/images/fondo.jpg" class="d-block w-100" alt="...">
-        <div class="carousel-caption">
+        <div class="carousel-caption" id="inscrip">
           <h5>Pre-inscripciones</h5>
+          <br>
+          <h4>¡Inscribe a tu equipo y participa!</h4>
           <p>
-            Invitación para equipos y clubes para participar en el Torneo: <b>{{i.nombre_torneo}}</b> <br>
-            ¡Inscribe a tu equipo y participa!
-          </p>
+         
+            Torneo Internacional de Maxi básquet: "<b>{{i.nombre_torneo}}"</b>. El cual se realizará en {{i.pais_torneo}}
+            desde <b>{{i.fecha_torneo_inicio}} hasta {{i.fecha_torneo_fin}}</b>.
+            
+            </p>
+            <br>
+            <p class="text-start">
+              Para realizar la preinscripción, sólo tiene que presionar el boton de abajo <b>"Pre-inscripción" </b>y llenar el formulario correspondiente.
+              <br>
+            </p>
+            <p>
+              <a href="#{{i.id}}" >Para mayor información presione Aquí.</a> o descargue la convocatoria presionando aqui: <a target="_blank" href="/{{i.invitacion_documento}}" >Convocatoria Publica</a>
+              <br>
+            </p>
+            <br><br>
           <a href="{% url 'preinscripcion' i.id %}" class="btn btn-primary mt-3">Pre-inscripción</a>
         </div>
       </div>
@@ -151,36 +169,44 @@
   <section id="about" class="about section-padding">
     <div class="container">
       {% for i in torneos %}
-      <div class="row" id="actual">
+      <a name="{{i.id}}" id="{{i.id}}"></a> 
+      <div class="row" id="actual" >
         <div class="col-lg-4 col-md-12 col-12">
           <div class="about-img">
-            <img src="../../static/images/nosotros.png" alt="" class="img-fluid">
+            <img src="/{{i.logo}}" alt="" class="img-fluid">
           </div>
         </div>
         <div class="col-lg-8 col-md-12 col-12 ps-lg-5 mt-md-5">
           <div class="about-text">
-            <h2>
+            <h2 style=" text-transform: uppercase; font-weight:bolder">
              {{i.nombre_torneo}}
             </h2><br>
             <p>
               Evento de carácter internacional, que hasta el momento ha manifestado interés por participar equipos
               provenientes
               no sólo de Bolivia, sino de también Argentina y otros países de Sud América.<br>
-              Ofrece distintas categorías en las ramas masculinas y femeninas, también separadas por edades<br>
-            </p>
-            
-            <div class="text-center">
-              <a target="_blank" href="/{{i.invitacion_documento}}" >Presione Aquí para ver la Convocatoria Publica</a>
-            </div>
-            <br><br>
-            <div class="text-center">
-              <a href="{% url 'Torneo' i.id %}" class="btn btn-primary">Información</a>
-            </div>
+              Ofrece distintas categorías en las ramas masculinas y femeninas, también separadas por edades<br><br>
               
+              Organizado por: <b style=" text-transform: uppercase;">{{i.id_organizador.nombre_organizador}} </b> <br>
+              En el país de: <b style=" text-transform: uppercase;">{{i.pais_torneo}} </b> <br>
+              Dará inicio el <b style=" text-transform: uppercase;">{{i.fecha_torneo_inicio}} </b> y terminará el: <b style=" text-transform: uppercase;">{{i.fecha_torneo_fin}} </b><br>
+              Mas detalles en:  <a target="_blank" href="/{{i.invitacion_documento}}" >Convocatoria Publica</a>
+            
+              <br>
+              
+             </p>
+          
+            <p> Para cualquier duda o consulta comunicarse al correo electrónico <b>{{i.id_organizador.correo_organizador}}</b> o al número <b>{{i.id_organizador.telefono_organizador}}</b>.
+            </p>
+            <br>
+            <div class="text-center">
+              <a href="{% url 'Torneo' i.id %}" class="btn btn-primary">Ir al Torneo</a>
+            </div>
+            <br>
           </div>
         </div>
       </div>
-      <br>
+      <br><br>
       {% endfor %}
     </div>
   </section>
@@ -220,7 +246,7 @@
     <!-- Grid -->
 
     <!-- Copyright -->
-    <div class="text-center text-dark p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+    <div class="text-center text-dark p-3" style="background-color: #003975; color:white !important; ">
       © 2022 Copyright: Torneo Internacional Maxi Básquet
       <!-- <a class="text-dark" href="https://mdbootstrap.com/">Maxibasquet.com</a> -->
     </div>
