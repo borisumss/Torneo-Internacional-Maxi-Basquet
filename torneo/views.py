@@ -450,3 +450,13 @@ def administracionDelegados(request):
                return render(request, 'Tab3.html')
         else:
             return redirect('login')
+
+def administracionEquipos(request):
+    if request.method == 'GET':
+        if not request.user.is_anonymous:
+            if not request.user.email.endswith('@admin.com'):
+                return redirect('login')
+            else:
+               return render(request, 'Tab4.html')
+        else:
+            return redirect('login')

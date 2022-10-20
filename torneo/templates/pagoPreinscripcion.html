@@ -39,10 +39,12 @@
           </div>
         </nav>
     </header>
+    <br>
     <main id="principal" class="container d-flex align-items-center justify-content-center">
+        <div class="container">
         <div class="row">
             <!--columna izq-->
-            <div class="col-12 col-lg-6">
+            <div class="col-12 col-lg-6 d-flex align-items-center" id="formularioCol">
                 <form class="needs-validation" id="formulario" name="formulario" method="POST" enctype="multipart/form-data" novalidate>
                     {% csrf_token %}
                     <div class="position-relative">
@@ -83,10 +85,9 @@
                     <br>
                     <div class="position-relative">
                         <label for="torneo" id="torneo_label">Torneo a inscribirse:</label>
-                        <select class="form-control"  id="torneo" name="torneo_selec" required>
-                            <option selected value="">Escoger Torneo</option>
-                            <option value="{{torneo}}"> {{torneo}} </option>
-                        </select>
+                        <input type="text" class="primer form-control" name="torneo_selec" id="torneo"
+                        placeholder="Ingrese el usuario a proporcionar" value="{{torneo}}" aria-disabled="true"
+                        onfocus="this.blur()" required>
                         <div class="invalid-tooltip">
                             Ningún torneo seleccionado.
                         </div>
@@ -120,6 +121,7 @@
                 </div>
             </div>
         </div>
+    </div>
     </main>
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js"
