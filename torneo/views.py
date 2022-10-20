@@ -35,7 +35,7 @@ def index(request):
     if request.method == 'GET':
         if not request.user.is_anonymous:
             if request.user.email.endswith('@delegacion.com'):
-                return redirect('delegacion')
+                return redirect('delegacionTorneo')
             elif request.user.email.endswith('@admin.com'):
                 return redirect('torneos')
         else:
@@ -52,7 +52,7 @@ def preinscripcion(request, id):
     if request.method == 'GET':
         if not request.user.is_anonymous:
             if request.user.email.endswith('@delegacion.com'):
-                return redirect('delegacion')
+                return redirect('delegacionTorneo')
             elif request.user.email.endswith('@admin.com'):
                 return redirect('torneos')
         else:
@@ -90,7 +90,7 @@ def login(request):
     if request.method == 'GET':
         if not request.user.is_anonymous:
             if request.user.email.endswith('@delegacion.com'):
-                return redirect('delegacion')
+                return redirect('delegacionTorneo')
             elif request.user.email.endswith('@admin.com'):
                 return redirect('torneos')
         else:
@@ -103,7 +103,7 @@ def login(request):
         if user is not None:
             auth_login(request, user)
             if request.user.email.endswith('@delegacion.com'):
-                return redirect('delegacion')
+                 return redirect('delegacionTorneo')
             elif request.user.email.endswith('@admin.com'):
                 return redirect('torneos')
         else:
@@ -200,7 +200,7 @@ def delegacion(request):
             if not request.user.email.endswith('@delegacion.com'):
                 return redirect('login')
             else:
-                return render(request, 'panelDelegado.html')
+                return redirect('delegacionTorneo')
         else:
             return redirect('login')
 
@@ -458,5 +458,36 @@ def administracionEquipos(request):
                 return redirect('login')
             else:
                return render(request, 'Tab4.html')
+        else:
+            return redirect('login')
+
+def delegacionTorneo(request):
+    if request.method == 'GET':
+        if not request.user.is_anonymous:
+            if not request.user.email.endswith('@delegacion.com'):
+                return redirect('login')
+            else:
+                return render(request,'Tab1Del.html')
+               
+        else:
+            return redirect('login')
+
+def delegacionEquipo(request):
+    if request.method == 'GET':
+        if not request.user.is_anonymous:
+            if not request.user.email.endswith('@delegacion.com'):
+                return redirect('login')
+            else:
+               return render(request,'Tab2Del.html')
+        else:
+            return redirect('login')
+
+def delegacionCredenciales(request):
+    if request.method == 'GET':
+        if not request.user.is_anonymous:
+            if not request.user.email.endswith('@delegacion.com'):
+                return redirect('login')
+            else:
+                return render(request,'Tab3Del.html')
         else:
             return redirect('login')
