@@ -1,0 +1,23 @@
+{% extends "panelAdmin.html" %}
+
+{% block css %} 
+<link rel="stylesheet" href="../../static/css/panelAdmin.css"> 
+<link rel="stylesheet" href="../../static/css/mostrar_equipos.css"> 
+
+{% endblock %}
+{% block body %}  fondoTab4 {% endblock %}
+{% block class5 %}  active {% endblock %}
+{% block contenido %}
+
+{% csrf_token %}
+
+<article id="Tab4">
+    
+  <h1>ver equipos</h1>
+
+</article>
+
+{% endblock %}
+
+
+{% block js %} <script type="text/javascript" src="../../../static/Js/menuAdmin.js"></script> {% endblock %}

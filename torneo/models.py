@@ -1,6 +1,10 @@
 from distutils.command.upload import upload
+from itertools import pairwise
+from xml.sax.handler import property_declaration_handler
 from django.db import models
 from django.contrib.auth.models import User
+
+import torneo
 # Create your models here.
 
 class Organizador(models.Model):
@@ -81,3 +85,16 @@ class Categorias_Torneo(models.Model):
     
     def __str__(self):
         return self.nombre_categoria
+
+# class Equipo(models.Model):
+    # nombre_equipo
+    # escudo
+    # delegado
+    # entrenador
+    # ciudad
+    # pais
+    # imagen_escudo
+    # imagen_portada 
+    # jugadores
+    # id_torneo
+    # estado_inscripcion

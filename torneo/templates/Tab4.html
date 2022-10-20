@@ -1,13 +1,47 @@
 {% extends "panelAdmin.html" %}
 
-{% block css %} <link rel="stylesheet" href="../../../static/css/panelAdmin.css"> {% endblock %}
+{% block css %} 
+<link rel="stylesheet" href="../../static/css/panelAdmin.css"> 
+<link rel="stylesheet" href="../../static/css/mostrar_equipos.css"> 
+
+{% endblock %}
 {% block body %}  fondoTab4 {% endblock %}
 {% block class5 %}  active {% endblock %}
 {% block contenido %}
 
+{% csrf_token %}
+
 <article id="Tab4">
-    <h1>EQUIPOS INSCRITOS AQUI</h1>
-  </article>
+    
+  <div class="container m-5">
+    <div class="d-flex justify-content-center mt-3" id="titulo_categoria">
+      <span class="text text-center">Equipos del torneo<br>seleccione para ver equipos de cada categoria</span>
+    </div>
+
+    <div class="row mt-2 g-4 justify-content-center">
+
+    
+      <div class="col-lg-3">
+        <a href="/administracion/equipos/1">
+          <div class="card p-1">
+            <div class="d-flex justify-content-between align-items-center p-2">
+              <div class="flex-column lh-1 imagename">
+                <span>Equipos</span><br><span>numero 1 {{texto}} </span>
+              </div>
+              <div>
+                <img src="https://i.imgur.com/b9zkoz0.jpg" height="100" width="100" alt="">
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      
+    </div>
+     
+  </div>
+
+</article>
 
 {% endblock %}
 
