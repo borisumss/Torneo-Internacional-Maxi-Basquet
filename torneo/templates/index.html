@@ -86,9 +86,9 @@
 
       <!-- carrusel 1 -->
       <div class="carousel-item active">
-        <img src="../../static/images/fondo.jpg" class="d-block w-100" alt="...">
+       
         <div class="carousel-caption">
-          <h5>Liga Internacional Maxi Básquetball</h5><br>
+          <h5>Liga Internacional Maxi Básquetball</h5><hr>
           <p>
             Evento de carácter internacional, que hasta el momento ha manifestado interés por participar equipos
             provenientes
@@ -103,10 +103,9 @@
       <!-- carrusel 2 -->
     {% for i in torneos %}
       <div class="carousel-item">
-        <img src="../../static/images/fondo.jpg" class="d-block w-100" alt="...">
         <div class="carousel-caption" id="inscrip">
           <h5>Pre-inscripciones</h5>
-          <br>
+          <hr>
           <h4>¡Inscribe a tu equipo y participa!</h4>
           <p>
          
@@ -120,7 +119,7 @@
               <br>
             </p>
             <p>
-              <a href="#{{i.id}}" >Para mayor información presione Aquí.</a> o descargue la convocatoria presionando aqui: <a target="_blank" href="/{{i.invitacion_documento}}" >Convocatoria Publica</a>
+              <a href="#{{i.id}}" id="enlaces">Para mayor información presione Aquí.</a> o descargue la convocatoria presionando aqui: <a target="_blank" href="/{{i.invitacion_documento}}" id="enlaces" >Convocatoria Publica</a>
               <br>
             </p>
             <br><br>
@@ -215,7 +214,7 @@
 
 
   <!-- footer -->
-  <footer class="text-center text-white" style="background-color: #f1f1f1;" id="footer">
+  <footer class="text-center text-white" style="background-color: #f1f1f189;" id="footer">
     <!-- Grid -->
     <div class="container pt-4">
       <!-- Redes sociales -->

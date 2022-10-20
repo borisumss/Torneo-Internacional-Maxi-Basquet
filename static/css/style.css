@@ -10,7 +10,13 @@ html{
     scroll-behavior: smooth !important;
 }
 body {
-    background: white;
+    
+    background-color: #000000;
+    background-image: -webkit-linear-gradient(120deg, #ffffff 50%, #1479c798 50%);
+    background-repeat: no-repeat;
+    background-size: cover !important;
+    background-position: center !important;
+    background-attachment: fixed !important;
 }
 
 nav.navbar {
@@ -26,12 +32,16 @@ nav.navbar {
     min-height: 300px;
 }
 
+#enlaces{
+    color: cyan;
+}
+
 .carousel-caption {
     top: 50%;
     transform: translateY(-50%);
     /*background-color: rgba(0, 0, 0, 0.742);*/
-    color: black;
-    background-color: rgba(255, 255, 255, 0.753);
+    color:white;
+    background-color: rgba(0, 0, 0, 0.416);
     padding: 10px 15px;
     /*position: absolute;
     top:20%;*/
@@ -85,6 +95,16 @@ nav.navbar {
     font-weight: 500;
 }
 
+.carousel-inner{
+    
+    background-image: url(/static/images/home6.jpg);
+    background-color: red !important;
+    background-repeat: no-repeat;
+    background-size: cover !important;
+    background-position: center !important;
+    background-attachment: fixed !important;
+}
+
 .navbar-light .navbar-brand {
     color: #000;
     font-size: 25px;
@@ -121,9 +141,10 @@ nav.navbar {
 #actual{
  background-color: rgb(237, 233, 233);
    background-color: #f1f1f1;
-   box-shadow: 10px 10px 10px 8px rgb(78, 77, 77);
+   box-shadow: 10px 10px 10px 10px rgb(38, 37, 37);
     margin-top: 50px;
    padding: 15px 10px;
+  
 }
 
 .img-fluid{
