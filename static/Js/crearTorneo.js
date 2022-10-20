@@ -97,14 +97,14 @@
   let now = moment(fechaActual).format('YYYY-MM-DD')
 
   function fechasTorneoRez() {
-      if(inicio.value.length==0 && fin.value.length==0 && inicioPre.value.length==0 && finPre.value.length==0){
+      if(inicio.value.length==0 || fin.value.length==0 || inicioPre.value.length==0 || finPre.value.length==0){
           Swal.fire('Debe llenar primero las anteriores fechas', '', 'error');
           finRez.value = "";
           inicioRez.value = "";
       }else{
           if (finRez.value.length > 0 && inicioRez.value.length > 0) {
-              if(inicioRez.value<=finPre.value || inicioRez.value>=fin.value || finRez.value<=finPre.value || finRez.value>=fin.value){
-                Swal.fire('Las fechas de rezagados tiene que estar dentro los limites', '', 'error');  
+              if(inicioRez.value<=finPre.value || inicioRez.value>=inicio.value || finRez.value<=finPre.value || finRez.value>=inicio.value){
+                Swal.fire('Las fechas de rezagados tiene que estar dentro los limites establecidos', '', 'error');  
                 
                       finRez.value = "";
                       inicioRez.value = "";
@@ -116,14 +116,14 @@
               }
           } else {
               if (finRez.value.length == 0) {
-                  if(inicioRez.value<=finPre.value || inicioRez.value>=fin.value){
-                      Swal.fire('Las fechas de rezagados tiene que estar dentro los limites', '', 'error');  
+                  if(inicioRez.value<=finPre.value || inicioRez.value>=inicio.value){
+                      Swal.fire('Las fechas de rezagados tiene que estar dentro los limites establecidos', '', 'error');  
                       finRez.value = "";
                       inicioRez.value = "";
                   }
               } else {
-                  if(finRez.value<=finPre.value || finRez.value>=fin.value){
-                      Swal.fire('Las fechas de rezagados tiene que estar dentro los limites', '', 'error');  
+                  if(finRez.value<=finPre.value || finRez.value>=inicio.value){
+                      Swal.fire('Las fechas de rezagados tiene que estar dentro los limites establecidoss', '', 'error');  
                       finRez.value = "";
                       inicioRez.value = "";
                   }
@@ -133,13 +133,13 @@
   }
 
   function fechasTorneoPre() {
-      if(inicio.value.length==0 && fin.value.length==0){
+      if(inicio.value.length==0 || fin.value.length==0){
           Swal.fire('Debe llenar primero las fechas del torneo', '', 'error');  
           finPre.value = "";
           inicioPre.value = "";
       }else{
           if (finPre.value.length > 0 && inicioPre.value.length > 0) {
-              if(inicioPre.value<inicio.value || inicioPre.value>=fin.value || finPre.value<=inicio.value || finPre.value>=fin.value){
+              if(inicioPre.value >= inicio.value || finPre.value >= inicio.value){
                 Swal.fire('Las fechas de pre-inscripcion tiene que estar dentro el limite de las fechas del torneo', '', 'error');    
                       finPre.value = "";
                       inicioPre.value = "";
@@ -147,20 +147,35 @@
                   if (finPre.value < inicioPre.value) {
                     Swal.fire('La fecha final de Pre-inscripcion tiene que ser mayor a la de inicio', '', 'error');    
                       finPre.value = "";
+                  }else{
+                    if (inicioPre.value < now) {
+                        inicioPre.value = now;
+                        finPre.value = "";
+                    }
                   }
               }
           } else {
               if (finPre.value.length == 0) {
-                  if(inicioPre.value<inicio.value || inicioPre.value>=fin.value){
-                    Swal.fire('Las fechas de pre-inscripcion tiene que estar dentro el limite de las fechas del torneo', '', 'error');    
+                  if(inicioPre.value >= inicio.value){
+                    Swal.fire('Las fechas de pre-inscripcion tiene que ser antes de que comience el torneo', '', 'error');    
                       finPre.value = "";
                       inicioPre.value = "";
+                  }else{
+                    if (inicioPre.value < now) {
+                        inicioPre.value = now;
+                        finPre.value = "";
+                    }
                   }
               } else {
-                  if(finPre.value<=inicio.value || finPre.value>=fin.value){
-                    Swal.fire('Las fechas de pre-inscripcion tiene que estar dentro el limite de las fechas del torneo', '', 'error');    
-                      finPre.value = "";
+                  if(finPre.value>=inicio.value){
+                    Swal.fire('Las fechas de pre-inscripcion tiene que ser antes de que comience el torneo', '', 'error');    
+                    finPre.value = "";
                       inicioPre.value = "";
+                  }else{
+                    if (finPre.value < now) {
+                        inicioPre.value = now;
+                        finPre.value = "";
+                    }
                   }
               }
           }

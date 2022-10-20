@@ -1,0 +1,180 @@
+
+html { background-color: #000; } 
+body {
+    max-width: 100%;
+    min-height: 100vh;
+    height: 100%;
+    background-color: papayawhip; 
+    margin: 0 auto;
+    font-family:'Montserrat', sans-serif !important;
+   /* background-image: url("/static/images/fondoSol.jpg");*/
+}
+
+
+header{
+    position: sticky !important;
+    top:0;
+}
+.navbar-custom {
+    background-color: #003975;
+    
+}
+.tabs{
+    padding: 0px !important;
+    margin: 0px;
+}
+.header-box{
+    padding: 16px 0px 24px !important;
+}
+
+.item{
+    padding: 16px;
+}
+.navbar-brand{
+    color: white !important;
+}
+
+#side_nav{
+    position: fixed;
+    top: 58px;
+    left: 0;
+    background: #003975b4;
+    width: 300px;
+    max-width: 300px;
+    height: 100%;
+}
+
+.header-box{
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+}
+
+
+.list-unstyled{
+    font-size: 20px;
+}
+
+.burger{
+    margin-left: 8px;
+    cursor: pointer;
+}
+
+
+.menu-expanded{
+    transition: all 1000ms ease;
+    width: 350px !important;
+}
+
+.menu-collapsed{
+    transition: all 500ms ease;
+    width: 55px !important;
+}
+
+.menu-collapsed .header-box .tabs .item span{
+    display: none;
+}
+
+header, #side_nav{
+    z-index: 50;
+}
+#triggerId{
+    background-color: rgba(255, 255, 255, 0);
+    border: none;
+    color: white;
+    font-size: 20px;
+}
+#triggerIdD{
+    background-color:white ;
+    padding: 0px 10px;
+    text-align: right;
+}
+#usuario{
+    font-size: 16px !important;
+    color: #003975 !important;
+}
+
+/*DISEÑO  CONTENEDOR*/
+#content{
+    margin: 75px auto;
+    
+}
+
+article{
+    width: 100%;
+}
+.card{
+    color: #003975;
+    max-width: 850px;
+    height: 500px;
+    margin: 0px auto;
+    box-shadow: 15px 15px 15px 10px #373232;
+    border: solid 1px #000000;
+}
+
+.card .card-header{
+    color: white;
+    background-color: #003975;;
+}
+
+.card .card-body{
+    height: 100%;
+    font-size: 18px;
+    padding-bottom: 0px;
+}
+
+.card .card-footer #boton-rechazar, .card .card-footer #modalEnviar{
+   display: none;
+}
+
+
+h5{
+    font-weight: bold;
+    margin: 5px auto;
+    font-size: 25px !important;
+}
+
+.btn {
+    width: 120px;
+    font-weight: bold ;
+}
+
+#btn-Generar {
+   margin:0px auto;
+   font-size: 15px;
+  
+   width: 50%;
+}
+
+#aceptados{
+    max-width: 500px;
+    height: 400px;
+    border-right: none;
+    margin: 50px auto;
+}
+.form-control{
+    margin: 0px !important;
+}
+
+@media only screen and (max-width:600px) {
+    #Titulo, #usuario{
+        font-size: 15px !important;
+    }
+    .menu-collapsed, .menu-expanded{
+        top:55px !important;
+        transition: all 250ms ease !important;
+    }
+    .menu-collapsed{
+       
+        width: 0px !important;
+    }
+}
+
+
+@media only screen and (max-width:475px) {
+    #Titulo, #usuario{
+        font-size: 10px !important;
+    }
+}
+
+
+

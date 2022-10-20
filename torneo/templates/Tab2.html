@@ -1,0 +1,64 @@
+{% extends "panelAdmin.html" %}
+
+{% block css %} <link rel="stylesheet" href="../../../static/css/panelAdmin.css"> {% endblock %}
+{% block body %}  fondoTab2 {% endblock %}
+{% block class2 %}  active {% endblock %}
+{% block contenido %}
+<article id="Tab2">
+    {% for i in torneosTerminados %}
+    <div class="tarjeta2">
+      <a id="card2H" href="{% url 'Torneo' i.id %}">
+        <div class="card" id="card2">
+            
+          <div class="card-body" id="tab2body">
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col-12">
+                  <br>
+                  <h5 class="text-center">{{i.nombre_torneo}}</h5>
+                  <hr>
+                  <p>
+                    Torneo realizado en el país de "{{i.pais_torneo}}", organizao por <b>
+                      {{i.id_organizador.nombre_organizador}}.</b>
+                  </p>
+                  <p><b>Fecha de inicio:</b> {{i.fecha_torneo_inicio}} </p>
+                    <p><b>Fecha final: </b>{{i.fecha_torneo_fin}}</p>
+                 
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-header text-center" id="tab2header">
+            <img src="/{{i.logo}}" alt="imagen"
+            class="img_logo" data-bs-toggle="modal"
+            data-bs-target="#exampleModal3">  
+          </div>
+          <div class="card-footer text-muted text-center" id="ganador">
+          <span class="text-white"> 
+            <i class="text-white fa fa-trophy"></i> Nombre equipo ganador</span>
+          </div>
+        </div>
+      </a>
+    </div>
+    {% endfor %}
+    <div class="container-fluid modal modal fade" id="exampleModal3"
+        tabindex="-1" aria-labelledby="modal3Label" aria-hidden="true">
+        <div class="row align-items-center justify-content-center modal-dialog">
+          <div class="col-12 modal-content" id="fotoExp2">
+            <div class="modal-header" id="modalTab2Header">
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body confModal" id="modalValid">
+              <img src="" alt="imagen"
+                   id="imgFull2">
+            </div>
+          </div>
+        </div>
+      </div>
+  </article>
+
+
+{% endblock %}
+
+
+{% block js %} <script type="text/javascript" src="../../../static/Js/menuAdmin.js"></script> {% endblock %}
