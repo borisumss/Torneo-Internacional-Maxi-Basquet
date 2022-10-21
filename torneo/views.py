@@ -504,7 +504,7 @@ def administracionEquipos(request):
             else:
                 
                 return render(request, 'Tab4.html', {
-                    'texto': hola
+                    
                 })
         else:
             return redirect('equipos')
