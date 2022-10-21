@@ -9,7 +9,7 @@ from django.contrib.auth.models import User
 from django.db import IntegrityError
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.decorators import user_passes_test
-from .models import Organizador, Torneo, Inscripcion, Categorias_Torneo, Pre_Inscripcion, delegado_Inscripcion, delegado_PreInscripcion
+from .models import Organizador, Torneo, Inscripcion, Categorias_Torneo, Pre_Inscripcion, delegado_Inscripcion, delegado_PreInscripcion , Entrenador, Equipo ,Delegado , Jugador
 from django.contrib import messages
 from datetime import date
 from django.core.mail import send_mail
@@ -329,31 +329,41 @@ def aceptar(request, tipo, id):
             else:
                 if tipo == 'REZAGADOS':
                     ins = delegado_Inscripcion.objects.filter(id=id)
+                    aux = ins[0].estado_delegado_inscripcion
                     if len(ins)==0:
                         return redirect('solicitudes')
                     else:
-                        return render(request, 'emails.html',{
-                        "email":ins[0].correo_delegado_inscripcion,
-                        "tipo":"ACEPTADO",
-                        "id":id
-                        })
-                        """solicitud = delegado_Inscripcion.objects.filter(id=id)
-                        solicitud.update(estado_delegado_inscripcion='RECHAZADO')
-                        messages.success(request, "Solictud rechazada correctamente")"""
-        
+                        if aux == 'PENDIENTE':
+                            return render(request, 'emails.html',{
+                            "email":ins[0].correo_delegado_inscripcion,
+                            "tipo":"ACEPTADO",
+                            "id":id
+                            })
+                            """solicitud = delegado_Inscripcion.objects.filter(id=id)
+                            solicitud.update(estado_delegado_inscripcion='RECHAZADO')
+                            messages.success(request, "Solictud rechazada correctamente")"""
+                        else:
+                            messages.success(request, "La solicitud no se encuentra disponible")
+                            return redirect('solicitudes')
+
                 elif tipo == 'PREINSCRIPCION':
                     preIns = delegado_PreInscripcion.objects.filter(id=id)
+                    aux = preIns[0].estado_delegado_Preinscripcion
                     if len(preIns)==0:
                         return redirect('solicitudes')
                     else:
-                        return render(request, 'emails.html',{
-                        "email":preIns[0].correo_delegado_Preinscripcion,
-                        "tipo":"ACEPTADO",
-                        "id":id
-                        })
-                    """solicitud = delegado_PreInscripcion.objects.filter(id=id)
-                    solicitud.update(estado_delegado_Preinscripcion='RECHAZADO')
-                    messages.success(request, "Solictud rechazada correctamente")"""
+                        if aux == 'PENDIENTE':
+                            return render(request, 'emails.html',{
+                            "email":preIns[0].correo_delegado_Preinscripcion,
+                            "tipo":"ACEPTADO",
+                            "id":id
+                            })
+                            """solicitud = delegado_PreInscripcion.objects.filter(id=id)
+                            solicitud.update(estado_delegado_Preinscripcion='RECHAZADO')
+                            messages.success(request, "Solictud rechazada correctamente")"""
+                        else:
+                            messages.success(request, "La solicitud no se encuentra disponible")
+                            return redirect('solicitudes')
                 else:
                     return redirect('solicitudes')
                 
