@@ -2,6 +2,7 @@
 #from typing_extensions import Self
 import email
 from pickle import FALSE, TRUE
+from re import I
 from unicodedata import category, name
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth import logout, authenticate, login as auth_login
@@ -381,12 +382,37 @@ def aceptar(request, tipo, id):
         if tipo == 'REZAGADOS':
             solicitud = delegado_Inscripcion.objects.filter(id=id)
             solicitud.update(estado_delegado_inscripcion='ACEPTADO',id_delegadoIns_id=user.id)
-            
+            id_delegado = user.id
+            nombre_delegado = solicitud[0].nombre_delegado_inscripcion
+            ci_delegado = solicitud[0].ci_delegado_inscripcion
+            telefono_delegado  = solicitud[0].telefono_delegado_inscripcion
+            delegado = Delegado(id_delegado=id_delegado, nombre_delegado=nombre_delegado,ci_delegado= ci_delegado,telefono_delegado=telefono_delegado)
+            delegado.save()
+
+            #datos equipo
+            estado_inscrip = 'PENDIENTE'
+            id_deleg = delegado
+            id_torneo = solicitud[0].id_inscripcion.id_torneo
+            equipo = Equipo(estado_inscripcion_equipo=estado_inscrip,id_delegado=id_deleg,id_torneo=id_torneo)
+            equipo.save()
                   
         elif tipo == 'PREINSCRIPCION':            
             solicitud = delegado_PreInscripcion.objects.filter(id=id)
             solicitud.update(estado_delegado_Preinscripcion='ACEPTADO',id_delegadoPreIns_id=user.id)
-        
+            id_delegado = user.id
+            nombre_delegado = solicitud[0].nombre_delegado_Preinscripcion
+            ci_delegado = solicitud[0].ci_delegado_Preinscripcion
+            telefono_delegado  = solicitud[0].telefono_delegado_Preinscripcion
+            delegado = Delegado(id_delegado=id_delegado, nombre_delegado=nombre_delegado,ci_delegado= ci_delegado,telefono_delegado=telefono_delegado)
+            delegado.save()
+
+            #datos equipo
+            estado_inscrip = 'PENDIENTE'
+            id_deleg = delegado
+            id_torneo = solicitud[0].id_Pre_inscripcion.id_torneo
+            equipo = Equipo(estado_inscripcion_equipo=estado_inscrip,id_delegado=id_deleg,id_torneo=id_torneo)
+            equipo.save()
+
         subject = 'Bienvenido al Torneo de Maxi Basquet'
         message = f'Tenga coordiales saludos.\n\nA continuación se presenta sus credenciales para acceder y registrar a su equipo en el torneo.\n\nNombre de usuario: '+ usuario +'\nContraseña: '+contrasenia+'\nEmail: '+correo+'\n\nAtte: '+ request.user.username +", "+request.user.email  
         from_email = settings.EMAIL_HOST_USER
