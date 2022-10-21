@@ -3,8 +3,9 @@
 {% block css %} 
 <link rel="stylesheet" href="../../static/css/panelAdmin.css"> 
 <link rel="stylesheet" href="../../static/css/mostrar_equipos.css"> 
-
+<link rel="stylesheet" href="../../static/css/categorias_equipos.css"> 
 {% endblock %}
+
 {% block body %}  fondoTab4 {% endblock %}
 {% block class5 %}  active {% endblock %}
 {% block contenido %}
@@ -13,37 +14,54 @@
 
 <article id="Tab4">
     
-  <div class="container m-5">
-    <div class="d-flex justify-content-center mt-3" id="titulo_categoria">
-      <span class="text text-center">Equipos del torneo<br>seleccione para ver equipos de cada categoria</span>
-    </div>
-
-    <div class="row mt-2 g-4 justify-content-center">
-
-    
-      <div class="col-lg-3">
-        <a href="/administracion/equipos/1">
-          <div class="card p-1">
-            <div class="d-flex justify-content-between align-items-center p-2">
-              <div class="flex-column lh-1 imagename">
-                <span>Equipos</span><br><span>numero 1 {{texto}} </span>
-              </div>
-              <div>
-                <img src="https://i.imgur.com/b9zkoz0.jpg" height="100" width="100" alt="">
-              </div>
+  <div class = "container">
+        <div class = "row">
+            <div class = "col text-center my-4">
+                <h1 class = "fs-2" id="titulo">Categorias de equipo</h1>
+                <div class = "underline mx-auto mt-3"></div>
             </div>
-          </div>
-        </a>
-      </div>
+        </div>
 
-      
+        <div class = "row mt-3 mb-4 button-group filter-button-group">
+            <div class = "col d-flex justify-content-center">
+                <button type = "button" data-filter = "*" class = "btn btn-primary mx-1 text-dark">Todos</button>
+                <button type = "button" data-filter = ".electronic" class = "btn btn-primary mx-1 text-dark">Electronic</button>
+                <button type = "button" data-filter = ".clothing" class = "btn btn-primary mx-1 text-dark">Clothing</button>
+                <button type = "button" data-filter = ".furniture" class = "btn btn-primary mx-1 text-dark">Furniture</button>
+            </div>
+        </div>
+
+        <div class = "row justify-content-center g-4" id = "product-list">
+            
+            
+            <div class = "col-lg-4 col-md-6 electronic">
+                <a href="#">
+                    <div class="product-item bg-gradient">
+                        <div class="product-img">
+                            <img src="../../static/imagenes/equipos/product_img_1.jpg" class="img-fluid d-block mx-auto p-2">
+                        </div>
+                        <div class="product-content text-center py-3">
+                            <span class="d-block text-uppercase">product name</span>
+                            <span class="d-block">$ 68.00</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+
+        </div>
     </div>
-     
-  </div>
 
 </article>
 
 {% endblock %}
 
 
-{% block js %} <script type="text/javascript" src="../../../static/Js/menuAdmin.js"></script> {% endblock %}
+{% block js %}
+ <script type="text/javascript" src="../../static/Js/menuAdmin.js"></script> 
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- isotope plugin -->
+ <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.js"></script>
+
+ <script src = "../../static/Js/categoriasEquipo.js"></script>
+{% endblock %}
