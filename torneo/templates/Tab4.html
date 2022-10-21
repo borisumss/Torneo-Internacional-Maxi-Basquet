@@ -25,7 +25,11 @@
         <div class = "row mt-3 mb-4 button-group filter-button-group">
             <div class = "col d-flex justify-content-center">
                 <button type = "button" data-filter = "*" class = "btn btn-primary mx-1 text-dark">Todos</button>
+                {% for categoria in categorias %}
+
+                  <button type = "button" data-filter = ".{{categoria.nombre_categoria}}" class = "btn btn-primary mx-1 text-dark">{{categoria.nombre_categoria}}</button>
                 
+                {% endfor %} 
                 <!-- <button type = "button" data-filter = ".electronic" class = "btn btn-primary mx-1 text-dark">Electronic</button>
                 <button type = "button" data-filter = ".clothing" class = "btn btn-primary mx-1 text-dark">Clothing</button>
                 <button type = "button" data-filter = ".furniture" class = "btn btn-primary mx-1 text-dark">Furniture</button> -->
@@ -35,7 +39,26 @@
         <div class = "row justify-content-center g-4" id = "product-list">
             
             
-            <div class = "col-lg-4 col-md-6 electronic">
+            {% for equipo in equipos %}
+            
+            <div class = "col-lg-4 col-md-6 {{equipo.categoria_equipo}}">
+                <a href="#">
+                    <div class="product-item bg-gradient">
+                        <div class="product-img">
+                            <img src="../../{{equipo.escudo_equipo}}" class="img-fluid d-block mx-auto p-2">
+                        </div>
+                        <div class="product-content text-center py-3">
+                            <span class="d-block text-uppercase">{{equipo.nombre_equipo}}</span>
+                            <span class="d-block">Pais de origen {{equipo.pais_origen}}</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            {% endfor %}
+
+
+            {% comment %} <div class = "col-lg-4 col-md-6 electronic">
                 <a href="#">
                     <div class="product-item bg-gradient">
                         <div class="product-img">
@@ -47,7 +70,7 @@
                         </div>
                     </div>
                 </a>
-            </div>
+            </div> {% endcomment %}
 
 
         </div>

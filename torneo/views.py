@@ -502,9 +502,12 @@ def administracionEquipos(request):
             if not request.user.email.endswith('@admin.com'):
                 return redirect('login')
             else:
-                
+                torneo_actual = get_object_or_404(Torneo, torneo_estado=1) #peligroso
+                categorias = Categorias_Torneo.objects.filter(id_torneo=torneo_actual.pk)
+                equipos = Equipo.objects.filter(estado_inscripcion_equipo="inscrito", id_torneo=torneo_actual.pk)
                 return render(request, 'Tab4.html', {
-                    
+                    'equipos': equipos,
+                    'categorias': categorias,
                 })
         else:
             return redirect('equipos')
