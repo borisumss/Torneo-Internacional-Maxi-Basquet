@@ -512,16 +512,15 @@ def administracionEquipos(request):
         else:
             return redirect('equipos')
 
-def verEquipo(request, equipo_id):
+def verEquipo(request, equipo):
     if request.method == 'GET':
         if not request.user.is_anonymous:
             if not request.user.email.endswith('@admin.com'):
                 return redirect('login')
             else:
-                
-                hola = equipo_id
+                equipo = get_object_or_404(Equipo, nombre_equipo=equipo)
                 return render(request, 'verEquipo.html', {
-                    'texto': hola
+                    'equipo': equipo,
                 })
         else:
             return redirect('equipos')

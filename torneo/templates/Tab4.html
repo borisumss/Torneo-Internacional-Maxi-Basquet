@@ -42,7 +42,7 @@
             {% for equipo in equipos %}
             
             <div class = "col-lg-4 col-md-6 {{equipo.categoria_equipo}}">
-                <a href="#">
+                <a href="{% url 'verEquipo' equipo.nombre_equipo %}">
                     <div class="product-item bg-gradient">
                         <div class="product-img">
                             <img src="../../{{equipo.escudo_equipo}}" class="img-fluid d-block mx-auto p-2">
