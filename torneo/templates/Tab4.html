@@ -21,13 +21,13 @@
             </div>
         </div>
 
-        <div class = "row mt-3 mb-4 button-group filter-button-group">
-            <div class = "col d-flex justify-content-center">
-                <button type = "button" data-filter = "*" class = "btn btn-primary mx-1 text-dark">Todos</button>
+        <div class = "row mt-3 mb-4 button-group filter-button-group text-center">
+            <div class = "col justify-content-center">
+                <button type = "button" data-filter = "*" class = "btn btn-primary text-dark m-2">Todos</button>
                 
                 {% for categoria in categorias %}
 
-                  <button type = "button" data-filter = ".{{categoria.nombre_categoria}}" class = "btn btn-primary mx-1 text-dark">{{categoria.nombre_categoria}}</button>
+                  <button type = "button" data-filter = ".{{categoria.nombre_categoria}}" class = "btn btn-primary m-2 text-dark">{{categoria.nombre_categoria}}</button>
                 
                 {% endfor %} 
                 <!-- <button type = "button" data-filter = ".electronic" class = "btn btn-primary mx-1 text-dark">Electronic</button>
