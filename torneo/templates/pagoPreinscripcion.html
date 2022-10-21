@@ -24,7 +24,7 @@
           <div class="container-fluid">
             <div class="menu d-flex">
               <div class="navbar-brand burger"> <span class="text-white"><i class="fa fa-navicon"></i> </span></div>
-              <a class="navbar-brand" id="Titulo" href="#">Torneo Internacional Maxi Basquet</a>
+              <a class="navbar-brand" id="Titulo" href="{% url 'home' %}">Torneo Internacional Maxi Basquet</a>
             </div>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
               aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -45,78 +45,86 @@
         <div class="row">
             <!--columna izq-->
             <div class="col-12 col-lg-6 d-flex align-items-center" id="formularioCol">
-                <form class="needs-validation" id="formulario" name="formulario" method="POST" enctype="multipart/form-data" novalidate>
-                    {% csrf_token %}
-                    <div class="position-relative">
-                        <label for="nombreDel">Nombre Delegado:</label>
-                        <input type="text" name="nombre_delegado" id="delagado_input"  class="form-control" 
-                        placeholder="Ingrese nombre" pattern="^(?!\s)[a-zA-ZÁáÉéÍíÓóÚú\s]{5,50}" required>
-                        <div class="invalid-tooltip">
-                            Máximo 50 caracteres de A-Z
-                        </div>
+                <div class="card">
+                    <div class="card-header text-center">
+                        <b><h4>{{etapa}}</h4></b>
                     </div>
-                    <br>
-                    <div class="position-relative">
-                        <label for="email">Correo:</label>
-                        <input type="email" name="correo_delegado" id="correo_input" minlength="5" 
-                        placeholder="Ingrese su correo" class="form-control" required>
-                        <div class="invalid-tooltip">
-                            Llene este campo.
-                        </div>
+                    <div class="card-body">
+                        <form class="needs-validation" id="formulario" name="formulario" method="POST" enctype="multipart/form-data" novalidate>
+                            {% csrf_token %}
+                            <div class="position-relative">
+                                <label for="nombreDel">Nombre Delegado:</label>
+                                <input type="text" name="nombre_delegado" id="delagado_input"  class="form-control" 
+                                placeholder="Ingrese nombre" pattern="^(?!\s)[a-zA-ZÁáÉéÍíÓóÚú\s]{5,50}" required>
+                                <div class="invalid-tooltip">
+                                    Máximo 50 caracteres de A-Z
+                                </div>
+                            </div>
+                            <br>
+                            <div class="position-relative">
+                                <label for="email">Correo:</label>
+                                <input type="email" name="correo_delegado" id="correo_input" minlength="5" 
+                                placeholder="Ingrese su correo" class="form-control" required>
+                                <div class="invalid-tooltip">
+                                    Llene este campo.
+                                </div>
+                            </div>
+                            <br>
+                            <div class="position-relative">
+                                <label for="ci" id="ci_label">Número de carnet de identidad:</label>
+                                <input type="text" name="ci_delegado" id="ci_input" pattern="^(?!\s)[0-9]{7,15}"
+                                placeholder="Ingrese su numero de CI" class="form-control"  required>
+                                <div class="invalid-tooltip">
+                                    Llene este campo.
+                                </div>
+                            </div>
+                            <br>
+                            <div class="position-relative">
+                                <label for="telef" id="telef_label">Teléfono de contacto:</label>
+                                <input type="text" class="form-control"  name="telef_delegado" id="telef_input" pattern="^(?!\s)[0-9\+]{8,15}"
+                                placeholder="Ingrese el teléfono" required>
+                                <div class="invalid-tooltip">
+                                    Máximo 15 números incluyendo el simbolo "+"
+                                </div>
+                            </div>
+                            <br>
+                            <div class="position-relative">
+                                <label for="torneo" id="torneo_label">Torneo a inscribirse:</label>
+                                <input type="text" class="primer form-control" name="torneo_selec" id="torneo"
+                                placeholder="Ingrese el usuario a proporcionar" value="{{torneo}}" aria-disabled="true"
+                                onfocus="this.blur()" required>
+                                <div class="invalid-tooltip">
+                                    Ningún torneo seleccionado.
+                                </div>
+                            </div>
+                            <br>
+                            <div class="position-relative">
+                                <label for="recibo" id="recibo_label">Imagen recibo de pago:</label>
+                                <input class="form-control"  type="file"  onchange="validarComprobante()" 
+                                id="voucher" accept="doctype" name="img_comprobante" value="upload" required>
+                                <div class="invalid-tooltip">
+                                    Adjunte su comprobante de pago
+                                </div>
+                            </div>
+                            <br>
+                            <div class="footer-form">
+                                <button type="submit" class="btn btn-danger" name="Confirmar" 
+                                id="button-pago" value="{{etapa}}" >Confirmar pago</button>
+                            </div>
+                        </form>
                     </div>
-                    <br>
-                    <div class="position-relative">
-                        <label for="ci" id="ci_label">Número de carnet de identidad:</label>
-                        <input type="text" name="ci_delegado" id="ci_input" pattern="^(?!\s)[0-9]{7,15}"
-                        placeholder="Ingrese su numero de CI" class="form-control"  required>
-                        <div class="invalid-tooltip">
-                            Llene este campo.
-                        </div>
-                    </div>
-                    <br>
-                    <div class="position-relative">
-                        <label for="telef" id="telef_label">Teléfono de contacto:</label>
-                        <input type="text" class="form-control"  name="telef_delegado" id="telef_input" pattern="^(?!\s)[0-9\+]{8,15}"
-                        placeholder="Ingrese el teléfono" required>
-                        <div class="invalid-tooltip">
-                            Máximo 15 números incluyendo el simbolo "+"
-                        </div>
-                    </div>
-                    <br>
-                    <div class="position-relative">
-                        <label for="torneo" id="torneo_label">Torneo a inscribirse:</label>
-                        <input type="text" class="primer form-control" name="torneo_selec" id="torneo"
-                        placeholder="Ingrese el usuario a proporcionar" value="{{torneo}}" aria-disabled="true"
-                        onfocus="this.blur()" required>
-                        <div class="invalid-tooltip">
-                            Ningún torneo seleccionado.
-                        </div>
-                    </div>
-                    <br>
-                    <div class="position-relative">
-                        <label for="recibo" id="recibo_label">Imagen recibo de pago:</label>
-                        <input class="form-control"  type="file"  onchange="validarComprobante()" 
-                        id="voucher" accept="doctype" name="img_comprobante" value="upload" required>
-                        <div class="invalid-tooltip">
-                            Adjunte su comprobante de pago
-                        </div>
-                    </div>
-                    <br>
-                    <div class="footer-form">
-                        <button type="submit" class="btn btn-danger" name="Confirmar" 
-                        id="button-pago" value="{{etapa}}" >Confirmar pago</button>
-                    </div>
-                </form>
+                </div>
             </div>
+            <br><br>
             <!--columna derecha-->
             <div class="col-12 col-lg-6 side">
-                <h4>¡Escanea y paga desde tu celular!</h4>
+                <p id="infoTitle">¡Escanea y paga desde tu celular!</p>
                 <div id="qr">
                     <img class="qr" src="/static/imagenes/qrs/{{qr}}">
                 </div>
                 <div>
                     <p id="info">
-                        Esta en etapa de <b>{{etapa}}</b>, el monto es <b>{{monto}}$</b> 
+                        Está en etapa de <b>{{etapa}}</b>, el monto es <b>{{monto}}$</b> 
                     </p>
                 </div>
             </div>

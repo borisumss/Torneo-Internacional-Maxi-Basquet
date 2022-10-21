@@ -1,6 +1,3 @@
-from distutils.command.upload import upload
-from itertools import pairwise
-from xml.sax.handler import property_declaration_handler
 from django.db import models
 from django.contrib.auth.models import User
 

@@ -1,5 +1,5 @@
 
-$(function(){
+/*$(function(){
     $('ul.tabs li:first').addClass('active');
     $('.secciones article').hide();
     $('.secciones article:first').show();
@@ -14,7 +14,7 @@ $('ul.tabs li').click(function(){
     console.log(activeTab);
     $(activeTab).show();
     return false;
-});
+});*/
 
 $('.burger').click(function(){
     
