@@ -44,14 +44,14 @@
             <div class = "col-lg-4 col-md-6 {{equipo.categoria_equipo}}">
                 <a href="{% url 'verEquipo' equipo.nombre_equipo %}">
                     <div class="product-item">
-                        <div class="container" style="height: 300px; width:300px ; display: flex; align-items: center">
+                        <div class="container" style="height: 300px; width:250px ; display: flex; align-items: center">
                             <div class="product-img">
                             <img src="../../{{equipo.escudo_equipo}}" class="img-fluid d-block mx-auto p-2 escudo">
                         </div>
                         </div>
                         <div class="product-content text-center py-3">
                             <span class="d-block text-uppercase text-dark">{{equipo.nombre_equipo}}</span>
-                            <span class="d-block text-alert">Pais de origen {{equipo.pais_origen}}</span>
+                            <span class="d-block text-alert">{{equipo.pais_origen}}</span>
                         </div>
                     </div>
                 </a>
