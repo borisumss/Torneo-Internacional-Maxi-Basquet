@@ -9,7 +9,7 @@ from django.contrib.auth.models import User
 from django.db import IntegrityError
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.decorators import user_passes_test
-from .models import Organizador, Torneo, Inscripcion, Categorias_Torneo, Pre_Inscripcion, delegado_Inscripcion, delegado_PreInscripcion
+from .models import Organizador, Torneo, Inscripcion, Categorias_Torneo, Pre_Inscripcion, delegado_Inscripcion, delegado_PreInscripcion, Equipo
 from django.contrib import messages
 from datetime import date
 from django.core.mail import send_mail
@@ -502,7 +502,7 @@ def administracionEquipos(request):
             if not request.user.email.endswith('@admin.com'):
                 return redirect('login')
             else:
-                hola = 'hola mundo'
+                
                 return render(request, 'Tab4.html', {
                     'texto': hola
                 })

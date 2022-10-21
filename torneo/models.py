@@ -110,6 +110,8 @@ class Equipo(models.Model):
     id_delegado = models.ForeignKey(Delegado, on_delete=models.CASCADE)
     id_entrenador_equipo = models.ForeignKey(Entrenador, on_delete=models.CASCADE)
     id_torneo = models.ForeignKey(Torneo, on_delete=models.CASCADE)
+    def __str__(self):
+        return 'nombre: ' + self.nombre_equipo  + ', categoria: ' + self.categoria_equipo + ', estado inscripcion: ' + self.estado_inscripcion_equipo
     
 
 class Jugador(models.Model):
