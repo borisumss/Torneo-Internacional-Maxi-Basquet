@@ -510,7 +510,7 @@ def administracionEquipos(request):
                     'categorias': categorias,
                 })
         else:
-            return redirect('equipos')
+            return redirect('login')
 
 def verEquipo(request, equipo):
     if request.method == 'GET':
@@ -523,7 +523,7 @@ def verEquipo(request, equipo):
                     'equipo': equipo,
                 })
         else:
-            return redirect('equipos')
+            return redirect('login')
 
     # elif request.method == 'POST':
     #     numeros = "0123456789"

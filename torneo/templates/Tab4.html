@@ -2,7 +2,6 @@
 
 {% block css %} 
 <link rel="stylesheet" href="../../../static/css/panelAdmin.css">
-<link rel="stylesheet" href="../../static/css/mostrar_equipos.css"> 
 <link rel="stylesheet" href="../../static/css/categorias_equipos.css"> 
 {% endblock %}
 
@@ -25,6 +24,7 @@
         <div class = "row mt-3 mb-4 button-group filter-button-group">
             <div class = "col d-flex justify-content-center">
                 <button type = "button" data-filter = "*" class = "btn btn-primary mx-1 text-dark">Todos</button>
+                
                 {% for categoria in categorias %}
 
                   <button type = "button" data-filter = ".{{categoria.nombre_categoria}}" class = "btn btn-primary mx-1 text-dark">{{categoria.nombre_categoria}}</button>
@@ -43,13 +43,15 @@
             
             <div class = "col-lg-4 col-md-6 {{equipo.categoria_equipo}}">
                 <a href="{% url 'verEquipo' equipo.nombre_equipo %}">
-                    <div class="product-item bg-gradient">
-                        <div class="product-img">
-                            <img src="../../{{equipo.escudo_equipo}}" class="img-fluid d-block mx-auto p-2">
+                    <div class="product-item">
+                        <div class="container" style="height: 300px; width:300px ; display: flex; align-items: center">
+                            <div class="product-img">
+                            <img src="../../{{equipo.escudo_equipo}}" class="img-fluid d-block mx-auto p-2 escudo">
+                        </div>
                         </div>
                         <div class="product-content text-center py-3">
-                            <span class="d-block text-uppercase">{{equipo.nombre_equipo}}</span>
-                            <span class="d-block">Pais de origen {{equipo.pais_origen}}</span>
+                            <span class="d-block text-uppercase text-dark">{{equipo.nombre_equipo}}</span>
+                            <span class="d-block text-alert">Pais de origen {{equipo.pais_origen}}</span>
                         </div>
                     </div>
                 </a>
