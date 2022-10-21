@@ -83,15 +83,41 @@ class Categorias_Torneo(models.Model):
     def __str__(self):
         return self.nombre_categoria
 
-# class Equipo(models.Model):
-    # nombre_equipo
-    # escudo
-    # delegado
-    # entrenador
-    # ciudad
-    # pais
-    # imagen_escudo
-    # imagen_portada 
-    # jugadores
-    # id_torneo
-    # estado_inscripcion
+class Delegado(models.Model):
+    id_delegado = models.IntegerField(primary_key=True)
+    nombre_delegado = models.CharField(max_length=50, null=True)
+    ci_delegado = models.CharField(max_length=15, null=True)
+    nacimiento_delegado = models.DateField(auto_now=False, auto_now_add=False)
+    telefono_delegado = models.CharField(max_length=15, null=True)
+    foto_delegado = models.ImageField(upload_to='static/imagenes/equipos/delegados', verbose_name='Foto Delegado', null=True)
+
+class Entrenador(models.Model):
+    nombre_entrenador = models.CharField(max_length=50, null=True)
+    ci_entrenador = models.CharField(max_length=50, null=True)
+    nacimiento_entrenador = models.DateField(auto_now=False, auto_now_add=False)
+    foto_entrenador =  models.ImageField(upload_to='static/imagenes/equipos/entrenadores/', verbose_name='Foto Enrtenador', null=True)
+    telefono_entrenador = models.CharField(max_length=50, null=True)
+
+class Equipo(models.Model):
+    nombre_equipo = models.CharField(max_length=50, null=True)
+    pais_origen = models.CharField(max_length=50, null=True)
+    ciudad_origen = models.CharField(max_length=50, null=True)
+    escudo_equipo =  models.ImageField(upload_to='static/imagenes/equipos/escudos/', verbose_name='Escudo equipo', null=True)
+    portada_equipo =  models.ImageField(upload_to='static/imagenes/equipos/portadas/', verbose_name='Foto equipo', null=True)
+    categoria_equipo = models.CharField(max_length=50, null=True)
+    estado_inscripcion_equipo = models.CharField(max_length=50,null=True)
+
+    id_delegado = models.ForeignKey(Delegado, on_delete=models.CASCADE)
+    id_entrenador_equipo = models.ForeignKey(Entrenador, on_delete=models.CASCADE)
+    id_torneo = models.ForeignKey(Torneo, on_delete=models.CASCADE)
+    
+
+class Jugador(models.Model):
+    nombre_jugador = models.CharField(max_length=50, null=True)
+    ci_jugador = models.CharField(max_length=50, null=True)
+    nacimiento_jugador = models.DateField(auto_now=False, auto_now_add=False)
+    foto_jugador =  models.ImageField(upload_to='static/imagenes/equipos/jugadores/', verbose_name='Foto jugador', null=True)
+    telefono_jugador = models.CharField(max_length=50, null=True)
+    dorsal_jugador = models.CharField(max_length=5, null=True)
+    posicion_jugador = models.CharField(max_length=50, null=True)
+    id_equipo = models.ForeignKey(Equipo, on_delete=models.CASCADE)
