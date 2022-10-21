@@ -513,7 +513,10 @@ def delegacionTorneo(request):
             if not request.user.email.endswith('@delegacion.com'):
                 return redirect('login')
             else:
-                return render(request,'Tab1Del.html')
+                equipo = Equipo.objects.filter(id_delegado=request.user.id)
+                return render(request,'Tab1Del.html',{
+                    'equipo':equipo[0]
+                })
                
         else:
             return redirect('login')
@@ -524,7 +527,10 @@ def delegacionEquipo(request):
             if not request.user.email.endswith('@delegacion.com'):
                 return redirect('login')
             else:
-               return render(request,'Tab2Del.html')
+               equipo = Equipo.objects.filter(id_delegado=request.user.id)
+               return render(request,'Tab2Del.html',{
+                    'equipo':equipo[0]
+                })
         else:
             return redirect('login')
 
@@ -534,6 +540,9 @@ def delegacionCredenciales(request):
             if not request.user.email.endswith('@delegacion.com'):
                 return redirect('login')
             else:
-                return render(request,'Tab3Del.html')
+                equipo = Equipo.objects.filter(id_delegado=request.user.id)
+                return render(request,'Tab3Del.html',{
+                    'equipo':equipo[0]
+                })
         else:
             return redirect('login')
