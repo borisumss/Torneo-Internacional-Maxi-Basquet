@@ -87,7 +87,7 @@ class Delegado(models.Model):
     id_delegado = models.IntegerField(primary_key=True)
     nombre_delegado = models.CharField(max_length=50, null=True)
     ci_delegado = models.CharField(max_length=15, null=True)
-    nacimiento_delegado = models.DateField(auto_now=False, auto_now_add=False)
+    nacimiento_delegado = models.DateField(auto_now=False, auto_now_add=False, null=True)
     telefono_delegado = models.CharField(max_length=15, null=True)
     foto_delegado = models.ImageField(upload_to='static/imagenes/equipos/delegados', verbose_name='Foto Delegado', null=True)
 
@@ -106,12 +106,9 @@ class Equipo(models.Model):
     portada_equipo =  models.ImageField(upload_to='static/imagenes/equipos/portadas/', verbose_name='Foto equipo', null=True)
     categoria_equipo = models.CharField(max_length=50, null=True)
     estado_inscripcion_equipo = models.CharField(max_length=50,null=True)
-
-    id_delegado = models.ForeignKey(Delegado, on_delete=models.CASCADE)
-    id_entrenador_equipo = models.ForeignKey(Entrenador, on_delete=models.CASCADE)
-    id_torneo = models.ForeignKey(Torneo, on_delete=models.CASCADE)
-    def __str__(self):
-        return 'nombre: ' + self.nombre_equipo  + ', categoria: ' + self.categoria_equipo + ', estado inscripcion: ' + self.estado_inscripcion_equipo
+    id_delegado = models.ForeignKey(Delegado, on_delete=models.CASCADE, null=True)
+    id_entrenador_equipo = models.ForeignKey(Entrenador, on_delete=models.CASCADE, null=True)
+    id_torneo = models.ForeignKey(Torneo, on_delete=models.CASCADE, null=True)
     
 
 class Jugador(models.Model):

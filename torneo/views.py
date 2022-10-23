@@ -2,6 +2,7 @@
 #from typing_extensions import Self
 import email
 from pickle import FALSE, TRUE
+from re import I
 from unicodedata import category, name
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth import logout, authenticate, login as auth_login
@@ -9,7 +10,7 @@ from django.contrib.auth.models import User
 from django.db import IntegrityError
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.decorators import user_passes_test
-from .models import Organizador, Torneo, Inscripcion, Categorias_Torneo, Pre_Inscripcion, delegado_Inscripcion, delegado_PreInscripcion, Equipo
+from .models import Organizador, Torneo, Inscripcion, Categorias_Torneo, Pre_Inscripcion, delegado_Inscripcion, delegado_PreInscripcion , Entrenador, Equipo ,Delegado , Jugador
 from django.contrib import messages
 from datetime import date
 from django.core.mail import send_mail
@@ -350,31 +351,41 @@ def aceptar(request, tipo, id):
             else:
                 if tipo == 'REZAGADOS':
                     ins = delegado_Inscripcion.objects.filter(id=id)
-                    if len(ins) == 0:
+                    aux = ins[0].estado_delegado_inscripcion
+                    if len(ins)==0:
                         return redirect('solicitudes')
                     else:
-                        return render(request, 'emails.html', {
-                            "email": ins[0].correo_delegado_inscripcion,
-                            "tipo": "ACEPTADO",
-                            "id": id
-                        })
-                        """solicitud = delegado_Inscripcion.objects.filter(id=id)
-                        solicitud.update(estado_delegado_inscripcion='RECHAZADO')
-                        messages.success(request, "Solictud rechazada correctamente")"""
+                        if aux == 'PENDIENTE':
+                            return render(request, 'emails.html',{
+                            "email":ins[0].correo_delegado_inscripcion,
+                            "tipo":"ACEPTADO",
+                            "id":id
+                            })
+                            """solicitud = delegado_Inscripcion.objects.filter(id=id)
+                            solicitud.update(estado_delegado_inscripcion='RECHAZADO')
+                            messages.success(request, "Solictud rechazada correctamente")"""
+                        else:
+                            messages.success(request, "La solicitud no se encuentra disponible")
+                            return redirect('solicitudes')
 
                 elif tipo == 'PREINSCRIPCION':
                     preIns = delegado_PreInscripcion.objects.filter(id=id)
-                    if len(preIns) == 0:
+                    aux = preIns[0].estado_delegado_Preinscripcion
+                    if len(preIns)==0:
                         return redirect('solicitudes')
                     else:
-                        return render(request, 'emails.html', {
-                            "email": preIns[0].correo_delegado_Preinscripcion,
-                            "tipo": "ACEPTADO",
-                            "id": id
-                        })
-                    """solicitud = delegado_PreInscripcion.objects.filter(id=id)
-                    solicitud.update(estado_delegado_Preinscripcion='RECHAZADO')
-                    messages.success(request, "Solictud rechazada correctamente")"""
+                        if aux == 'PENDIENTE':
+                            return render(request, 'emails.html',{
+                            "email":preIns[0].correo_delegado_Preinscripcion,
+                            "tipo":"ACEPTADO",
+                            "id":id
+                            })
+                            """solicitud = delegado_PreInscripcion.objects.filter(id=id)
+                            solicitud.update(estado_delegado_Preinscripcion='RECHAZADO')
+                            messages.success(request, "Solictud rechazada correctamente")"""
+                        else:
+                            messages.success(request, "La solicitud no se encuentra disponible")
+                            return redirect('solicitudes')
                 else:
                     return redirect('solicitudes')
 
@@ -392,13 +403,37 @@ def aceptar(request, tipo, id):
         user.save()
         if tipo == 'REZAGADOS':
             solicitud = delegado_Inscripcion.objects.filter(id=id)
-            solicitud.update(
-                estado_delegado_inscripcion='ACEPTADO', id_delegadoIns_id=user.id)
+            solicitud.update(estado_delegado_inscripcion='ACEPTADO',id_delegadoIns_id=user.id)
+            id_delegado = user.id
+            nombre_delegado = solicitud[0].nombre_delegado_inscripcion
+            ci_delegado = solicitud[0].ci_delegado_inscripcion
+            telefono_delegado  = solicitud[0].telefono_delegado_inscripcion
+            delegado = Delegado(id_delegado=id_delegado, nombre_delegado=nombre_delegado,ci_delegado= ci_delegado,telefono_delegado=telefono_delegado)
+            delegado.save()
 
-        elif tipo == 'PREINSCRIPCION':
+            #datos equipo
+            estado_inscrip = 'PENDIENTE'
+            id_deleg = delegado
+            id_torneo = solicitud[0].id_inscripcion.id_torneo
+            equipo = Equipo(estado_inscripcion_equipo=estado_inscrip,id_delegado=id_deleg,id_torneo=id_torneo)
+            equipo.save()
+                  
+        elif tipo == 'PREINSCRIPCION':            
             solicitud = delegado_PreInscripcion.objects.filter(id=id)
-            solicitud.update(
-                estado_delegado_Preinscripcion='ACEPTADO', id_delegadoPreIns_id=user.id)
+            solicitud.update(estado_delegado_Preinscripcion='ACEPTADO',id_delegadoPreIns_id=user.id)
+            id_delegado = user.id
+            nombre_delegado = solicitud[0].nombre_delegado_Preinscripcion
+            ci_delegado = solicitud[0].ci_delegado_Preinscripcion
+            telefono_delegado  = solicitud[0].telefono_delegado_Preinscripcion
+            delegado = Delegado(id_delegado=id_delegado, nombre_delegado=nombre_delegado,ci_delegado= ci_delegado,telefono_delegado=telefono_delegado)
+            delegado.save()
+
+            #datos equipo
+            estado_inscrip = 'PENDIENTE'
+            id_deleg = delegado
+            id_torneo = solicitud[0].id_Pre_inscripcion.id_torneo
+            equipo = Equipo(estado_inscripcion_equipo=estado_inscrip,id_delegado=id_deleg,id_torneo=id_torneo)
+            equipo.save()
 
         subject = 'Bienvenido al Torneo de Maxi Basquet'
         message = f'Tenga coordiales saludos.\n\nA continuación se presenta sus credenciales para acceder y registrar a su equipo en el torneo.\n\nNombre de usuario: ' + \
@@ -553,7 +588,10 @@ def delegacionTorneo(request):
             if not request.user.email.endswith('@delegacion.com'):
                 return redirect('login')
             else:
-                return render(request,'Tab1Del.html')
+                equipo = Equipo.objects.filter(id_delegado=request.user.id)
+                return render(request,'Tab1Del.html',{
+                    'equipo':equipo[0]
+                })
                
         else:
             return redirect('login')
@@ -564,7 +602,10 @@ def delegacionEquipo(request):
             if not request.user.email.endswith('@delegacion.com'):
                 return redirect('login')
             else:
-               return render(request,'Tab2Del.html')
+               equipo = Equipo.objects.filter(id_delegado=request.user.id)
+               return render(request,'Tab2Del.html',{
+                    'equipo':equipo[0]
+                })
         else:
             return redirect('login')
 
@@ -574,7 +615,10 @@ def delegacionCredenciales(request):
             if not request.user.email.endswith('@delegacion.com'):
                 return redirect('login')
             else:
-                return render(request,'Tab3Del.html')
+                equipo = Equipo.objects.filter(id_delegado=request.user.id)
+                return render(request,'Tab3Del.html',{
+                    'equipo':equipo[0]
+                })
         else:
             return redirect('login')
 
