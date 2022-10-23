@@ -1,6 +1,7 @@
-from distutils.command.upload import upload
 from django.db import models
 from django.contrib.auth.models import User
+
+import torneo
 # Create your models here.
 
 class Organizador(models.Model):
@@ -105,7 +106,6 @@ class Equipo(models.Model):
     portada_equipo =  models.ImageField(upload_to='static/imagenes/equipos/portadas/', verbose_name='Foto equipo', null=True)
     categoria_equipo = models.CharField(max_length=50, null=True)
     estado_inscripcion_equipo = models.CharField(max_length=50,null=True)
-
     id_delegado = models.ForeignKey(Delegado, on_delete=models.CASCADE, null=True)
     id_entrenador_equipo = models.ForeignKey(Entrenador, on_delete=models.CASCADE, null=True)
     id_torneo = models.ForeignKey(Torneo, on_delete=models.CASCADE, null=True)
