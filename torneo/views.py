@@ -3,6 +3,7 @@
 import email
 from pickle import FALSE, TRUE
 from re import I
+from sqlite3 import PrepareProtocol
 from unicodedata import category, name
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth import logout, authenticate, login as auth_login
@@ -493,7 +494,56 @@ def administracionDelegados(request):
             if not request.user.email.endswith('@admin.com'):
                 return redirect('login')
             else:
-               return render(request, 'Tab3.html')
+                delPre = delegado_PreInscripcion.objects.filter(estado_delegado_Preinscripcion='ACEPTADO')
+                delRez = delegado_Inscripcion.objects.filter(estado_delegado_inscripcion='ACEPTADO')
+                preBaja = delegado_PreInscripcion.objects.filter(estado_delegado_Preinscripcion='BAJA')
+                rezBaja = delegado_Inscripcion.objects.filter(estado_delegado_inscripcion='BAJA')
+                return render(request, 'Tab3.html',{
+                    'pre':delPre,
+                    'rez':delRez,
+                    'preBaja':preBaja,
+                    'rezBaja':rezBaja})
+        else:
+            return redirect('login')
+    elif request.method == 'POST':
+        return redirect('login')
+
+def delegadosBaja(request,tipo,id):
+    if request.method == 'GET':
+        if not request.user.is_anonymous:
+            if not request.user.email.endswith('@admin.com'):
+                return redirect('login')
+            else:
+                print(tipo)
+                if(tipo == 'PREINSCRIPCION'):
+                    delegado = delegado_PreInscripcion.objects.filter(id=id)
+                    delegado.update(estado_delegado_Preinscripcion='BAJA')
+                    messages.success(request, "Delegado dado de baja correctamente")
+                    return redirect('delegados')
+                elif tipo == 'REZAGADOS':
+                    delegado = delegado_Inscripcion.objects.filter(id=id)
+                    delegado.update(estado_delegado_inscripcion='BAJA')
+                    messages.success(request, "Delegado dado de baja correctamente")
+                    return redirect('delegados')
+        else:
+            return redirect('login')
+
+def delegadosAlta(request,tipo,id):
+    if request.method == 'GET':
+        if not request.user.is_anonymous:
+            if not request.user.email.endswith('@admin.com'):
+                return redirect('login')
+            else:
+                if(tipo == 'PREINSCRIPCION'):
+                    delegado = delegado_PreInscripcion.objects.filter(id=id)
+                    delegado.update(estado_delegado_Preinscripcion='ACEPTADO')
+                    messages.success(request, "Delegado dado de alta correctamente")
+                    return redirect('delegados')
+                elif tipo == 'REZAGADOS':
+                    delegado = delegado_Inscripcion.objects.filter(id=id)
+                    delegado.update(estado_delegado_inscripcion='ACEPTADO')
+                    messages.success(request, "Delegado dado de alta correctamente")
+                    return redirect('delegados')
         else:
             return redirect('login')
 
