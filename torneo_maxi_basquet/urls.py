@@ -26,6 +26,7 @@ urlpatterns = [
     path('administracion/', views.administracion, name='administracion'),
     path('administracion/torneos/', views.administracionTorneos, name='torneos'),
     path('administracion/equipos/', views.administracionEquipos, name='equipos'),
+    path('administracion/equipos/<str:equipo>', views.verEquipo, name='verEquipo'),
     path('administracion/torneos/terminados/', views.administracionTorneosTerminados, name='torneosTerminados'),
     path('administracion/solicitudes/', views.administracionSolicitudes, name='solicitudes'),
     path('administracion/delegados/', views.administracionDelegados, name='delegados'),

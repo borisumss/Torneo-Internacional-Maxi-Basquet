@@ -1,15 +1,93 @@
 {% extends "panelAdmin.html" %}
 
-{% block css %} <link rel="stylesheet" href="../../../static/css/panelAdmin.css"> {% endblock %}
+{% block css %} 
+<link rel="stylesheet" href="../../../static/css/panelAdmin.css">
+<link rel="stylesheet" href="../../static/css/categorias_equipos.css"> 
+{% endblock %}
+
 {% block body %}  fondoTab4 {% endblock %}
 {% block class5 %}  active {% endblock %}
 {% block contenido %}
 
+{% csrf_token %}
+
 <article id="Tab4">
-    <h1>EQUIPOS INSCRITOS AQUI</h1>
-  </article>
+    
+  <div class = "container">
+        <div class = "row">
+            <div class = "col text-center my-4">
+                <h1 class = "fs-2" id="titulo">Categorias de equipo</h1>
+                <div class = "underline mx-auto mt-3"></div>
+            </div>
+        </div>
+
+        <div class = "row mt-3 mb-4 button-group filter-button-group text-center">
+            <div class = "col justify-content-center">
+                <button type = "button" data-filter = "*" class = "btn btn-primary text-dark m-2">Todos</button>
+                
+                {% for categoria in categorias %}
+
+                  <button type = "button" data-filter = ".{{categoria.nombre_categoria}}" class = "btn btn-primary m-2 text-dark">{{categoria.nombre_categoria}}</button>
+                
+                {% endfor %} 
+                <!-- <button type = "button" data-filter = ".electronic" class = "btn btn-primary mx-1 text-dark">Electronic</button>
+                <button type = "button" data-filter = ".clothing" class = "btn btn-primary mx-1 text-dark">Clothing</button>
+                <button type = "button" data-filter = ".furniture" class = "btn btn-primary mx-1 text-dark">Furniture</button> -->
+            </div>
+        </div>
+
+        <div class = "row justify-content-center g-4" id = "product-list">
+            
+            
+            {% for equipo in equipos %}
+            
+            <div class = "col-lg-4 col-md-6 {{equipo.categoria_equipo}}">
+                <a href="{% url 'verEquipo' equipo.nombre_equipo %}">
+                    <div class="product-item">
+                        <div class="container" style="height: 300px; width:250px ; display: flex; align-items: center">
+                            <div class="product-img">
+                            <img src="../../{{equipo.escudo_equipo}}" class="img-fluid d-block mx-auto p-2 escudo">
+                        </div>
+                        </div>
+                        <div class="product-content text-center py-3">
+                            <span class="d-block text-uppercase text-dark">{{equipo.nombre_equipo}}</span>
+                            <span class="d-block text-alert">{{equipo.pais_origen}}</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            {% endfor %}
+
+
+            {% comment %} <div class = "col-lg-4 col-md-6 electronic">
+                <a href="#">
+                    <div class="product-item bg-gradient">
+                        <div class="product-img">
+                            <img src="../../static/imagenes/equipos/product_img_1.jpg" class="img-fluid d-block mx-auto p-2">
+                        </div>
+                        <div class="product-content text-center py-3">
+                            <span class="d-block text-uppercase">product name</span>
+                            <span class="d-block">$ 68.00</span>
+                        </div>
+                    </div>
+                </a>
+            </div> {% endcomment %}
+
+
+        </div>
+    </div>
+
+</article>
 
 {% endblock %}
 
 
-{% block js %} <script type="text/javascript" src="../../../static/Js/menuAdmin.js"></script> {% endblock %}
+{% block js %}
+<script type="text/javascript" src="../../../static/Js/menuAdmin.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- isotope plugin -->
+ <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.js"></script>
+
+ <script src = "../../static/Js/categoriasEquipo.js"></script>
+{% endblock %}
