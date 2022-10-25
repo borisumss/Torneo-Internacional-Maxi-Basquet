@@ -99,7 +99,7 @@ $('#Tab5 .tarjeta .back .card .card-body #img').click(function () {
   let name = this.parentElement.parentElement.parentElement.parentElement.children[0].children[0].children[1].children[0].children[0].children[0].children[1].textContent;
   let Lname = document.getElementById('nombreComprobante');
 
-  Lname.innerHTML = "Comprobante de pago de" + name;
+  Lname.innerHTML = "Comprobante de pago de " + name;
   return false;
 });
 

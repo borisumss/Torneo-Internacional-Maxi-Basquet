@@ -5,6 +5,14 @@ body {
     min-height: 100vh;
     height: 100%;
     background-color: papayawhip; 
+    background-color: hsl(0, 0%, 100%);
+    background-image: -webkit-linear-gradient(120deg, #009eb1 50%, #70bbc3 50%);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    min-height: 100vh;
+    color: rgb(255, 255, 255);
     margin: 0 auto;
     font-family:'Montserrat', sans-serif !important;
    /* background-image: url("/static/images/fondoSol.jpg");*/
@@ -95,7 +103,7 @@ header, #side_nav{
 
 /*DISEÑO  CONTENEDOR*/
 #content{
-    margin: 75px auto;
+    margin: 50px auto;
     
 }
 
@@ -139,7 +147,7 @@ h5{
 }
 
 #btn-Generar {
-   margin:0px auto;
+   margin:10px auto;
    font-size: 15px;
   
    width: 50%;
@@ -147,7 +155,7 @@ h5{
 
 #aceptados{
     max-width: 500px;
-    height: 400px;
+    height: 450px;
     border-right: none;
     margin: 50px auto;
 }

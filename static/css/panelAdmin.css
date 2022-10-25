@@ -133,7 +133,7 @@ body{
 
 #Tab1 .card-body {
     background-color: white;
-    overflow: scroll;
+
     min-height: 100%;
     
 }
@@ -371,7 +371,9 @@ th{
     
 }
 #fotoExp #modalValid{
-    overflow: scroll;
+   overflow: scroll;
+   overflow-x:auto;
+   overflow-y: auto;
 }
 
 #imgFull{
