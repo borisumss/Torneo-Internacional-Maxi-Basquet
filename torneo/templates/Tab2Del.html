@@ -5,7 +5,28 @@
 {% block class2 %}  active {% endblock %}
 {% block contenido %}
 
-<article id="Tab2"> <h1>EQUIPO AQUI</h1></article>
+<article id="Tab2"> 
+    <section id="secBtn">
+        <button type="button" id="btn-infor" class="btn btn-primary">Modificar Información</button>
+        <button type="button" id="btn-guardar" class="btn btn-primary">Guardar Inscripción</button>
+    </section>
+    
+    <section id="secPortada">
+        <div class="portada text-center" style="background-image:url(../../{{equipo.portada_equipo}});background-repeat: no-repeat !important;
+        background-size: cover !important;
+        background-position: center !important;
+        background-attachment: fixed !important;">
+            
+        </div>
+        <div class="escudo text-center">
+            <img id="img-escudo" src="/{{equipo.escudo_equipo}}" alt="IMAGEN DEL ESCUDO">
+        </div>
+    </section>
+    <br>
+    <section id="secInfor"></section>
+    <section id="secEntrenador"></section>
+    <section id="secEquipo"></section>
+</article>
 {% endblock %}
 
 
