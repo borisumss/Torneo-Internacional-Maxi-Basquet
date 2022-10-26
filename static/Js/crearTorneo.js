@@ -180,6 +180,19 @@
               }
           }
       }
+
+      if(finPre.value.length>0 ){
+        //format('YYYY-MM-DD')
+        var fechaIniRez = new Date($('#fechaPreFin_input').val());
+        console.info(fechaIniRez)
+        var dias =  2
+        fechaIniRez.setDate(fechaIniRez.getDate()+dias);
+         
+        fechaIniRez= moment(fechaIniRez).format('YYYY-MM-DD') 
+        inicioRez.value = fechaIniRez;
+           
+            
+      }
   }
 
   function fechasTorneo() {

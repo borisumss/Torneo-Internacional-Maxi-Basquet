@@ -243,7 +243,16 @@ def cerrarSesion(request):
 def enviarSolicitud(request, id):
     # recibir por el POST si es "rezagados" o "preinscripcion"
     estado = request.POST.get('Confirmar')
-    if estado == 'REZAGADOS':
+    inscritoPre = delegado_PreInscripcion.objects.filter(ci_delegado_Preinscripcion=request.POST.get('ci_delegado'))
+    inscritoRez = delegado_Inscripcion.objects.filter(ci_delegado_inscripcion=request.POST.get('ci_delegado'))
+    #A FUTURO:
+    #si el usuario ya existe y tiene estado "RECHAZADO" o "BAJA" se actualizan sus datos y su estado cambia a "PENDIENTE"
+    #si el usuario ya existe y tiene estado "PENDIENTE" o "ACEPTADO" se rechaza la solicitud
+    if len(inscritoPre)>0 or len(inscritoRez)>0:
+        messages.error(request, "Ya se encuentra un usuario registrado con estos datos")
+        return redirect('home')
+
+    elif estado == 'REZAGADOS':
         print(request.FILES)
         aux = Inscripcion.objects.filter(id_torneo_id=id)
         nombre_delegado_inscripcion = request.POST.get('nombre_delegado')
