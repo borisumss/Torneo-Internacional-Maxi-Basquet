@@ -1,0 +1,55 @@
+body{
+    /* background-color: #ED1C24; */
+    min-height: 100vh;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+}
+
+
+
+#intro{
+    background-image: url('/static/images/basquetbolmujeres_fondo.jpg');
+    opacity: 0.7;
+}
+
+.btn-danger, .btn-danger:hover, .btn-danger:active, .btn-danger:visited {
+    background-color: #ED1C24 !important;
+}
+
+.navbar-custom {
+    background-color: #003975;
+}
+
+.navbar-brand{
+    color: white !important;
+}
+
+.navbar-nav li a {
+    color: white !important;
+}
+
+
+.nav-link active{
+    color: white;
+}
+
+/* navbar */
+
+/* carrusel */
+
+
+
+carrusel{
+    border-top: 10rem;
+    border-bottom: 10rem;
+}
+
+/* footer */
+
+.foo{
+    padding: 1rem;
+}
+
+footer{
+    background-color: #003975;
+}

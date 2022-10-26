@@ -1,0 +1,167 @@
+
+* {
+    font-family: 'Montserrat', sans-serif;
+}
+
+
+body{
+    background-color: hsl(0, 0%, 100%);
+    background-image: -webkit-linear-gradient(120deg, #009eb1 50%, #70bbc3 50%);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    min-height: 100vh;
+    color: rgb(255, 255, 255);
+}
+
+.card{
+    width: 100%;
+    border: none;
+    background-color: #ffffff;
+}
+
+.active{
+    background-color: #0d77e8;
+    margin: 0px;
+    padding: 0px;
+    width: 100%;
+}
+
+header{
+    position: sticky !important;
+    top:0;
+}
+.navbar-custom {
+    background-color: #003975;
+    
+}
+
+.navbar-brand{
+    color: white !important;
+}
+
+.burger{
+    margin-left: 8px;
+    cursor: pointer;
+}
+
+
+.menu-expanded{
+    transition: all 1000ms ease;
+    width: 350px !important;
+}
+
+.menu-collapsed{
+    transition: all 500ms ease;
+    width: 55px !important;
+}
+
+.menu-collapsed{
+    display: none;
+}
+
+header{
+    z-index: 50;
+}
+
+#formulario{
+    
+    padding: 10px 15px;
+    width: 100%;
+   
+}
+
+#qr{
+    height: 100%;
+}
+
+img{  
+    object-fit: cover;
+    width: 70%;
+    height: 70%;
+    align-items: center;
+    border: solid 5px black;
+    border-radius: 20px;
+    
+}
+
+.side{
+    text-align: -webkit-center;
+    margin: auto;    
+
+}
+
+.footer-form{
+    text-align: center;
+}
+
+label{
+    display: block;
+}
+
+h4{
+    margin: 0;
+}
+.card-body{
+    color: #003975;
+    font-weight: bold;
+}
+
+.card-header{
+    padding: 10px 0px;
+    background-color: #003975;
+    color: white;
+    font-weight: bold;    
+}
+#formularioCol {
+    padding: 0px 10px;
+    color: black;
+}
+
+
+#formulario input[type='email'],
+#formulario input[type='text'] {
+    border: none;
+    border: solid 1px #003975;
+    transition: all 0.3s ease;
+}
+#formularioCol input[type='email']:focus,
+#formularioCol input[type='text']:focus {
+    padding: 10px 10px;
+}
+
+#infoTitle{
+    font-size: 30px;
+    margin:16px 0px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+#info{
+    margin:16px 0px;
+    font-size: 20px;
+}
+#button-pago{
+    background-color: #003975;
+    border: none;
+}
+@media only screen and (max-width:600px) {
+    #Titulo, #usuario{
+        font-size: 15px !important;
+    }
+    .menu-collapsed, .menu-expanded{
+        top:55px !important;
+        transition: all 250ms ease !important;
+    }
+    .menu-collapsed{
+       
+        width: 0px !important;
+    }
+}
+
+@media only screen and (max-width:475px) {
+    #Titulo, #usuario{
+        font-size: 10px !important;
+    }
+}
