@@ -24,6 +24,15 @@ urlpatterns = [
     path('login/', views.login, name='login'),
     path('administracion/torneos/crear', views.crear_torneo, name='crear_torneo'),
     path('administracion/', views.administracion, name='administracion'),
+    path('administracion/torneos/', views.administracionTorneos, name='torneos'),
+    path('administracion/equipos/', views.administracionEquipos, name='equipos'),
+    path('administracion/torneos/terminados/', views.administracionTorneosTerminados, name='torneosTerminados'),
+    path('administracion/solicitudes/', views.administracionSolicitudes, name='solicitudes'),
+    path('administracion/delegados/', views.administracionDelegados, name='delegados'),
     path('delegacion/', views.delegacion, name='delegacion'),
-    path('logout/', views.cerrarSesion, name='logout')
+    path('logout/', views.cerrarSesion, name='logout'),
+    path('administracion/solicitudes/rechazadas/<str:tipo>/<int:id>', views.rechazar, name='Solicitud_Rechazada'),
+    path('administracion/solicitudes/aceptadas/<str:tipo>/<int:id>', views.aceptar, name='Solicitud_Aceptada'),
+    path('MaxiBasket/<int:id>', views.verTorneo, name='Torneo'),
+    path('preinscripcion/<int:id>', views.preinscripcion, name='preinscripcion'),
 ]

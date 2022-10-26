@@ -10,7 +10,13 @@ html{
     scroll-behavior: smooth !important;
 }
 body {
-    background: #FFFFFF;
+    
+    background-color: #000000;
+    background-image: -webkit-linear-gradient(120deg, #ffffff 50%, #1479c798 50%);
+    background-repeat: no-repeat;
+    background-size: cover !important;
+    background-position: center !important;
+    background-attachment: fixed !important;
 }
 
 nav.navbar {
@@ -18,7 +24,7 @@ nav.navbar {
 }
 
 .section-padding {
-    padding: 120px 0;
+    padding: 50px 0;
 }
 
 .carousel-item {
@@ -26,10 +32,25 @@ nav.navbar {
     min-height: 300px;
 }
 
-.carousel-caption {
-    bottom: 220px;
-    z-index: 2;
+#enlaces{
+    color: cyan;
 }
+
+.carousel-caption {
+    top: 50%;
+    transform: translateY(-50%);
+    /*background-color: rgba(0, 0, 0, 0.742);*/
+    color:white;
+    background-color: rgba(0, 0, 0, 0.416);
+    padding: 10px 15px;
+    /*position: absolute;
+    top:20%;*/
+    z-index: 2;
+    height: 550px;
+    border-radius: 20px;
+}
+
+
 
 .carousel-caption h5 {
     font-size: 45px;
@@ -39,7 +60,7 @@ nav.navbar {
 }
 
 .carousel-caption p {
-    width: 60%;
+    width: 80%;
     margin: auto;
     font-size: 18px;
     line-height: 1.9;
@@ -53,7 +74,6 @@ nav.navbar {
     top: 0;
     left: 0;
     /*background: rgba(148, 58, 58, 0.7);*/
-    background-color: #ED1C24;
     opacity: 0.6;
     z-index: 1;
 }
@@ -73,6 +93,16 @@ nav.navbar {
     font-size: 15px;
     text-transform: uppercase;
     font-weight: 500;
+}
+
+.carousel-inner{
+    
+    background-image: url(/static/images/home6.jpg);
+    background-color: red !important;
+    background-repeat: no-repeat;
+    background-size: cover !important;
+    background-position: center !important;
+    background-attachment: fixed !important;
 }
 
 .navbar-light .navbar-brand {
@@ -108,6 +138,22 @@ nav.navbar {
     background: #003975;
 }
 
+#actual{
+ background-color: rgb(237, 233, 233);
+   background-color: #f1f1f1;
+   box-shadow: 10px 10px 10px 10px rgb(38, 37, 37);
+    margin-top: 50px;
+   padding: 15px 10px;
+  
+}
+
+.img-fluid{
+    height: 100% !important;
+}
+
+.about-img{
+ height: 100%;
+}
 @media only screen and (min-width: 768px) and (max-width: 991px) {
     .carousel-caption {
         bottom: 370px;

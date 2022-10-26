@@ -1,0 +1,205 @@
+{% extends "panelAdmin.html" %}
+
+{% block css %} <link rel="stylesheet" href="../../../static/css/panelAdmin.css"> {% endblock %}
+{% block body %}  fondoTab5 {% endblock %}
+{% block class4 %}  active {% endblock %}
+{% block contenido %}
+
+<article id="Tab5">
+    {% for i in solPre %}
+    <div class="tarjeta">
+      <div class="front">
+        <div class="card">
+            <div class="card-header text-center" id="tituloCompro">
+              INFORMACION SOLICITUD PRE-INSCRIPCION
+            </div>
+          <div class="card-body" id="cuerpoTarjeta">
+            <div class="container-fluid informacion">
+              <div class="row">
+                <div class="col-12">
+                  <div><label class="etiquetas" id="" for="">Nombre:</label></div>
+                  <div class="test"><label class="datos" id="" for="">{{i.nombre_delegado_Preinscripcion}}</label></div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-12">
+                  <div><label class="etiquetas" id="" for="">Correo Electrónico:</label></div>
+                  <div class="test"><label class="datos" id="" for="">{{i.correo_delegado_Preinscripcion}}</label></div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-6">
+                  <div><label class="etiquetas" id="" for="">C.I:</label></div>
+                  <div class="test"><label class="datos" id="" for="">{{i.ci_delegado_Preinscripcion}}</label></div>
+                </div>
+                <div class="col-6">
+                  <div><label class="etiquetas" id="" for="">Telefóno:</label></div>
+                  <div class="test"><label class="datos" id="" for="">{{i.telefono_delegado_Preinscripcion}}</label></div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-12">
+                  <div><label class="etiquetas" id="" for="">Torneo Solicitado:</label></div>
+                  <div class="test"><label class="datos" id="" for="">{{i.id_Pre_inscripcion.id_torneo.nombre_torneo}}</label></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-footer text-muted text-center">
+            <a href= "{% url 'Solicitud_Aceptada'  'PREINSCRIPCION' i.id %}" type="button" id="boton-confirmar" class="btn btn-outline-success">Confirmar</a>
+            <a href= "{% url 'Solicitud_Rechazada'  'PREINSCRIPCION' i.id %}" type="button" id="boton-rechazar" class="btn btn-outline-danger">Rechazar</a>
+          </div>
+        </div>
+      </div>
+      <div class="back">
+        <div class="card">
+          <div class="card-header text-center" id="tituloCompro">
+            COMPROBANTE DE PAGO
+          </div>
+          <div class="card-body justify-content-center" id="cuerpoBack">
+            
+
+              <img src="/{{i.recibo_Preinscripcion}}" alt="imagen"
+                   id="img" data-bs-toggle="modal"
+                   data-bs-target="#exampleModal2">                    
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+    {% for i in solRez %}
+    <div class="tarjeta">
+      <div class="front">
+        <div class="card">
+            <div class="card-header text-center" id="tituloCompro">
+              INFORMACION SOLICITUD REZAGADOS
+            </div>
+          <div class="card-body" id="cuerpoTarjeta">
+            <div class="container-fluid informacion">
+              <div class="row">
+                <div class="col-12">
+                  <div><label class="etiquetas" id="" for="">Nombre:</label></div>
+                  <div class="test"><label class="datos" id="" for="">{{i.nombre_delegado_inscripcion}}</label></div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-12">
+                  <div><label class="etiquetas" id="" for="">Correo Electrónico:</label></div>
+                  <div class="test"><label class="datos" id="" for="">{{i.correo_delegado_inscripcion}}</label></div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-6">
+                  <div><label class="etiquetas" id="" for="">C.I:</label></div>
+                  <div class="test"><label class="datos" id="" for="">{{i.ci_delegado_inscripcion}}</label></div>
+                </div>
+                <div class="col-6">
+                  <div><label class="etiquetas" id="" for="">Telefóno:</label></div>
+                  <div class="test"><label class="datos" id="" for="">{{i.telefono_delegado_inscripcion}}</label></div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-12">
+                  <div><label class="etiquetas" id="" for="">Torneo Solicitado:</label></div>
+                  <div class="test"><label class="datos" id="" for="">{{i.id_inscripcion.id_torneo.nombre_torneo}}</label></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-footer text-muted text-center">
+            <a href= "{% url 'Solicitud_Aceptada'  'REZAGADOS' i.id %}" type="button" id="boton-confirmar" class="btn btn-outline-success">Confirmar</a>
+            <a  href= "{% url 'Solicitud_Rechazada'  'REZAGADOS' i.id %}" type="button" id="boton-rechazar" class="btn btn-outline-danger" target="" >Rechazar</a>
+          </div>
+        </div>
+      </div>
+      <div class="back">
+        <div class="card">
+          <div class="card-header text-center" id="tituloCompro">
+            COMPROBANTE DE PAGO
+          </div>
+          <div class="card-body justify-content-center" id="cuerpoBack">
+            
+
+              <img src="/{{i.recibo_inscripcion}}" alt="imagen"
+                   id="img" data-bs-toggle="modal"
+                   data-bs-target="#exampleModal2">                    
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+    
+    
+    <form class="needs-validation" id="formulario" name="formulario" method="POST" enctype="multipart/form-data"
+      novalidate>
+      {% csrf_token %}
+      <div class="container-fluid align-items-center justify-content-center modal fade" id="exampleModal"
+        tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="row align-items-center justify-content-center modal-dialog">
+          <div class="col-12 modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">SOLICITUD</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body confModal" id="modalValid">
+              <br>
+              <div class="position-relative">
+
+                <label class="primera" id="correo_modal" for="correo_modalInput">Correo Institucional:</label>
+                <input type="email" class="primer form-control" name="correo" id="correo_modalInput"
+                  placeholder="Ingrese el correo a proporcionar" required>
+                <div class="invalid-tooltip">
+                  Ingrese un E-mail válido
+                </div>
+              </div>
+              <br>
+              <div class="position-relative">
+
+                <label class="primera" id="name_modal" for="name_modalInput">Nombre de Usuario:</label>
+                <input type="text" class="primer form-control" name="username" id="name_modalInput"
+                  placeholder="Ingrese el usuario a proporcionar" minlength="5" maxlength="20"
+                  required>
+                <div class="invalid-tooltip">
+                  Máximo 20 caracteres
+                </div>
+              </div>
+
+
+            </div>
+            <div class="modal-footer justify-content-center">
+
+              <button type="submit" name="email" class="btn btn-success" id="modalEnviar">Enviar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+
+    <div class="container-fluid modal modal fade" id="exampleModal2"
+        tabindex="-1" aria-labelledby="modal2Label" aria-hidden="true">
+        <div class="row align-items-center justify-content-center modal-dialog">
+          <div class="col-12 modal-content" id="fotoExp">
+            <div class="modal-header">
+              <h5 id="nombreComprobante">Comprobante de pago de Juan Perez Alconaa</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <br>
+            <div class="modal-body confModal" id="modalValid">
+              <img src="" alt="imagen"
+                   id="imgFull">
+            </div>
+          </div>
+        </div>
+      </div>
+  </article>
+
+{% endblock %}
+
+
+{% block js %} <script type="text/javascript" src="../../../static/Js/menuAdmin.js"></script> {% endblock %}
