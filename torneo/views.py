@@ -108,10 +108,26 @@ def login(request):
         password = request.POST.get('password')
         user = authenticate(request, username=email, password=password)
         if user is not None:
-            auth_login(request, user)
-            if request.user.email.endswith('@delegacion.com'):
-                 return redirect('delegacionTorneo')
-            elif request.user.email.endswith('@admin.com'):
+            rez = delegado_Inscripcion.objects.filter(id_delegadoIns_id=user.id)
+            pre = delegado_PreInscripcion.objects.filter(id_delegadoPreIns_id=user.id)
+            if len(rez)>0:
+                if rez[0].estado_delegado_inscripcion == 'BAJA':
+                    messages.warning(request, "Este usuario ha sido dado de baja")
+                    return render(request, 'login.html')
+                else:
+                    auth_login(request, user)
+                    return redirect('delegacionTorneo')
+            
+            elif len(pre)>0:
+                if pre[0].estado_delegado_Preinscripcion=='BAJA':
+                    messages.warning(request, "Este usuario ha sido dado de baja")
+                    return render(request, 'login.html')
+                else:
+                    auth_login(request, user)
+                    return redirect('delegacionTorneo')
+                    
+            else:
+                auth_login(request, user)
                 return redirect('torneos')
         else:
             messages.warning(request, "Algo salio mal, intente nuevamente")

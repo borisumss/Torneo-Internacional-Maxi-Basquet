@@ -147,7 +147,8 @@ body {
     background-image: -webkit-linear-gradient(140deg, #009eb1 10.5%, #f1f1f1 10.5%, #f1f1f1 65%, #009eb1 65%);
    
     
-   margin-top: 50px;
+    margin-top: 50px;
+    margin-bottom: 50px;
     padding: 15px 10px;
     border-radius: 20px;
     color: #000;

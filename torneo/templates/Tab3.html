@@ -25,7 +25,7 @@
           <tbody>
             {% for i in pre %}
             <tr class="">
-              <td scope="row">{{i.id_delegadoPreIns}}</td>
+              <td scope="row">{{i.id_delegadoPreIns.id}}</td>
               <td>{{i.nombre_delegado_Preinscripcion}}</td>
               <td>{{i.ci_delegado_Preinscripcion}}</td>
               <td>{{i.id_delegadoPreIns.username}}</td>
@@ -40,7 +40,7 @@
 
             {% for i in rez %}
             <tr class="">
-              <td scope="row">{{i.id_delegadoIns}}</td>
+              <td scope="row">{{i.id_delegadoIns.id}}</td>
               <td>{{i.nombre_delegado_inscripcion}}</td>
               <td>{{i.ci_delegado_inscripcion}}</td>
               <td>{{i.id_delegadoIns.username}}</td>
@@ -55,7 +55,7 @@
 
             {% for i in preBaja %}
             <tr class="">
-              <td scope="row">{{i.id_delegadoPreIns}}</td>
+              <td scope="row">{{i.id_delegadoPreIns.id}}</td>
               <td>{{i.nombre_delegado_Preinscripcion}}</td>
               <td>{{i.ci_delegado_Preinscripcion}}</td>
               <td>{{i.id_delegadoPreIns.username}}</td>
@@ -70,7 +70,7 @@
 
             {% for i in rezBaja %}
             <tr class="">
-              <td scope="row">{{i.id_delegadoIns}}</td>
+              <td scope="row">{{i.id_delegadoIns.id}}</td>
               <td>{{i.nombre_delegado_inscripcion}}</td>
               <td>{{i.ci_delegado_inscripcion}}</td>
               <td>{{i.id_delegadoIns.username}}</td>
