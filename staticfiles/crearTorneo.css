@@ -1,0 +1,220 @@
+
+/*
+rojo: #ED1C24
+blanco: #FFFFFF
+azul: #003975
+*/
+* {
+    font-family: 'Montserrat', sans-serif;
+}
+html, body{
+    height: 100% !important;
+}
+
+.modal-dialog{
+    height: 100%;
+    margin: 0px auto;
+}
+
+
+#intro{
+    background-image: url('/static/images/basquetbolmujeres_fondo.jpg');
+    opacity: 0.7;
+}
+
+#button-crear, #button-crear:hover, #button-crear:active, #button-crear:visited {
+    background-color: #ED1C24 !important;
+}
+
+.navbar-custom {
+    background-color: #003975;
+}
+
+.navbar-brand{
+    color: white !important;
+}
+
+.navbar-nav li a {
+    color: white !important;
+}
+
+
+.nav-link active{
+    color: white;
+}
+
+
+body{
+    background-color: #ED1C24 !important;
+    background-image: url('./imagenes/fondo.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    min-height: 100vh;
+}
+
+main{
+    padding: 30px 0px 30px 0px;
+}
+
+header{
+    background-color: #003975;
+    height: 40px;
+}
+
+#banner{
+    padding-top: 33%;
+    background-image: url('./imagenes/banner.jpg');
+    background-repeat: no-repeat;
+    background-size: 100%;
+    border-radius: 40px;
+    max-width: 80%;
+    margin: 0px auto 0px auto;
+}
+
+#formulario{
+    text-align: center;
+}
+
+
+/*DISEÑO CON COLOR AZUL
+*********************************************
+section{
+    height: 200px;
+    border-radius: 10px;
+    background-color: rgba(0, 57, 117);
+    margin:0px;
+}
+
+#capa2{   
+    border-radius: 40px;
+    padding: 20px !important;
+    background-color: rgba(0, 57, 117, 0.5);
+}*/
+
+
+/*DISEÑO CON COLOR BLANCO
+*****************************************/
+
+section{
+    height: 200px;
+    border-radius: 10px;
+    background-color: rgba(0, 57, 117, 0.1);
+    margin:0px;
+    width: 100%;
+}
+.organizador{
+    display: grid;
+    grid-template-columns: 50% 50%;
+    text-align: left;
+}
+
+#capa2{   
+    border-radius: 40px;
+    padding: 20px !important;
+    background-color: white;
+}
+
+
+article{
+    width: 90% !important;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+label{
+    color: #003975;
+    font-weight: bold;
+}
+
+#pais{
+    color: white !important;
+    background-color: #003975;
+    width: 40%;
+    padding: 8px;
+}
+
+#form2{
+    width: 100% !important;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    text-align: left;
+}
+
+
+.column, #formatsSection{
+    width: 90% !important;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.torneo{
+    height: 270px;
+}
+
+.dolares{
+    margin: 0px !important;
+    padding: 0px !important;
+    text-align: left;
+    display: flex;
+   align-items: center;
+}
+#form3{
+    display: grid;
+    grid-template-columns: 50% 50%;
+    text-align: left;
+    width: 100%!important;
+}
+
+.archivo{
+    width: 90% !important;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.categorias{
+    height: 100%;
+}
+
+.izqui{
+    text-align: left;
+    margin: 0px;
+}
+
+.dere{
+    text-align: right;
+    padding: 0px 12px;
+}
+
+.listaCategorias{
+    margin-top: 20px;
+    padding-bottom: 30px;
+}
+.confModal{
+    text-align: left !important;
+}
+.tablaInput{
+    background-color: #CFE2FF !important;
+    border: none !important;
+    text-align: center;
+}
+@media screen and (max-width: 800px) {
+    .organizador, #form2, #form3{ 
+        display: inline-block !important;
+    }
+
+    .organizador{
+        height: 390px;
+        margin-bottom: 30px;
+    }
+
+    .column{
+        margin-bottom: 15px;
+    }
+
+    .torneo{
+        height: 540px;
+    }
+
+}
