@@ -29,3 +29,15 @@ $('.burger').click(function(){
 
     return false;
 });
+
+$('#btn-infor').click(function(){
+    
+    $('#btn-guardar').removeClass('guardar');
+    $('#btn-guardar').addClass('btn-guardarBlock');
+    var billingItems = document.querySelectorAll('input');
+    for (var i = 0; i < billingItems.length; i++) {
+      billingItems[i].disabled = false;
+    }
+
+    return false;
+});

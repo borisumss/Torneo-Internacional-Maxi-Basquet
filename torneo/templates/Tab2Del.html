@@ -8,7 +8,7 @@
 <article id="Tab2"> 
     <section id="secBtn">
         <button type="button" id="btn-infor" class="btn btn-primary">Modificar Información</button>
-        <button type="button" id="btn-guardar" class="btn btn-primary">Guardar Inscripción</button>
+        <button type="button" id="btn-guardar" class="btn guardar btn-primary">Guardar Inscripción</button>
     </section>
     
     <section id="secPortada">
@@ -22,10 +22,110 @@
             <img id="img-escudo" src="/{{equipo.escudo_equipo}}" alt="IMAGEN DEL ESCUDO">
         </div>
     </section>
-    <br>
-    <section id="secInfor"></section>
-    <section id="secEntrenador"></section>
-    <section id="secEquipo"></section>
+    <br><br>
+    <section id="secInfor">
+        <input type="text" class="primer form-control" name="monto_inscripcion"
+            id="title" value="NOMBRE DEL EQUIPO" disabled required>
+            <div class="position-relative" id="inforDoble">
+                <input type="text" class="form-control" name="monto_inscripcion"
+                    id="input" value="PAIS DEL EQUIPO" disabled required>
+                <input type="text" class="form-control" name="monto_inscripcion"
+                    id="input" value="CIUDAD DEL EQUIPO" disabled required>
+            </div>
+            
+            <div class="position-relative" id="inforDoble">
+                <input type="text" class="form-control" name="monto_inscripcion"
+                id="input" value="TORNEO DEL EQUIPO TORNEO DEL EQUIPO TORNEO DEL EQUIPO TORNEO DEL EQUIPOTORNEO DEL EQUIPO" disabled required>
+                <input type="text" class="form-control" name="monto_inscripcion"
+                    id="input" value="CATEGORIA DEL EQUIPO" disabled required>
+            </div>
+            
+    </section>
+    <hr>
+    <section id="secEntrenador">
+        <label name="monto_inscripcion" id="titleEntre"
+            class="primer" >ENTRENADOR </label>
+            <div class="position-relative" id="inforDoble2">
+                <label class="labelEntre" id="input">ENTRENADOR DEL EQUIPO </label>
+                <button type="button" id="input" class="btn entre btn-outline-success"><i
+                    class="fa fa-plus"></i></button>
+            </div>
+    </section>
+    <hr>
+    <section id="secEquipo">
+            <div class="position-relative" id="inforDoble2">
+                <label class="labelEquip" id="input">Jugadores Registrados </label>
+                <button type="button" id="input" class="btn entre btn-outline-success"><i
+                    class="fa fa-plus"></i></button>
+            </div>
+            
+            <div class="listaJugadores row">
+                <div class="col-12">
+                    <div class="table-responsive">
+                        <table class="table table-striped
+                    table-hover	
+                    table-borderless
+                    table-primary
+                    align-middle" id="tablaJugadores">
+                            <thead class="table-primary" name="lista_jugadores">
+                                <tr class="table-dark">
+                                    <th>ID</th>
+                                    <th>NOMBRE</th>
+                                    <th>DORSAL</th>
+                                    <th>POSICION</th>
+                                </tr>
+                            </thead>
+                            <tbody class="table-group-divider">
+                                <tr class="">
+                                    <td>1</td>
+                                    <td>JUAN PEREZ ALCACHOFFA </td>
+                                    <td>8</td>
+                                    <td>ALERO</td>
+                                </tr>
+                                <tr class="">
+                                    <td>1</td>
+                                    <td>JUAN PEREZ ALCACHOFFA</td>
+                                    <td>8</td>
+                                    <td>ALERO</td>
+                                </tr>
+                                <tr class="">
+                                    <td>1</td>
+                                    <td>JUAN PEREZ ALCACHOFFA</td>
+                                    <td>8</td>
+                                    <td>ALERO</td>
+                                </tr>
+                                <tr class="">
+                                    <td>1</td>
+                                    <td>JUAN PEREZ ALCACHOFFA</td>
+                                    <td>8</td>
+                                    <td>ALERO</td>
+                                </tr>
+                                <tr class="">
+                                    <td>1</td>
+                                    <td>JUAN PEREZ ALCACHOFFA</td>
+                                    <td>8</td>
+                                    <td>ALERO</td>
+                                </tr>
+                                <tr class="">
+                                    <td>1</td>
+                                    <td>JUAN PEREZ ALCACHOFFA</td>
+                                    <td>8</td>
+                                    <td>ALERO</td>
+                                </tr>
+                                <tr class="">
+                                    <td>1</td>
+                                    <td>JUAN PEREZ ALCACHOFFA</td>
+                                    <td>8</td>
+                                    <td>ALERO</td>
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+    </section>
 </article>
 {% endblock %}
 
