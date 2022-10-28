@@ -34,6 +34,15 @@ $('#btn-infor').click(function(){
     
     $('#btn-guardar').removeClass('guardar');
     $('#btn-guardar').addClass('btn-guardarBlock');
+    $('#labelFile').removeClass('guardar');
+    $('#labelFile').addClass('btn-guardarBlock');
+    $('#inputFile').removeClass('guardar');
+    $('#inputFile').addClass('btn-guardarBlock');
+
+    $('#portadaLabel').removeClass('guardar');
+    $('#portadaLabel').addClass('btn-guardarBlock');
+    $('#portadaInput').removeClass('guardar');
+    $('#portadaInput').addClass('btn-guardarBlock');
     var billingItems = document.querySelectorAll('input');
     for (var i = 0; i < billingItems.length; i++) {
       billingItems[i].disabled = false;
@@ -41,3 +50,41 @@ $('#btn-infor').click(function(){
 
     return false;
 });
+
+const $seleccionArchivos = document.querySelector("#inputFile"),
+  $imagenPrevisualizacion = document.querySelector("#img-escudo");
+
+  $seleccionArchivos.addEventListener("change", () => {
+    // Los archivos seleccionados, pueden ser muchos o uno
+    const archivos = $seleccionArchivos.files;
+    // Si no hay archivos salimos de la función y quitamos la imagen
+    if (!archivos || !archivos.length) {
+      $imagenPrevisualizacion.src = "";
+      return;
+    }
+    // Ahora tomamos el primer archivo, el cual vamos a previsualizar
+    const primerArchivo = archivos[0];
+    // Lo convertimos a un objeto de tipo objectURL
+    const objectURL = URL.createObjectURL(primerArchivo);
+    // Y a la fuente de la imagen le ponemos el objectURL
+    $imagenPrevisualizacion.src = objectURL;
+  });
+
+  const $seleccionArchivos2 = document.querySelector("#portadaInput"),
+  $imagenPrevisualizacion2 = document.querySelector("#img-portada");
+
+  $seleccionArchivos2.addEventListener("change", () => {
+    // Los archivos seleccionados, pueden ser muchos o uno
+    const archivos2 = $seleccionArchivos2.files;
+    // Si no hay archivos salimos de la función y quitamos la imagen
+    if (!archivos2 || !archivos2.length) {
+      $imagenPrevisualizacion2.src = "";
+      return;
+    }
+    // Ahora tomamos el primer archivo, el cual vamos a previsualizar
+    const primerArchivo2 = archivos2[0];
+    // Lo convertimos a un objeto de tipo objectURL
+    const objectURL2 = URL.createObjectURL(primerArchivo2);
+    // Y a la fuente de la imagen le ponemos el objectURL
+    $imagenPrevisualizacion2.src = objectURL2;
+  });

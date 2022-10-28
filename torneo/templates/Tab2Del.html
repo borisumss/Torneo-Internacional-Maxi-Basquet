@@ -12,14 +12,17 @@
     </section>
     
     <section id="secPortada">
-        <div class="portada text-center" style="background-image:url(../../{{equipo.portada_equipo}});background-repeat: no-repeat !important;
-        background-size: cover !important;
-        background-position: center !important;
-        background-attachment: fixed !important;">
+        <div class="portada text-center">
+            <label for="portadaInput" id="portadaLabel"  class="btn guardar"></label>
+            <input type="file" class="form-control guardar" style="visibility:hidden;" name="" id="portadaInput" placeholder="" aria-describedby="fileHelpId" disabled>
             
+            <img id="img-portada" src="/{{equipo.portada_equipo}}" alt="">
+      
         </div>
         <div class="escudo text-center">
-            <img id="img-escudo" src="/{{equipo.escudo_equipo}}" alt="IMAGEN DEL ESCUDO">
+            <label for="inputFile" id="labelFile"  class="btn guardar"></label>
+            <input type="file" class="form-control guardar" style="visibility:hidden;" name="" id="inputFile" placeholder="" aria-describedby="fileHelpId" disabled>
+            <img id="img-escudo" src="/{{equipo.escudo_equipo}}" alt="">
         </div>
     </section>
     <br><br>
