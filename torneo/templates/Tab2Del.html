@@ -6,41 +6,50 @@
 {% block contenido %}
 
 <article id="Tab2"> 
+    <form class="needs-validation" id="formulario" name="formulario" method="POST"
+                    enctype="multipart/form-data" novalidate>
+                    {% csrf_token %}
     <section id="secBtn">
-        <button type="button" id="btn-infor" class="btn btn-primary">Modificar Información</button>
-        <button type="button" id="btn-guardar" class="btn guardar btn-primary">Guardar Inscripción</button>
+        <button type="button" id="btn-infor"  class="btn btn-primary">Modificar Información</button>
+        <button type="button" id="btn-cancelar" onclick="location.reload()" class="btn guardar btn-danger">Cancelar</button>
+        <button type="submit" id="btn-guardar" class="btn guardar btn-success">Guardar</button>
     </section>
     
     <section id="secPortada">
         <div class="portada text-center">
             <label for="portadaInput" id="portadaLabel"  class="btn guardar"></label>
-            <input type="file" class="form-control guardar" style="visibility:hidden;" name="" id="portadaInput" placeholder="" aria-describedby="fileHelpId" disabled>
+            <input type="file" class="form-control guardar" onchange="cambiarPortada()" name="portada_equipo" style="visibility:hidden;"  id="portadaInput" placeholder="" aria-describedby="fileHelpId" disabled >
             
             <img id="img-portada" src="/{{equipo.portada_equipo}}" alt="">
       
         </div>
-        <div class="escudo text-center">
+        <div class="escudo ">
             <label for="inputFile" id="labelFile"  class="btn guardar"></label>
-            <input type="file" class="form-control guardar" style="visibility:hidden;" name="" id="inputFile" placeholder="" aria-describedby="fileHelpId" disabled>
+            <input type="file" class="form-control guardar" onchange="cambiarEscudo()" name="escudo_equipo" style="visibility:hidden;"  id="inputFile" placeholder="" aria-describedby="fileHelpId" disabled >
             <img id="img-escudo" src="/{{equipo.escudo_equipo}}" alt="">
         </div>
     </section>
-    <br><br>
-    <section id="secInfor">
-        <input type="text" class="primer form-control" name="monto_inscripcion"
-            id="title" value="NOMBRE DEL EQUIPO" disabled required>
-            <div class="position-relative" id="inforDoble">
-                <input type="text" class="form-control" name="monto_inscripcion"
-                    id="input" value="PAIS DEL EQUIPO" disabled required>
-                <input type="text" class="form-control" name="monto_inscripcion"
-                    id="input" value="CIUDAD DEL EQUIPO" disabled required>
+    <br><br><hr>
+    <section id="secInfor">   
+        <input type="text" class="primer form-control" name="nombre_equipo"
+            id="title" placeholder="NOMBRE DEL EQUIPO" value="{{equipo.nombre_equipo}}" disabled required>
+            <div class="" id="inforDoble">
+                <input type="text" class="form-control" name="pais_equipo"
+                    id="input" placeholder="PAIS DEL EQUIPO" value="{{equipo.pais_origen}}" disabled required>
+                <input type="text" class="form-control" name="ciudad_equipo"
+                    id="input" placeholder="CIUDAD DEL EQUIPO" value="{{equipo.ciudad_origen}}" disabled required>
             </div>
             
             <div class="position-relative" id="inforDoble">
-                <input type="text" class="form-control" name="monto_inscripcion"
-                id="input" value="TORNEO DEL EQUIPO TORNEO DEL EQUIPO TORNEO DEL EQUIPO TORNEO DEL EQUIPOTORNEO DEL EQUIPO" disabled required>
-                <input type="text" class="form-control" name="monto_inscripcion"
-                    id="input" value="CATEGORIA DEL EQUIPO" disabled required>
+                <input type="text" class="nombreTorneo form-control" name="torneo_equipo"
+                id="input" placeholder="TORNEO DEL EQUIPO" value="{{equipo.id_torneo.nombre_torneo}}"  onfocus="this.blur()" required>
+                
+                <select class="form-select" id="input" name="categoria_equipo" disabled required>
+                        <option selected value="">Categoria: {{equipo.categoria_equipo}}</option>
+                        {% for c in categorias %}
+                        <option value="{{c.nombre_categoria}}">{{c.nombre_categoria}}</option>
+                        {% endfor %}
+                </select>
             </div>
             
     </section>
@@ -54,6 +63,7 @@
                     class="fa fa-plus"></i></button>
             </div>
     </section>
+    </form>
     <hr>
     <section id="secEquipo">
             <div class="position-relative" id="inforDoble2">
@@ -79,49 +89,14 @@
                                 </tr>
                             </thead>
                             <tbody class="table-group-divider">
+                                {% for jug in jugadores %}
                                 <tr class="">
-                                    <td>1</td>
-                                    <td>JUAN PEREZ ALCACHOFFA </td>
-                                    <td>8</td>
-                                    <td>ALERO</td>
+                                    <td>{{jug.id}}</td>
+                                    <td>{{jug.nombre_jugador}} </td>
+                                    <td>{{jug.dorsal_jugador}}</td>
+                                    <td>{{jug.posicion_jugador}}</td>
                                 </tr>
-                                <tr class="">
-                                    <td>1</td>
-                                    <td>JUAN PEREZ ALCACHOFFA</td>
-                                    <td>8</td>
-                                    <td>ALERO</td>
-                                </tr>
-                                <tr class="">
-                                    <td>1</td>
-                                    <td>JUAN PEREZ ALCACHOFFA</td>
-                                    <td>8</td>
-                                    <td>ALERO</td>
-                                </tr>
-                                <tr class="">
-                                    <td>1</td>
-                                    <td>JUAN PEREZ ALCACHOFFA</td>
-                                    <td>8</td>
-                                    <td>ALERO</td>
-                                </tr>
-                                <tr class="">
-                                    <td>1</td>
-                                    <td>JUAN PEREZ ALCACHOFFA</td>
-                                    <td>8</td>
-                                    <td>ALERO</td>
-                                </tr>
-                                <tr class="">
-                                    <td>1</td>
-                                    <td>JUAN PEREZ ALCACHOFFA</td>
-                                    <td>8</td>
-                                    <td>ALERO</td>
-                                </tr>
-                                <tr class="">
-                                    <td>1</td>
-                                    <td>JUAN PEREZ ALCACHOFFA</td>
-                                    <td>8</td>
-                                    <td>ALERO</td>
-                                </tr>
-
+                                {% endfor %}
                             </tbody>
 
                         </table>

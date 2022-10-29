@@ -191,11 +191,12 @@ body {
     position: absolute;
     height: 150px;
     width: 150px;
-    top: 65%;
+    top: 75%;
     left: 50%;
     margin: 0px 0px 0px -75px;    
     border-radius: 50%;   
     background-color: #000; 
+    border: solid 2px black;
 }
 
 #img-escudo{
@@ -204,7 +205,8 @@ body {
     border-radius: 50%;
 }
 .portada{
-    height: 300px;
+    height: 370px;
+    margin: 0 auto;
     width: 100%;
     border: solid 2px black;
     position: relative;
@@ -212,7 +214,7 @@ body {
 
 #img-portada{
     height: 100%;
-    width: auto;
+    width: 100%;
 }
 
 #portadaLabel, #portadaInput{
@@ -230,7 +232,7 @@ body {
     width: 95%;
     margin-left: auto;
     margin-right: auto;
-    font-size: 12px ;
+    font-size: 14px ;
     padding-left: 12px;
     padding-right: 12px;
 }
@@ -241,17 +243,27 @@ body {
     font-size: 16px !important;
 }
 
-input:disabled{
+input:disabled, select:disabled, input::placeholder{
     background-color: rgba(255, 255, 255, 0) !important;
     border: none;
-    color:#003975;
-}
-
-input:enabled{
-    color: red !important;
+    color:#003975 !important;
 }
 
 
+
+input:enabled, select:enabled{
+    color: purple ;
+    border: solid 3px purple;
+}
+
+.subirImagenes{
+    border: solid 3px purple !important;
+}
+
+.nombreTorneo{
+    color: #003975 !important;
+    border: none !important;
+}
 
 #inforDoble{
     margin-top: 10px;
