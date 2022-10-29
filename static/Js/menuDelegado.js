@@ -1,31 +1,31 @@
 
 (function () {
-    'use strict'
-  
-    // Fetch all the forms we want to apply custom Bootstrap validation styles to
-    var forms = document.querySelectorAll('.needs-validation')
-    // Loop over them and prevent submission
-    Array.prototype.slice.call(forms)
-      .forEach(function (form) {
-        form.addEventListener('submit', function (event) {
-          if (!form.checkValidity()) {
-            event.preventDefault()
-            event.stopPropagation()
-          }
-          //Swal.fire('Tiene que llenar todos los campos', '', 'error');
-          form.classList.add('was-validated')
-  
-        }, false)
-      })
-  })()
+  'use strict'
 
-  $(function(){
-    var billingItems = document.querySelectorAll('input');
-    for (var i = 0; i < billingItems.length; i++) {
-        if(billingItems[i].value == "None"){
-            billingItems[i].value = "";
+  // Fetch all the forms we want to apply custom Bootstrap validation styles to
+  var forms = document.querySelectorAll('.needs-validation')
+  // Loop over them and prevent submission
+  Array.prototype.slice.call(forms)
+    .forEach(function (form) {
+      form.addEventListener('submit', function (event) {
+        if (!form.checkValidity()) {
+          event.preventDefault()
+          event.stopPropagation()
         }
-    }    
+        //Swal.fire('Tiene que llenar todos los campos', '', 'error');
+        form.classList.add('was-validated')
+
+      }, false)
+    })
+})()
+
+$(function () {
+  var billingItems = document.querySelectorAll('input');
+  for (var i = 0; i < billingItems.length; i++) {
+    if (billingItems[i].value == "None") {
+      billingItems[i].value = "";
+    }
+  }
 });
 /*
 $('ul.tabs li').click(function(){
@@ -39,51 +39,60 @@ $('ul.tabs li').click(function(){
     return false;
 });*/
 
-$('.burger').click(function(){
-    
-    let x = $('#side_nav').width();
-    if(x<=55){
-        $('#side_nav').addClass('menu-expanded');
-        $('#side_nav').removeClass('menu-collapsed');
-    }else{
-        $('#side_nav').addClass('menu-collapsed');
-        $('#side_nav').removeClass('menu-expanded');
-    }
+$('.burger').click(function () {
 
-    return false;
+  let x = $('#side_nav').width();
+  if (x <= 55) {
+    $('#side_nav').addClass('menu-expanded');
+    $('#side_nav').removeClass('menu-collapsed');
+  } else {
+    $('#side_nav').addClass('menu-collapsed');
+    $('#side_nav').removeClass('menu-expanded');
+  }
+
+  return false;
 });
 
-$('#btn-infor').click(function(){
-    $('#btn-infor').addClass('guardar');
-    $('#btn-guardar').removeClass('guardar');
-    $('#btn-guardar').addClass('btn-guardarBlock');
-    $('#btn-cancelar').removeClass('guardar');
-    $('#btn-cancelar').addClass('btn-guardarBlock');
-    $('#labelFile').removeClass('guardar');
-    $('#labelFile').addClass('btn-guardarBlock');
-    $('#inputFile').removeClass('guardar');
-    $('#inputFile').addClass('btn-guardarBlock');
+$('#btn-infor').click(function () {
+  $('#btn-infor').addClass('guardar');
+  $('#btn-guardar').removeClass('guardar');
+  $('#btn-guardar').addClass('btn-guardarBlock');
+  $('#btn-cancelar').removeClass('guardar');
+  $('#btn-cancelar').addClass('btn-guardarBlock');
+  $('#labelFile').removeClass('guardar');
+  $('#labelFile').addClass('btn-guardarBlock');
+  $('#inputFile').removeClass('guardar');
+  $('#inputFile').addClass('btn-guardarBlock');
 
-    $('#portadaLabel').removeClass('guardar');
-    $('#portadaLabel').addClass('btn-guardarBlock');
-    $('#portadaInput').removeClass('guardar');
-    $('#portadaInput').addClass('btn-guardarBlock');
-    $('.escudo').addClass('subirImagenes');
-    $('.portada').addClass('subirImagenes');
-    var billingItems = document.querySelectorAll('input');
-    var cate = document.querySelectorAll('select');
-    cate[0].disabled = false;
-    for (var i = 0; i < billingItems.length; i++) {
-      billingItems[i].disabled = false;
-    }
+  $('#portadaLabel').removeClass('guardar');
+  $('#portadaLabel').addClass('btn-guardarBlock');
+  $('#portadaInput').removeClass('guardar');
+  $('#portadaInput').addClass('btn-guardarBlock');
+  $('.escudo').addClass('subirImagenes');
+  $('.portada').addClass('subirImagenes');
+  var billingItems = document.querySelectorAll('input');
+  var cate = document.querySelectorAll('select');
+  cate[0].disabled = false;
+  for (var i = 0; i < billingItems.length; i++) {
+    billingItems[i].disabled = false;
+  }
 
-    return false;
+  return false;
 });
 
 let seleccionArchivos = document.getElementById("inputFile"),
   imagenPrevisualizacion = document.getElementById("img-escudo");
 
-  function cambiarEscudo() {
+function cambiarEscudo() {
+  var archivoRuta = seleccionArchivos.value;
+  var extesiones = /(.jpg|.jpeg|.png)$/i;;
+
+  if (!extesiones.exec(archivoRuta)) {
+    Swal.fire('Sólo se permiten imágenes (.jpg .jpeg .png)', '', 'error');
+    seleccionArchivos.value = '';
+    imagenPrevisualizacion.src = "";
+    return false;
+  } else {
     // Los archivos seleccionados, pueden ser muchos o uno
     const archivos = seleccionArchivos.files;
     // Si no hay archivos salimos de la función y quitamos la imagen
@@ -97,18 +106,28 @@ let seleccionArchivos = document.getElementById("inputFile"),
     const objectURL = URL.createObjectURL(primerArchivo);
     // Y a la fuente de la imagen le ponemos el objectURL
     imagenPrevisualizacion.src = objectURL;
-    
   }
-  let test = document.getElementById("test");
+}
+let test = document.getElementById("test");
 
-  function cambiar(){
+function cambiar() {
 
-      alert(test.value)
-  }
-  let seleccionArchivos2 = document.getElementById("portadaInput"),
+  alert(test.value)
+}
+let seleccionArchivos2 = document.getElementById("portadaInput"),
   imagenPrevisualizacion2 = document.getElementById("img-portada");
 
-  function cambiarPortada() {
+function cambiarPortada() {
+  var archivoRuta = seleccionArchivos2.value;
+  var extesiones = /(.jpg|.jpeg|.png)$/i;;
+
+  if (!extesiones.exec(archivoRuta)) {
+    Swal.fire('Sólo se permiten imágenes (.jpg .jpeg .png)', '', 'error');
+    seleccionArchivos2.value = '';
+    imagenPrevisualizacion2.src = "";
+    return false;
+  } else {
+
     // Los archivos seleccionados, pueden ser muchos o uno
     const archivos2 = seleccionArchivos2.files;
     // Si no hay archivos salimos de la función y quitamos la imagen
@@ -122,10 +141,10 @@ let seleccionArchivos = document.getElementById("inputFile"),
     const objectURL2 = URL.createObjectURL(primerArchivo2);
     // Y a la fuente de la imagen le ponemos el objectURL
     imagenPrevisualizacion2.src = objectURL2;
-   
   }
+}
 
-function validarFechas(fechaIni, fechaFin){
+function validarFechas(fechaIni, fechaFin) {
   const tiempoTranscurrido = Date.now() //Obtiene el tiempo actual en milisegundos
   const hoy = new Date(tiempoTranscurrido) //Convierte en formato "DiaSemana Mes Dia Año GTM"
   let fechaActual = hoy.toLocaleDateString()
@@ -136,12 +155,12 @@ function validarFechas(fechaIni, fechaFin){
   let fechaRezFin = new Date(fechaFin);
   fechaRezFin = fechaRezFin.toLocaleDateString();
   let boton = document.getElementById("btn-infor");
-  if(boton != null){
-    if(fechaActual>=fechaRezIni && fechaActual<= fechaRezFin){
-      boton.style.display = 'inline-block';
-    }else{
+  if (boton != null) {
+    if (fechaActual >= fechaRezIni && fechaActual <= fechaRezFin) {
+        console.log("si se puede inscribir")
+    } else {
       boton.style.display = 'none';
     }
-  
+
   }
 }
