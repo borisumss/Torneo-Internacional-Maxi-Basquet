@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Maxi Basquet Administración</title>
+  <!-- Required meta tags -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+  <!-- Bootstrap CSS v5.2.0-beta1 -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css"
+    integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous" />
+
+  <!-- iconos bootstrap 5 -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css" />
+  <!--- MDBootstrap  -->
+  <!-- Font Awesome -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
+  <!-- MDB -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/5.0.0/mdb.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="../../static/css/torneos.css">
+</head>
+
+<body class="body">
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+        <div class="container">
+          <a class="navbar-brand text-white" href="{% url 'home' %}">Maxi Basquet</a>         
+        </div>
+      </nav>
+    
+  <main>
+    <div class="container izquierda" id="content">
+      <div class="row filaIzq">
+        <div class="col-12 secciones align-items-center justify-content-center">
+            
+            <br>
+            <article id="Tab1" class="tab1Izq"> 
+                {% for i in torneoActual %}
+                <div class="container">
+                    <div class="row" id="actual" >
+                      <div class="col-lg-12 col-md-12 col-12 ps-lg-5 mt-md-5">
+                        <div class="about-text">
+                          <h2 style=" text-transform: uppercase; font-weight:bolder">
+                           {{i.nombre_torneo}}
+                          </h2><br>
+                          <p>
+                            Evento de carácter internacional, que hasta el momento ha manifestado interés por participar equipos
+                            provenientes
+                            no sólo de Bolivia, sino de también Argentina y otros países de Sud América.<br>
+                            Ofrece distintas categorías en las ramas masculinas y femeninas, también separadas por edades<br><br>
+                            
+                            Organizado por: <b style=" text-transform: uppercase;">{{i.id_organizador.nombre_organizador}} </b> <br>
+                            En el país de: <b style=" text-transform: uppercase;">{{i.pais_torneo}} </b> <br>
+                            Dará inicio el <b style=" text-transform: uppercase;">{{i.fecha_torneo_inicio}} </b> y terminará el: <b style=" text-transform: uppercase;">{{equipo.id_torneo.fecha_torneo_fin}} </b><br>
+                            Mas detalles en:  <b><a target="_blank"  id="conv" href="/{{i.invitacion_documento}}" >Convocatoria Publica</a></b>
+                          
+                            <br>
+                            
+                           </p>
+                        
+                          <p> Para cualquier duda o consulta comunicarse al correo electrónico <b>{{i.id_organizador.correo_organizador}}</b> o al número <b>{{i.id_organizador.telefono_organizador}}</b>.
+                          </p>
+                          <br>
+                          <div class="text-center">
+                            <a href="{% url 'Torneo' i.id %}" class="btn btn-primary" id="btn-ir">Ir al Torneo</a>
+                          </div>
+                          <br>
+                        </div>
+                      </div>
+                    </div>    
+                  </div>
+                  {% endfor %}
+            </article>
+        </div>
+      </div>
+    </div>
+    <div class="container derecha" id="content">
+        <div class="row">
+          <div class="col-12 secciones align-items-center justify-content-center">
+            
+        <br><br><br><br>
+        <h2 class="text-white text-center" id="tituloPasado"> TORNEOS PASADOS </h2>
+                <article id="Tab2">
+                  
+                  {% for i in torneosTerminados %}
+                  <div class="tarjeta2">
+                    <a id="card2H" href="{% url 'Torneo' i.id %}">
+                      <div class="card" id="card2">
+                          
+                        <div class="card-body" id="tab2body">
+                          <div class="container-fluid">
+                            <div class="row">
+                              <div class="col-12">
+                                <br>
+                                <h5 class="text-center">{{i.nombre_torneo}}</h5>
+                                <hr>
+                                <p>
+                                  Torneo realizado en el país de "{{i.pais_torneo}}", organizao por <b>
+                                    {{i.id_organizador.nombre_organizador}}.</b>
+                                </p>
+                                <p><b>Fecha de inicio:</b> {{i.fecha_torneo_inicio}} </p>
+                                  <p><b>Fecha final: </b>{{i.fecha_torneo_fin}}</p>
+                               
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="card-header text-center" id="tab2header">
+                          <img src="/{{i.logo}}" alt="imagen"
+                          class="img_logo" data-bs-toggle="modal"
+                          data-bs-target="#exampleModal3">  
+                        </div>
+                        <div class="card-footer text-muted text-center" id="ganador">
+                        <span class="text-white"> 
+                          <i class="text-white fa fa-trophy"></i> Nombre equipo ganador</span>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+                  {% endfor %}
+                  <div class="container-fluid modal modal fade" id="exampleModal3"
+                      tabindex="-1" aria-labelledby="modal3Label" aria-hidden="true">
+                      <div class="row align-items-center justify-content-center modal-dialog">
+                        <div class="col-12 modal-content" id="fotoExp2">
+                          <div class="modal-header" id="modalTab2Header">
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                          </div>
+                          <div class="modal-body confModal" id="modalValid">
+                            <img src="" alt="imagen"
+                                 id="imgFull2">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                </article>
+  
+          </div>
+        </div>
+      </div>
+  </main>
+</body>
+<!-- Bootstrap JavaScript Libraries -->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js"
+  integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js"
+  integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK" crossorigin="anonymous"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+
+<!--- MDBootstrap  -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/5.0.0/mdb.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<!--- MDBootstrap  -->
+
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script type="text/javascript" src="../../static/Js/menuAdmin.js"></script>
+</html>

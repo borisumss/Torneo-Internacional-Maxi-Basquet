@@ -780,3 +780,11 @@ def inscribirEntrenador(request,id):
         equipo.update(id_entrenador_equipo = entrenador)
         messages.success(request, "Entrenador registrado correctamente")
         return redirect('delegacionEquipo')
+
+def torneos(request):
+    torneosTerminados = Torneo.objects.filter(torneo_estado=0)
+    torneosActual = Torneo.objects.filter(torneo_estado=1)
+    return render(request, 'torneos.html', {
+         "torneosTerminados": torneosTerminados,
+         "torneoActual": torneosActual
+    })
