@@ -53,7 +53,7 @@
           {% csrf_token %}
           <div class="mb-4">
             <div class="mb-3 position-relative">
-              <label for="" class="form-label">Correo electrónico:</label>
+              <label for="" class="form-label">Nombre de Usuario:</label>
               
               <input type="text" class="form-control" name="email" id="inputForm" aria-describedby="emailHelpId"
                 placeholder="Ingrese su Nombre de Usuario" required>
@@ -123,7 +123,7 @@
     {% if messages %}
       {% for m in messages %}
         <script>
-          Swal.fire('Acceso invalido. Por favor intente de nuevo', '', 'error');
+          Swal.fire('{{m}}', '', 'error');
         </script>
       {% endfor %}
     {% endif %}

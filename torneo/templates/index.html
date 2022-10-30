@@ -20,7 +20,7 @@
 
   <nav class="navbar navbar-expand-lg navbar-light fixed-top">
     <div class="container">
-      <a class="navbar-brand text-white" href="#">Maxi Basquet</a>
+      <a class="navbar-brand text-white" href="{% url 'home' %}">Maxi Basquet</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -96,7 +96,7 @@
             Ofrece distintas categorías en las ramas masculinas y femeninas, también separadas por edades<br>
             
           </p><br>
-          <a href="#" class="btn btn-primary mt-3">Ver Torneos</a>
+          <a href="{% url 'torneosTodos' %}" class="btn btn-primary mt-3">Ver Torneos</a>
         </div>
       </div>
 
@@ -189,7 +189,7 @@
               Organizado por: <b style=" text-transform: uppercase;">{{i.id_organizador.nombre_organizador}} </b> <br>
               En el país de: <b style=" text-transform: uppercase;">{{i.pais_torneo}} </b> <br>
               Dará inicio el <b style=" text-transform: uppercase;">{{i.fecha_torneo_inicio}} </b> y terminará el: <b style=" text-transform: uppercase;">{{i.fecha_torneo_fin}} </b><br>
-              Mas detalles en:  <a target="_blank" href="/{{i.invitacion_documento}}" >Convocatoria Publica</a>
+              Mas detalles en:  <b><a target="_blank" id="conv" href="/{{i.invitacion_documento}}" >Convocatoria Publica</a></b>
             
               <br>
               

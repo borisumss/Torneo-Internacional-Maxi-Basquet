@@ -5,8 +5,89 @@
 {% block class3 %}  active {% endblock %}
 {% block contenido %}
 
-<article id="Tab3">
-    <h1>CUENTAS PARA DELEGADOS AQUI</h1>
+<article class="box" id="Tab3">
+  <div class="card">
+    <div class="card-body table-responsive">
+      <h4 class="card-title">Torneos en Progreso</h4>
+      <div class="">
+        <table class="table">
+          <thead>
+            <tr id="cabeza">
+              <th scope="col">ID</th>
+              <th scope="col">Nombre</th>
+              <th scope="col">Doc. Identidad</th>
+              <th scope="col">Username</th>
+              <th scope="col">Email</th>
+              <th scope="col">Estado</th>
+              <th scope="col">Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for i in pre %}
+            <tr class="">
+              <td scope="row">{{i.id_delegadoPreIns.id}}</td>
+              <td>{{i.nombre_delegado_Preinscripcion}}</td>
+              <td>{{i.ci_delegado_Preinscripcion}}</td>
+              <td>{{i.id_delegadoPreIns.username}}</td>
+              <td>{{i.id_delegadoPreIns.email}}</td>
+              <td>ACTIVO</td>
+              <td>
+                <a name="" id="btn-baja" class="btn btn-danger" href="{% url 'delegadosBaja' 'PREINSCRIPCION' i.id %}" role="button"><span
+                    class="text-white"> DAR DE BAJA</span></a>
+              </td>
+            </tr>
+            {% endfor %}
+
+            {% for i in rez %}
+            <tr class="">
+              <td scope="row">{{i.id_delegadoIns.id}}</td>
+              <td>{{i.nombre_delegado_inscripcion}}</td>
+              <td>{{i.ci_delegado_inscripcion}}</td>
+              <td>{{i.id_delegadoIns.username}}</td>
+              <td>{{i.id_delegadoIns.email}}</td>
+              <td>ACTIVO</td>
+              <td>
+                <a name="" id="btn-baja" class="btn btn-danger" href="{% url 'delegadosBaja'  'REZAGADOS' i.id %}" role="button"><span
+                    class="text-white">DAR DE BAJA</span></a>
+              </td>
+            </tr>
+            {% endfor %}
+
+            {% for i in preBaja %}
+            <tr class="">
+              <td scope="row">{{i.id_delegadoPreIns.id}}</td>
+              <td>{{i.nombre_delegado_Preinscripcion}}</td>
+              <td>{{i.ci_delegado_Preinscripcion}}</td>
+              <td>{{i.id_delegadoPreIns.username}}</td>
+              <td>{{i.id_delegadoPreIns.email}}</td>
+              <td>BAJA</td>
+              <td>
+                <a name="" id="btn-alta" class="btn btn-success" href="{% url 'delegadosAlta'  'PREINSCRIPCION' i.id %}" role="button"><span
+                    class="text-white">DAR DE ALTA</span></a>
+              </td>
+            </tr>
+            {% endfor %}
+
+            {% for i in rezBaja %}
+            <tr class="">
+              <td scope="row">{{i.id_delegadoIns.id}}</td>
+              <td>{{i.nombre_delegado_inscripcion}}</td>
+              <td>{{i.ci_delegado_inscripcion}}</td>
+              <td>{{i.id_delegadoIns.username}}</td>
+              <td>{{i.id_delegadoIns.email}}</td>
+              <td>BAJA</td>
+              <td>
+                <a name="" id="btn-alta" class="btn btn-success" href="{% url 'delegadosAlta'  'REZAGADOS' i.id %}" role="button"><span
+                    class="text-white">DAR DE ALTA</span></a>
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </div>
   </article>
 
 {% endblock %}

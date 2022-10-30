@@ -131,9 +131,9 @@ body{
 }
 
 
-#Tab1 .card-body{
+#Tab1 .card-body {
     background-color: white;
-    overflow: scroll;
+
     min-height: 100%;
     
 }
@@ -168,8 +168,7 @@ th{
 }
 
 .fondoTab3{
-    background-image:url(../images/basket.jpg) !important;
-    background-position: center !important;
+    background-image: url(../images/fondoSol.jpg) !important;
 }
 
 .fondoTab4{
@@ -372,7 +371,9 @@ th{
     
 }
 #fotoExp #modalValid{
-    overflow: scroll;
+   overflow: scroll;
+   overflow-x:auto;
+   overflow-y: auto;
 }
 
 #imgFull{
@@ -475,6 +476,13 @@ th{
     color: #003975 !important;
     font-weight: bold !important;
 }
+
+#Tab3 .card{
+    margin-top: 50px;
+    height: 100%;
+}
+
+
 @media only screen and (max-width: 775px) {
     .informacion{
         margin-top: 10px;
