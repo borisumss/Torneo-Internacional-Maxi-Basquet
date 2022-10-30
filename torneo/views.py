@@ -108,8 +108,8 @@ def login(request):
         password = request.POST.get('password')
         user = authenticate(request, username=email, password=password)
         if user is not None:
-            rez = delegado_Inscripcion.objects.filter(id_delegadoIns_id=user.id)
-            pre = delegado_PreInscripcion.objects.filter(id_delegadoPreIns_id=user.id)
+            rez = delegado_Inscripcion.objects.filter(id_delegadoIns_id=user.pk)
+            pre = delegado_PreInscripcion.objects.filter(id_delegadoPreIns_id=user.pk)
             if len(rez)>0:
                 if rez[0].estado_delegado_inscripcion == 'BAJA':
                     messages.warning(request, "Este usuario ha sido dado de baja")
@@ -429,8 +429,8 @@ def aceptar(request, tipo, id):
         user.save()
         if tipo == 'REZAGADOS':
             solicitud = delegado_Inscripcion.objects.filter(id=id)
-            solicitud.update(estado_delegado_inscripcion='ACEPTADO',id_delegadoIns_id=user.id)
-            id_delegado = user.id
+            solicitud.update(estado_delegado_inscripcion='ACEPTADO',id_delegadoIns_id=user.pk)
+            id_delegado = user.pk
             nombre_delegado = solicitud[0].nombre_delegado_inscripcion
             ci_delegado = solicitud[0].ci_delegado_inscripcion
             telefono_delegado  = solicitud[0].telefono_delegado_inscripcion
@@ -441,13 +441,15 @@ def aceptar(request, tipo, id):
             estado_inscrip = 'PENDIENTE'
             id_deleg = delegado
             id_torneo = solicitud[0].id_inscripcion.id_torneo
-            equipo = Equipo(estado_inscripcion_equipo=estado_inscrip,id_delegado=id_deleg,id_torneo=id_torneo)
+            portada = 'static/imagenes/equipos/portadas/default.jpg' 
+            escudo = 'static/imagenes/equipos/escudos/default.jpg'
+            equipo = Equipo(estado_inscripcion_equipo=estado_inscrip,id_delegado=id_deleg,id_torneo=id_torneo, escudo_equipo = escudo, portada_equipo = portada)
             equipo.save()
                   
         elif tipo == 'PREINSCRIPCION':            
             solicitud = delegado_PreInscripcion.objects.filter(id=id)
-            solicitud.update(estado_delegado_Preinscripcion='ACEPTADO',id_delegadoPreIns_id=user.id)
-            id_delegado = user.id
+            solicitud.update(estado_delegado_Preinscripcion='ACEPTADO',id_delegadoPreIns_id=user.pk)
+            id_delegado = user.pk
             nombre_delegado = solicitud[0].nombre_delegado_Preinscripcion
             ci_delegado = solicitud[0].ci_delegado_Preinscripcion
             telefono_delegado  = solicitud[0].telefono_delegado_Preinscripcion
@@ -612,7 +614,7 @@ def administracionEquipos(request):
             else:
                 torneo_actual = get_object_or_404(Torneo, torneo_estado=1) #peligroso
                 categorias = Categorias_Torneo.objects.filter(id_torneo=torneo_actual.pk)
-                equipos = Equipo.objects.filter(estado_inscripcion_equipo="inscrito", id_torneo=torneo_actual.pk)
+                equipos = Equipo.objects.filter(estado_inscripcion_equipo="INSCRITO", id_torneo=torneo_actual.pk)
                 return render(request, 'Tab4.html', {
                     'equipos': equipos,
                     'categorias': categorias,
@@ -676,11 +678,42 @@ def delegacionEquipo(request):
                 return redirect('login')
             else:
                equipo = Equipo.objects.filter(id_delegado=request.user.id)
+               todos = Equipo.objects.all()
+               aux = ''
+               for i in todos:
+                    if i != equipo[0]:
+                        aux = aux + i.nombre_equipo +"-"
+
+               cate = Categorias_Torneo.objects.filter(id_torneo=equipo[0].id_torneo)
+               fechas = Inscripcion.objects.filter(id_torneo=equipo[0].id_torneo)
+               jugadores = Jugador.objects.filter(id_equipo = equipo[0])
                return render(request,'Tab2Del.html',{
-                    'equipo':equipo[0]
+                    'equipo':equipo[0],
+                    'categorias':cate,
+                    'jugadores': jugadores,
+                    'fechas':fechas.first(),
+                    'equiposTodos':aux
                 })
         else:
             return redirect('login')
+    elif request.method == 'POST':
+        print(request.POST)
+        print(request.FILES)
+        #portada ="static/imagenes/equipos/portadas/" + str(request.FILES.get('portada_equipo'))
+        #escudo = "static/imagenes/equipos/escudos/"+ str( request.FILES.get('escudo_equipo'))
+        portada =request.FILES.get('portada_equipo')
+        escudo = request.FILES.get('escudo_equipo')
+
+        nombre = request.POST.get('nombre_equipo')
+        pais = request.POST.get('pais_equipo')
+        ciudad = request.POST.get('ciudad_equipo')
+        categoria = request.POST.get('categoria_equipo')
+         
+        equipo = Equipo.objects.filter(id_delegado=request.user.id)
+        estado = 'INSCRITO'
+       
+        equipo.update(pais_origen = pais, ciudad_origen= ciudad, nombre_equipo = nombre, categoria_equipo=categoria, estado_inscripcion_equipo=estado)
+        return redirect('delegacionEquipo')
 
 def delegacionCredenciales(request):
     if request.method == 'GET':
@@ -695,3 +728,55 @@ def delegacionCredenciales(request):
         else:
             return redirect('login')
 
+def inscribirEquipo(request,id):
+    if request.method == 'GET':
+        if not request.user.is_anonymous:
+            if not request.user.email.endswith('@delegacion.com'):
+                return redirect('login')
+            else:
+                return render(request,'RegistrarJugador.html')
+        else:
+            return redirect('login')
+    elif request.method == 'POST':
+        print(request.POST)
+        nombre = request.POST.get('Nombre')
+        apodo = request.POST.get('Apodo')
+        posicion = request.POST.get('Posicion')
+        dorsal = request.POST.get('Nro_camiseta')
+        ci = request.POST.get('Documento')
+        fecha = request.POST.get('Fecha_nac')
+        telefono = request.POST.get('Telefono')
+        foto = request.FILES.get('foto')
+        
+        id_equipo = Equipo.objects.filter(id=id)
+
+        jugador = Jugador(id_equipo=id_equipo[0],ci_jugador= ci, nacimiento_jugador = fecha,telefono_jugador = telefono, foto_jugador = foto ,nombre_jugador = nombre, apodo_jugador = apodo, posicion_jugador = posicion,dorsal_jugador = dorsal)
+        jugador.save()
+        messages.success(request, "Jugador registrado correctamente")
+        return redirect('delegacionEquipo')
+
+def inscribirEntrenador(request,id):
+    if request.method == 'GET':
+        if not request.user.is_anonymous:
+            if not request.user.email.endswith('@delegacion.com'):
+                return redirect('login')
+            else:
+                return render(request,'RegistrarEntrenador.html')
+        else:
+            return redirect('login')
+    elif request.method == 'POST':
+        print(request.POST)
+        nombre = request.POST.get('Nombre')
+        apodo = request.POST.get('Apodo')
+        nacionaldiad = request.POST.get('nacionalidad')
+        ci = request.POST.get('Documento')
+        fecha = request.POST.get('Fecha_nac')
+        telefono = request.POST.get('Telefono')
+        foto = request.FILES.get('foto')
+        
+        entrenador = Entrenador(ci_entrenador= ci, nacimiento_entrenador = fecha,telefono_entrenador = telefono, foto_entrenador = foto ,nombre_entrenador = nombre, apodo_entrenador = apodo,nacionalidad_entrenador = nacionaldiad)
+        entrenador.save()
+        equipo = Equipo.objects.filter(id=id)
+        equipo.update(id_entrenador_equipo = entrenador)
+        messages.success(request, "Entrenador registrado correctamente")
+        return redirect('delegacionEquipo')

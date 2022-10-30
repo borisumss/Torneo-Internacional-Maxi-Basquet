@@ -24,7 +24,7 @@
   {% block css %} {% endblock %}
 </head>
 
-<body class="body {% block body %}  {% endblock %}">
+<body class="body {% block body %}  {% endblock %}"  onload="validarFechas('{{fechas.fecha_inicio}}','{{fechas.fecha_fin}}')">
   <header>
     <!-- place navbar here -->
     <nav class="navbar navbar-expand-lg navbar-custom">
