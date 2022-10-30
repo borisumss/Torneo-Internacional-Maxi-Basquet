@@ -93,6 +93,8 @@ class Delegado(models.Model):
 
 class Entrenador(models.Model):
     nombre_entrenador = models.CharField(max_length=50, null=True)
+    apodo_entrenador = models.CharField(max_length=50, null=True)
+    nacionalidad_entrenador = models.CharField(max_length=50, null=True)
     ci_entrenador = models.CharField(max_length=50, null=True)
     nacimiento_entrenador = models.DateField(auto_now=False, auto_now_add=False)
     foto_entrenador =  models.ImageField(upload_to='static/imagenes/equipos/entrenadores/', verbose_name='Foto Enrtenador', null=True)
@@ -113,6 +115,7 @@ class Equipo(models.Model):
 
 class Jugador(models.Model):
     nombre_jugador = models.CharField(max_length=50, null=True)
+    apodo_jugador = models.CharField(max_length=50, null=True)
     ci_jugador = models.CharField(max_length=50, null=True)
     nacimiento_jugador = models.DateField(auto_now=False, auto_now_add=False)
     foto_jugador =  models.ImageField(upload_to='static/imagenes/equipos/jugadores/', verbose_name='Foto jugador', null=True)
