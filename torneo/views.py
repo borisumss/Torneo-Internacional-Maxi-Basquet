@@ -368,7 +368,7 @@ def rechazar(request, tipo, id):
             messages.success(request, "Solictud rechazada correctamente")
         return redirect('solicitudes')
 
-
+ 
 def aceptar(request, tipo, id):
     if request.method == 'GET':
         if not request.user.is_anonymous:
@@ -682,7 +682,8 @@ def delegacionEquipo(request):
                aux = ''
                for i in todos:
                     if i != equipo[0]:
-                        aux = aux + i.nombre_equipo +"-"
+                        if i.nombre_equipo is not None:
+                            aux = aux + i.nombre_equipo +"-"
 
                cate = Categorias_Torneo.objects.filter(id_torneo=equipo[0].id_torneo)
                fechas = Inscripcion.objects.filter(id_torneo=equipo[0].id_torneo)

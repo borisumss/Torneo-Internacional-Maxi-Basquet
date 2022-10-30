@@ -144,5 +144,4 @@ EMAIL_HOST_USER = 'dimelsa.soft@gmail.com'
 EMAIL_HOST_PASSWORD = 'iumdadaygfqwjibi'
 EMAIL_USE_TLS = True
 
-
 CSRF_TRUSTED_ORIGINS = ['https://web-production-9a8b.up.railway.app']
