@@ -35,6 +35,7 @@ urlpatterns = [
     path('delegacion/', views.delegacion, name='delegacion'),
     path('delegacion/Torneo', views.delegacionTorneo, name='delegacionTorneo'),
     path('delegacion/equipo', views.delegacionEquipo, name='delegacionEquipo'),
+    path('delegacion/registrar', views.delegacionJugador, name='delegacionJugador'),
     path('delegacion/credenciales', views.delegacionCredenciales, name='credenciales'),
     path('logout/', views.cerrarSesion, name='logout'),
     path('administracion/solicitudes/rechazadas/<str:tipo>/<int:id>', views.rechazar, name='Solicitud_Rechazada'),

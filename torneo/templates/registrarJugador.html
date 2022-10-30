@@ -1,0 +1,124 @@
+{% extends "panelDelegado.html" %}
+
+{% block css %} <link rel="stylesheet" href="../../static/css/panelDelegado.css"> {% endblock %}
+{% block body %}  fondoTab2 {% endblock %}
+{% block class2 %}  active {% endblock %}
+{% block contenido %}
+
+<article id="Tab2" class="container d-flex mx-auto justify-content-center align-items-center"> 
+    <div class="card" id="cont">
+        <div class="card-header">
+          <a href="equipo"><button type="button" class="btn-close" aria-label="Close"></button></a>
+        </div>
+        <div class="card-body">
+          <form class="needs-validation" id="formulario" name="formulario" method="POST" enctype="multipart/form-data" novalidate>
+            <div class="row">
+              <div class="col-12 col-lg-4">
+                <div id="contFoto" class="position-relative d-flex justify-content-center align-items-center" >
+                  <button type="button" id="boton-foto">Buscar foto</button>
+                  <input type="file" class="formJug" accept="doctype" value="upload" id="fotoJugador"
+                  name="foto" onchange="validarFoto()" hidden required>
+                  <img id="imgprevisualizacion" class="img-fluid" hidden>
+                    <div class="invalid-tooltip">
+                        Adjunte foto del jugador
+                    </div>
+                </div>
+              </div>
+              <div class="col-12 col-lg-8">
+                <br>
+                <div class="row">
+                  <div class="col-12">
+                    <div class="position-relative">
+                      <label for="nombreJugador">Nombre del jugador</label>
+                      <input type="text" class="formJug" name="Nombre" id="nombreJugador" placeholder="Ingrese nombre del jugador" 
+                      pattern="^(?!\s)[a-zA-ZÁáÉéÍíÓóÚú\s]{5,50}" required>
+                      <div class="invalid-tooltip">
+                        Máximo 50 caracteres de A-Z
+                      </div>
+                    </div>
+                    <br>
+                    <div class="position-relative">
+                      <label for="apodoJugador">Apodo</label>
+                      <input type="text" class="formJug" name="Apodo" id="apodoJugador" placeholder="Ingrese aspodo del jugador" 
+                      pattern="^(?!\s)[a-zA-ZÁáÉéÍíÓóÚú\s]{5,50}" required>
+                      <div class="invalid-tooltip">
+                        Máximo 50 caracteres de A-Z
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12"><br>
+                <div class="position-relative">
+                  <label for="posicionJugador">Posición del jugador</label>
+                  <select class="formJug" name="Posicion" id="posicionJugador" required>
+                    <option selected value="">Seleccione</option>
+                    <option value="1">1 Base</option>
+                    <option value="2">2 Escolta</option>
+                    <option value="3">3 Alero</option>
+                    <option value="4">4 Ala-pívot</option>
+                    <option value="5">5 Pívot</option>
+                  </select>
+                  <div class="invalid-tooltip">
+                    Seleccione una posición.
+                  </div>
+                </div>
+              <br>
+              </div>
+              <div class="col-12 col-lg-6">
+                <div class="position-relative">
+                  <label for="camiseta">N° de camiseta</label>
+                  <input type="number" class="formJug" name="Nro_camiseta" id="camiseta" min="0" max="99" 
+                  placeholder="Ingrese número de camiseta" required>
+                  <div class="invalid-tooltip">
+                    Valores desde 0-99
+                  </div>
+                </div>
+                <br>
+                <div class="position-relative">
+                  <label for="fechaNac">Fecha de nacimiento</label>
+                  <input type="date" class="formJug" name="Fecha_nac" id="fechaNac" onchange="fechaNacimiento()" required>
+                  <div class="invalid-tooltip">
+                    Llene este campo.
+                  </div>
+                </div>
+                <br>
+              </div>
+              <div class="col-12 col-lg-6">
+                <div class="position-relative">
+                  <label for="documento">Documento</label>
+                  <input type="text" class="formJug" name="Documento" id="documento" placeholder="Ingrese número de documento" 
+                  pattern="^(?!\s)[0-9]{7,15}" required>
+                  <div class="invalid-tooltip">
+                    Llene este campo.
+                  </div>
+                </div>
+                <br>
+                <div class="position-relative">
+                  <label for="telefono">Teléfono</label>
+                  <input type="text" class="formJug" name="Telefono" id="telefono" placeholder="+59170346288" 
+                  pattern="^(?!\s)[0-9\+]{8,15}" required>
+                  <div class="invalid-tooltip">
+                    Máximo 15 números incluyendo el simbolo "+"
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row" id="footer-form">
+              <div class="col-6">
+                <button type="button" class="btn btn-danger" id="limpiar" onclick="limpiarForm()">Limpiar</button>
+              </div>
+              <div class="col-6 text-end">
+                <button type="submit" class="btn btn-primary">Guardar</a>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+</article>
+{% endblock %}
+
+
+{% block js %} <script type="text/javascript" src="../../static/Js/registrarJugador.js"></script> {% endblock %}

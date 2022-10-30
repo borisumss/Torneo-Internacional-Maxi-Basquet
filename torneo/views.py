@@ -682,6 +682,17 @@ def delegacionEquipo(request):
         else:
             return redirect('login')
 
+def delegacionJugador(request):
+    if request.method == 'GET':
+        if not request.user.is_anonymous:
+            if not request.user.email.endswith('@delegacion.com'):
+                return redirect('login')
+            else:
+                #equipo = Equipo.objects.filter(id_delegado=request.user.id)
+                return render(request,'registrarJugador.html')
+        else:
+            return redirect('loguin')
+
 def delegacionCredenciales(request):
     if request.method == 'GET':
         if not request.user.is_anonymous:
