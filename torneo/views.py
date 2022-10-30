@@ -677,8 +677,13 @@ def delegacionEquipo(request):
             if not request.user.email.endswith('@delegacion.com'):
                 return redirect('login')
             else:
-               #todos = Equipo.objects.all()
                equipo = Equipo.objects.filter(id_delegado=request.user.id)
+               todos = Equipo.objects.all()
+               aux = ''
+               for i in todos:
+                    if i != equipo[0]:
+                        aux = aux + i.nombre_equipo +"-"
+
                cate = Categorias_Torneo.objects.filter(id_torneo=equipo[0].id_torneo)
                fechas = Inscripcion.objects.filter(id_torneo=equipo[0].id_torneo)
                jugadores = Jugador.objects.filter(id_equipo = equipo[0])
@@ -687,7 +692,7 @@ def delegacionEquipo(request):
                     'categorias':cate,
                     'jugadores': jugadores,
                     'fechas':fechas.first(),
-                    #'equiposTodos':todos
+                    'equiposTodos':aux
                 })
         else:
             return redirect('login')

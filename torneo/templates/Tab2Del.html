@@ -31,7 +31,7 @@
     </section>
     <br><br><hr>
     <section id="secInfor">   
-        <input type="text" class="primer form-control"  name="nombre_equipo"
+        <input type="text" class="primer form-control" onchange="validarNombre('{{equiposTodos}}')" name="nombre_equipo"
             id="title" placeholder="NOMBRE DEL EQUIPO" value="{{equipo.nombre_equipo}}" disabled required>
             <div class="" id="inforDoble">
                 <input type="text" class="form-control" name="pais_equipo"

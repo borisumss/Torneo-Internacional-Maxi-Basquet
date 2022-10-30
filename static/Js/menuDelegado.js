@@ -164,3 +164,15 @@ function validarFechas(fechaIni, fechaFin) {
 
   }
 }
+
+function validarNombre(aux){
+  let nombres = aux.split('-')
+  let input = document.getElementById("title");
+  
+  for(let i=0; i< nombres.length;i++){
+      if(input.value == nombres[i]){
+        Swal.fire('Este nombre ya está registrado', '', 'error');
+        input.value = "";
+      }
+  }
+}
