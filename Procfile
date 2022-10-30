@@ -1,1 +1,1 @@
-web: gunicorn torneo_maxi_basquet.wsgi --log-file -
+web: gunicorn 'torneo_maxi_basquet.wsgi' --access-logfile -
