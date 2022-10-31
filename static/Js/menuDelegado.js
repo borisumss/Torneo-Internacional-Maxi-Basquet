@@ -168,9 +168,10 @@ function validarFechas(fechaIni, fechaFin) {
 function validarNombre(aux){
   let nombres = aux.split('-')
   let input = document.getElementById("title");
-  
+  let nombre = input.value.toLowerCase()
   for(let i=0; i< nombres.length;i++){
-      if(input.value == nombres[i]){
+
+      if(nombre == nombres[i].toLowerCase()){
         Swal.fire('Este nombre ya está registrado', '', 'error');
         input.value = "";
       }
