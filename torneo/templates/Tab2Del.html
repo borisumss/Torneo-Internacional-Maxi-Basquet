@@ -59,7 +59,7 @@
             class="primer" >ENTRENADOR </label>
             <div class="position-relative" id="inforDoble2">
                 <label class="labelEntre" id="input">{{equipo.id_entrenador_equipo.nombre_entrenador}} </label>
-                <a href= "{% url 'registrarEntrenador' equipo.id %}" type="button" id="input" class="btn entre btn-outline-success"><i
+                <a href= "{% url 'registrarEntrenador' equipo.id %}" type="button" id="btn-coach" class="btn entre btn-outline-success"><i
                     class="fa fa-plus"></i></a>
             </div>
     </section>
@@ -68,7 +68,7 @@
     <section id="secEquipo">
             <div class="position-relative" id="inforDoble2">
                 <label class="labelEquip" id="input">Jugadores Registrados </label>
-                <a href= "{% url 'registrarJugador' equipo.id %}" type="button" id="input" class="btn entre btn-outline-success"><i
+                <a href= "{% url 'registrarJugador' equipo.id %}" type="button" id="btn-jug" class="btn entre btn-outline-success"><i
                     class="fa fa-plus"></i></a>
             </div>
             

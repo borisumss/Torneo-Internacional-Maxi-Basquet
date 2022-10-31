@@ -147,19 +147,23 @@ function cambiarPortada() {
 function validarFechas(fechaIni, fechaFin) {
   const tiempoTranscurrido = Date.now() //Obtiene el tiempo actual en milisegundos
   const hoy = new Date(tiempoTranscurrido) //Convierte en formato "DiaSemana Mes Dia Año GTM"
-  let fechaActual = hoy.toLocaleDateString()
+  //let fechaActual = hoy.toLocaleDateString()
 
   let fechaRezIni = new Date(fechaIni);
-  fechaRezIni = fechaRezIni.toLocaleDateString();
+  //fechaRezIni = fechaRezIni.toLocaleDateString();
 
   let fechaRezFin = new Date(fechaFin);
-  fechaRezFin = fechaRezFin.toLocaleDateString();
+  //fechaRezFin = fechaRezFin.toLocaleDateString();
   let boton = document.getElementById("btn-infor");
+  let boton2 = document.getElementById("btn-jug");
+  let boton3 = document.getElementById("btn-coach");
   if (boton != null) {
-    if (fechaActual >= fechaRezIni && fechaActual <= fechaRezFin) {
+    if (hoy >= fechaRezIni && hoy <= fechaRezFin) {
         console.log("si se puede inscribir")
     } else {
       boton.style.display = 'none';
+      boton2.style.display = 'none';
+      boton3.style.display = 'none';
     }
 
   }
