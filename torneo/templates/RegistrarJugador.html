@@ -81,7 +81,7 @@
                                   <input type="text" class="formJug" name="Nombre" id="nombreJugador" placeholder="Ingrese nombre del jugador" 
                                   pattern="^(?!\s)[a-zA-ZÁáÉéÍíÓóÚú\s]{5,50}" required>
                                   <div class="invalid-tooltip">
-                                    Máximo 50 caracteres de A-Z
+                                    Minimo 5 Máximo 50 caracteres de A-Z
                                   </div>
                                 </div>
                                 <br>
@@ -90,7 +90,7 @@
                                   <input type="text" class="formJug" name="Apodo" id="apodoJugador" placeholder="Ingrese aspodo del jugador" 
                                   pattern="^(?!\s)[a-zA-ZÁáÉéÍíÓóÚú\s]{5,50}" required>
                                   <div class="invalid-tooltip">
-                                    Máximo 50 caracteres de A-Z
+                                    Minimo 5 Máximo 50 caracteres de A-Z
                                   </div>
                                 </div>
                               </div>
@@ -118,10 +118,10 @@
                           <div class="col-12 col-lg-6">
                             <div class="position-relative">
                               <label for="camiseta">N° de camiseta</label>
-                              <input type="number" class="formJug" name="Nro_camiseta" id="camiseta" min="0" max="99" 
+                              <input type="number" class="formJug" name="Nro_camiseta" id="camiseta" min="1" max="99" 
                               placeholder="Ingrese número de camiseta" required>
                               <div class="invalid-tooltip">
-                                Valores desde 0-99
+                                Valores desde 1-99
                               </div>
                             </div>
                             <br>
@@ -140,7 +140,7 @@
                               <input type="text" class="formJug" name="Documento" id="documento" placeholder="Ingrese número de documento" 
                               pattern="^(?!\s)[0-9]{7,15}" required>
                               <div class="invalid-tooltip">
-                                Llene este campo.
+                                Entre 7 y 15 caracteres
                               </div>
                             </div>
                             <br>
