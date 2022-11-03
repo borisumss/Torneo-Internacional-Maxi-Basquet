@@ -1,4 +1,4 @@
-ESPACIO PARA EDITAR EL TORNEO CON ID: {{torneo.id}}
+
 {% load static %}
 <!doctype html>
 <html lang="es">
@@ -18,169 +18,203 @@ ESPACIO PARA EDITAR EL TORNEO CON ID: {{torneo.id}}
     <!--- MDBootstrap  -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.min.js"></script>
 </head>
+<header>
+    <!-- place navbar here -->
+    <nav class="navbar navbar-expand-lg navbar-custom">
+      <div class="container-fluid">
+        <div class="menu d-flex" id="TituloPadre">
+          <a class="navbar-brand" id="Titulo" href="{% url 'torneos' %}">Administración - Torneo Internacional
+            Maxi Basquet</a>
+        </div>
 
+        <div class="">
+          <div class="text-end collapse navbar-collapse" id="navbarNav">
+            <!--<a class="nav-link" href="#">Username</a>-->
+            <div class="navbar-brand dropdown">
+              <button class="dropdown-toggle" type="button" id="triggerId" data-bs-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                {{user.username}}
+              </button>
+              <div class="dropdown-menu" id="triggerIdD" aria-labelledby="triggerId">
+                <a class="navbar-brand" id="usuario" href="{% url 'logout' %}">Cerrar Sesión</a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
 <body>
-
-    <main>
-                <form class="needs-validation" id="formulario" name="formulario" method="POST"
-                    enctype="multipart/form-data" novalidate>
-                    {% csrf_token %}
-                    <section class="torneo form-group">
-                        <br>
-                        <article class="mb-3" id="form2">
-                            <div class="column position-relative">
-                                <label class="primera" id="torneo_label" for="torneo">Nombre del
-                                    Torneo:</label>
-                                <input type="text" class="primer form-control" name="nombre_torneo" id="torneo_input"
-                                    placeholder="Ingrese nombre del torneo" value="{{torneo.nombre_torneo}}"  minlength="5" maxlength="50" required>
-                                <div class="invalid-tooltip">
-                                    Máximo 50 caracteres
+    <section class="py-3">
+        <div class="container-fluid">
+            <div class="card rounded-0 shadow-sm blur">
+                <div class="card-body">
+                    <div class="container-fluid">
+                        <form action="" class="needs-validation" name ="formulario" id="formulario" method="POST"  enctype="multipart/form-data" novalidate>
+                            {% csrf_token %}
+                            <div class="row">
+                                <div class="col-12 position-relative">
+                                    <label class="primera" id="torneo_label" for="torneo">Nombre del
+                                        Torneo</label>
+                                    <input type="text" class="primer form-control" name="nombre_torneo" id="torneo_input"
+                                        placeholder="Ingrese nombre del torneo" value="{{torneo.nombre_torneo}}"  minlength="5" maxlength="50" required>
+                                    <div class="invalid-tooltip">
+                                        Máximo 50 caracteres
+                                    </div>
                                 </div>
                             </div>
-                            <div class="md-form md-outline input-with-post-icon datepicker" id="formatsSection">
-                                <label class="primera" id="fecha_label" for="fecha_torneo">Fecha del Torneo:</label>
-                                <div class="row">
-                                    <div class="col-6 position-relative">
-                                        {{torneo.fecha_torneo_inicio}}
-                                        <input type="date" id="fechaIni_input" name="fecha_torneo_inicio"
-                                            class="form-control" placeholder="Inicio" value="" title="Fecha Inicio" onchange="fechasTorneo()"
+                            <br>
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-md-12 position-relative">
+                                    <label class="primera" id="torneo_label" for="fechaIni_input">Fecha Inicio Torneo</label>
+                                    <input type="date" id="fechaIni_input" name="fecha_torneo_inicio"
+                                            class="form-control" placeholder="Inicio" value="{{torneo.fecha_torneo_inicio|date:'Y-m-d'}}" title="Fecha Inicio" onchange="fechasTorneo()"
                                             required>
                                         <div class="invalid-tooltip">
                                             Llene este campo.
                                         </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-12 col-md-12 position-relative">
+                                    <label class="primera" id="torneo_label" for="fechaFin_input">Fecha Final Torneo</label>
+                                    <input type="date" id="fechaFin_input" name="fecha_torneo_fin"
+                                    class="form-control" placeholder="Fin" title="Fecha Fin" value="{{ torneo.fecha_torneo_fin|date:'Y-m-d'}}" onchange="fechasTorneo()" required>
+                                    <div class="invalid-tooltip">
+                                        Llene este campo.
                                     </div>
-                                    <div class="col-6 position-relative">
-                                       {{ torneo.fecha_torneo_fin}}
-                                        <input type="date" id="fechaFin_input" name="fecha_torneo_fin"
-                                            class="form-control" placeholder="Fin" title="Fecha Fin"  onchange="fechasTorneo()" required>
-                                        <div class="invalid-tooltip">
-                                            Llene este campo.
+                                </div>
+                                
+                            </div>
+                            <br>
+                            <div class="row" id="pagos">
+                                <div class="col-6" id="izquierda">
+                                    <br>
+                                    <h3 class="text-center">PRE-INSCRIPCION</h3>
+                                    <br>
+                                    <div class="row">
+                                        <div class="col-lg-6 col-md-6 col-sm-12 col-md-12 position-relative">
+                                            <label class="primera" id="torneo_label" for="fechaIni_input">Inicio Pre-inscripción</label>
+                                            <input type="date" id="fechaIni_input" name="fecha_torneo_inicio"
+                                                    class="form-control" placeholder="Inicio" value="{{preIns.fecha_inicioPre|date:'Y-m-d'}}" title="Fecha Inicio" onchange="fechasTorneo()"
+                                                    required>
+                                                <div class="invalid-tooltip">
+                                                    Llene este campo.
+                                                </div>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 col-sm-12 col-md-12 position-relative">
+                                            <label class="primera" id="torneo_label" for="fechaFin_input">Fin Pre-inscripción</label>
+                                            <input type="date" id="fechaFin_input" name="fecha_torneo_fin"
+                                            class="form-control" placeholder="Fin" title="Fecha Fin" value="{{ preIns.fecha_finPre|date:'Y-m-d'}}" onchange="fechasTorneo()" required>
+                                            <div class="invalid-tooltip">
+                                                Llene este campo.
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                    <br>
+                                    <div class="row">
+                                        <div class="col-lg-6 col-md-6 col-sm-12 col-md-12 position-relative">
+                                            <label class="primera" id="montoPre_label" for="montoPre">Monto
+                                                Pre-inscripción($us)</label>
+                                                <input type="number" class="primer form-control" name="monto_preinscripcion"
+                                                        id="montoPre_input" min="0" value="{{preIns.monto_Preinscripcion}}" max="1000000"
+                                                        placeholder="Ingrese el costo de pre-inscripción" required>
+                                                <div class="invalid-tooltip">
+                                                        Valores desde 0-1000000
+                                                </div>         
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="row">
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 position-relative">
+                                            <label for="convocatoria" class="">QR para la Pre-inscripción</label>
+                                            <input type="file" class="form-control" value="{{preIns.qr_Preinscripcion.url}}" id="qr1Input"
+                                                name="qr1_torneo" accept="image/*" required>
+                                            <div class="invalid-tooltip">
+                                                  Adjunte el QR de pre-inscripción
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-12 d-flex align-items-center text-center">
+                                            <div class="mb-3" id="divImg">
+                                                <img src="{{preIns.qr_Preinscripcion.url}}" width="300px">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-6" id="derecha">
+                                    <br>
+                                    <h3 class="text-center">INSCRIPCION</h3>
+                                    <br>
+                                    <div class="row">
+                                        <div class="col-lg-6 col-md-6 col-sm-12 col-md-12 position-relative">
+                                            <label class="primera" id="torneo_label" for="fechaIni_input">Inicio Inscripción</label>
+                                            <input type="date" id="fechaIni_input" name="fecha_torneo_inicio"
+                                                    class="form-control" placeholder="Inicio" value="{{rez.fecha_inicio|date:'Y-m-d'}}" title="Fecha Inicio" onchange="fechasTorneo()"
+                                                    required>
+                                                <div class="invalid-tooltip">
+                                                    Llene este campo.
+                                                </div>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6 col-sm-12 col-md-12 position-relative">
+                                            <label class="primera" id="torneo_label" for="fechaFin_input">Fin Inscripción</label>
+                                            <input type="date" id="fechaFin_input" name="fecha_torneo_fin"
+                                            class="form-control" placeholder="Fin" title="Fecha Fin" value="{{ rez.fecha_fin|date:'Y-m-d'}}" onchange="fechasTorneo()" required>
+                                            <div class="invalid-tooltip">
+                                                Llene este campo.
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                    <br>
+                                    <div class="row">
+                                        <div class="col-lg-6 col-md-6 col-sm-12 col-md-12 position-relative">
+                                            <label class="primera" id="montoPre_label" for="montoPre">Monto
+                                                Inscripción($us)</label>
+                                                <input type="number" class="primer form-control" name="monto_preinscripcion"
+                                                        id="montoPre_input" min="0" value="{{rez.monto_inscripcion}}" max="1000000"
+                                                        placeholder="Ingrese el costo de pre-inscripción" required>
+                                                <div class="invalid-tooltip">
+                                                        Valores desde 0-1000000
+                                                </div>         
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="row">
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 position-relative">
+                                            <label for="convocatoria" class="">QR para la Inscripción</label>
+                                            <input type="file" class="form-control" value="{{rez.qr_inscripcion.url}}" id="qr1Input"
+                                                name="qr1_torneo" accept="image/*" required>
+                                            <div class="invalid-tooltip">
+                                                  Adjunte el QR de pre-inscripción
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-12 d-flex align-items-center text-center">
+                                            <div class="mb-3" id="divImg">
+                                                <img src="{{rez.qr_inscripcion.url}}" >
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </article>
-
-                        <article class="mb-3" id="form2">
-                            <div class="column">
-                                <label class="primera" id="montoPre_label" for="montoPre">Monto
-                                    Pre-inscripción:</label>
-                                <div class="row">
-                                    <div class="col-10 position-relative">
-                                        <input type="number" class="primer form-control" name="monto_preinscripcion"
-                                            id="montoPre_input" min="0" value="{{preIns.monto_Preinscripcion}}" max="1000000"
-                                            placeholder="Ingrese el costo de pre-inscripción" required>
-                                        <div class="invalid-tooltip">
-                                            Valores desde 0-1000000
-                                        </div>
-                                    </div>
-                                    <div class="dolares col-2">
-                                        <label id="montoPre_label" for="montoPre">$us.</label>
-                                    </div>
-                                </div>
-
+                            
+                            
+                            <br>
+                            
+                            <div class="clear-fix py-2"></div>
+                            <div class="text-end">
+                                <button class="btn btn-success" type="submit"><i class="fa fa-save"></i> Save</button>
+                                <a href="{% url 'torneos'%}" class="btn btn-danger"><i class="fa fa-angle-left"></i> Cancel</a>
                             </div>
-                            <div class="column">
-                                <label class="primera" id="fechaPre_label" for="fechaPre">Fecha Pre-inscripción:
-                                </label>
-                                <div class="row">
-                                    <div class="col-6 position-relative">
-                                        value="{{preIns.fecha_inicioPre}}
-                                        <input type="date" id="fechaPreIni_input" name="fecha_preinscripcion_inicio"
-                                            class="form-control" placeholder="Inicio" title="Fecha Inicio" onchange="fechasTorneoPre()"
-                                            required>
-                                        <div class="invalid-tooltip">
-                                            Llene este campo.
-                                        </div>
-                                    </div>
-                                    <div class="col-6 position-relative">
-                                        value="{{preIns.fecha_finPre}}
-                                        <input type="date" id="fechaPreFin_input" name="fecha_preinscripcion_fin"
-                                            class="form-control" placeholder="Fin" title="Fecha Fin" onchange="fechasTorneoPre()"
-                                            required>
-                                        <div class="invalid-tooltip">
-                                            Llene este campo.
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </article>
-
-                        <article class="mb-3" id="form2">
-                            <div class="archivo position-relative">
-                                <label for="convocatoria" class="">QR para la Pre-inscripción</label>
-                                value="{{preIns.qr_Preinscripcion}}"
-                                <input type="file" class="form-control" value="{{preIns.qr_Preinscripcion}}" id="convocatoria"
-                                    name="qr1_torneo" accept="doctype" required>
-                                <div class="invalid-tooltip">
-                                    Adjunte el QR de pre-inscripción
-                                </div>
-                            </div>
-                        </article>
-
-                        <article class="mb-3" id="form2">
-                            <div class="column">
-                                <label class="primera" id="montoIns_label" for="montoIns">Monto Rezagados:</label>
-
-                                <div class="row">
-                                    <div class="col-10 position-relative">
-                                        <input type="number" class="primer form-control" name="monto_inscripcion"
-                                            id="montoIns_input" min="0" max="1000000" value="{{rez.monto_inscripcion}}"
-                                            placeholder="Ingrese el costo para rezagados" required>
-                                        <div class="invalid-tooltip">
-                                            Valores desde 0-1000000
-                                        </div>
-                                    </div>
-                                    <div class="dolares col-2">
-                                        <label id="montoPre_label" for="montoPre">$us.</label>
-                                    </div>
-                                </div>
-
-
-                            </div>
-                            <div class="column">
-                                <label class="primera" id="fechaIns_label" for="fechaIns">Fecha Rezagados e
-                                    Inscripciones: </label>
-
-                                <div class="row">
-                                    <div class="col-6 position-relative">
-                                        value="{{rez.fecha_inicio}}"
-                                        <input type="date" id="fechaInsIni_input" name="fecha_inscripcion_inicio"
-                                            class="form-control" placeholder="Inicio" title="Fecha Inicio" onchange="fechasTorneoRez()"
-                                            required>
-                                        <div class="invalid-tooltip">
-                                            Llene este campo.
-                                        </div>
-                                    </div>
-                                    <div class="col-6 position-relative">
-                                        value="{{rez.fecha_fin}}"
-                                        <input type="date" id="fechaInsFin_input" name="fecha_inscripcion_fin"
-                                            class="form-control" placeholder="Fin" title="Fecha Fin" onchange="fechasTorneoRez()"
-                                            required>
-                                        <div class="invalid-tooltip">
-                                            Llene este campo.
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </article>
-
-                        <article class="mb-3" id="form2">
-                            <div class="archivo position-relative">
-                                <label for="convocatoria" class="">QR para Rezagados</label>
-                                value="{{rez.qr_inscripcion}}"
-                                <input type="file" class="form-control" value="upload" id="convocatoria"
-                                    name="qr2_torneo" accept="doctype" required>
-                                <div class="invalid-tooltip">
-                                    Adjunte el QR de rezagados
-                                </div>
-                            </div>
-                        </article>
-                    </section>
-                    <br />
-                    <button class="btn btn-danger" type="submit" name="Registrar" id="button-crear">Guardar</button>
-                </form>
-    </main>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
     <script>
 
     </script>
