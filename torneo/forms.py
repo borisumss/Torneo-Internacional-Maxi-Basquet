@@ -23,6 +23,21 @@ class Create_Categorias_Torneo(ModelForm):
         fields = '__all__'
 
 class EquipoForm(forms.ModelForm):
+
+    nombre_equipo = forms.CharField(max_length=250)
+    pais_origen = forms.CharField(max_length=250)
+    ciudad_origen = forms.CharField(max_length=250)
+    escudo_equipo =  forms.ImageField()
+    portada_equipo =  forms.ImageField()
+    categoria_equipo = forms.CharField(max_length=250)
+
+
     class Meta:
         model = Equipo
-        fields = '__all__'
+        fields =  ('nombre_equipo',
+                  'pais_origen',
+                  'ciudad_origen',
+                  'escudo_equipo',
+                  'portada_equipo',
+                  'categoria_equipo',
+                  )
