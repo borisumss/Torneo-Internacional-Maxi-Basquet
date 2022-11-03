@@ -36,6 +36,7 @@ class Inscripcion(models.Model):
     fecha_inicio = models.DateField(auto_now=False, auto_now_add=False)
     fecha_fin = models.DateField(auto_now=False, auto_now_add=False)
     monto_inscripcion = models.DecimalField(max_digits=10, decimal_places=2)
+    qr_inscripcion = models.ImageField(upload_to='static/imagenes/qrs/', verbose_name='qr2', null=True)
     estado_inscripcion = models.BooleanField(default=False)
     id_torneo = models.ForeignKey(Torneo, on_delete=models.CASCADE)
 
@@ -46,6 +47,7 @@ class Pre_Inscripcion(models.Model):
     fecha_inicioPre = models.DateField(auto_now=False, auto_now_add=False)
     fecha_finPre = models.DateField(auto_now=False, auto_now_add=False)
     monto_Preinscripcion = models.DecimalField(max_digits=10, decimal_places=2)
+    qr_Preinscripcion = models.ImageField(upload_to='static/imagenes/qrs/', verbose_name='qr1', null=True)
     estado_Preinscripcion = models.BooleanField(default=True)
     id_torneo = models.ForeignKey(Torneo, on_delete=models.CASCADE)
 

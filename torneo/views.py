@@ -70,14 +70,14 @@ def preinscripcion(request, id):
                                   {'etapa': "PRE-INSCRIPCION",
                                    'monto': Preins[0].monto_Preinscripcion,
                                    'torneo': Preins[0].id_torneo.nombre_torneo,
-                                   'qr': "qrcode_classroom.png"
+                                   'qr': Preins[0].qr_Preinscripcion
                                    })
                 elif (now >= Ins[0].fecha_inicio and now <= Ins[0].fecha_fin):
                     return render(request, 'pagoPreinscripcion.html',
                                   {'etapa': "REZAGADOS",
                                    'monto': Ins[0].monto_inscripcion,
                                       'torneo': Ins[0].id_torneo.nombre_torneo,
-                                      'qr': "qrcode_websis.png"
+                                      'qr': Ins[0].qr_inscripcion
                                    })
                 else:
                     if (now < Ins[0].fecha_inicio) or (now < Preins[0].fecha_inicioPre):
@@ -190,16 +190,18 @@ def crear_torneo(request):
                 fecha_fin_pre = request.POST.get('fecha_preinscripcion_fin')
                 monto_inscripcion_pre = request.POST.get(
                     'monto_preinscripcion')
+                qr1 = request.FILES.get('qr1_torneo')
                 id_torneo = torneo.pk
                 pre_inscripcion = Pre_Inscripcion(
-                    fecha_inicioPre=fecha_inicio_pre, fecha_finPre=fecha_fin_pre, monto_Preinscripcion=monto_inscripcion_pre, id_torneo=torneo)
+                    qr_Preinscripcion=qr1,fecha_inicioPre=fecha_inicio_pre, fecha_finPre=fecha_fin_pre, monto_Preinscripcion=monto_inscripcion_pre, id_torneo=torneo)
                 pre_inscripcion.save()
 
                 #tipo_inscripcion_ins = 'inscripcion'
                 fecha_inicio_ins = request.POST.get('fecha_inscripcion_inicio')
                 fecha_fin_ins = request.POST.get('fecha_inscripcion_fin')
                 monto_inscripcion_ins = request.POST.get('monto_inscripcion')
-                inscripcion = Inscripcion(fecha_inicio=fecha_inicio_ins, fecha_fin=fecha_fin_ins,
+                qr2 = request.FILES.get('qr2_torneo')
+                inscripcion = Inscripcion(qr_inscripcion=qr2,fecha_inicio=fecha_inicio_ins, fecha_fin=fecha_fin_ins,
                                           monto_inscripcion=monto_inscripcion_ins, id_torneo=torneo)
                 inscripcion.save()
 
@@ -806,3 +808,22 @@ def torneos(request):
          "torneosTerminados": torneosTerminados,
          "torneoActual": torneosActual
     })
+
+
+def editar_torneo(request,id):
+    if request.method == 'GET':
+        if not request.user.is_anonymous:
+            if request.user.email.endswith('@delegacion.com'):
+                return redirect('login')
+            else:
+                torneo = Torneo.objects.filter(id=id)
+                preIns = Pre_Inscripcion.objects.filter(id_torneo=id)
+                rez = Inscripcion.objects.filter(id_torneo=id)
+                return render(request,'editarTorneo.html',{'torneo':torneo[0]
+                ,'preIns':preIns[0]
+                ,'rez':rez[0]})
+        else:
+            return redirect('login')
+    elif request.method == 'POST':
+        
+        return redirect('editar_torneo')

@@ -23,6 +23,7 @@ urlpatterns = [
     path('', views.index, name='home'),
     path('login/', views.login, name='login'),
     path('administracion/torneos/crear', views.crear_torneo, name='crear_torneo'),
+    path('administracion/torneos/editar/<int:id>', views.editar_torneo, name='editar_torneo'),
     path('administracion/', views.administracion, name='administracion'),
     path('administracion/torneos/', views.administracionTorneos, name='torneos'),
     path('administracion/equipos/', views.administracionEquipos, name='equipos'),
