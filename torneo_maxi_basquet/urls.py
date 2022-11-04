@@ -45,4 +45,5 @@ urlpatterns = [
     path('MaxiBasket/<int:id>', views.verTorneo, name='Torneo'),
     path('Torneos/', views.torneos, name='torneosTodos'),
     path('preinscripcion/<int:id>', views.preinscripcion, name='preinscripcion'),
+    # a
 ]
