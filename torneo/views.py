@@ -472,9 +472,10 @@ def aceptar(request, tipo, id):
             '\n\nAtte: ' + request.user.username + ", "+request.user.email
         from_email = settings.EMAIL_HOST_USER
         recipient_list = [request.POST.get('email')]
-        send_mail(subject, message, from_email,
-                  recipient_list, fail_silently=False)
-        messages.success(request, "Solictud Aceptada correctamente")
+        # send_mail(subject, message, from_email,
+                #   recipient_list, fail_silently=False)
+        # messages.success(request, "Solictud Aceptada correctamente")
+        print(message)
         return redirect('solicitudes')
 
 
