@@ -1,5 +1,9 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+from qr_code import qrcode
+from PIL import Image
 
 import torneo
 # Create your models here.
@@ -125,3 +129,21 @@ class Jugador(models.Model):
     dorsal_jugador = models.CharField(max_length=5, null=True)
     posicion_jugador = models.CharField(max_length=50, null=True)
     id_equipo = models.ForeignKey(Equipo, on_delete=models.CASCADE)
+
+    def save(self, *args, **kwargs):
+        super(Jugador, self).save(*args, **kwargs)
+        print(self.foto_jugador)
+        imag = Image.open(self.foto_jugador.path)
+        if imag.width > 200 or imag.height > 200:
+            output_size = (200, 200)
+            imag.thumbnail(output_size)
+            imag.save(self.avatar.path)
+
+
+@receiver(post_save, sender=Jugador)
+def create_qr(sender, instance, **kwargs):
+    code = instance.ci_jugador
+    img = qrcode.make(code)
+    instance.qr_path = img
+    print(img)
+    # instance.save()

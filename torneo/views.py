@@ -741,12 +741,26 @@ def delegacionCredenciales(request):
             if not request.user.email.endswith('@delegacion.com'):
                 return redirect('login')
             else:
-                equipo = Equipo.objects.filter(id_delegado=request.user.id)
+                equipo = Equipo.objects.filter(id_delegado=request.user.id)[0]
+                print(equipo.id_entrenador_equipo)
+                jugadores = Jugador.objects.filter(id_equipo=equipo.pk)
+                # entrenador = Entrenador.objects.filter(id_entrenador=equipo.id_entrenador_equipo.id_entrenador)
                 return render(request,'Tab3Del.html',{
-                    'equipo':equipo[0]
+                    'jugadores': jugadores,
+                    # 'entrenador': entrenador,
                 })
         else:
             return redirect('login')
+
+
+def view_card(request, pk=None):
+    if pk is None:
+        return HttpResponse("Employee ID is Invalid")
+    else:
+        jugador = Jugador.objects.get(ci_jugador=pk)
+        return render(request, 'view_id.html',{ 
+        'jugador': jugador,
+        })
 
 def inscribirEquipo(request,id):
     if request.method == 'GET':
