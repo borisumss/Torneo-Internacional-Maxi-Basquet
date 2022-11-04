@@ -27,7 +27,7 @@
                 
                 {% for categoria in categorias %}
 
-                  <button type = "button" data-filter = ".{{categoria.nombre_categoria}}" class = "btn btn-primary m-2 text-dark">{{categoria.nombre_categoria}}</button>
+                  <button type = "button" data-filter = ".{{categoria.nombre_categoria}}" class = "btn btn-primary m-2 text-dark">{{categoria.nombre_categoria}}[{{categoria.edad_minima}}-{{categoria.edad_maxima}}]</button>
                 
                 {% endfor %} 
                 <!-- <button type = "button" data-filter = ".electronic" class = "btn btn-primary mx-1 text-dark">Electronic</button>
