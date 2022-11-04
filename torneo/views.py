@@ -742,9 +742,8 @@ def delegacionCredenciales(request):
                 return redirect('login')
             else:
                 equipo = Equipo.objects.filter(id_delegado=request.user.id)[0]
-                print(equipo.id_entrenador_equipo)
                 jugadores = Jugador.objects.filter(id_equipo=equipo.pk)
-                # entrenador = Entrenador.objects.filter(id_entrenador=equipo.id_entrenador_equipo.id_entrenador)
+                entrenador = Entrenador.objects.filter(id_entrenador=int(equipo.id_entrenador_equipo_id))
                 return render(request,'Tab3Del.html',{
                     'jugadores': jugadores,
                     # 'entrenador': entrenador,
