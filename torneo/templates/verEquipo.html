@@ -1,21 +1,20 @@
 {% extends "panelAdmin.html" %}
 
-{% block css %} 
-<link rel="stylesheet" href="../../static/css/panelAdmin.css"> 
-<link rel="stylesheet" href="../../static/css/mostrar_equipos.css"> 
-<link rel="stylesheet" href="../../static/css/categorias_equipos.css"> 
+{% block css %}
+<link rel="stylesheet" href="../../static/css/panelAdmin.css">
+<link rel="stylesheet" href="../../static/css/mostrar_equipos.css">
+<link rel="stylesheet" href="../../static/css/categorias_equipos.css">
 {% endblock %}
 
-{% block body %}  fondoTab4 {% endblock %}
-{% block class5 %}  active {% endblock %}
+{% block body %} fondoTab4 {% endblock %}
+{% block class5 %} active {% endblock %}
 {% block contenido %}
 
 {% csrf_token %}
 
 <article id="Tab4">
-    
-  {{equipo.nombre_equipo}}
-  {{equipo.pk}}
+
+
 
 </article>
 
@@ -23,10 +22,12 @@
 
 
 {% block js %}
- <script type="text/javascript" src="../../static/Js/menuAdmin.js"></script> 
- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <!-- isotope plugin -->
- <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.js"></script>
+<script type="text/javascript" src="../../static/Js/menuAdmin.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+  integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+  crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<!-- isotope plugin -->
+<script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.js"></script>
 
- <script src = "../../static/Js/categoriasEquipo.js"></script>
+<script src="../../static/Js/categoriasEquipo.js"></script>
 {% endblock %}

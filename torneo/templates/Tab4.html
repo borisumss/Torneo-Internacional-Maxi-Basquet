@@ -42,7 +42,7 @@
             {% for equipo in equipos %}
             
             <div class = "col-lg-4 col-md-6 {{equipo.categoria_equipo}}">
-                <a href="{% url 'verEquipo' equipo.nombre_equipo %}">
+                <a href="{% url 'verEquipo' equipo.pk %}">
                     <div class="product-item">
                         <div class="container" style="height: 300px; width:250px ; display: flex; align-items: center">
                             <div class="product-img">

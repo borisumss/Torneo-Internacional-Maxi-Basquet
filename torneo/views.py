@@ -627,15 +627,21 @@ def administracionEquipos(request):
         else:
             return redirect('login')
 
-def verEquipo(request, equipo):
+def verEquipo(request, idequipo):
     if request.method == 'GET':
         if not request.user.is_anonymous:
             if not request.user.email.endswith('@admin.com'):
                 return redirect('login')
             else:
-                equipo = get_object_or_404(Equipo, nombre_equipo=equipo)
-                return render(request, 'verEquipo.html', {
+                equipo = Equipo.objects.get(id=idequipo)
+                cate = Categorias_Torneo.objects.filter(id_torneo=equipo.id_torneo)
+                fechas = Inscripcion.objects.filter(id_torneo=equipo.id_torneo)
+                jugadores = Jugador.objects.filter(id_equipo=equipo)
+                return render(request, 'mostrar_detalle_equipo.html', {
                     'equipo': equipo,
+                    'categorias': cate,
+                    'jugadores': jugadores,
+                    'fechas': fechas.first(),
                 })
         else:
             return redirect('login')
