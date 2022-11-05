@@ -97,6 +97,15 @@ class Delegado(models.Model):
     telefono_delegado = models.CharField(max_length=15, null=True)
     foto_delegado = models.ImageField(upload_to='static/imagenes/equipos/delegados', verbose_name='Foto Delegado', null=True)
 
+    def save(self, *args, **kwargs):
+        super(Delegado, self).save(*args, **kwargs)
+        print(self.foto_delegado)
+        imag = Image.open(self.foto_delegado.path)
+        if imag.width > 200 or imag.height > 200:
+            output_size = (200, 200)
+            imag.thumbnail(output_size)
+            imag.save(self.foto_delegado.path)
+
 class Entrenador(models.Model):
     nombre_entrenador = models.CharField(max_length=50, null=True)
     apodo_entrenador = models.CharField(max_length=50, null=True)
@@ -105,6 +114,15 @@ class Entrenador(models.Model):
     nacimiento_entrenador = models.DateField(auto_now=False, auto_now_add=False)
     foto_entrenador =  models.ImageField(upload_to='static/imagenes/equipos/entrenadores/', verbose_name='Foto Enrtenador', null=True)
     telefono_entrenador = models.CharField(max_length=50, null=True)
+
+    def save(self, *args, **kwargs):
+        super(Entrenador, self).save(*args, **kwargs)
+        print(self.foto_entrenador)
+        imag = Image.open(self.foto_entrenador.path)
+        if imag.width > 200 or imag.height > 200:
+            output_size = (200, 200)
+            imag.thumbnail(output_size)
+            imag.save(self.foto_entrenador.path)
 
 class Equipo(models.Model):
     nombre_equipo = models.CharField(max_length=50, null=True)

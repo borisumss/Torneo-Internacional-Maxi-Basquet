@@ -764,12 +764,32 @@ def delegacionCredenciales(request):
 
 def view_card(request, pk=None):
     if pk is None:
-        return HttpResponse("Employee ID is Invalid")
-    else:
+        return HttpResponse("Jugador ID is Invalid")
+    elif(Jugador.objects.filter(ci_jugador=pk).exists()):
         jugador = Jugador.objects.get(ci_jugador=pk)
-
         return render(request, 'view_id.html',{ 
         'jugador': jugador,
+        })
+    elif(Entrenador.objects.filter(ci_entrenador=pk).exists()):
+        entrenador = Entrenador.objects.get(ci_entrenador=pk)
+        return render(request, 'view_id_entrenador.html', {
+            'entrenador': entrenador,
+        })
+    else:
+        delegado = Delegado.objects.get(ci_delegado=pk)
+        return render(request, 'view_id_delegado.html', {
+            'delegado': delegado,
+        })
+
+
+def view_card_entrenador(request, pk=None):
+    if pk is None:
+        return HttpResponse("Entrenador ID is Invalid")
+    else:
+        entrenador = Entrenador.objects.get(ci_entrenador=pk)
+
+        return render(request, 'view_id_entrenador.html', {
+            'entrenador': entrenador,
         })
 
 def inscribirEquipo(request,id):
