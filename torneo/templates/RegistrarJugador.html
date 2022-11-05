@@ -57,6 +57,9 @@
         <div class="col-12 secciones align-items-center justify-content-center">
             <article id="Tab2" class="container d-flex mx-auto justify-content-center align-items-center"> 
                 <div class="card" id="cont">
+                  <div class="card-header text-end">
+                    <a type="button" href="{% url 'delegacionEquipo' %}" class="btn-close" aria-label="Close"></a>
+                  </div>
                     <div class="card-body">
                       <form class="needs-validation" id="formulario" name="formulario" method="POST" enctype="multipart/form-data" novalidate>
                         {% csrf_token %}
@@ -87,7 +90,7 @@
                                 <br>
                                 <div class="position-relative">
                                   <label for="apodoJugador">Apodo</label>
-                                  <input type="text" class="formJug" name="Apodo" id="apodoJugador" placeholder="Ingrese aspodo del jugador" 
+                                  <input type="text" class="formJug" name="Apodo" id="apodoJugador" placeholder="Ingrese apodo del jugador" 
                                   pattern="^(?!\s)[a-zA-ZÁáÉéÍíÓóÚú\s]{5,50}" required>
                                   <div class="invalid-tooltip">
                                     Minimo 5 Máximo 50 caracteres de A-Z

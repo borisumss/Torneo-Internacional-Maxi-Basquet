@@ -55,7 +55,7 @@
                             {% csrf_token %}
                             <div class="row">
                                 <div class="col-12 position-relative">
-                                    <label class="primera" id="torneo_label" for="torneo">Nombre del
+                                    <label class="primera text-white" id="torneo_label" for="torneo">Nombre del
                                         Torneo</label>
                                     <input type="text" class="primer form-control" name="nombre_torneo" id="torneo_input"
                                         placeholder="Ingrese nombre del torneo" value="{{torneo.nombre_torneo}}"  minlength="5" maxlength="50" required>
@@ -67,7 +67,7 @@
                             <br>
                             <div class="row">
                                 <div class="col-lg-6 col-md-6 col-sm-12 col-md-12 position-relative">
-                                    <label class="primera" id="torneo_label" for="fechaIni_input">Fecha Inicio Torneo</label>
+                                    <label class="primera text-white" id="torneo_label" for="fechaIni_input">Fecha Inicio Torneo</label>
                                     <input type="date" id="fechaIni_input" name="fecha_torneo_inicio"
                                             class="form-control" placeholder="Inicio" value="{{torneo.fecha_torneo_inicio|date:'Y-m-d'}}" title="Fecha Inicio" onchange="fechasTorneo()"
                                             required>
@@ -76,7 +76,7 @@
                                         </div>
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-12 col-md-12 position-relative">
-                                    <label class="primera" id="torneo_label" for="fechaFin_input">Fecha Final Torneo</label>
+                                    <label class="primera text-white" id="torneo_label" for="fechaFin_input">Fecha Final Torneo</label>
                                     <input type="date" id="fechaFin_input" name="fecha_torneo_fin"
                                     class="form-control" placeholder="Fin" title="Fecha Fin" value="{{ torneo.fecha_torneo_fin|date:'Y-m-d'}}" onchange="fechasTorneo()" required>
                                     <div class="invalid-tooltip">

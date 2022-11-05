@@ -270,7 +270,7 @@ def enviarSolicitud(request, id):
                                          ci_delegado_inscripcion=ci_delegado_inscripcion, telefono_delegado_inscripcion=telefono_delegado_inscripcion, id_inscripcion=id_etapa_inscripcion, recibo_inscripcion=recibo_inscripcion)
         solicitud.save()
 
-        messages.success(request, "Solictud Enviada correctamente")
+        messages.success(request, "Solicitud Enviada correctamente")
         return redirect('home')
     elif estado == 'PRE-INSCRIPCION':
         aux = Pre_Inscripcion.objects.filter(id_torneo_id=id)
@@ -288,7 +288,7 @@ def enviarSolicitud(request, id):
 
         solicitud.save()
 
-        messages.success(request, "Solictud Enviada correctamente")
+        messages.success(request, "Solicitud Enviada correctamente")
         return redirect('home')
 
 
