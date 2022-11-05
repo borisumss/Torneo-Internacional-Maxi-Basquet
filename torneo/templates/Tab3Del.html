@@ -36,11 +36,11 @@
                         <thead>
                             <tr class="bg-primary bg-gradient text-light">
                                 <th class="text-center">#</th>
-                                <th class="text-center">Date Added</th>
-                                <th class="text-center">Company ID</th>
-                                <th class="text-center">Name</th>
-                                <th class="text-center">Dept./Pos.</th>
-                                <th class="text-center">Action</th>
+                                <th class="text-center">Fecha nacimiento</th>
+                                <th class="text-center">CI</th>
+                                <th class="text-center">Nombre</th>
+                                <th class="text-center">Pos./Ocup.</th>
+                                <th class="text-center">Acción</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -49,7 +49,7 @@
                             {% if entrenador %}
                             <tr>
                                 <td class="text-center"><i class="bi bi-align-top"></i></td>
-                                <td class="">zzz</td>
+                                <td class="">{{entrenador.nacimiento_entrenador}}</td>
                                 <td class="">{{entrenador.ci_entrenador}}</td>
                                 <td class="">{{entrenador.nombre_entrenador}}</td>
                                 <td class="">Entrenador</td>
@@ -67,7 +67,7 @@
                             {% if delegado %}
                             <tr>
                                 <td class="text-center"><i class="bi bi-person-check"></i></td>
-                                <td class="">zzz</td>
+                                <td class="">{{delegado.nacimiento_delegado}}</td>
                                 <td class="">{{delegado.ci_delegado}}</td>
                                 <td class="">{{delegado.nombre_delegado}}</td>
                                 <td class="">Delegado</td>
@@ -83,8 +83,8 @@
 
                             {% for jugador in jugadores %}
                             <tr>
-                                <td class="text-center">{{forloop.counter}}</td>
-                                <td class="">zzz</td>
+                                <td class="text-center">{{jugador.dorsal_jugador}}</td>
+                                <td class="">{{jugador.nacimiento_jugador}}</td>
                                 <td class="">{{jugador.ci_jugador}}</td>
                                 <td class="">{{jugador.nombre_jugador}}</td>
                                 <td class="">{{jugador.posicion_jugador}}</td>
@@ -121,7 +121,7 @@
     $(function() {
         $('table').find('td, th').addClass('align-middle px-2 py-1')
         $('.view_card').click(function(){
-            uni_modal("View Employee ID", $(this).attr('data-url'),'modal-lg')
+            uni_modal("Credencial ID", $(this).attr('data-url'),'modal-lg')
         })
 
         $('#uni_modal').on('shown.bs.modal', function() {
