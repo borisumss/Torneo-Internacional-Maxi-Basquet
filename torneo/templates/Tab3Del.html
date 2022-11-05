@@ -44,13 +44,50 @@
                             </tr>
                         </thead>
                         <tbody>
+
+                            {% comment %} entrenador {% endcomment %}
+                            {% if entrenador %}
+                            <tr>
+                                <td class="text-center"><i class="bi bi-align-top"></i></td>
+                                <td class="">zzz</td>
+                                <td class="">{{entrenador.ci_entrenador}}</td>
+                                <td class="">{{entrenador.nombre_entrenador}}</td>
+                                <td class="">Entrenador</td>
+                                <td class="text-center">
+                                    <a class="dropdown-item view_card" href="javascript:void(0)" data-url="{% url 'view-card' entrenador.ci_entrenador %}" >View ID</a>
+                                </td>
+                            </tr>
+                            {% else %}
+                            <tr>
+                                <th colspan="6" class="text-center">No hay entrenador registrado</th>
+                            </tr>
+                            {% endif %}
+
+                            {% comment %} delegado {% endcomment %}
+                            {% if delegado %}
+                            <tr>
+                                <td class="text-center"><i class="bi bi-person-check"></i></td>
+                                <td class="">zzz</td>
+                                <td class="">{{delegado.ci_delegado}}</td>
+                                <td class="">{{delegado.nombre_delegado}}</td>
+                                <td class="">Delegado</td>
+                                <td class="text-center">
+                                    <a class="dropdown-item view_card" href="javascript:void(0)" data-url="{% url 'view-card' delegado.ci_delegado %}" >View ID</a>
+                                </td>
+                            </tr>
+                            {% else %}
+                            <tr>
+                                <th colspan="6" class="text-center">No hay delegado registrado</th>
+                            </tr>
+                            {% endif %}
+
                             {% for jugador in jugadores %}
                             <tr>
                                 <td class="text-center">{{forloop.counter}}</td>
                                 <td class="">zzz</td>
                                 <td class="">{{jugador.ci_jugador}}</td>
                                 <td class="">{{jugador.nombre_jugador}}</td>
-                                <td class="">departamento</td>
+                                <td class="">{{jugador.posicion_jugador}}</td>
                                 <td class="text-center">
                                     <a class="dropdown-item view_card" href="javascript:void(0)" data-url="{% url 'view-card' jugador.ci_jugador %}" >View ID</a>
                                 </td>
@@ -58,7 +95,7 @@
                             {% endfor %} 
                             {% if not jugadores %}
                             <tr>
-                                <th colspan="6" class="text-center">No records.</th>
+                                <th colspan="6" class="text-center">No hay jugadores</th>
                             </tr>
                             {% endif %}
                         </tbody>

@@ -137,13 +137,13 @@ class Jugador(models.Model):
         if imag.width > 200 or imag.height > 200:
             output_size = (200, 200)
             imag.thumbnail(output_size)
-            imag.save(self.avatar.path)
+            imag.save(self.foto_jugador.path)
 
 
-@receiver(post_save, sender=Jugador)
-def create_qr(sender, instance, **kwargs):
-    code = instance.ci_jugador
-    img = qrcode.make(code)
-    instance.qr_path = img
-    print(img)
-    # instance.save()
+# @receiver(post_save, sender=Jugador)
+# def create_qr(sender, instance, **kwargs):
+#     code = instance.ci_jugador
+#     img = qrcode.make(code)
+#     instance.qr_path = img
+#     print(img)
+#    #instance.save()

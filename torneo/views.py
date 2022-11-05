@@ -64,7 +64,8 @@ def preinscripcion(request, id):
             Preins = Pre_Inscripcion.objects.filter(id_torneo_id=id)
             Ins = Inscripcion.objects.filter(id_torneo_id=id)
             now = date.today()
-            if (len(Preins) == 1 and len(Ins) == 1):
+            # if (len(Preins) == 1 and len(Ins) == 1):
+            if (1==1):
                 if (now >= Preins[0].fecha_inicioPre and now <= Preins[0].fecha_finPre):
                     return render(request, 'pagoPreinscripcion.html',
                                   {'etapa': "PRE-INSCRIPCION",
@@ -743,10 +744,13 @@ def delegacionCredenciales(request):
             else:
                 equipo = Equipo.objects.filter(id_delegado=request.user.id)[0]
                 jugadores = Jugador.objects.filter(id_equipo=equipo.pk)
-                entrenador = Entrenador.objects.filter(id_entrenador=int(equipo.id_entrenador_equipo_id))
+                entrenador = Entrenador.objects.get(id=equipo.id_entrenador_equipo.pk)
+                delegado = Delegado.objects.get(id_delegado=equipo.id_delegado.pk)
+
                 return render(request,'Tab3Del.html',{
                     'jugadores': jugadores,
-                    # 'entrenador': entrenador,
+                    'entrenador': entrenador,
+                    'delegado': delegado,
                 })
         else:
             return redirect('login')
@@ -757,6 +761,7 @@ def view_card(request, pk=None):
         return HttpResponse("Employee ID is Invalid")
     else:
         jugador = Jugador.objects.get(ci_jugador=pk)
+
         return render(request, 'view_id.html',{ 
         'jugador': jugador,
         })
