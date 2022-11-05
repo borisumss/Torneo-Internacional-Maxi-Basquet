@@ -117,6 +117,15 @@ class Equipo(models.Model):
     id_delegado = models.ForeignKey(Delegado, on_delete=models.CASCADE, null=True)
     id_entrenador_equipo = models.ForeignKey(Entrenador, on_delete=models.CASCADE, null=True)
     id_torneo = models.ForeignKey(Torneo, on_delete=models.CASCADE, null=True)
+
+    def save(self, *args, **kwargs):
+        super(Equipo, self).save(*args, **kwargs)
+        print(self.escudo_equipo)
+        imag = Image.open(self.escudo_equipo.path)
+        if imag.width > 200 or imag.height > 200:
+            output_size = (200, 200)
+            imag.thumbnail(output_size)
+            imag.save(self.escudo_equipo.path)
     
 
 class Jugador(models.Model):
