@@ -39,10 +39,30 @@
                 {% else %}
                 <td>Terminado</td>
                 {% endif %}
-                <td><a name="" id="btn-ver" class="btn btn-info" href="{% url 'Torneo' torneo.id %}" role="button"><span
-                      class="text-white"><i class="fa fa-sign-in"></i></span></a>
-                  <a name="" id="btn-editar" class="btn btn-danger" href="{% url 'editar_torneo' torneo.id %}" role="button"><span
-                      class="text-white"><i class="fa fa-edit"></i></span></a>
+                <td>
+                  <div class="dropdown">
+                    <button class="btn btn-success border bg-gradient btn-sm rounded-0 dropdown-toggle" type="button" id="employeeDD{{employee.pk}}" data-bs-toggle="dropdown" aria-expanded="false">
+                      Action
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="employeeDD{{torneo.pk}}">
+                        <li>
+                          <a name="" id="btn-ver" class="btn btn-info" href="{% url 'Torneo' torneo.id %}" role="button"><span
+                            class="text-white"><i class="fa fa-sign-in"></i> Entrar</span></a>
+                        </li>
+                        <li>
+                          <a name="" id="btn-editar" class="btn btn-warning" href="{% url 'editar_torneo' torneo.id %}" role="button"><span
+                            class="text-white"><i class="fa fa-edit"></i> Editar</span></a>
+                        </li>
+                       
+                        <li>
+                          <a name="" id="btn-editar" class="btn btn-danger" href="{% url 'bajaTorneo' torneo.id %}" role="button"><span
+                            class="text-white"><i class="fa fa-down-long"></i> Dar de Baja</span></a>
+                        </li>
+                        
+                        
+                    </ul>
+                </div>
+                
                 </td>
               </tr>
               {% endfor %}

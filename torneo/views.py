@@ -17,7 +17,7 @@ from datetime import date
 from django.core.mail import send_mail
 from django.conf import settings
 import random as rd
-from .forms import EquipoForm
+from .forms import EquipoForm, TorneoForm, TorneoPreInsForm, TorneoRezForm
 # def email_check(user):
 #   return user.email.endswith('@admin2.com')
 # Create your views here.
@@ -825,5 +825,39 @@ def editar_torneo(request,id):
         else:
             return redirect('login')
     elif request.method == 'POST':
-        
-        return redirect('editar_torneo')
+        print(request.POST)
+        print(request.FILES)
+
+        torneo = Torneo.objects.get(id=id)
+        torneoPreIns = Pre_Inscripcion.objects.get(id_torneo=id)
+        torneoRez = Inscripcion.objects.get(id_torneo=id)
+    
+        form = TorneoForm(request.POST or None, request.FILES or None,instance = torneo)
+        form2 = TorneoPreInsForm(request.POST or None, request.FILES or None,instance = torneoPreIns)
+        form3 = TorneoRezForm(request.POST or None, request.FILES or None,instance = torneoRez)
+
+        print(form.is_valid())
+        print(form2.is_valid())
+        print(form3.is_valid())
+        if form.is_valid() and form2.is_valid() and form3.is_valid():
+            form.save()
+            form2.save()
+            form3.save()
+            messages.success(request, "Información editada correctamente")
+            
+        else:
+            messages.error(request, "Algo salio mal, intente nuevamente")
+        return redirect('torneos')
+
+def bajaTorneo(request,id):
+    if request.method == 'GET':
+        if not request.user.is_anonymous:
+            if not request.user.email.endswith('@admin.com'):
+                return redirect('login')
+            else:
+                torneo = Torneo.objects.filter(id=id)
+                torneo.update(torneo_estado = 0)
+                messages.success(request, "Torneo dado de BAJA")
+                return redirect('torneos')
+        else:
+            return redirect('login')
