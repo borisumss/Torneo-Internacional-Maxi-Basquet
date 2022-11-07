@@ -482,8 +482,13 @@ def aceptar(request, tipo, id):
 
 def verTorneo(request, id):
     torneo = Torneo.objects.filter(id=id)
+    categorias = Categorias_Torneo.objects.filter(id_torneo=id)
+    equipos = Equipo.objects.filter(estado_inscripcion_equipo="INSCRITO", id_torneo=id)
+                
     return render(request, 'Torneo.html', {
-        "torneo": torneo
+        "torneo": torneo,
+        "categorias": categorias,
+        "equipos": equipos,
     })
 
 def administracionTorneos(request):

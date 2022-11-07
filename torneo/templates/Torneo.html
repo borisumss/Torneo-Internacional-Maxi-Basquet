@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/css/Torneo.css"> 
     <title>Document</title>
 </head>
 <body>
@@ -11,5 +12,82 @@
     ESPACIO PARA EL TORNEO CON ID: {{i.id}}
     y nombre: {{i.nombre_torneo}}
     {% endfor %}
+
+      <div class = "container">
+        
+
+        <div class = "row mt-3 mb-4 button-group filter-button-group text-center">
+            <div class = "col justify-content-center">
+                {% for categoria in categorias %}
+
+                  <button type = "button" data-filter = ".{{categoria.nombre_categoria}}" class = "btn btn-primary m-2 text-dark">{{categoria.nombre_categoria}}[{{categoria.edad_minima}}-{{categoria.edad_maxima}}]</button>
+                
+                {% endfor %} 
+            </div>
+        </div>
+
+        <div class = "row justify-content-center g-4" id = "product-list">
+            
+            <h1>TABLA DE POSICIONES</h1>
+            <div class="card rounded-0 shadow-sm blur Mixto">
+                <div class="card-body">
+                    <div class="container-fluid">
+                        <h1 class="bd-title text-center">Plantel del equipo</h1>
+                        <table class="table table-stripped table-bordered">
+                            <colgroup>
+                                <col width="5%">
+                                <col width="15%">
+                                <col width="20%">
+                                <col width="25%">
+                                <col width="25%">
+                                <col width="10%">
+                            </colgroup>
+                            <thead>
+                                <tr class="bg-primary bg-gradient text-light">
+                                    <th class="text-center">#</th>
+                                    <th class="text-center">Fecha nacimiento</th>
+                                    <th class="text-center">CI</th>
+                                    <th class="text-center">Nombre</th>
+                                    <th class="text-center">Pos./Ocup.</th>
+                                    <th class="text-center">Acción</th>
+                                </tr>
+                            </thead>
+                            <tbody>                                  
+                               
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            
+            {% for equipo in equipos %}
+            
+            <div class = "col-lg-4 col-md-6 {{equipo.categoria_equipo}}">
+                <a href="{% url 'verEquipo' equipo.pk %}">
+                    <div class="product-item">
+                        <div class="container" style="height: 300px; width:250px ; display: flex; align-items: center">
+                            <div class="product-img">
+                            <img src="../../{{equipo.escudo_equipo}}" class="img-fluid d-block mx-auto p-2 escudo">
+                        </div>
+                        </div>
+                        <div class="product-content text-center py-3">
+                            <span class="d-block text-uppercase text-dark">{{equipo.nombre_equipo}}</span>
+                            <span class="d-block text-alert">{{equipo.pais_origen}}</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            {% endfor %}
+        </div>
+    </div>
 </body>
+
+
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- isotope plugin -->
+ <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.js"></script>
+
+ <script src = "../../static/Js/Torneos.js"></script>
 </html>

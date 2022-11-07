@@ -1,0 +1,21 @@
+
+
+.btn-primary {
+    background-color: #fff !important;
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: #002df8 !important;
+    color: #fff !important;
+}
+
+
+
+.seleccionado{
+    background-color: #002df8 !important;
+    color: white !important;
+}
+.Mixto{
+    width: 100%;
+}
