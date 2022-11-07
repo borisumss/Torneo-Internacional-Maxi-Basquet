@@ -67,6 +67,7 @@ class delegado_Inscripcion(models.Model):
     telefono_delegado_inscripcion = models.CharField(max_length=15)
     id_inscripcion = models.ForeignKey(Inscripcion, on_delete=models.CASCADE)
     recibo_inscripcion = models.ImageField(upload_to='static/imagenes/Comprobantes/', verbose_name='Recibo Rezagados', null=True)
+    fecha_solicitud = models.DateTimeField(auto_now_add=True,null=True)
     id_delegadoIns = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
 
 class delegado_PreInscripcion(models.Model):
@@ -77,6 +78,7 @@ class delegado_PreInscripcion(models.Model):
     telefono_delegado_Preinscripcion = models.CharField(max_length=15)
     id_Pre_inscripcion = models.ForeignKey(Pre_Inscripcion, on_delete=models.CASCADE)
     recibo_Preinscripcion = models.ImageField(upload_to='static/imagenes/Comprobantes/', verbose_name='Recibo Preinscripción', null=True)
+    fecha_solicitud = models.DateTimeField(auto_now_add=True,null=True)
     id_delegadoPreIns = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
 
 
