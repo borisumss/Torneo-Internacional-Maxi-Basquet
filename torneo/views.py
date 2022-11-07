@@ -18,6 +18,7 @@ from django.core.mail import send_mail
 from django.conf import settings
 import random as rd
 from .forms import EquipoForm
+from qr_code.qrcode.utils import MeCard
 # def email_check(user):
 #   return user.email.endswith('@admin2.com')
 # Create your views here.
@@ -767,18 +768,48 @@ def view_card(request, pk=None):
         return HttpResponse("Jugador ID is Invalid")
     elif(Jugador.objects.filter(ci_jugador=pk).exists()):
         jugador = Jugador.objects.get(ci_jugador=pk)
+        info_jugador = MeCard(
+            name=jugador.nombre_jugador,
+            phone=jugador.ci_jugador,
+            email=jugador.apodo_jugador,
+            url=jugador.dorsal_jugador,
+            birthday='',
+            memo=jugador.posicion_jugador,
+            org=''
+        )
         return render(request, 'view_id.html',{ 
         'jugador': jugador,
+        'info_jugador': info_jugador,
         })
     elif(Entrenador.objects.filter(ci_entrenador=pk).exists()):
         entrenador = Entrenador.objects.get(ci_entrenador=pk)
+        info_entrenador = MeCard(
+            name=entrenador.nombre_entrenador,
+            phone=entrenador.ci_entrenador,
+            email=entrenador.apodo_entrenador,
+            url=entrenador.nacionalidad_entrenador,
+            birthday='',
+            memo='',
+            org=''
+        )
         return render(request, 'view_id_entrenador.html', {
             'entrenador': entrenador,
+            'info_entrenador': info_entrenador,
         })
     else:
         delegado = Delegado.objects.get(ci_delegado=pk)
+        info_delegado = MeCard(
+            name=delegado.nombre_delegado,
+            phone=delegado.ci_delegado,
+            email='',
+            url='',
+            birthday='',
+            memo='',
+            org=''
+        )
         return render(request, 'view_id_delegado.html', {
             'delegado': delegado,
+            'info_delegado': info_delegado,
         })
 
 
@@ -787,9 +818,18 @@ def view_card_entrenador(request, pk=None):
         return HttpResponse("Entrenador ID is Invalid")
     else:
         entrenador = Entrenador.objects.get(ci_entrenador=pk)
-
+        info_entrenador = MeCard(
+            name=entrenador.nombre_entrenador,
+            phone=entrenador.ci_entrenador,
+            email=entrenador.apodo_entrenador,
+            url=entrenador.nacionalidad_entrenador,
+            birthday='',
+            memo='',
+            org=''
+        )
         return render(request, 'view_id_entrenador.html', {
             'entrenador': entrenador,
+            'info_entrenador': info_entrenador,
         })
 
 def inscribirEquipo(request,id):
