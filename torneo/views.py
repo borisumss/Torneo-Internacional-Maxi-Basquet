@@ -5,6 +5,7 @@ from pickle import FALSE, TRUE
 from re import I
 from sqlite3 import PrepareProtocol
 from unicodedata import category, name
+from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth import logout, authenticate, login as auth_login
 from django.contrib.auth.models import User
@@ -17,6 +18,7 @@ from datetime import date
 from django.core.mail import send_mail
 from django.conf import settings
 import random as rd
+from qr_code.qrcode.utils import MeCard
 from .forms import EquipoForm, TorneoForm, TorneoPreInsForm, TorneoRezForm
 # def email_check(user):
 #   return user.email.endswith('@admin2.com')
@@ -64,7 +66,8 @@ def preinscripcion(request, id):
             Preins = Pre_Inscripcion.objects.filter(id_torneo_id=id)
             Ins = Inscripcion.objects.filter(id_torneo_id=id)
             now = date.today()
-            if (len(Preins) == 1 and len(Ins) == 1):
+            # if (len(Preins) == 1 and len(Ins) == 1):
+            if (1==1):
                 if (now >= Preins[0].fecha_inicioPre and now <= Preins[0].fecha_finPre):
                     return render(request, 'pagoPreinscripcion.html',
                                   {'etapa': "PRE-INSCRIPCION",
@@ -472,9 +475,10 @@ def aceptar(request, tipo, id):
             '\n\nAtte: ' + request.user.username + ", "+request.user.email
         from_email = settings.EMAIL_HOST_USER
         recipient_list = [request.POST.get('email')]
-        send_mail(subject, message, from_email,
-                  recipient_list, fail_silently=False)
-        messages.success(request, "Solictud Aceptada correctamente")
+        # send_mail(subject, message, from_email,
+                #   recipient_list, fail_silently=False)
+        # messages.success(request, "Solictud Aceptada correctamente")
+        print(message)
         return redirect('solicitudes')
 
 
@@ -625,15 +629,21 @@ def administracionEquipos(request):
         else:
             return redirect('login')
 
-def verEquipo(request, equipo):
+def verEquipo(request, idequipo):
     if request.method == 'GET':
         if not request.user.is_anonymous:
             if not request.user.email.endswith('@admin.com'):
                 return redirect('login')
             else:
-                equipo = get_object_or_404(Equipo, nombre_equipo=equipo)
-                return render(request, 'verEquipo.html', {
+                equipo = Equipo.objects.get(id=idequipo)
+                cate = Categorias_Torneo.objects.filter(id_torneo=equipo.id_torneo)
+                fechas = Inscripcion.objects.filter(id_torneo=equipo.id_torneo)
+                jugadores = Jugador.objects.filter(id_equipo=equipo)
+                return render(request, 'mostrar_detalle_equipo.html', {
                     'equipo': equipo,
+                    'categorias': cate,
+                    'jugadores': jugadores,
+                    'fechas': fechas.first(),
                 })
         else:
             return redirect('login')
@@ -740,12 +750,88 @@ def delegacionCredenciales(request):
             if not request.user.email.endswith('@delegacion.com'):
                 return redirect('login')
             else:
-                equipo = Equipo.objects.filter(id_delegado=request.user.id)
+                equipo = Equipo.objects.filter(id_delegado=request.user.id)[0]
+                jugadores = Jugador.objects.filter(id_equipo=equipo.pk)
+                entrenador = Entrenador.objects.get(id=equipo.id_entrenador_equipo.pk)
+                delegado = Delegado.objects.get(id_delegado=equipo.id_delegado.pk)
+
                 return render(request,'Tab3Del.html',{
-                    'equipo':equipo[0]
+                    'jugadores': jugadores,
+                    'entrenador': entrenador,
+                    'delegado': delegado,
                 })
         else:
             return redirect('login')
+
+
+def view_card(request, pk=None):
+    if pk is None:
+        return HttpResponse("Jugador ID is Invalid")
+    elif(Jugador.objects.filter(ci_jugador=pk).exists()):
+        jugador = Jugador.objects.get(ci_jugador=pk)
+        info_jugador = MeCard(
+            name=jugador.nombre_jugador,
+            phone=jugador.ci_jugador,
+            email=jugador.apodo_jugador,
+            url=jugador.dorsal_jugador,
+            birthday='',
+            memo=jugador.posicion_jugador,
+            org=''
+        )
+        return render(request, 'view_id.html',{ 
+        'jugador': jugador,
+        'info_jugador': info_jugador,
+        })
+    elif(Entrenador.objects.filter(ci_entrenador=pk).exists()):
+        entrenador = Entrenador.objects.get(ci_entrenador=pk)
+        info_entrenador = MeCard(
+            name=entrenador.nombre_entrenador,
+            phone=entrenador.ci_entrenador,
+            email=entrenador.apodo_entrenador,
+            url=entrenador.nacionalidad_entrenador,
+            birthday='',
+            memo='',
+            org=''
+        )
+        return render(request, 'view_id_entrenador.html', {
+            'entrenador': entrenador,
+            'info_entrenador': info_entrenador,
+        })
+    else:
+        delegado = Delegado.objects.get(ci_delegado=pk)
+        info_delegado = MeCard(
+            name=delegado.nombre_delegado,
+            phone=delegado.ci_delegado,
+            email='',
+            url='',
+            birthday='',
+            memo='',
+            org=''
+        )
+        return render(request, 'view_id_delegado.html', {
+            'delegado': delegado,
+            'info_delegado': info_delegado,
+        })
+
+
+def view_card_entrenador(request, pk=None):
+    if pk is None:
+        return HttpResponse("Entrenador ID is Invalid")
+    else:
+        entrenador = Entrenador.objects.get(ci_entrenador=pk)
+        info_entrenador = MeCard(
+            name=entrenador.nombre_entrenador,
+            phone=entrenador.ci_entrenador,
+            email=entrenador.apodo_entrenador,
+            url=entrenador.nacionalidad_entrenador,
+            birthday='',
+            memo='',
+            org=''
+        )
+        return render(request, 'view_id_entrenador.html', {
+            'entrenador': entrenador,
+            'info_entrenador': info_entrenador,
+        })
 
 def inscribirEquipo(request,id):
     if request.method == 'GET':

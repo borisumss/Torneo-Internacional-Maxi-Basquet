@@ -1,5 +1,5 @@
 from dataclasses import field
-from tkinter import E
+# from tkinter import E
 from django.forms import ModelForm
 from django import forms
 from .models import Organizador, Torneo, Categorias_Torneo , Equipo
