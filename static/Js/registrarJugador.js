@@ -109,3 +109,26 @@ function limpiarForm(){
     doc.value = ''
     telef.value = ''
 }
+
+
+function limpiarFormEn(){
+    let foto = document.getElementById('fotoJugador')
+    let imgPreviw = document.getElementById('imgprevisualizacion')
+    let boton = document.getElementById('boton-foto')
+    let nombre = document.getElementById('nombreJugador')
+    let apodo = document.getElementById('apodoJugador')
+    let nacion = document.getElementById('nacionalidad')
+    let fechaNacJug = document.getElementById('fechaNac')
+    let doc = document.getElementById('documento')
+    let telef = document.getElementById('telefono')
+    foto.value = ''
+    imgPreviw.src = ''
+    imgPreviw.hidden = true
+    boton.hidden = false
+    nombre.value = ''
+    apodo.value = ''
+    nacion.value = ''
+    fechaNacJug.value = ''
+    doc.value = ''
+    telef.value = ''
+}

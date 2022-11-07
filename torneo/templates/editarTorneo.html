@@ -55,7 +55,7 @@
                             {% csrf_token %}
                             <div class="row">
                                 <div class="col-12 position-relative">
-                                    <label class="primera" id="torneo_label" for="torneo">Nombre del
+                                    <label class="primera text-white" id="torneo_label" for="torneo">Nombre del
                                         Torneo</label>
                                     <input type="text" class="primer form-control" name="nombre_torneo" id="torneo_input"
                                         placeholder="Ingrese nombre del torneo" value="{{torneo.nombre_torneo}}"  minlength="5" maxlength="50" required>
@@ -67,7 +67,7 @@
                             <br>
                             <div class="row">
                                 <div class="col-lg-6 col-md-6 col-sm-12 col-md-12 position-relative">
-                                    <label class="primera" id="torneo_label" for="fechaIni_input">Fecha Inicio Torneo</label>
+                                    <label class="primera text-white" id="torneo_label" for="fechaIni_input">Fecha Inicio Torneo</label>
                                     <input type="date" id="fechaIni_input" name="fecha_torneo_inicio"
                                             class="form-control" placeholder="Inicio" value="{{torneo.fecha_torneo_inicio|date:'Y-m-d'}}" title="Fecha Inicio" onchange="fechasTorneo()"
                                             required>
@@ -76,7 +76,7 @@
                                         </div>
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-12 col-md-12 position-relative">
-                                    <label class="primera" id="torneo_label" for="fechaFin_input">Fecha Final Torneo</label>
+                                    <label class="primera text-white" id="torneo_label" for="fechaFin_input">Fecha Final Torneo</label>
                                     <input type="date" id="fechaFin_input" name="fecha_torneo_fin"
                                     class="form-control" placeholder="Fin" title="Fecha Fin" value="{{ torneo.fecha_torneo_fin|date:'Y-m-d'}}" onchange="fechasTorneo()" required>
                                     <div class="invalid-tooltip">
@@ -94,7 +94,7 @@
                                     <div class="row">
                                         <div class="col-lg-6 col-md-6 col-sm-12 col-md-12 position-relative">
                                             <label class="primera" id="torneo_label" for="fechaIni_input">Inicio Pre-inscripción</label>
-                                            <input type="date" id="fechaIni_input" name="fecha_torneo_inicio"
+                                            <input type="date" id="fechaIni_input" name="fecha_inicioPre"
                                                     class="form-control" placeholder="Inicio" value="{{preIns.fecha_inicioPre|date:'Y-m-d'}}" title="Fecha Inicio" onchange="fechasTorneo()"
                                                     required>
                                                 <div class="invalid-tooltip">
@@ -103,7 +103,7 @@
                                         </div>
                                         <div class="col-lg-6 col-md-6 col-sm-12 col-md-12 position-relative">
                                             <label class="primera" id="torneo_label" for="fechaFin_input">Fin Pre-inscripción</label>
-                                            <input type="date" id="fechaFin_input" name="fecha_torneo_fin"
+                                            <input type="date" id="fechaFin_input" name="fecha_finPre"
                                             class="form-control" placeholder="Fin" title="Fecha Fin" value="{{ preIns.fecha_finPre|date:'Y-m-d'}}" onchange="fechasTorneo()" required>
                                             <div class="invalid-tooltip">
                                                 Llene este campo.
@@ -116,7 +116,7 @@
                                         <div class="col-lg-6 col-md-6 col-sm-12 col-md-12 position-relative">
                                             <label class="primera" id="montoPre_label" for="montoPre">Monto
                                                 Pre-inscripción($us)</label>
-                                                <input type="number" class="primer form-control" name="monto_preinscripcion"
+                                                <input type="number" class="primer form-control" name="monto_Preinscripcion"
                                                         id="montoPre_input" min="0" value="{{preIns.monto_Preinscripcion}}" max="1000000"
                                                         placeholder="Ingrese el costo de pre-inscripción" required>
                                                 <div class="invalid-tooltip">
@@ -128,8 +128,8 @@
                                     <div class="row">
                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 position-relative">
                                             <label for="convocatoria" class="">QR para la Pre-inscripción</label>
-                                            <input type="file" class="form-control" value="{{preIns.qr_Preinscripcion.url}}" id="qr1Input"
-                                                name="qr1_torneo" accept="image/*" required>
+                                            <input type="file" class="form-control" onchange="cambiarPortada('{{preIns.qr_Preinscripcion.url}}')" value="{{preIns.qr_Preinscripcion.url}}" id="qr1Input"
+                                                name="qr_Preinscripcion" accept="image/*" >
                                             <div class="invalid-tooltip">
                                                   Adjunte el QR de pre-inscripción
                                             </div>
@@ -138,7 +138,7 @@
                                     <div class="row">
                                         <div class="col-12 d-flex align-items-center text-center">
                                             <div class="mb-3" id="divImg">
-                                                <img src="{{preIns.qr_Preinscripcion.url}}" width="300px">
+                                                <img src="{{preIns.qr_Preinscripcion.url}}"  id="img1">
                                             </div>
                                         </div>
                                     </div>
@@ -150,7 +150,7 @@
                                     <div class="row">
                                         <div class="col-lg-6 col-md-6 col-sm-12 col-md-12 position-relative">
                                             <label class="primera" id="torneo_label" for="fechaIni_input">Inicio Inscripción</label>
-                                            <input type="date" id="fechaIni_input" name="fecha_torneo_inicio"
+                                            <input type="date" id="fechaIni_input" name="fecha_inicio"
                                                     class="form-control" placeholder="Inicio" value="{{rez.fecha_inicio|date:'Y-m-d'}}" title="Fecha Inicio" onchange="fechasTorneo()"
                                                     required>
                                                 <div class="invalid-tooltip">
@@ -159,7 +159,7 @@
                                         </div>
                                         <div class="col-lg-6 col-md-6 col-sm-12 col-md-12 position-relative">
                                             <label class="primera" id="torneo_label" for="fechaFin_input">Fin Inscripción</label>
-                                            <input type="date" id="fechaFin_input" name="fecha_torneo_fin"
+                                            <input type="date" id="fechaFin_input" name="fecha_fin"
                                             class="form-control" placeholder="Fin" title="Fecha Fin" value="{{ rez.fecha_fin|date:'Y-m-d'}}" onchange="fechasTorneo()" required>
                                             <div class="invalid-tooltip">
                                                 Llene este campo.
@@ -172,7 +172,7 @@
                                         <div class="col-lg-6 col-md-6 col-sm-12 col-md-12 position-relative">
                                             <label class="primera" id="montoPre_label" for="montoPre">Monto
                                                 Inscripción($us)</label>
-                                                <input type="number" class="primer form-control" name="monto_preinscripcion"
+                                                <input type="number" class="primer form-control" name="monto_inscripcion"
                                                         id="montoPre_input" min="0" value="{{rez.monto_inscripcion}}" max="1000000"
                                                         placeholder="Ingrese el costo de pre-inscripción" required>
                                                 <div class="invalid-tooltip">
@@ -184,8 +184,8 @@
                                     <div class="row">
                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 position-relative">
                                             <label for="convocatoria" class="">QR para la Inscripción</label>
-                                            <input type="file" class="form-control" value="{{rez.qr_inscripcion.url}}" id="qr1Input"
-                                                name="qr1_torneo" accept="image/*" required>
+                                            <input type="file" onchange="cambiarPortada2('{{rez.qr_inscripcion.url}}')" class="form-control" value="{{rez.qr_inscripcion.url}}" id="qr2Input"
+                                                name="qr_inscripcion" accept="image/*" >
                                             <div class="invalid-tooltip">
                                                   Adjunte el QR de pre-inscripción
                                             </div>
@@ -193,8 +193,8 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-12 d-flex align-items-center text-center">
-                                            <div class="mb-3" id="divImg">
-                                                <img src="{{rez.qr_inscripcion.url}}" >
+                                            <div class="mb-3" id="divImg2">
+                                                <img src="{{rez.qr_inscripcion.url}}" id="img2">
                                             </div>
                                         </div>
                                     </div>

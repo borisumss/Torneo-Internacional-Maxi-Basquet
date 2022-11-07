@@ -29,6 +29,7 @@ urlpatterns = [
     path('administracion/torneos/editar/<int:id>', views.editar_torneo, name='editar_torneo'),
     path('administracion/', views.administracion, name='administracion'),
     path('administracion/torneos/', views.administracionTorneos, name='torneos'),
+    path('administracion/torneos/baja/<int:id>', views.bajaTorneo, name='bajaTorneo'),
     path('administracion/equipos/', views.administracionEquipos, name='equipos'),
     path('administracion/equipos/<int:idequipo>', views.verEquipo, name='verEquipo'),
     path('administracion/torneos/terminados/', views.administracionTorneosTerminados, name='torneosTerminados'),

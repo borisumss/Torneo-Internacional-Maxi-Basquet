@@ -153,9 +153,9 @@ th{
     padding: 15px 0px;
 }
 
-#btn-ver, #btn-editar{
-    padding: 5px 0px;
-    width: 25px;
+#btn-ver, #btn-editar,#btn-bajaTorneo{
+    width: 100%;
+   
 }
 
 .fondoTab1{
