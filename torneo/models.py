@@ -67,6 +67,7 @@ class delegado_Inscripcion(models.Model):
     telefono_delegado_inscripcion = models.CharField(max_length=15)
     id_inscripcion = models.ForeignKey(Inscripcion, on_delete=models.CASCADE)
     recibo_inscripcion = models.ImageField(upload_to='static/imagenes/Comprobantes/', verbose_name='Recibo Rezagados', null=True)
+    fecha_solicitud = models.DateTimeField(auto_now_add=True,null=True)
     id_delegadoIns = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
 
 class delegado_PreInscripcion(models.Model):
@@ -77,6 +78,7 @@ class delegado_PreInscripcion(models.Model):
     telefono_delegado_Preinscripcion = models.CharField(max_length=15)
     id_Pre_inscripcion = models.ForeignKey(Pre_Inscripcion, on_delete=models.CASCADE)
     recibo_Preinscripcion = models.ImageField(upload_to='static/imagenes/Comprobantes/', verbose_name='Recibo Preinscripción', null=True)
+    fecha_solicitud = models.DateTimeField(auto_now_add=True,null=True)
     id_delegadoPreIns = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
 
 
@@ -166,7 +168,20 @@ class Jugador(models.Model):
             imag.thumbnail(output_size)
             imag.save(self.foto_jugador.path)
 
-
+class Tabla_posiciones(models.Model):
+    id_equipo = models.IntegerField(primary_key=True)
+    nombre_equipo = models.CharField(max_length=50, null=True)
+    escudo_equipo =  models.ImageField(upload_to='static/imagenes/equipos/escudos/', verbose_name='Escudo equipo', null=True)
+    categoria_equipo = models.CharField(max_length=50, null=True)
+    partidos_jugados = models.IntegerField(null=True)
+    partidos_ganados = models.IntegerField(null=True)
+    partidos_perdidos = models.IntegerField(null=True)
+    puntos_favor = models.IntegerField(null=True)
+    puntos_encontra = models.IntegerField(null=True)
+    diferencia = models.IntegerField(null=True)
+    puntaje_total = models.IntegerField(null=True)
+   
+    id_torneo = models.ForeignKey(Torneo, on_delete=models.CASCADE)
 # @receiver(post_save, sender=Jugador)
 # def create_qr(sender, instance, **kwargs):
 #     code = instance.ci_jugador
