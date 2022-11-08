@@ -18,6 +18,8 @@ body {
    /* background-image: url("/static/images/fondoSol.jpg");*/
 }
 
+
+
 header{
     position: sticky !important;
     top:0;
@@ -45,7 +47,7 @@ header{
     position: fixed;
     top: 58px;
     left: 0;
-    background: #003975b4;
+    background: #003975;
     width: 300px;
     max-width: 300px;
     height: 100%;
@@ -106,7 +108,7 @@ img{
 }
 
 #divImg, #divImg2{
-    margin: 0 auto;
+    margin: 10px auto;
 }
 
 #izquierda{
@@ -130,6 +132,13 @@ label, h3{
     background-color: white;
 }
 
+#encabezado{
+    background-color: #003975;  
+}
+h3{
+    margin: 10px auto !important;
+    color: white;
+}
 .card{
     background-color: rgba(0, 128, 0, 0);
     border: none;
