@@ -11,7 +11,7 @@ from django.contrib.auth.models import User
 from django.db import IntegrityError
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.decorators import user_passes_test
-from .models import Organizador, Torneo, Inscripcion, Categorias_Torneo, Pre_Inscripcion, delegado_Inscripcion, delegado_PreInscripcion , Entrenador, Equipo ,Delegado , Jugador
+from .models import Organizador, Torneo, Tabla_posiciones,Inscripcion, Categorias_Torneo, Pre_Inscripcion, delegado_Inscripcion, delegado_PreInscripcion , Entrenador, Equipo ,Delegado , Jugador
 from django.contrib import messages
 from datetime import date
 from django.core.mail import send_mail
@@ -484,11 +484,14 @@ def verTorneo(request, id):
     torneo = Torneo.objects.filter(id=id)
     categorias = Categorias_Torneo.objects.filter(id_torneo=id)
     equipos = Equipo.objects.filter(estado_inscripcion_equipo="INSCRITO", id_torneo=id)
-                
+    tablas = Tabla_posiciones.objects.filter(id_torneo=id)      
+    numeros = len(tablas)  
     return render(request, 'Torneo.html', {
         "torneo": torneo,
         "categorias": categorias,
         "equipos": equipos,
+        "tablas": tablas,
+        "numeros": numeros,
     })
 
 def administracionTorneos(request):

@@ -1,93 +1,237 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../static/css/Torneo.css"> 
-    <title>Document</title>
+    <link rel="stylesheet" href="../static/css/Torneo.css">
+    <title>Torneo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <!-- iconos bootstrap 5 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+    <!-- style.css -->
+    <!-- iconos bootstrap 5 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css" />
+    <!--- MDBootstrap  -->
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
+    <!-- MDB -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/5.0.0/mdb.min.css" rel="stylesheet" />
 </head>
+
 <body>
-    {% for i in torneo %}
-    ESPACIO PARA EL TORNEO CON ID: {{i.id}}
-    y nombre: {{i.nombre_torneo}}
-    {% endfor %}
 
-      <div class = "container">
-        
+    <header>
+        <!-- place navbar here -->
+        <nav class="navbar navbar-expand-lg navbar-custom">
+            <div class="container-fluid">
+                <div class="menu d-flex" id="TituloPadre">
+                    <b><a class="navbar-brand text-white" id="Titulo" href="{% url 'torneos' %}">MAXI BASQUET</a></b>
 
-        <div class = "row mt-3 mb-4 button-group filter-button-group text-center">
-            <div class = "col justify-content-center">
+                </div>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="text-white fa fa-navicon"></span>
+                </button>
+
+                <div class="text-end collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="#">Inicio</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="#equipos">Equipos</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="#tabla">Tabla</a>
+                        </li>
+
+                        <li>
+                            <a class="nav-link text-white" href="#enfrentamientos">Enfrentamientos</a>
+                        </li>
+                    </ul>
+
+                </div>
+
+
+            </div>
+        </nav>
+    </header>
+
+    <br>
+    <div class="container-fluid" id="inicio">
+
+        {% for i in torneo %}
+        <div class="container">
+            <div class="row" id="actual" >
+              <div class="col-3"></div>
+              <div class="col-lg-6 col-md-12 col-12" id="infor-torneo">
+                <div class="about-text">
+                  <h2 class="text-center text-white" style=" text-transform: uppercase; font-weight:bolder; color:black">
+                   {{i.nombre_torneo}}
+                  </h2>
+                </div>
+                <div class="image text-center">
+                    <img src="{{i.logo.url}}" id="imagen-torneo">
+
+                </div>
+                <br>
+                <div class="infor text-center text-white">
+                    <p>
+                        Organizador: <b style=" text-transform: uppercase;">{{i.id_organizador.nombre_organizador}} </b> <br>
+                         </p>
+                       <p>
+                       Localidad: <b style=" text-transform: uppercase;">{{i.pais_torneo}} </b> <br>
+                       </p>
+                       <p>
+                        Fecha Inicio: <b style=" text-transform: uppercase;">{{i.fecha_torneo_inicio}} </b> <br>                    
+                       </p>
+                       <p>
+                        Fecha Final: <b style=" text-transform: uppercase;">{{i.fecha_torneo_fin}} </b><br>                    
+                       </p>
+                      <p> Número de equipos <b>{{numeros}}</b>
+                      </p>
+                </div>
+                  
+              </div>
+              <div class="col-3"></div>
+            </div>    
+          </div>
+        {% endfor %}
+          <br><br>
+        <div class="row mt-3 mb-4 button-group filter-button-group ">
+            <div class="col">
                 {% for categoria in categorias %}
 
-                  <button type = "button" data-filter = ".{{categoria.nombre_categoria}}" class = "btn btn-primary m-2 text-dark">{{categoria.nombre_categoria}}[{{categoria.edad_minima}}-{{categoria.edad_maxima}}]</button>
-                
-                {% endfor %} 
+                <button type="button" data-filter=".{{categoria.nombre_categoria}}"
+                    class="btn">{{categoria.nombre_categoria}}[{{categoria.edad_minima}}-{{categoria.edad_maxima}}]</button>
+
+                {% endfor %}
             </div>
         </div>
 
-        <div class = "row justify-content-center g-4" id = "product-list">
-            
-            <h1>TABLA DE POSICIONES</h1>
-            <div class="card rounded-0 shadow-sm blur Mixto">
+        <div class="row justify-content-center g-4" id="product-list">
+
+
+            {% for categoria in categorias %}
+
+            <div class="card  {{categoria.nombre_categoria}}">
+                <h4 class="text-white">EQUIPOS</h4>
+                <div class="card-body" id="equipos">
+
+                    {% for equipo in equipos %}
+                    {% if equipo.categoria_equipo == categoria.nombre_categoria %}
+                    <div class="col-lg-4 col-md-6 ">
+                        <a href="{% url 'verEquipo' equipo.pk %}">
+                            <div class="product-item">
+                                <div class="container"
+                                    style="height: 300px; width:250px ; display: flex; align-items: center">
+                                    <div class="product-img">
+                                        <img src="../../{{equipo.escudo_equipo}}"
+                                            class="img-fluid d-block mx-auto p-2 escudo">
+                                    </div>
+                                </div>
+                                <div class="product-content text-center py-3">
+                                    <span class="d-block text-uppercase text-dark">{{equipo.nombre_equipo}}</span>
+                                    <span class="d-block text-alert">{{equipo.pais_origen}}</span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    {% endif %}
+                    {% endfor %}
+                </div>
+                <br><br>
+                <h4 class="text-white" id="tabla">TABLA DE POSICIONES</h4>
+
                 <div class="card-body">
                     <div class="container-fluid">
-                        <h1 class="bd-title text-center">Plantel del equipo</h1>
+
                         <table class="table table-stripped table-bordered">
                             <colgroup>
-                                <col width="5%">
-                                <col width="15%">
-                                <col width="20%">
-                                <col width="25%">
                                 <col width="25%">
                                 <col width="10%">
+                                <col width="10%">
+                                <col width="10%">
+                                <col width="10%">
+                                <col width="10%">
+                                <col width="10%">
+                                <col width="15%">
                             </colgroup>
                             <thead>
                                 <tr class="bg-primary bg-gradient text-light">
-                                    <th class="text-center">#</th>
-                                    <th class="text-center">Fecha nacimiento</th>
-                                    <th class="text-center">CI</th>
-                                    <th class="text-center">Nombre</th>
-                                    <th class="text-center">Pos./Ocup.</th>
-                                    <th class="text-center">Acción</th>
+                                    <th class="text-center"> Nombre</th>
+                                    <th class="text-center">PJ</th>
+                                    <th class="text-center">PG</th>
+                                    <th class="text-center">PP</th>
+                                    <th class="text-center">PF</th>
+                                    <th class="text-center">PC</th>
+                                    <th class="text-center">DP</th>
+                                    <th class="text-center">Puntos</th>
                                 </tr>
                             </thead>
-                            <tbody>                                  
-                               
+                            <tbody class="">
+                                {% for tabla in tablas %}
+                                {% if tabla.categoria_equipo == categoria.nombre_categoria %}
+                                <tr class="">
+                                    <td><img src="{{tabla.escudo_equipo.url}}" width="50px"> {{tabla.nombre_equipo}}
+                                    </td>
+                                    <td class="text-center">{{tabla.partidos_jugados}}</td>
+                                    <td class="text-center">{{tabla.partidos_ganados}}</td>
+                                    <td class="text-center">{{tabla.partidos_perdidos}}</td>
+                                    <td class="text-center">{{tabla.puntos_favor}}</td>
+                                    <td class="text-center">{{tabla.puntos_encontra}}</td>
+                                    <td class="text-center">{{tabla.diferencia}}</td>
+                                    <td class="text-center">{{tabla.puntaje_total}}</td>
+                                </tr>
+                                {% endif %}
+                                {% endfor %}
                             </tbody>
                         </table>
                     </div>
                 </div>
+                <br><br>
+                <h4 class="text-white" id="enfrentamientos">ENFRENTAMIENTOS</h4>
+                <br><br>
+                <br><br>
+                <br><br>
+                <br><br>
+                <br><br>
+                <br><br>
+                <br><br>
+                <br><br>
+                <br><br>
+                <br><br>
+                <br><br>
+                <br><br>
+                <br><br>
+                <br><br>
+                <br><br>
+                <br><br>
             </div>
-            <hr>
-            
-            {% for equipo in equipos %}
-            
-            <div class = "col-lg-4 col-md-6 {{equipo.categoria_equipo}}">
-                <a href="{% url 'verEquipo' equipo.pk %}">
-                    <div class="product-item">
-                        <div class="container" style="height: 300px; width:250px ; display: flex; align-items: center">
-                            <div class="product-img">
-                            <img src="../../{{equipo.escudo_equipo}}" class="img-fluid d-block mx-auto p-2 escudo">
-                        </div>
-                        </div>
-                        <div class="product-content text-center py-3">
-                            <span class="d-block text-uppercase text-dark">{{equipo.nombre_equipo}}</span>
-                            <span class="d-block text-alert">{{equipo.pais_origen}}</span>
-                        </div>
-                    </div>
-                </a>
-            </div>
-
             {% endfor %}
+
         </div>
     </div>
 </body>
 
 
- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <!-- isotope plugin -->
- <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+    integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<!-- isotope plugin -->
+<script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
+    crossorigin="anonymous"></script>
+<script src="../../static/Js/Torneos.js"></script>
 
- <script src = "../../static/Js/Torneos.js"></script>
 </html>
