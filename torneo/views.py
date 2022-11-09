@@ -483,24 +483,37 @@ def aceptar(request, tipo, id):
 
 
 def verTorneo(request, id):
+    tablas = Tabla_posiciones.objects.filter(id_torneo=id)   
     torneo = Torneo.objects.filter(id=id)
-    categorias = Categorias_Torneo.objects.filter(id_torneo=id)
-    equipos = Equipo.objects.filter(estado_inscripcion_equipo="INSCRITO", id_torneo=id)
-    enfrentamientos = Enfrentamiento.objects.filter(id_torneo=id) 
-    
-    tablas = Tabla_posiciones.objects.filter(id_torneo=id)    
-    nueva = sorted(tablas, key=lambda x: x.puntaje_total, reverse=True) 
-    nuevaVs = sorted(enfrentamientos, key=lambda x: x.fecha_enfrentamiento) 
-    
-    numeros = len(tablas)  
-    return render(request, 'Torneo.html', {
-        "torneo": torneo,
-        "categorias": categorias,
-        "equipos": equipos,
-        "tablas": nueva,
-        "numeros": numeros,
-        "enfrentamientos": nuevaVs,
-    })
+    if request.method == 'GET':
+        categorias = Categorias_Torneo.objects.filter(id_torneo=id)
+        equipos = Equipo.objects.filter(estado_inscripcion_equipo="INSCRITO", id_torneo=id)
+        enfrentamientos = Enfrentamiento.objects.filter(id_torneo=id) 
+        nueva = sorted(tablas, key=lambda x: x.puntaje_total, reverse=True) 
+        nuevaVs = sorted(enfrentamientos, key=lambda x: x.fecha_enfrentamiento) 
+        print(enfrentamientos)
+        numeros = len(tablas)  
+        return render(request, 'Torneo.html', {
+            "torneo": torneo,
+            "categorias": categorias,
+            "equipos": equipos,
+            "tablas": nueva,
+            "numeros": numeros,
+            "enfrentamientos": nuevaVs,
+        })
+    elif request.method == 'POST':
+        for i in range(len(tablas)):
+            for j in range(len(tablas)):
+                if i != j:
+                    if tablas[i].categoria_equipo == tablas[j].categoria_equipo:
+                        equipo_a = tablas[i].nombre_equipo
+                        equipo_b = tablas[j].nombre_equipo
+                        categoria = tablas[i].categoria_equipo
+                        estado = 'PENDIENTE'
+                        enfrentamiento = Enfrentamiento(estado=estado,equipo_a=equipo_a,equipo_b=equipo_b, categoria = categoria, id_torneo = torneo[0])
+                        enfrentamiento.save()
+        
+        return redirect('Torneo',id)
 
 def administracionTorneos(request):
     if request.method == 'GET':

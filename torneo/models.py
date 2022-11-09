@@ -193,6 +193,7 @@ class Tabla_posiciones(models.Model):
 class Enfrentamiento(models.Model):
     equipo_a = models.CharField(max_length=50, null=True)
     equipo_b = models.CharField(max_length=50, null=True)
-    fecha_enfrentamiento = models.DateTimeField(auto_now=False, auto_now_add=False, null=True)
+    fecha_enfrentamiento = models.DateTimeField(auto_now=False, auto_now_add=True, null=True)
     categoria = models.CharField(max_length=50, null=True)
+    estado = models.CharField(max_length=50, null=True)
     id_torneo = models.ForeignKey(Torneo, on_delete=models.CASCADE)

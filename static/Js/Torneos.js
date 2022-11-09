@@ -14,3 +14,17 @@ $('.filter-button-group').on('click', 'button', function () {
     $(this).addClass('seleccionado');
     $grid.isotope({ filter: filterValue });
 });
+
+function cargar(){
+    Swal.fire({
+        title: "Generando Enfrentamientos...",
+        icon: "info",
+        closeOnConfirm: true,
+        closeOnCancel: true,
+        allowOutsideClick: false,
+        showCancelButton: false,
+        showConfirmButton: false,
+
+
+      });
+}

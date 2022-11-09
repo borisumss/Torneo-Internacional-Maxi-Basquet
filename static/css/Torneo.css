@@ -148,6 +148,9 @@ background-size: cover;
     width: 400px;
     margin: 20px auto;
 }
+#generarVs{
+    margin: 20px auto !important;
+}
 
 #cardVs .card-header{
     background-color: #003975;
