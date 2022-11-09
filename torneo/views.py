@@ -491,7 +491,6 @@ def verTorneo(request, id):
         enfrentamientos = Enfrentamiento.objects.filter(id_torneo=id) 
         nueva = sorted(tablas, key=lambda x: x.puntaje_total, reverse=True) 
         nuevaVs = sorted(enfrentamientos, key=lambda x: x.fecha_enfrentamiento) 
-        print(enfrentamientos)
         numeros = len(tablas)  
         return render(request, 'Torneo.html', {
             "torneo": torneo,

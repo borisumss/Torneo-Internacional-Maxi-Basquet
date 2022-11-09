@@ -153,7 +153,7 @@ background-size: cover;
 }
 
 #cardVs .card-header{
-    background-color: #003975;
+    background-color: #000;
     color: white;
     font-weight: bold;
 }
@@ -164,6 +164,33 @@ background-size: cover;
 }
 h4{
     color: #003975 !important;
+}
+
+#padre{
+    margin: 25px auto !important;
+    
+}
+
+.escudo{
+    width: 100%!important;
+    height: 100%;
+}
+
+.product-item{
+    background-color: beige;
+}
+
+
+.product-content{
+    background-color: black;
+}
+#encabezados{
+    background-color: #000;
+    border: none !important;
+    font-weight: bold !important;
+}
+#cuerpo{
+    padding: 0px;
 }
 @media only screen and (max-width: 767px) {
     .navbar-nav {

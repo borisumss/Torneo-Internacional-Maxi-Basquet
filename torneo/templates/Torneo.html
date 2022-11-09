@@ -129,19 +129,19 @@
 
                     {% for equipo in equipos %}
                     {% if equipo.categoria_equipo == categoria.nombre_categoria %}
-                    <div class="col-lg-4 col-md-6 ">
-                        <a href="{% url 'verEquipo' equipo.pk %}">
+                    <div  id="padre">
+                        <a href="{% url 'verEquipo' equipo.pk %}" >
                             <div class="product-item">
-                                <div class="container"
-                                    style="height: 300px; width:250px ; display: flex; align-items: center">
-                                    <div class="product-img">
-                                        <img src="../../{{equipo.escudo_equipo}}"
-                                            class="img-fluid d-block mx-auto p-2 escudo">
-                                    </div>
+                                <div class="container" id="cuerpo"
+                                    style="height: 300px; width:300px ; display: flex; align-items: center">
+                                    
+                                        <img src="{{equipo.escudo_equipo.url}}"
+                                            class="escudo">
+                                   
                                 </div>
-                                <div class="product-content text-center py-3">
-                                    <span class="d-block text-uppercase text-dark">{{equipo.nombre_equipo}}</span>
-                                    <span class="d-block text-alert">{{equipo.pais_origen}}</span>
+                                <div class="product-content d-block text-center py-3 text-white">
+                                    <span class="d-block text-uppercase">{{equipo.nombre_equipo}}</span>
+                                    <i class="flag flag-{{equipo.pais_origen|lower}}"></i><span class="text-alert"> {{equipo.pais_origen|upper }}</span>
                                 </div>
                             </div>
                         </a>
@@ -167,7 +167,7 @@
                                 <col width="15%">
                             </colgroup>
                             <thead>
-                                <tr class="bg-primary bg-gradient text-light">
+                                <tr class="text-white" id="encabezados">
                                     <th class="text-center"> Nombre</th>
                                     <th class="text-center">PJ</th>
                                     <th class="text-center">PG</th>
