@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-from qr_code import qrcode
+#from qr_code import qrcode
 from PIL import Image
 
 import torneo
@@ -189,3 +189,10 @@ class Tabla_posiciones(models.Model):
 #     instance.qr_path = img
 #     print(img)
 #    #instance.save()
+
+class Enfrentamiento(models.Model):
+    equipo_a = models.CharField(max_length=50, null=True)
+    equipo_b = models.CharField(max_length=50, null=True)
+    fecha_enfrentamiento = models.DateTimeField(auto_now=False, auto_now_add=False, null=True)
+    categoria = models.CharField(max_length=50, null=True)
+    id_torneo = models.ForeignKey(Torneo, on_delete=models.CASCADE)

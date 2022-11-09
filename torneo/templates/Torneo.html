@@ -112,7 +112,7 @@
                 {% for categoria in categorias %}
 
                 <button type="button" data-filter=".{{categoria.nombre_categoria}}"
-                    class="btn">{{categoria.nombre_categoria}}[{{categoria.edad_minima}}-{{categoria.edad_maxima}}]</button>
+                    class="btn botones">{{categoria.nombre_categoria}}[{{categoria.edad_minima}}-{{categoria.edad_maxima}}]</button>
 
                 {% endfor %}
             </div>
@@ -200,22 +200,31 @@
                 </div>
                 <br><br>
                 <h4 class="text-white" id="enfrentamientos">ENFRENTAMIENTOS</h4>
-                <br><br>
-                <br><br>
-                <br><br>
-                <br><br>
-                <br><br>
-                <br><br>
-                <br><br>
-                <br><br>
-                <br><br>
-                <br><br>
-                <br><br>
-                <br><br>
-                <br><br>
-                <br><br>
-                <br><br>
-                <br><br>
+                 <div class="versus">
+                    {% if not enfrentamientos%}
+                        {% if user.username == 'admin' %}
+                        <button type="button" class="btn btn-success">Generar Enfrentamientos</button>
+                        {% endif %}
+                    {% else %}
+                    {% for vs in enfrentamientos %}
+                    {% if vs.categoria == categoria.nombre_categoria %}
+                    <div class="card" id="cardVs">
+                        <div class="card-header text-center">
+                            {{vs.fecha_enfrentamiento}}
+                        </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-5 text-center">{{vs.equipo_a}}</div>
+                                <div class="col-2 text-center">vs</div>
+                                <div class="col-5 text-center">{{vs.equipo_b}}</div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    {% endif %}
+                    {% endfor %}
+                    {% endif %}
+                 </div>
             </div>
             {% endfor %}
 
