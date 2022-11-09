@@ -184,3 +184,10 @@ body.loading {
 .w-min-content {
     width: min-content !important
 }
+
+@media screen and (max-width: 767px) {
+    .card-body{
+        overflow-x: auto;
+        width: 100%;
+    }
+}
