@@ -506,10 +506,12 @@ def verTorneo(request, id):
                 if i != j:
                     if tablas[i].categoria_equipo == tablas[j].categoria_equipo:
                         equipo_a = tablas[i].nombre_equipo
+                        escudoA = tablas[i].escudo_equipo
                         equipo_b = tablas[j].nombre_equipo
+                        escudoB = tablas[j].escudo_equipo
                         categoria = tablas[i].categoria_equipo
                         estado = 'PENDIENTE'
-                        enfrentamiento = Enfrentamiento(estado=estado,equipo_a=equipo_a,equipo_b=equipo_b, categoria = categoria, id_torneo = torneo[0])
+                        enfrentamiento = Enfrentamiento(escudo_equipoA=escudoA,escudo_equipoB=escudoB,estado=estado,equipo_a=equipo_a,equipo_b=equipo_b, categoria = categoria, id_torneo = torneo[0])
                         enfrentamiento.save()
         
         return redirect('Torneo',id)
