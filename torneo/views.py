@@ -658,23 +658,17 @@ def administracionEquipos(request):
             return redirect('login')
 
 def verEquipo(request, idequipo):
-    if request.method == 'GET':
-        if not request.user.is_anonymous:
-            if not request.user.email.endswith('@admin.com'):
-                return redirect('login')
-            else:
-                equipo = Equipo.objects.get(id=idequipo)
-                cate = Categorias_Torneo.objects.filter(id_torneo=equipo.id_torneo)
-                fechas = Inscripcion.objects.filter(id_torneo=equipo.id_torneo)
-                jugadores = Jugador.objects.filter(id_equipo=equipo)
-                return render(request, 'mostrar_detalle_equipo.html', {
+    if request.method == 'GET':        
+        equipo = Equipo.objects.get(id=idequipo)
+        cate = Categorias_Torneo.objects.filter(id_torneo=equipo.id_torneo)
+        fechas = Inscripcion.objects.filter(id_torneo=equipo.id_torneo)
+        jugadores = Jugador.objects.filter(id_equipo=equipo)
+        return render(request, 'mostrar_detalle_equipo.html', {
                     'equipo': equipo,
                     'categorias': cate,
                     'jugadores': jugadores,
                     'fechas': fechas.first(),
                 })
-        else:
-            return redirect('login')
 
     # elif request.method == 'POST':
     #     numeros = "0123456789"
@@ -696,7 +690,6 @@ def verEquipo(request, idequipo):
     #     messages.success(request, "Solicitud Aceptada correctamente")
     #     return redirect('solicitudes')
 
-            return redirect('login')
 
 def delegacionTorneo(request):
     if request.method == 'GET':
