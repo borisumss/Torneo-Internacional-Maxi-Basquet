@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{equipo.nombre_equipo}}</title>
+     <!--- MDBootstrap  -->
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
+    <!-- MDB -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/5.0.0/mdb.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../../static/css/mostrar_detalle_equipo.css">
+</head>
+
+<body>
+    <header>
+        <!-- place navbar here -->
+        <nav class="navbar navbar-expand-lg navbar-custom">
+            <div class="container-fluid">
+                <div class="menu d-flex" id="TituloPadre">
+                    <b><a class="navbar-brand text-white" id="Titulo" href="{% url 'Torneo' equipo.id_torneo.pk %}">MAXI BASQUET</a></b>
+    
+                </div>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="text-white fa fa-navicon"></span>
+                </button>
+    
+                <div class="text-end collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+    
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="#">Inicio</a>
+                        </li>
+    
+                        <li class="nav-item">
+                            <a class="nav-link text-white" href="#jugadores">Jugadores</a>
+                        </li>
+    
+                       
+                    </ul>
+    
+                </div>
+    
+    
+            </div>
+        </nav>
+    </header>
+    <br>
+    <article   id="Tab2"> 
+        
+        <section  id="secPortada">
+            <div class="portada text-center ">
+                <label for="portadaInput" id="portadaLabel"  class="btn guardar"></label>
+                <input type="file" class="form-control guardar" onchange="cambiarPortada()" name="portada_equipo" style="visibility:hidden;"  id="portadaInput" placeholder="" aria-describedby="fileHelpId" disabled >
+                
+                <img id="img-portada" src="/{{equipo.portada_equipo}}" alt="">
+    
+            </div>
+            <div class="escudo">
+                <label for="inputFile" id="labelFile"  class="btn guardar"></label>
+                <input type="file" class="form-control guardar" onchange="cambiarEscudo()" name="escudo_equipo" style="visibility:hidden;"  id="inputFile" placeholder="" aria-describedby="fileHelpId" disabled >
+                <img id="img-escudo" src="/{{equipo.escudo_equipo}}" alt="">
+            </div>
+        </section>
+        <br><br>
+        <section  id="secInfor">  
+
+                
+                <input type="text" class="primer form-control" onchange="validarNombre('{{equiposTodos}}')" name="nombre_equipo"
+                    id="title" placeholder="NOMBRE DEL EQUIPO" value="{{equipo.nombre_equipo|upper}}" disabled required>
+                    <hr>
+                <div class="" id="inforDoble">
+                    <input type="text" class="form-control fw-bolder" name="pais_origen"
+                        id="input" placeholder="PAIS DEL EQUIPO" value="País: " disabled required>
+                    <input type="text" class="form-control" name="ciudad_origen"
+                        id="input" placeholder="CIUDAD DEL EQUIPO" value="{{equipo.ciudad_origen}}-{{equipo.pais_origen}}" disabled required>
+                </div>
+                
+                <div class="position-relative" id="inforDoble">
+                    <input type="text" class="nombreTorneo form-control fw-bolder" 
+                    id="input" placeholder="TORNEO DEL EQUIPO" value="Torneo: "  onfocus="this.blur()" required>
+                    <input type="text" class="nombreTorneo form-control" 
+                    id="input" placeholder="TORNEO DEL EQUIPO" value="{{equipo.id_torneo.nombre_torneo}}/{{equipo.categoria_equipo}}"  onfocus="this.blur()" required>
+                    
+                </div>
+                
+        </section>
+    </article>
+    <br><br>
+    <h4 class="text-white" id="jugadores">EQUIPO</h4>
+    <h3 class="text-white" id="jugadores"></h3>
+    <article class="card" >
+        <div class="card-body" id="equipos">
+            <div  id="padre">
+                        
+                <div class="product-item" id="coach" count="DT">
+                    <div class="container" id="cuerpo"
+                        style="height: 300px; width:300px ; display: flex; align-items: center">
+                        
+                            <img src="{{equipo.id_entrenador_equipo.foto_entrenador.url}}"
+                                class="fotoJugador">
+                       
+                    </div>
+                    <div class="product-content d-block py-3" id="infor">
+                        <span class="d-block text-capitalize"><b>Nombre:</b> {{equipo.id_entrenador_equipo.nombre_entrenador}}</span>
+                        <span class="d-block text-capitalize"><b>Apodo:</b> {{equipo.id_entrenador_equipo.apodo_entrenador}}</span>
+                        <span class="d-block text-capitalize"><b>Nacionalidad: </b>{{equipo.id_entrenador_equipo.nacionalidad_entrenador}}</span>
+                        <span class="d-block text-capitalize"><b>Cumpleaños:</b> {{equipo.id_entrenador_equipo.nacimiento_entrenador}}</span>
+                    </div>
+                </div>
+            
+         </div>
+            {% for j in jugadores %}
+                    
+                    <div  id="padre">
+                        
+                            <div class="product-item" count="{{j.dorsal_jugador}}">
+                                <div class="container" id="cuerpo"
+                                    style="height: 300px; width:300px ; display: flex; align-items: center">
+                                    
+                                        <img src="{{j.foto_jugador.url}}"
+                                            class="fotoJugador">
+                                   
+                                </div>
+                                <div class="product-content d-block  py-3" id="infor">
+                                    <span class="d-block text-capitalize"><b>Nombre:</b> {{j.nombre_jugador}}</span>
+                                    <span class="d-block text-capitalize"><b>Apodo:</b> {{j.apodo_jugador}}</span>
+                                    <span class="d-block text-capitalize"><b>Posicion:</b> {{j.posicion_jugador}}</h>
+                                    <span class="d-block text-capitalize"><b>Cumpleaños:</b> {{j.nacimiento_jugador}}</h>
+                                </div>
+                            </div>
+                        
+                    </div>
+                    
+            {% endfor %}
+        </div>
+    </article>
+    <br>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+    integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<!-- isotope plugin -->
+<script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
+    crossorigin="anonymous"></script>
+</html>

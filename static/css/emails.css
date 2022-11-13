@@ -175,13 +175,24 @@ h5{
        
         width: 0px !important;
     }
+
+    #btn-Generar {
+       
+        font-size: 13px;
+        width: 70%;
+     }
 }
 
 
-@media only screen and (max-width:475px) {
+@media only screen and (max-width:476px) {
     #Titulo, #usuario{
         font-size: 10px !important;
     }
+    #btn-Generar {
+       
+        font-size: 11px;
+    
+     }
 }
 
 

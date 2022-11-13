@@ -153,9 +153,9 @@ th{
     padding: 15px 0px;
 }
 
-#btn-ver, #btn-editar{
-    padding: 5px 0px;
-    width: 25px;
+#btn-ver, #btn-editar,#btn-bajaTorneo{
+    width: 100%;
+   
 }
 
 .fondoTab1{
@@ -200,7 +200,7 @@ th{
 #Tab5 .tarjeta{
     position: relative;
     width: 530px !important;
-    height: 310px !important;
+    height: 380px !important;
     background-color: rgba(255, 255, 255, 0) !important; 
     margin: 22px auto !important;
     border-radius: 20px !important;
@@ -274,7 +274,7 @@ th{
 }
 #Tab5 .tarjeta .front{
     position: absolute;
-    
+    height: 100%;
     display: flex; 
     backface-visibility: hidden;
     transition: .5s;
@@ -289,6 +289,7 @@ th{
 }
 #Tab5 .tarjeta .back{
     position: absolute;
+    height: 100%;
     display: flex; 
     backface-visibility: hidden;
     transition: .5s;

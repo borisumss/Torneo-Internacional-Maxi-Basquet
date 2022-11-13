@@ -5,18 +5,21 @@ from pickle import FALSE, TRUE
 from re import I
 from sqlite3 import PrepareProtocol
 from unicodedata import category, name
+from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth import logout, authenticate, login as auth_login
 from django.contrib.auth.models import User
 from django.db import IntegrityError
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.decorators import user_passes_test
-from .models import Organizador, Torneo, Inscripcion, Categorias_Torneo, Pre_Inscripcion, delegado_Inscripcion, delegado_PreInscripcion , Entrenador, Equipo ,Delegado , Jugador
+from .models import Organizador, Torneo, Enfrentamiento,Tabla_posiciones,Inscripcion, Categorias_Torneo, Pre_Inscripcion, delegado_Inscripcion, delegado_PreInscripcion , Entrenador, Equipo ,Delegado , Jugador
 from django.contrib import messages
 from datetime import date
 from django.core.mail import send_mail
 from django.conf import settings
 import random as rd
+from qr_code.qrcode.utils import MeCard
+from .forms import EquipoForm, TorneoForm, TorneoPreInsForm, TorneoRezForm
 # def email_check(user):
 #   return user.email.endswith('@admin2.com')
 # Create your views here.
@@ -63,20 +66,21 @@ def preinscripcion(request, id):
             Preins = Pre_Inscripcion.objects.filter(id_torneo_id=id)
             Ins = Inscripcion.objects.filter(id_torneo_id=id)
             now = date.today()
-            if (len(Preins) == 1 and len(Ins) == 1):
+            # if (len(Preins) == 1 and len(Ins) == 1):
+            if (1==1):
                 if (now >= Preins[0].fecha_inicioPre and now <= Preins[0].fecha_finPre):
                     return render(request, 'pagoPreinscripcion.html',
                                   {'etapa': "PRE-INSCRIPCION",
                                    'monto': Preins[0].monto_Preinscripcion,
                                    'torneo': Preins[0].id_torneo.nombre_torneo,
-                                   'qr': "qrcode_classroom.png"
+                                   'qr': Preins[0].qr_Preinscripcion
                                    })
                 elif (now >= Ins[0].fecha_inicio and now <= Ins[0].fecha_fin):
                     return render(request, 'pagoPreinscripcion.html',
                                   {'etapa': "REZAGADOS",
                                    'monto': Ins[0].monto_inscripcion,
                                       'torneo': Ins[0].id_torneo.nombre_torneo,
-                                      'qr': "qrcode_websis.png"
+                                      'qr': Ins[0].qr_inscripcion
                                    })
                 else:
                     if (now < Ins[0].fecha_inicio) or (now < Preins[0].fecha_inicioPre):
@@ -189,16 +193,18 @@ def crear_torneo(request):
                 fecha_fin_pre = request.POST.get('fecha_preinscripcion_fin')
                 monto_inscripcion_pre = request.POST.get(
                     'monto_preinscripcion')
+                qr1 = request.FILES.get('qr1_torneo')
                 id_torneo = torneo.pk
                 pre_inscripcion = Pre_Inscripcion(
-                    fecha_inicioPre=fecha_inicio_pre, fecha_finPre=fecha_fin_pre, monto_Preinscripcion=monto_inscripcion_pre, id_torneo=torneo)
+                    qr_Preinscripcion=qr1,fecha_inicioPre=fecha_inicio_pre, fecha_finPre=fecha_fin_pre, monto_Preinscripcion=monto_inscripcion_pre, id_torneo=torneo)
                 pre_inscripcion.save()
 
                 #tipo_inscripcion_ins = 'inscripcion'
                 fecha_inicio_ins = request.POST.get('fecha_inscripcion_inicio')
                 fecha_fin_ins = request.POST.get('fecha_inscripcion_fin')
                 monto_inscripcion_ins = request.POST.get('monto_inscripcion')
-                inscripcion = Inscripcion(fecha_inicio=fecha_inicio_ins, fecha_fin=fecha_fin_ins,
+                qr2 = request.FILES.get('qr2_torneo')
+                inscripcion = Inscripcion(qr_inscripcion=qr2,fecha_inicio=fecha_inicio_ins, fecha_fin=fecha_fin_ins,
                                           monto_inscripcion=monto_inscripcion_ins, id_torneo=torneo)
                 inscripcion.save()
 
@@ -267,7 +273,7 @@ def enviarSolicitud(request, id):
                                          ci_delegado_inscripcion=ci_delegado_inscripcion, telefono_delegado_inscripcion=telefono_delegado_inscripcion, id_inscripcion=id_etapa_inscripcion, recibo_inscripcion=recibo_inscripcion)
         solicitud.save()
 
-        messages.success(request, "Solictud Enviada correctamente")
+        messages.success(request, "Solicitud Enviada correctamente")
         return redirect('home')
     elif estado == 'PRE-INSCRIPCION':
         aux = Pre_Inscripcion.objects.filter(id_torneo_id=id)
@@ -285,7 +291,7 @@ def enviarSolicitud(request, id):
 
         solicitud.save()
 
-        messages.success(request, "Solictud Enviada correctamente")
+        messages.success(request, "Solicitud Enviada correctamente")
         return redirect('home')
 
 
@@ -469,17 +475,46 @@ def aceptar(request, tipo, id):
             '\n\nAtte: ' + request.user.username + ", "+request.user.email
         from_email = settings.EMAIL_HOST_USER
         recipient_list = [request.POST.get('email')]
-        send_mail(subject, message, from_email,
-                  recipient_list, fail_silently=False)
-        messages.success(request, "Solictud Aceptada correctamente")
+        # send_mail(subject, message, from_email,
+                #   recipient_list, fail_silently=False)
+        # messages.success(request, "Solictud Aceptada correctamente")
+        print(message)
         return redirect('solicitudes')
 
 
 def verTorneo(request, id):
+    tablas = Tabla_posiciones.objects.filter(id_torneo=id)   
     torneo = Torneo.objects.filter(id=id)
-    return render(request, 'Torneo.html', {
-        "torneo": torneo
-    })
+    if request.method == 'GET':
+        categorias = Categorias_Torneo.objects.filter(id_torneo=id)
+        equipos = Equipo.objects.filter(estado_inscripcion_equipo="INSCRITO", id_torneo=id)
+        enfrentamientos = Enfrentamiento.objects.filter(id_torneo=id) 
+        nueva = sorted(tablas, key=lambda x: x.puntaje_total, reverse=True) 
+        nuevaVs = sorted(enfrentamientos, key=lambda x: x.fecha_enfrentamiento) 
+        numeros = len(tablas)  
+        return render(request, 'Torneo.html', {
+            "torneo": torneo,
+            "categorias": categorias,
+            "equipos": equipos,
+            "tablas": nueva,
+            "numeros": numeros,
+            "enfrentamientos": nuevaVs,
+        })
+    elif request.method == 'POST':
+        for i in range(len(tablas)):
+            for j in range(len(tablas)):
+                if i != j:
+                    if tablas[i].categoria_equipo == tablas[j].categoria_equipo:
+                        equipo_a = tablas[i].nombre_equipo
+                        escudoA = tablas[i].escudo_equipo
+                        equipo_b = tablas[j].nombre_equipo
+                        escudoB = tablas[j].escudo_equipo
+                        categoria = tablas[i].categoria_equipo
+                        estado = 'PENDIENTE'
+                        enfrentamiento = Enfrentamiento(escudo_equipoA=escudoA,escudo_equipoB=escudoB,estado=estado,equipo_a=equipo_a,equipo_b=equipo_b, categoria = categoria, id_torneo = torneo[0])
+                        enfrentamiento.save()
+        
+        return redirect('Torneo',id)
 
 def administracionTorneos(request):
     if request.method == 'GET':
@@ -622,18 +657,18 @@ def administracionEquipos(request):
         else:
             return redirect('login')
 
-def verEquipo(request, equipo):
-    if request.method == 'GET':
-        if not request.user.is_anonymous:
-            if not request.user.email.endswith('@admin.com'):
-                return redirect('login')
-            else:
-                equipo = get_object_or_404(Equipo, nombre_equipo=equipo)
-                return render(request, 'verEquipo.html', {
+def verEquipo(request, idequipo):
+    if request.method == 'GET':        
+        equipo = Equipo.objects.get(id=idequipo)
+        cate = Categorias_Torneo.objects.filter(id_torneo=equipo.id_torneo)
+        fechas = Inscripcion.objects.filter(id_torneo=equipo.id_torneo)
+        jugadores = Jugador.objects.filter(id_equipo=equipo)
+        return render(request, 'mostrar_detalle_equipo.html', {
                     'equipo': equipo,
+                    'categorias': cate,
+                    'jugadores': jugadores,
+                    'fechas': fechas.first(),
                 })
-        else:
-            return redirect('login')
 
     # elif request.method == 'POST':
     #     numeros = "0123456789"
@@ -655,7 +690,6 @@ def verEquipo(request, equipo):
     #     messages.success(request, "Solicitud Aceptada correctamente")
     #     return redirect('solicitudes')
 
-            return redirect('login')
 
 def delegacionTorneo(request):
     if request.method == 'GET':
@@ -711,10 +745,24 @@ def delegacionEquipo(request):
         ciudad = request.POST.get('ciudad_equipo')
         categoria = request.POST.get('categoria_equipo')
          
-        equipo = Equipo.objects.filter(id_delegado=request.user.id)
+        """ equipo = Equipo.objects.filter(id_delegado=request.user.id)
         estado = 'INSCRITO'
        
         equipo.update(pais_origen = pais, ciudad_origen= ciudad, nombre_equipo = nombre, categoria_equipo=categoria, estado_inscripcion_equipo=estado)
+        """
+        equipo = Equipo.objects.get(id_delegado=request.user.id)
+        print(equipo)
+        form = EquipoForm(request.POST or None, request.FILES or None,instance = equipo)
+        print("*************"*4)
+        print(form)
+        print(form.is_valid())
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Informació registrada correctamente")
+            
+        else:
+            messages.error(request, "Algo salio mal, intente nuevamente")
+        
         return redirect('delegacionEquipo')
 
 def delegacionCredenciales(request):
@@ -723,12 +771,88 @@ def delegacionCredenciales(request):
             if not request.user.email.endswith('@delegacion.com'):
                 return redirect('login')
             else:
-                equipo = Equipo.objects.filter(id_delegado=request.user.id)
+                equipo = Equipo.objects.filter(id_delegado=request.user.id)[0]
+                jugadores = Jugador.objects.filter(id_equipo=equipo.pk)
+                entrenador = Entrenador.objects.get(id=equipo.id_entrenador_equipo.pk)
+                delegado = Delegado.objects.get(id_delegado=equipo.id_delegado.pk)
+
                 return render(request,'Tab3Del.html',{
-                    'equipo':equipo[0]
+                    'jugadores': jugadores,
+                    'entrenador': entrenador,
+                    'delegado': delegado,
                 })
         else:
             return redirect('login')
+
+
+def view_card(request, pk=None):
+    if pk is None:
+        return HttpResponse("Jugador ID is Invalid")
+    elif(Jugador.objects.filter(ci_jugador=pk).exists()):
+        jugador = Jugador.objects.get(ci_jugador=pk)
+        info_jugador = MeCard(
+            name=jugador.nombre_jugador,
+            phone=jugador.ci_jugador,
+            email=jugador.apodo_jugador,
+            url=jugador.dorsal_jugador,
+            birthday='',
+            memo=jugador.posicion_jugador,
+            org=''
+        )
+        return render(request, 'view_id.html',{ 
+        'jugador': jugador,
+        'info_jugador': info_jugador,
+        })
+    elif(Entrenador.objects.filter(ci_entrenador=pk).exists()):
+        entrenador = Entrenador.objects.get(ci_entrenador=pk)
+        info_entrenador = MeCard(
+            name=entrenador.nombre_entrenador,
+            phone=entrenador.ci_entrenador,
+            email=entrenador.apodo_entrenador,
+            url=entrenador.nacionalidad_entrenador,
+            birthday='',
+            memo='',
+            org=''
+        )
+        return render(request, 'view_id_entrenador.html', {
+            'entrenador': entrenador,
+            'info_entrenador': info_entrenador,
+        })
+    else:
+        delegado = Delegado.objects.get(ci_delegado=pk)
+        info_delegado = MeCard(
+            name=delegado.nombre_delegado,
+            phone=delegado.ci_delegado,
+            email='',
+            url='',
+            birthday='',
+            memo='',
+            org=''
+        )
+        return render(request, 'view_id_delegado.html', {
+            'delegado': delegado,
+            'info_delegado': info_delegado,
+        })
+
+
+def view_card_entrenador(request, pk=None):
+    if pk is None:
+        return HttpResponse("Entrenador ID is Invalid")
+    else:
+        entrenador = Entrenador.objects.get(ci_entrenador=pk)
+        info_entrenador = MeCard(
+            name=entrenador.nombre_entrenador,
+            phone=entrenador.ci_entrenador,
+            email=entrenador.apodo_entrenador,
+            url=entrenador.nacionalidad_entrenador,
+            birthday='',
+            memo='',
+            org=''
+        )
+        return render(request, 'view_id_entrenador.html', {
+            'entrenador': entrenador,
+            'info_entrenador': info_entrenador,
+        })
 
 def inscribirEquipo(request,id):
     if request.method == 'GET':
@@ -751,6 +875,7 @@ def inscribirEquipo(request,id):
         foto = request.FILES.get('foto')
         
         id_equipo = Equipo.objects.filter(id=id)
+        id_equipo.update(estado_inscripcion_equipo="INSCRITO")
 
         jugador = Jugador(id_equipo=id_equipo[0],ci_jugador= ci, nacimiento_jugador = fecha,telefono_jugador = telefono, foto_jugador = foto ,nombre_jugador = nombre, apodo_jugador = apodo, posicion_jugador = posicion,dorsal_jugador = dorsal)
         jugador.save()
@@ -779,7 +904,7 @@ def inscribirEntrenador(request,id):
         entrenador = Entrenador(ci_entrenador= ci, nacimiento_entrenador = fecha,telefono_entrenador = telefono, foto_entrenador = foto ,nombre_entrenador = nombre, apodo_entrenador = apodo,nacionalidad_entrenador = nacionaldiad)
         entrenador.save()
         equipo = Equipo.objects.filter(id=id)
-        equipo.update(id_entrenador_equipo = entrenador)
+        equipo.update(id_entrenador_equipo = entrenador, estado_inscripcion_equipo="INSCRITO")
         messages.success(request, "Entrenador registrado correctamente")
         return redirect('delegacionEquipo')
 
@@ -790,3 +915,56 @@ def torneos(request):
          "torneosTerminados": torneosTerminados,
          "torneoActual": torneosActual
     })
+
+
+def editar_torneo(request,id):
+    if request.method == 'GET':
+        if not request.user.is_anonymous:
+            if request.user.email.endswith('@delegacion.com'):
+                return redirect('login')
+            else:
+                torneo = Torneo.objects.filter(id=id)
+                preIns = Pre_Inscripcion.objects.filter(id_torneo=id)
+                rez = Inscripcion.objects.filter(id_torneo=id)
+                return render(request,'editarTorneo.html',{'torneo':torneo[0]
+                ,'preIns':preIns[0]
+                ,'rez':rez[0]})
+        else:
+            return redirect('login')
+    elif request.method == 'POST':
+        print(request.POST)
+        print(request.FILES)
+
+        torneo = Torneo.objects.get(id=id)
+        torneoPreIns = Pre_Inscripcion.objects.get(id_torneo=id)
+        torneoRez = Inscripcion.objects.get(id_torneo=id)
+    
+        form = TorneoForm(request.POST or None, request.FILES or None,instance = torneo)
+        form2 = TorneoPreInsForm(request.POST or None, request.FILES or None,instance = torneoPreIns)
+        form3 = TorneoRezForm(request.POST or None, request.FILES or None,instance = torneoRez)
+
+        print(form.is_valid())
+        print(form2.is_valid())
+        print(form3.is_valid())
+        if form.is_valid() and form2.is_valid() and form3.is_valid():
+            form.save()
+            form2.save()
+            form3.save()
+            messages.success(request, "Información editada correctamente")
+            
+        else:
+            messages.error(request, "Algo salio mal, intente nuevamente")
+        return redirect('torneos')
+
+def bajaTorneo(request,id):
+    if request.method == 'GET':
+        if not request.user.is_anonymous:
+            if not request.user.email.endswith('@admin.com'):
+                return redirect('login')
+            else:
+                torneo = Torneo.objects.filter(id=id)
+                torneo.update(torneo_estado = 0)
+                messages.success(request, "Torneo dado de BAJA")
+                return redirect('torneos')
+        else:
+            return redirect('login')

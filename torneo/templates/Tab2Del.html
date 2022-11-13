@@ -4,7 +4,18 @@
 {% block body %}  fondoTab2 {% endblock %}
 {% block class2 %}  active {% endblock %}
 {% block contenido %}
-
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    {% if messages %}
+      {% for m in messages %}
+        <script>
+            if('{{m}}' == "Algo salio mal, intente nuevamente" )
+                Swal.fire('{{m}}', '', 'error');
+            else{
+                Swal.fire('{{m}}', '', 'success');
+            }
+        </script>
+      {% endfor %}
+    {% endif %}
 <article id="Tab2"> 
     <form class="needs-validation" id="formulario" name="formulario" method="POST"
                     enctype="multipart/form-data" novalidate>
@@ -32,16 +43,16 @@
     <br><br><hr>
     <section id="secInfor">   
         <input type="text" class="primer form-control" onchange="validarNombre('{{equiposTodos}}')" name="nombre_equipo"
-            id="title" placeholder="NOMBRE DEL EQUIPO" value="{{equipo.nombre_equipo}}" disabled required>
+            id="title" placeholder="NOMBRE DEL EQUIPO" minlength="5" maxlength="50" value="{{equipo.nombre_equipo}}" disabled required>
             <div class="" id="inforDoble">
-                <input type="text" class="form-control" name="pais_equipo"
-                    id="input" placeholder="PAIS DEL EQUIPO" value="{{equipo.pais_origen}}" disabled required>
-                <input type="text" class="form-control" name="ciudad_equipo"
-                    id="input" placeholder="CIUDAD DEL EQUIPO" value="{{equipo.ciudad_origen}}" disabled required>
+                <input type="text" class="form-control" name="pais_origen"
+                    id="input" pattern="^(?!\s)[a-zA-ZÁáÉéÍíÓóÚú\s]{5,50}" placeholder="PAIS DEL EQUIPO" value="{{equipo.pais_origen}}" disabled required>
+                <input type="text" class="form-control" name="ciudad_origen"
+                    id="input" pattern="^(?!\s)[a-zA-ZÁáÉéÍíÓóÚú\s]{5,50}" placeholder="CIUDAD DEL EQUIPO" value="{{equipo.ciudad_origen}}" disabled required>
             </div>
             
             <div class="position-relative" id="inforDoble">
-                <input type="text" class="nombreTorneo form-control" name="torneo_equipo"
+                <input type="text" class="nombreTorneo form-control" 
                 id="input" placeholder="TORNEO DEL EQUIPO" value="{{equipo.id_torneo.nombre_torneo}}"  onfocus="this.blur()" required>
                 
                 <select class="form-select" id="input" name="categoria_equipo" disabled required>
@@ -53,6 +64,7 @@
             </div>
             
     </section>
+</form>
     <hr>
     <section id="secEntrenador">
         <label name="monto_inscripcion" id="titleEntre"
@@ -63,7 +75,7 @@
                     class="fa fa-plus"></i></a>
             </div>
     </section>
-    </form>
+    
     <hr>
     <section id="secEquipo">
             <div class="position-relative" id="inforDoble2">
