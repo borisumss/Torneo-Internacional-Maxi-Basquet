@@ -1,0 +1,43 @@
+
+#titulo{
+    color: #fff;
+}
+
+.underline {
+    height: 3px;
+    width: 100px;
+    background-color: rgb(225, 215, 24);
+}
+
+.btn:focus {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+.btn-primary {
+    background-color: #fff !important;
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: #002df8 !important;
+    color: #fff !important;
+}
+
+.product-item {
+    border: 1px solid #ebebeb;
+    border-radius: 4px;
+    position: relative;
+    background-color: rgb(255, 255, 255);
+}
+
+.product-img:hover::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(21, 0, 255, 0.15);
+    z-index: 1;
+}

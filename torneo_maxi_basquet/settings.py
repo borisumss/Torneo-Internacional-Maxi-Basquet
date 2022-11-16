@@ -35,9 +35,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'whitenoise.runserver_nostatic',
     'torneo',
     'qr_code',
-    'whitenoise.runserver_nostatic',
 ]
 
 MIDDLEWARE = [
@@ -75,8 +75,6 @@ WSGI_APPLICATION = 'torneo_maxi_basquet.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-#### DESARROLLO
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -84,21 +82,7 @@ DATABASES = {
     }
 }
 
-#####
-#### DEPLOY
-'''
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'railway',
-        'USER': 'root',
-        'PASSWORD': 'n9YoRdnsjCLH0sofnvsp',
-        'HOST': 'containers-us-west-116.railway.app',
-        'PORT': '6803',
-    }
-}
-'''
-########
+
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
 
@@ -135,27 +119,20 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
-##### DESARROLLO 
-#STATIC_URL = 'static/'
-#STATICFILES_DIRS = ['static/']
-######
-
-##### DEPLOY
-
+### DESARROLLO
 STATIC_URL = 'static/'
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
-
-#######
-
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]#['static/']
+STATIC_ROOT =os.path.join(BASE_DIR, 'staticfiles')
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
+#### DEPLOY
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
 ### DESARROLLO
-'''
 # ENVIAR CORREOS CONFIGURACION
+'''
 #EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
@@ -164,11 +141,8 @@ EMAIL_HOST_USER = 'dimelsa.soft@gmail.com'
 EMAIL_HOST_PASSWORD = 'iumdadaygfqwjibi'
 EMAIL_USE_TLS = True
 '''
-####
 
-
-#### DEPLOY
-# ENVIAR CORREOS CONFIGURACION
+### DEPLOY 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 #EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
