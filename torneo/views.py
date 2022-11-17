@@ -471,14 +471,14 @@ def aceptar(request, tipo, id):
 
         subject = 'Bienvenido al Torneo de Maxi Basquet'
         message = f'Tenga coordiales saludos.\n\nA continuación se presenta sus credenciales para acceder y registrar a su equipo en el torneo.\n\nNombre de usuario: ' + \
-            usuario + '\nContraseña: '+contrasenia+'\nEmail: '+correo + \
-            '\n\nAtte: ' + request.user.username + ", "+request.user.email
+            #usuario + '\nContraseña: '+contrasenia+'\nEmail: '+correo + \
+            #'\n\nAtte: ' + request.user.username + ", "+request.user.email
         from_email = settings.EMAIL_HOST_USER
         recipient_list = [request.POST.get('email')]
-        # send_mail(subject, message, from_email,
-                #   recipient_list, fail_silently=False)
-        # messages.success(request, "Solictud Aceptada correctamente")
-        print(message)
+        send_mail(subject, message, from_email,
+                  recipient_list, fail_silently=False)
+        messages.success(request, "Solictud Aceptada correctamente")
+        
         return redirect('solicitudes')
 
 

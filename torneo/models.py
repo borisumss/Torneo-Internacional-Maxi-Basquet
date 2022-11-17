@@ -101,12 +101,13 @@ class Delegado(models.Model):
 
     def save(self, *args, **kwargs):
         super(Delegado, self).save(*args, **kwargs)
-        print(self.foto_delegado)
-        imag = Image.open(self.foto_delegado.path)
-        if imag.width > 200 or imag.height > 200:
-            output_size = (200, 200)
-            imag.thumbnail(output_size)
-            imag.save(self.foto_delegado.path)
+        if self.foto_delegado:
+                print(self.foto_delegado)
+                imag = Image.open(self.foto_delegado.path)
+                if imag.width > 200 or imag.height > 200:
+                    output_size = (200, 200)
+                    imag.thumbnail(output_size)
+                    imag.save(self.foto_delegado.path)
 
 class Entrenador(models.Model):
     nombre_entrenador = models.CharField(max_length=50, null=True)
@@ -141,11 +142,12 @@ class Equipo(models.Model):
     def save(self, *args, **kwargs):
         super(Equipo, self).save(*args, **kwargs)
         print(self.escudo_equipo)
-        imag = Image.open(self.escudo_equipo.path)
-        if imag.width > 200 or imag.height > 200:
-            output_size = (200, 200)
-            imag.thumbnail(output_size)
-            imag.save(self.escudo_equipo.path)
+        if self.escudo_equipo:
+            imag = Image.open(self.escudo_equipo.path)
+            if imag.width > 200 or imag.height > 200:
+                output_size = (200, 200)
+                imag.thumbnail(output_size)
+                imag.save(self.escudo_equipo.path)
     
 
 class Jugador(models.Model):
