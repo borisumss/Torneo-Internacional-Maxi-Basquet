@@ -86,7 +86,11 @@
           {% if messages %}
           {% for m in messages %}
             <script>
-              Swal.fire('{{m}}', '', 'success');
+              if('{{m}}'=="ERROR"){
+                Swal.fire('Ya existe un torneo en curso', '', 'error');
+              }else{
+                Swal.fire('{{m}}', '', 'success');
+              }
             </script>
           {% endfor %}
         {% endif %}

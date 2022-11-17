@@ -148,7 +148,12 @@ def crear_torneo(request):
             if not request.user.email.endswith('@admin.com'):
                 return redirect('login')
             else:
-                return render(request, 'crearTorneo.html')
+                torneos = Torneo.objects.filter(torneo_estado=True)
+                if len(torneos)>=1:
+                    messages.error(request, "ERROR")
+                    return redirect('torneos')
+                else:
+                    return render(request, 'crearTorneo.html')
         else:
             return redirect('login')
     elif request.method == 'POST':
@@ -860,7 +865,9 @@ def inscribirEquipo(request,id):
             if not request.user.email.endswith('@delegacion.com'):
                 return redirect('login')
             else:
-                return render(request,'RegistrarJugador.html')
+                id_equipo = Equipo.objects.get(id=id)
+                categoria = Categorias_Torneo.objects.filter(nombre_categoria = id_equipo.categoria_equipo, id_torneo=id_equipo.id_torneo)
+                return render(request,'RegistrarJugador.html',{'categoria':categoria.first(), 'equipo':id_equipo})
         else:
             return redirect('login')
     elif request.method == 'POST':

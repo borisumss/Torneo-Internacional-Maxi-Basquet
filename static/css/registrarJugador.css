@@ -120,7 +120,7 @@ header, #side_nav{
     background-color: lightgray;
 }
 
-label{
+label, h5{
     color: #003975;
     font-weight: bold;
 }
@@ -150,6 +150,11 @@ input, select{
     height: 100%;
     align-items: center;
     border-radius: 10px;
+}
+
+.card-header{
+    display: grid !important;
+    grid-template-columns: 50% 50% !important;
 }
 
 @media (min-width:1200px){

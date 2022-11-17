@@ -57,7 +57,7 @@ let fechaNac = document.getElementById("fechaNac")
 let fechaActual = new Date(Date.now());
 let now = fechaActual.toLocaleString()
 
-function fechaNacimiento(){    
+function fechaNacimiento(categoriaMin,categoriaMax){    
     const anioActual = parseInt(fechaActual.getFullYear())
     const mesActual = parseInt(fechaActual.getMonth()) + 1
     const diaActual = parseInt(fechaActual.getDate())
@@ -76,11 +76,11 @@ function fechaNacimiento(){
         }
     }
 
-    if(edad < 30){
-        Swal.fire('La edad del jugador debe ser mínimo de 30 años','','error');
+    if(edad < categoriaMin){
+        Swal.fire('La edad del jugador debe ser mínimo de '+categoriaMin +' años','','error');
         fechaNac.value = '';
-    }else if(edad > 60){
-        Swal.fire('La edad del jugador debe ser máximo de 60 años','','error');
+    }else if(edad > categoriaMax){
+        Swal.fire('La edad del jugador debe ser máximo de '+categoriaMax +' años','','error');
         fechaNac.value = '';
     }
 }

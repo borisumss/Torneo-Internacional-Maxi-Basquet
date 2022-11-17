@@ -71,7 +71,7 @@
                                 <div class="col-lg-6 col-md-6 col-sm-12 col-md-12 position-relative">
                                     <label class="primera text-white" id="torneo_label" for="fechaIni_input">Fecha Inicio Torneo</label>
                                     <input type="date" id="fechaIni_input" name="fecha_torneo_inicio"
-                                            class="form-control" placeholder="Inicio" value="{{torneo.fecha_torneo_inicio|date:'Y-m-d'}}" title="Fecha Inicio" onchange="fechasTorneo()"
+                                            class="form-control" placeholder="Inicio" value="{{torneo.fecha_torneo_inicio|date:'Y-m-d'}}" title="Fecha Inicio" onchange="fechasTorneoIni()"
                                             required>
                                         <div class="invalid-tooltip">
                                             Llene este campo.
@@ -80,7 +80,7 @@
                                 <div class="col-lg-6 col-md-6 col-sm-12 col-md-12 position-relative">
                                     <label class="primera text-white" id="torneo_label" for="fechaFin_input">Fecha Final Torneo</label>
                                     <input type="date" id="fechaFin_input" name="fecha_torneo_fin"
-                                    class="form-control" placeholder="Fin" title="Fecha Fin" value="{{ torneo.fecha_torneo_fin|date:'Y-m-d'}}" onchange="fechasTorneo()" required>
+                                    class="form-control" placeholder="Fin" title="Fecha Fin" value="{{ torneo.fecha_torneo_fin|date:'Y-m-d'}}" onchange="fechasTorneoFin()" required>
                                     <div class="invalid-tooltip">
                                         Llene este campo.
                                     </div>
@@ -98,8 +98,8 @@
                                     <div class="row">
                                         <div class="col-lg-6 col-md-6 col-sm-12 col-md-12 position-relative">
                                             <label class="primera" id="torneo_label" for="fechaIni_input">Inicio Pre-inscripción</label>
-                                            <input type="date" id="fechaIni_input" name="fecha_inicioPre"
-                                                    class="form-control" placeholder="Inicio" value="{{preIns.fecha_inicioPre|date:'Y-m-d'}}" title="Fecha Inicio" onchange="fechasTorneo()"
+                                            <input type="date" id="fechaIniPre_input" name="fecha_inicioPre"
+                                                    class="form-control" placeholder="Inicio" value="{{preIns.fecha_inicioPre|date:'Y-m-d'}}" title="Fecha Inicio" onchange="fechasTorneoIniPre()"
                                                     required>
                                                 <div class="invalid-tooltip">
                                                     Llene este campo.
@@ -107,8 +107,8 @@
                                         </div>
                                         <div class="col-lg-6 col-md-6 col-sm-12 col-md-12 position-relative">
                                             <label class="primera" id="torneo_label" for="fechaFin_input">Fin Pre-inscripción</label>
-                                            <input type="date" id="fechaFin_input" name="fecha_finPre"
-                                            class="form-control" placeholder="Fin" title="Fecha Fin" value="{{ preIns.fecha_finPre|date:'Y-m-d'}}" onchange="fechasTorneo()" required>
+                                            <input type="date" id="fechaFinPre_input" name="fecha_finPre"
+                                            class="form-control" placeholder="Fin" title="Fecha Fin" value="{{ preIns.fecha_finPre|date:'Y-m-d'}}" onchange="fechasTorneoFinPre()" required>
                                             <div class="invalid-tooltip">
                                                 Llene este campo.
                                             </div>
@@ -156,8 +156,8 @@
                                     <div class="row">
                                         <div class="col-lg-6 col-md-6 col-sm-12 col-md-12 position-relative">
                                             <label class="primera" id="torneo_label" for="fechaIni_input">Inicio Inscripción</label>
-                                            <input type="date" id="fechaIni_input" name="fecha_inicio"
-                                                    class="form-control" placeholder="Inicio" value="{{rez.fecha_inicio|date:'Y-m-d'}}" title="Fecha Inicio" onchange="fechasTorneo()"
+                                            <input type="date" id="fechaIniRez_input" name="fecha_inicio"
+                                                    class="form-control" placeholder="Inicio" value="{{rez.fecha_inicio|date:'Y-m-d'}}" title="Fecha Inicio" onchange="fechasTorneoRezIni()"
                                                     required>
                                                 <div class="invalid-tooltip">
                                                     Llene este campo.
@@ -165,8 +165,8 @@
                                         </div>
                                         <div class="col-lg-6 col-md-6 col-sm-12 col-md-12 position-relative">
                                             <label class="primera" id="torneo_label" for="fechaFin_input">Fin Inscripción</label>
-                                            <input type="date" id="fechaFin_input" name="fecha_fin"
-                                            class="form-control" placeholder="Fin" title="Fecha Fin" value="{{ rez.fecha_fin|date:'Y-m-d'}}" onchange="fechasTorneo()" required>
+                                            <input type="date" id="fechaFinRez_input" name="fecha_fin"
+                                            class="form-control" placeholder="Fin" title="Fecha Fin" value="{{ rez.fecha_fin|date:'Y-m-d'}}" onchange="fechasTorneoRezFin()" required>
                                             <div class="invalid-tooltip">
                                                 Llene este campo.
                                             </div>
