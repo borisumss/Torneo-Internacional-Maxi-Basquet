@@ -1,0 +1,221 @@
+* {
+    font-family: 'Montserrat', sans-serif;
+}
+
+body{
+    background-image: url(../images/test2.jpg) !important;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+    background-position: center !important;
+    background-attachment: fixed !important;
+}
+
+
+nav.navbar {
+    background-color: #003975;
+}
+
+.navbar .getstarted {
+    background: #003975;
+    margin-left: 30px;
+    border-radius: 4px;
+    font-weight: 400;
+    color: #ffffff;
+    text-decoration: none;
+    padding: .5rem 1rem;
+    line-height: 2.3;
+}
+
+.navbar-nav a {
+    font-size: 15px;
+    text-transform: uppercase;
+    font-weight: 500;
+}
+
+.navbar-light .navbar-brand {
+    color: #000;
+    font-size: 25px;
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.navbar-light .navbar-brand:focus,
+.navbar-light .navbar-brand:hover {
+    color: #000;
+}
+
+.navbar-light .navbar-nav .nav-link {
+    color: #fff;
+}
+
+.navbar-light .navbar-nav .nav-link:focus,
+.navbar-light .navbar-nav .nav-link:hover {
+    color: #000;
+}
+
+.w-100 {
+    height: 100vh;
+}
+
+.navbar-toggler {
+    padding: 1px 5px;
+    font-size: 18px;
+    line-height: 0.3;
+    background: #003975;
+}
+/*****************/
+#Tab2{
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0px auto;
+}
+
+#Tab2 .tarjeta2{
+    position: relative;
+    width: 350px !important;
+    height: 500px !important;
+    background-color: rgba(25, 219, 25, 0) !important; 
+    margin: 22px auto !important;
+    border-radius: 20px !important;
+}
+
+.izquierda{
+    border-right: solid 5px white; 
+     
+}
+
+.filaIzq{
+    position: sticky !important;
+    top: 10% !important;
+}
+
+.tab1Izq{
+    position: sticky !important;
+    top: 100% !important;
+}
+
+
+main{
+    display: flex;
+}
+
+#card2, #card2H{
+    width: 100%;
+    height: 100%;
+}
+
+#card2{
+    background-color: rgba(255, 255, 255, 0);
+}
+#tab2header{
+    margin: 0px;
+    padding: 0px;
+    border: solid 10px #cda434;
+    border-bottom: none;
+    border-top: none;
+    height: 150px;
+    overflow: hidden;
+    border-bottom: none;
+}
+.img_logo{
+    
+    width: 100%;
+}
+
+#imgFull2{
+    width: 100%;  
+    max-height: 650px;
+}
+
+#fotoExp2{
+    background-color: rgba(0, 0, 0, 0.9);
+    color: white !important;
+    
+}
+
+#modalTab2Header{
+    border-bottom: none;
+    padding: 20px;
+}
+
+#ganador{
+    background-color: #cda434;
+    color: white !important;
+    border-top: none;
+}
+
+#tab2body{
+    padding: 15px 5px;
+    border-radius: 50% 50% 100% 100% / 35% 35% 0% 0%;
+    background-color: white;
+    border:solid 10px #cda434;
+    border-bottom: none;
+}
+
+#Tab2 p{
+    color: #000 !important;
+}
+
+#Tab2 h5{
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+#Tab2 hr{
+    color: #000;
+}
+
+#actual {
+
+    background-image: -webkit-linear-gradient(140deg, #009eb1 10.5%, #f1f1f1 10.5%, #f1f1f1 89.5%, #009eb1 89.5%);
+   
+    padding: 15px 10px;
+    border-radius: 20px;
+    color: #000;
+}
+#conv{
+    text-decoration: underline;
+}
+
+#btn-ir{
+    background-color: #009eb1;
+    font-weight: bolder;
+}
+.img-fluid {
+    border-radius: 20px;
+    height: 100% !important;
+}
+#izq{
+    padding: 0px;
+    border-radius: 20px;
+    box-shadow: 8px 8px 8px 1px rgb(61, 59, 59);
+}
+
+#tituloPasado{
+    text-decoration: underline;
+}
+
+.about-img {
+    height: 100%;
+}
+
+
+@media only screen and (max-width:750px) {
+
+    main{
+        display: inline-block;
+        width: 100% !important;
+    }
+
+    .izquierda{
+        border: none;
+        margin-top: 80px;
+        margin-bottom: 20px;
+    }
+
+    #actual {
+        background-image: -webkit-linear-gradient(90deg, #009eb1 5.5%, #f1f1f1 5.5%, #f1f1f1 97%, #009eb1 97%);
+
+    }
+}
