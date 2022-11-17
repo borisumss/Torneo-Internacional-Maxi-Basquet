@@ -148,7 +148,12 @@ def crear_torneo(request):
             if not request.user.email.endswith('@admin.com'):
                 return redirect('login')
             else:
-                return render(request, 'crearTorneo.html')
+                torneos = Torneo.objects.filter(torneo_estado=True)
+                if len(torneos)>=1:
+                    messages.error(request, "ERROR")
+                    return redirect('torneos')
+                else:
+                    return render(request, 'crearTorneo.html')
         else:
             return redirect('login')
     elif request.method == 'POST':
