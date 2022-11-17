@@ -125,7 +125,9 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]#['static/']
 STATIC_ROOT =os.path.join(BASE_DIR, 'staticfiles')
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
+#### DEPLOY
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 ### DESARROLLO
@@ -149,4 +151,4 @@ EMAIL_HOST_USER = 'dimelsa.soft@gmail.com'
 EMAIL_HOST_PASSWORD = 'iumdadaygfqwjibi'
 EMAIL_USE_TLS = True
 
-#CSRF_TRUSTED_ORIGINS = ['https://web-production-9a8b.up.railway.app']
+CSRF_TRUSTED_ORIGINS = ['https://web-production-9a8b.up.railway.app']
