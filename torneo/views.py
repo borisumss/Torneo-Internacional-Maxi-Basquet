@@ -865,7 +865,9 @@ def inscribirEquipo(request,id):
             if not request.user.email.endswith('@delegacion.com'):
                 return redirect('login')
             else:
-                return render(request,'RegistrarJugador.html')
+                id_equipo = Equipo.objects.get(id=id)
+                categoria = Categorias_Torneo.objects.filter(nombre_categoria = id_equipo.categoria_equipo, id_torneo=id_equipo.id_torneo)
+                return render(request,'RegistrarJugador.html',{'categoria':categoria.first(), 'equipo':id_equipo})
         else:
             return redirect('login')
     elif request.method == 'POST':
