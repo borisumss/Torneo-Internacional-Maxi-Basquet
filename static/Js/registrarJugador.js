@@ -85,6 +85,34 @@ function fechaNacimiento(categoriaMin,categoriaMax){
     }
 }
 
+function fechaNacimientoEnt(){    
+    const anioActual = parseInt(fechaActual.getFullYear())
+    const mesActual = parseInt(fechaActual.getMonth()) + 1
+    const diaActual = parseInt(fechaActual.getDate())
+
+    //Obtener datos del input formato 2020-06-01 ejm
+    const anioNac = parseInt(String(fechaNac.value).substring(0, 4))
+    const mesNac = parseInt(String(fechaNac.value).substring(5, 7))
+    const diaNac = parseInt(String(fechaNac.value).substring(8, 10))
+
+    let edad = anioActual - anioNac
+    if(mesActual < mesNac){
+        edad--;
+    }else if(mesActual === mesNac){
+        if(diaActual < diaNac){
+            edad--;
+        }
+    }
+
+    if(edad < 18){
+        Swal.fire('La edad del jugador debe ser mínimo de 18 años','','error');
+        fechaNac.value = '';
+    }else if(edad > 100){
+        Swal.fire('La edad del jugador debe ser máximo de 100 años','','error');
+        fechaNac.value = '';
+    }
+}
+
 function limpiarForm(){
     let foto = document.getElementById('fotoJugador')
     let imgPreviw = document.getElementById('imgprevisualizacion')
@@ -132,3 +160,15 @@ function limpiarFormEn(){
     doc.value = ''
     telef.value = ''
 }
+
+
+function validarCI(aux){
+    let nombres = aux.split('*')
+    let input = document.getElementById("documento");
+    for(let i=0; i< nombres.length;i++){
+        if(input.value == nombres[i]){
+          Swal.fire('', 'Este C.I. ya está registrado', 'error');
+          input.value = "";
+        }
+    }
+  }

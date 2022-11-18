@@ -765,7 +765,7 @@ def delegacionEquipo(request):
         print(form.is_valid())
         if form.is_valid():
             form.save()
-            messages.success(request, "Informació registrada correctamente")
+            messages.success(request, "Información registrada correctamente")
             
         else:
             messages.error(request, "Algo salio mal, intente nuevamente")
@@ -868,8 +868,18 @@ def inscribirEquipo(request,id):
                 return redirect('login')
             else:
                 id_equipo = Equipo.objects.get(id=id)
+                jugadores = Jugador.objects.filter(id_equipo=id_equipo)                
+                aux = id_equipo.id_delegado.ci_delegado +"*" + id_equipo.id_entrenador_equipo.ci_entrenador +"*"
+                for i in jugadores:
+                    if i.ci_jugador is not None:
+                        aux = aux + i.ci_jugador +"*"
+                print(aux)
                 categoria = Categorias_Torneo.objects.filter(nombre_categoria = id_equipo.categoria_equipo, id_torneo=id_equipo.id_torneo)
-                return render(request,'RegistrarJugador.html',{'categoria':categoria.first(), 'equipo':id_equipo})
+                return render(request,'RegistrarJugador.html',{
+                    'categoria':categoria.first(), 
+                    'equipo':id_equipo,
+                    'jugadores':aux,
+                    })
         else:
             return redirect('login')
     elif request.method == 'POST':
@@ -897,7 +907,16 @@ def inscribirEntrenador(request,id):
             if not request.user.email.endswith('@delegacion.com'):
                 return redirect('login')
             else:
-                return render(request,'RegistrarEntrenador.html')
+                id_equipo = Equipo.objects.get(id=id)
+                jugadores = Jugador.objects.filter(id_equipo=id_equipo)
+                aux = id_equipo.id_delegado.ci_delegado +"*" + id_equipo.id_entrenador_equipo.ci_entrenador +"*"
+                for i in jugadores:
+                    if i.ci_jugador is not None:
+                        aux = aux + i.ci_jugador +"*"
+                return render(request,'RegistrarEntrenador.html',{
+                    'equipo':id_equipo,
+                    'jugadores':aux
+                })
         else:
             return redirect('login')
     elif request.method == 'POST':

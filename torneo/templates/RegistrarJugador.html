@@ -150,8 +150,8 @@
                           </div>
                           <div class="col-12 col-lg-6">
                             <div class="position-relative">
-                              <label for="documento">Documento</label>
-                              <input type="text" class="formJug" name="Documento" id="documento" placeholder="Ingrese número de documento" 
+                              <label for="documento">Documento Identidad</label>
+                              <input type="text" class="formJug" name="Documento" id="documento" onchange="validarCI('{{jugadores}}')" placeholder="Ingrese número de documento" 
                               pattern="^(?!\s)[0-9]{7,15}" required>
                               <div class="invalid-tooltip">
                                 Entre 7 y 15 caracteres

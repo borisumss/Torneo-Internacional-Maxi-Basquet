@@ -60,8 +60,16 @@
         <div class="col-12 secciones align-items-center justify-content-center">
             <article id="Tab2" class="container d-flex mx-auto justify-content-center align-items-center"> 
                 <div class="card" id="cont">
-                  <div class="card-header text-end">
-                    <a type="button" href="{% url 'delegacionEquipo' %}" class="btn-close" aria-label="Close"></a>
+                  <div class="card-header d-flex">
+                    
+                    <div class="text-start">
+                      <h5 >
+                        {{equipo.nombre_equipo}} - {{equipo.categoria_equipo}}
+                    </h5>
+                    </div>
+                    <div class="text-end">
+                      <a type="button" href="{% url 'delegacionEquipo' %}" class="btn-close" aria-label="Close"></a>
+                    </div>
                   </div>
                     <div class="card-body">
                       <form class="needs-validation" id="formulario" name="formulario" method="POST" enctype="multipart/form-data" novalidate>
@@ -117,7 +125,7 @@
                             <br>
                             <div class="position-relative">
                               <label for="fechaNac">Fecha de nacimiento</label>
-                              <input type="date" class="formJug" name="Fecha_nac" id="fechaNac" onchange="fechaNacimiento()" required>
+                              <input type="date" class="formJug" name="Fecha_nac" id="fechaNac" onchange="fechaNacimientoEnt()" required>
                               <div class="invalid-tooltip">
                                 Llene este campo.
                               </div>
@@ -127,7 +135,7 @@
                           <div class="col-12 col-lg-6">
                             <div class="position-relative">
                               <label for="documento">Documento de Identidad</label>
-                              <input type="text" class="formJug" name="Documento" id="documento" placeholder="Ingrese número de documento" 
+                              <input type="text" class="formJug" name="Documento" id="documento" onchange="validarCI('{{jugadores}}')" placeholder="Ingrese número de documento" 
                               pattern="^(?!\s)[0-9]{7,15}" required>
                               <div class="invalid-tooltip">
                                 Entre 7 y 15 caracteres
