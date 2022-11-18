@@ -63,32 +63,34 @@ def preinscripcion(request, id):
             elif request.user.email.endswith('@admin.com'):
                 return redirect('torneos')
         else:
-            Preins = Pre_Inscripcion.objects.filter(id_torneo_id=id)
-            Ins = Inscripcion.objects.filter(id_torneo_id=id)
+            Preins = Pre_Inscripcion.objects.get(id_torneo_id=id)
+            Ins = Inscripcion.objects.get(id_torneo_id=id)
             now = date.today()
-            # if (len(Preins) == 1 and len(Ins) == 1):
-            if (1==1):
-                if (now >= Preins[0].fecha_inicioPre and now <= Preins[0].fecha_finPre):
+            if (Preins and Ins):
+                if (now >= Preins.fecha_inicioPre and now <= Preins.fecha_finPre):
                     return render(request, 'pagoPreinscripcion.html',
                                   {'etapa': "PRE-INSCRIPCION",
-                                   'monto': Preins[0].monto_Preinscripcion,
-                                   'torneo': Preins[0].id_torneo.nombre_torneo,
-                                   'qr': Preins[0].qr_Preinscripcion
+                                   'monto': Preins.monto_Preinscripcion,
+                                   'torneo': Preins.id_torneo.nombre_torneo,
+                                   'qr': Preins.qr_Preinscripcion
                                    })
-                elif (now >= Ins[0].fecha_inicio and now <= Ins[0].fecha_fin):
+                elif (now >= Ins.fecha_inicio and now <= Ins.fecha_fin):
                     return render(request, 'pagoPreinscripcion.html',
                                   {'etapa': "REZAGADOS",
-                                   'monto': Ins[0].monto_inscripcion,
-                                      'torneo': Ins[0].id_torneo.nombre_torneo,
-                                      'qr': Ins[0].qr_inscripcion
+                                   'monto': Ins.monto_inscripcion,
+                                      'torneo': Ins.id_torneo.nombre_torneo,
+                                      'qr': Ins.qr_inscripcion
                                    })
                 else:
-                    if (now < Ins[0].fecha_inicio) or (now < Preins[0].fecha_inicioPre):
+                    if (now > Preins.fecha_finPre and now < Ins.fecha_inicio):
                         messages.warning(
-                            request, "Aún faltan días para la Pre-Inscripción")
+                            request, "La Preinscripción concluyó el "+str(Preins.fecha_finPre)+" y la Inscripción comienza el "+str(Ins.fecha_inicio))
+                    elif now < Preins.fecha_inicioPre:
+                        messages.warning(
+                            request, "La Preinscripción comienza el "+str(Preins.fecha_inicioPre))
                     else:
                         messages.warning(
-                            request, "Lo sentimos, termino el plazo para la pre-inscripcion")
+                            request, "Lo sentimos, el plazo para registrarse terminó el " + str(Ins.fecha_fin))
                     return redirect('home')
             else:
                 messages.warning(request, "Algo salio mal, intente nuevamente")

@@ -56,10 +56,10 @@
   {% if messages %}
     {% for m in messages %}
       <script>
-        if('{{m}}'=='Solictud Enviada correctamente'){
+        if('{{m}}'=='Solicitud Enviada correctamente'){
           Swal.fire('{{m}}', '', 'success');
         }else{
-          Swal.fire('{{m}}', '', 'error');
+          Swal.fire('', '{{m}}', 'error');
         }
         
       </script>
