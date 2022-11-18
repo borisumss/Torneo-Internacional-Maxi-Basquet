@@ -87,7 +87,7 @@
                   <a href="{% url 'solicitudes'%}" type="button" id="btn-rechazar"
                     class="btn btn-danger">Cancelar</a>
                   <button type="submit" name="email" value="{{email}}" class="btn btn-primary"
-                    id="btn-enviar">Enviar</button>
+                    id="btn-enviar" onclick="cargar()" >Enviar</button>
                 </div>
               </div>
             </form>
@@ -141,7 +141,7 @@
                     
                     Cancelar</a>
                   <button type="submit" name="email" value="{{email}}" class="btn btn-primary"
-                    id="modalEnviar">Enviar</button>
+                    id="modalEnviar"onclick="cargar()">Enviar</button>
                     <button type="button" id="btn-Generar" class="btn btn-success">Generar credencial</button>
                 
                 </div>

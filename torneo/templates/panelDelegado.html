@@ -93,7 +93,12 @@
                     {% if messages %}
                     {% for m in messages %}
                     <script>
-                        Swal.fire('{{m}}', '', 'success');
+                        if ('{{m}}' == "Inscriba a su equipo primeramente"){
+                            Swal.fire('{{m}}', '', 'error');
+                        }else{
+
+                            Swal.fire('{{m}}', '', 'success');
+                        }
                     </script>
                     {% endfor %}
                     {% endif %}

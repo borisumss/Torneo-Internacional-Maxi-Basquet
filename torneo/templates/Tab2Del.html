@@ -10,6 +10,9 @@
         <script>
             if('{{m}}' == "Algo salio mal, intente nuevamente" )
                 Swal.fire('{{m}}', '', 'error');
+            else  if ('{{m}}' == "Inscriba a su equipo primeramente"){
+                            Swal.fire('{{m}}', '', 'error');
+                        }
             else{
                 Swal.fire('{{m}}', '', 'success');
             }

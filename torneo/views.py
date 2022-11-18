@@ -779,15 +779,19 @@ def delegacionCredenciales(request):
                 return redirect('login')
             else:
                 equipo = Equipo.objects.filter(id_delegado=request.user.id)[0]
-                jugadores = Jugador.objects.filter(id_equipo=equipo.pk)
-                entrenador = Entrenador.objects.get(id=equipo.id_entrenador_equipo.pk)
-                delegado = Delegado.objects.get(id_delegado=equipo.id_delegado.pk)
+                if equipo.estado_inscripcion_equipo == 'PENDIENTE':
+                    messages.error(request, "Inscriba a su equipo primeramente")
+                    return redirect('delegacionEquipo')
+                else:
+                    jugadores = Jugador.objects.filter(id_equipo=equipo.pk)
+                    entrenador = Entrenador.objects.get(id=equipo.id_entrenador_equipo.pk)
+                    delegado = Delegado.objects.get(id_delegado=equipo.id_delegado.pk)
 
-                return render(request,'Tab3Del.html',{
-                    'jugadores': jugadores,
-                    'entrenador': entrenador,
-                    'delegado': delegado,
-                })
+                    return render(request,'Tab3Del.html',{
+                        'jugadores': jugadores,
+                        'entrenador': entrenador,
+                        'delegado': delegado,
+                    })
         else:
             return redirect('login')
 
