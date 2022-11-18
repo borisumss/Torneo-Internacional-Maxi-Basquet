@@ -133,7 +133,7 @@
                             <div class="position-relative">
                               <label for="camiseta">N° de camiseta</label>
                               <input type="number" class="formJug" name="Nro_camiseta" id="camiseta" min="1" max="99" 
-                              placeholder="Ingrese número de camiseta" required>
+                              placeholder="Ingrese número de camiseta" onchange="validarDorsal('{{dorsales}}')" required>
                               <div class="invalid-tooltip">
                                 Valores desde 1-99
                               </div>

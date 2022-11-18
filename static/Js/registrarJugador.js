@@ -172,3 +172,14 @@ function validarCI(aux){
         }
     }
   }
+
+  function validarDorsal(aux){
+    let nombres = aux.split('*')
+    let input = document.getElementById("camiseta");
+    for(let i=0; i< nombres.length;i++){
+        if(input.value == nombres[i]){
+          Swal.fire('', 'Este Número ya está registrado', 'error');
+          input.value = "";
+        }
+    }
+  }

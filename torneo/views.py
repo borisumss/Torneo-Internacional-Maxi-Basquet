@@ -870,15 +870,19 @@ def inscribirEquipo(request,id):
                 id_equipo = Equipo.objects.get(id=id)
                 jugadores = Jugador.objects.filter(id_equipo=id_equipo)                
                 aux = id_equipo.id_delegado.ci_delegado +"*" + id_equipo.id_entrenador_equipo.ci_entrenador +"*"
+                aux2= ''
                 for i in jugadores:
                     if i.ci_jugador is not None:
                         aux = aux + i.ci_jugador +"*"
-                print(aux)
+
+                    if i.dorsal_jugador is not None:
+                        aux2 = aux2 + i.dorsal_jugador +"*"
                 categoria = Categorias_Torneo.objects.filter(nombre_categoria = id_equipo.categoria_equipo, id_torneo=id_equipo.id_torneo)
                 return render(request,'RegistrarJugador.html',{
                     'categoria':categoria.first(), 
                     'equipo':id_equipo,
                     'jugadores':aux,
+                    'dorsales':aux2
                     })
         else:
             return redirect('login')
