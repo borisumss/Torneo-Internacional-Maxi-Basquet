@@ -1004,3 +1004,21 @@ def bajaTorneo(request,id):
                 return redirect('torneos')
         else:
             return redirect('login')
+
+
+def enfrentamiento(request, id,equipoA,equipoB):
+     if request.method == 'GET':
+        if not request.user.is_anonymous:
+            if not request.user.email.endswith('@admin.com'):
+                return redirect('login')
+            else:
+                equipoA = Equipo.objects.filter(nombre_equipo=equipoA, id_torneo=id)
+                equipoB = Equipo.objects.filter(nombre_equipo=equipoB, id_torneo=id)
+                
+                return render(request,'enfrentamiento.html',{
+                    'equipoA':equipoA.first()
+                ,'equipoB':equipoB.first()
+                ,'id':id
+                })
+        else:
+            return redirect('login')

@@ -194,8 +194,10 @@ class Tabla_posiciones(models.Model):
 
 class Enfrentamiento(models.Model):
     equipo_a = models.CharField(max_length=50, null=True)
+    puntajeEquipoA = models.IntegerField(null=True)
     escudo_equipoA =  models.ImageField(upload_to='static/imagenes/equipos/escudos/', verbose_name='Escudo equipo', null=True)
     equipo_b = models.CharField(max_length=50, null=True)
+    puntajeEquipoB = models.IntegerField(null=True)
     escudo_equipoB =  models.ImageField(upload_to='static/imagenes/equipos/escudos/', verbose_name='Escudo equipo', null=True)
     fecha_enfrentamiento = models.DateTimeField(auto_now=False, auto_now_add=True, null=True)
     categoria = models.CharField(max_length=50, null=True)

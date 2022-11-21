@@ -215,7 +215,38 @@
                     {% else %}
                     {% for vs in enfrentamientos %}
                     {% if vs.categoria == categoria.nombre_categoria %}
-                    <div class="card" id="cardVs">
+                       {% if user.username == 'admin' %}
+                            <a href="{% url 'Enfrentamiento' vs.id_torneo.id vs.equipo_a vs.equipo_b %}" id="cardH">
+                                <div class="card" id="cardVs2">
+                                    <div class="card-header text-center">
+                                        {% if vs.estado == 'PENDIENTE' %}
+                                        TBD
+                                        {% else %}
+                                        {{vs.fecha_enfrentamiento}}
+                                        {% endif %}
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-5 text-center"><img src="{{vs.escudo_equipoA.url}}" width="30px">{{vs.equipo_a}}</div>
+                                            <div class="col-2 text-center">vs</div>
+                                            <div class="col-5 text-center"><img src="{{vs.escudo_equipoB.url}}" width="30px">{{vs.equipo_b}}</div>
+                                        </div>
+                                        {% if vs.estado == 'PENDIENTE' %}
+                                        
+                                        {% else %}
+                                        <div class="row">
+                                            <div class="col-5 text-center">{{vs.puntajeEquipoA}}</div>
+                                            <div class="col-2 text-center"></div>
+                                            <div class="col-5 text-center">{{vs.puntajeEquipoB}}</div>
+                                        </div>
+                                        {% endif %}
+                                        
+                                    </div>
+                                    
+                                </div>
+                            </a>
+                       {% else %}
+                       <div class="card" id="cardVs">
                         <div class="card-header text-center">
                             {% if vs.estado == 'PENDIENTE' %}
                             TBD
@@ -229,9 +260,19 @@
                                 <div class="col-2 text-center">vs</div>
                                 <div class="col-5 text-center"><img src="{{vs.escudo_equipoB.url}}" width="30px">{{vs.equipo_b}}</div>
                             </div>
+                            {% if vs.estado == 'PENDIENTE' %}
+                                        
+                             {% else %}
+                                <div class="row">
+                                    <div class="col-5 text-center">{{vs.puntajeEquipoA}}</div>
+                                    <div class="col-2 text-center"></div>
+                                    <div class="col-5 text-center">{{vs.puntajeEquipoB}}</div>
+                                </div>
+                            {% endif %}
                         </div>
                         
                     </div>
+                       {% endif %}
                     {% endif %}
                     {% endfor %}
                     {% endif %}
