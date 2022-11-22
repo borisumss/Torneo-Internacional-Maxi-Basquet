@@ -159,6 +159,8 @@ class Jugador(models.Model):
     telefono_jugador = models.CharField(max_length=50, null=True)
     dorsal_jugador = models.CharField(max_length=5, null=True)
     posicion_jugador = models.CharField(max_length=50, null=True)
+    faltas = models.IntegerField(null=True)
+    anotaciones = models.IntegerField(null=True)
     id_equipo = models.ForeignKey(Equipo, on_delete=models.CASCADE)
 
     def save(self, *args, **kwargs):
@@ -203,3 +205,9 @@ class Enfrentamiento(models.Model):
     categoria = models.CharField(max_length=50, null=True)
     estado = models.CharField(max_length=50, null=True)
     id_torneo = models.ForeignKey(Torneo, on_delete=models.CASCADE)
+
+class Estadisticas_enfrentamiento(models.Model):
+    faltas = models.IntegerField(null=True)
+    anotaciones = models.IntegerField(null=True)
+    id_jugador = models.ForeignKey(Jugador, on_delete=models.CASCADE)
+    id_enfrentamiento = models.ForeignKey(Enfrentamiento, on_delete=models.CASCADE)

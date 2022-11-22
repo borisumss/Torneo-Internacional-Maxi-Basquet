@@ -12,7 +12,7 @@ from django.contrib.auth.models import User
 from django.db import IntegrityError
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.decorators import user_passes_test
-from .models import Organizador, Torneo, Enfrentamiento,Tabla_posiciones,Inscripcion, Categorias_Torneo, Pre_Inscripcion, delegado_Inscripcion, delegado_PreInscripcion , Entrenador, Equipo ,Delegado , Jugador
+from .models import Organizador, Torneo, Estadisticas_enfrentamiento,Enfrentamiento,Tabla_posiciones,Inscripcion, Categorias_Torneo, Pre_Inscripcion, delegado_Inscripcion, delegado_PreInscripcion , Entrenador, Equipo ,Delegado , Jugador
 from django.contrib import messages
 from datetime import date
 from django.core.mail import send_mail
@@ -904,7 +904,7 @@ def inscribirEquipo(request,id):
         id_equipo = Equipo.objects.filter(id=id)
         id_equipo.update(estado_inscripcion_equipo="INSCRITO")
 
-        jugador = Jugador(id_equipo=id_equipo[0],ci_jugador= ci, nacimiento_jugador = fecha,telefono_jugador = telefono, foto_jugador = foto ,nombre_jugador = nombre, apodo_jugador = apodo, posicion_jugador = posicion,dorsal_jugador = dorsal)
+        jugador = Jugador(faltas=0,anotaciones=0,id_equipo=id_equipo[0],ci_jugador= ci, nacimiento_jugador = fecha,telefono_jugador = telefono, foto_jugador = foto ,nombre_jugador = nombre, apodo_jugador = apodo, posicion_jugador = posicion,dorsal_jugador = dorsal)
         jugador.save()
         messages.success(request, "Jugador registrado correctamente")
         return redirect('delegacionEquipo')
@@ -1031,9 +1031,6 @@ def enfrentamiento(request, id,idEnf,equipoA,equipoB):
         else:
             return redirect('login')
     elif request.method == 'POST':
-        print(request.POST)
-        print(request.FILES)
-
         fecha = request.POST.get('fecha_enfrentamiento')
         ptsequipoA = request.POST.get('ptsEquipoA')
         ptsequipoB = request.POST.get('ptsEquipoB')
@@ -1076,9 +1073,25 @@ def enfrentamiento(request, id,idEnf,equipoA,equipoB):
             equipoTB.update(partidos_jugados=partidosB, partidos_ganados=ganadosB, puntos_favor=favorB, puntos_encontra=encontraB, puntaje_total=puntosB, diferencia=diferenciaB)
             equipoTA.update(partidos_jugados=partidosA, partidos_perdidos=perdidosA, puntos_favor=favorA, puntos_encontra=encontraA, diferencia=diferenciaA)
 
+        largo = len(request.POST.getlist('ptsJug'))
+        for i in range(largo):
+            jug = Jugador.objects.get(id=request.POST.getlist('IDJug')[i])
+            enf = Enfrentamiento.objects.get(id=idEnf   )
+            faltas = request.POST.getlist('faltasJug')[i]
+            anotaciones = request.POST.getlist('ptsJug')[i]
+            estadisticas = Estadisticas_enfrentamiento(id_jugador=jug, id_enfrentamiento = enf, faltas = faltas, anotaciones = anotaciones)
+            estadisticas.save()
+
+            ptsJug = jug.anotaciones + int(anotaciones)
+            faltasJug = jug.faltas + int(faltas)
+
+            jugAux = Jugador.objects.filter(id=request.POST.getlist('IDJug')[i])
+            jugAux.update(faltas = faltasJug, anotaciones = ptsJug)
+
         vs = Enfrentamiento.objects.filter(id=idEnf)
         vs.update(estado = 'TERMINADO', puntajeEquipoA=ptsequipoA,puntajeEquipoB=ptsequipoB, fecha_enfrentamiento=fecha)
         
+
         messages.success(request, "Enfrentamiendo Actualizado correctamente")
         
         return redirect('Torneo',id)

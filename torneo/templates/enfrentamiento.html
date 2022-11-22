@@ -145,13 +145,14 @@
                             {% for jug in jugadoresA %}
                             <tr class="table-secondary position-relative">
                                 <td><input type="text" id="dorsalJug" name="dorsalJug" value="{{jug.dorsal_jugador}}" class="form-control text-center deshabilitado" onfocus="this.blur()" required>
+                                    <input type="hidden" id="IDJug" name="IDJug" value="{{jug.id}}" class="form-control text-center">
                                 </td>
                                 <td><input type="text" id="nombreJug" name="nombreJug" value="{{jug.nombre_jugador}} " class="form-control text-center deshabilitado" onfocus="this.blur()" required>
                                 </td>
                           
                                 <td> <input type="number" id="ptsJug" min="0" max="99" name="ptsJug" value="0" class="form-control text-center"  required>
                                 </td>
-                                <td><input type="number" id="faltasJug" min="0" max="99" name="ptsJug" value="0" class="form-control text-center"  required>
+                                <td><input type="number" id="faltasJug" min="0" max="99" name="faltasJug" value="0" class="form-control text-center"  required>
                                 </td>
                                 
                             </tr>
@@ -187,13 +188,15 @@
                             {% for jug in jugadoresB %}
                             <tr class="table-secondary">
                                 <td><input type="text" id="dorsalJug" name="dorsalJug" value="{{jug.dorsal_jugador}}" class="form-control text-center deshabilitado" onfocus="this.blur()" required>
+                                
+                                <input type="hidden" id="IDJug" name="IDJug" value="{{jug.id}}" class="form-control text-center">
                                 </td>
                                 <td><input type="text" id="nombreJug" name="nombreJug" value="{{jug.nombre_jugador}} " class="form-control text-center deshabilitado" onfocus="this.blur()" required>
                                 </td>
                           
                                 <td> <input type="number" id="ptsJug" min="0" max="100" name="ptsJug" value="0" class="form-control text-center"  required>
                                 </td>
-                                <td><input type="number" id="faltasJug" min="0" max="100" name="ptsJug" value="0" class="form-control text-center"  required>
+                                <td><input type="number" id="faltasJug" min="0" max="100" name="faltasJug" value="0" class="form-control text-center"  required>
                                 </td>
                             </tr>
                             {% endfor %}
