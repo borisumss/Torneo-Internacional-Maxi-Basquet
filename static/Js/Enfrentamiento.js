@@ -18,3 +18,13 @@
         }, false)
       })
   })()
+
+function validarPuntos(){
+   puntosA = document.getElementById('ptsEquipoA');
+   puntosB = document.getElementById('ptsEquipoB');
+
+   if (puntosA.value == puntosB.value){
+    Swal.fire('Debe haber un ganador', '', 'error');
+      puntosA.value = puntosA.value - 1;
+   }
+}

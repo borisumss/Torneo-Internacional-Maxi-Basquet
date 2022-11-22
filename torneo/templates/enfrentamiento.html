@@ -83,7 +83,7 @@
             <div class="col-4 d-flex align-items-center" >
                 <div class="row" id="puntos">
                     <div class="col-5 position-relative">
-                        <input type="number" id="ptsEquipoA" min="0" max="500" name="ptsEquipoA" class="form-control"  required>
+                        <input type="number" id="ptsEquipoA" onchange="validarPuntos()" min="0" max="500" name="ptsEquipoA" class="form-control"  required>
                         <div class="invalid-tooltip">
                             0 a 500
                         </div>
@@ -92,7 +92,7 @@
                         
                     </div>
                     <div class="col-5 position-relative">
-                        <input type="number" id="ptsEquipoB" min="0" max="500" name="ptsEquipoB" class="form-control"  required>
+                        <input type="number" id="ptsEquipoB" onchange="validarPuntos()" min="0" max="500" name="ptsEquipoB" class="form-control"  required>
                         <div class="invalid-tooltip">
                             0 a 500
                         </div>
@@ -122,7 +122,7 @@
             <div class="col-6" id="tab">2do</div>
         </div>
         
-        <button type="submit" class="btn btn-success">Guardar</button>
+        <button type="submit"  class="btn btn-success">Guardar</button>
         
     </div>
 </form>

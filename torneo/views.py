@@ -1031,8 +1031,45 @@ def enfrentamiento(request, id,idEnf,equipoA,equipoB):
         ptsequipoA = request.POST.get('ptsEquipoA')
         ptsequipoB = request.POST.get('ptsEquipoB')
 
-        vs = Enfrentamiento.objects.filter(id=idEnf)
+        equipoAO = Tabla_posiciones.objects.get(nombre_equipo=equipoA, id_torneo=id)
+        equipoBO = Tabla_posiciones.objects.get(nombre_equipo=equipoB, id_torneo=id)
+
+        partidosA = equipoAO.partidos_jugados+1
+        partidosB = equipoBO.partidos_jugados+1
         
+        favorA = equipoAO.puntos_favor+ int(ptsequipoA)
+        favorB = equipoBO.puntos_favor+ int(ptsequipoB)
+
+        encontraA = equipoAO.puntos_encontra+ int(ptsequipoB)
+        encontraB = equipoBO.puntos_encontra+ int(ptsequipoA)
+        
+        diferenciaA = favorA - encontraA
+        diferenciaB = favorB - encontraB
+
+        print(ptsequipoA >ptsequipoB)
+        print(int(ptsequipoB) >int (ptsequipoA))
+        if int(ptsequipoA) >int (ptsequipoB):
+            ganadosA = equipoAO.partidos_ganados+1
+            perdidosB = equipoBO.partidos_perdidos+1
+            puntosA = equipoAO.puntaje_total+3
+            
+            equipoTA = Tabla_posiciones.objects.filter(nombre_equipo=equipoA)
+            equipoTB = Tabla_posiciones.objects.filter(nombre_equipo=equipoB)
+            print(equipoTA.first())
+            print(equipoTB)
+            equipoTA.update(partidos_jugados=partidosA, partidos_ganados=ganadosA, puntos_favor=favorA, puntos_encontra=encontraA, puntaje_total=puntosA, diferencia=diferenciaA)
+            equipoTB.update(partidos_jugados=partidosB, partidos_perdidos=perdidosB, puntos_favor=favorB, puntos_encontra=encontraB, diferencia=diferenciaB)
+        elif int(ptsequipoB) >int (ptsequipoA):
+            ganadosB = equipoBO.partidos_ganados+1
+            perdidosA = equipoAO.partidos_perdidos+1
+            puntosB = equipoBO.puntaje_total+3
+            
+            equipoTA = Tabla_posiciones.objects.filter(nombre_equipo=equipoA, id_torneo=id)
+            equipoTB = Tabla_posiciones.objects.filter(nombre_equipo=equipoB, id_torneo=id)
+            equipoTB.update(partidos_jugados=partidosB, partidos_ganados=ganadosB, puntos_favor=favorB, puntos_encontra=encontraB, puntaje_total=puntosB, diferencia=diferenciaB)
+            equipoTA.update(partidos_jugados=partidosA, partidos_perdidos=perdidosA, puntos_favor=favorA, puntos_encontra=encontraA, diferencia=diferenciaA)
+
+        vs = Enfrentamiento.objects.filter(id=idEnf)
         vs.update(estado = 'TERMINADO', puntajeEquipoA=ptsequipoA,puntajeEquipoB=ptsequipoB, fecha_enfrentamiento=fecha)
         
         messages.success(request, "Enfrentamiendo Actualizado correctamente")
