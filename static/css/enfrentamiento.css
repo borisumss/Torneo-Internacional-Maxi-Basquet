@@ -115,7 +115,6 @@ input:focus{
 
 .container{
     width: 750px !important;
-    margin-top: 50px;
     background-color: #00397542;
     padding: 20px 20px !important;
     color: white;
@@ -142,8 +141,32 @@ input:focus{
 #tab{
     width: 45%;
     margin: 0px auto;
-    background-color: #ee5522;
+    background-color: white;
+    padding: 0px;
 }
+
+#tablaJugadores{
+    margin: 0px;
+}
+
+p{
+    border-bottom: solid 2px white;
+    padding: 0px;
+    margin: 0px !important;
+}
+@media only screen and (max-width: 950px) {
+    .tablas{
+        display: inline-block !important;
+        width: 100%;
+    }
+
+    #tab{
+        width: 100%; 
+        margin-bottom: 20px;
+    }
+
+}
+
 
 @media only screen and (max-width: 767px) {
     .navbar-nav {

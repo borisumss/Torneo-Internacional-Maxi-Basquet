@@ -1014,12 +1014,19 @@ def enfrentamiento(request, id,idEnf,equipoA,equipoB):
             else:
                 equipoA = Equipo.objects.filter(nombre_equipo=equipoA, id_torneo=id)
                 equipoB = Equipo.objects.filter(nombre_equipo=equipoB, id_torneo=id)
+                jugadoresA = Jugador.objects.filter(id_equipo=equipoA.first())
+                jugadoresB = Jugador.objects.filter(id_equipo=equipoB.first())
                 enfrentamiento = Enfrentamiento.objects.get(id=idEnf)
+
+                nuevoA = sorted(jugadoresA, key=lambda x: x.dorsal_jugador, reverse=False) 
+                nuevoB = sorted(jugadoresB, key=lambda x: x.dorsal_jugador, reverse=False) 
                 return render(request,'enfrentamiento.html',{
                     'equipoA':equipoA.first()
                 ,'equipoB':equipoB.first()
                 ,'id':id,
-                'enfrentamiento':enfrentamiento
+                'enfrentamiento':enfrentamiento,
+                'jugadoresA':nuevoA,
+                'jugadoresB':nuevoB,
                 })
         else:
             return redirect('login')
