@@ -216,7 +216,7 @@
                     {% for vs in enfrentamientos %}
                     {% if vs.categoria == categoria.nombre_categoria %}
                        {% if user.username == 'admin' %}
-                            <a href="{% url 'Enfrentamiento' vs.id_torneo.id vs.equipo_a vs.equipo_b %}" id="cardH">
+                            <a href="{% url 'Enfrentamiento' vs.id_torneo.id vs.id vs.equipo_a vs.equipo_b %}" id="cardH">
                                 <div class="card" id="cardVs2">
                                     <div class="card-header text-center">
                                         {% if vs.estado == 'PENDIENTE' %}

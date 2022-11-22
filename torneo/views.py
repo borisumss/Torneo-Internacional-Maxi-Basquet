@@ -1006,19 +1006,35 @@ def bajaTorneo(request,id):
             return redirect('login')
 
 
-def enfrentamiento(request, id,equipoA,equipoB):
-     if request.method == 'GET':
+def enfrentamiento(request, id,idEnf,equipoA,equipoB):
+    if request.method == 'GET':
         if not request.user.is_anonymous:
             if not request.user.email.endswith('@admin.com'):
                 return redirect('login')
             else:
                 equipoA = Equipo.objects.filter(nombre_equipo=equipoA, id_torneo=id)
                 equipoB = Equipo.objects.filter(nombre_equipo=equipoB, id_torneo=id)
-                
+                enfrentamiento = Enfrentamiento.objects.get(id=idEnf)
                 return render(request,'enfrentamiento.html',{
                     'equipoA':equipoA.first()
                 ,'equipoB':equipoB.first()
-                ,'id':id
+                ,'id':id,
+                'enfrentamiento':enfrentamiento
                 })
         else:
             return redirect('login')
+    elif request.method == 'POST':
+        print(request.POST)
+        print(request.FILES)
+
+        fecha = request.POST.get('fecha_enfrentamiento')
+        ptsequipoA = request.POST.get('ptsEquipoA')
+        ptsequipoB = request.POST.get('ptsEquipoB')
+
+        vs = Enfrentamiento.objects.filter(id=idEnf)
+        
+        vs.update(estado = 'TERMINADO', puntajeEquipoA=ptsequipoA,puntajeEquipoB=ptsequipoB, fecha_enfrentamiento=fecha)
+        
+        messages.success(request, "Enfrentamiendo Actualizado correctamente")
+        
+        return redirect('Torneo',id)

@@ -170,7 +170,7 @@ background-size: cover;
     margin: 20px auto !important;
 }
 
-#cardVs .card-header{
+#cardVs .card-header ,#cardVs2 .card-header{
     background-color: #000;
     color: white;
     font-weight: bold;
