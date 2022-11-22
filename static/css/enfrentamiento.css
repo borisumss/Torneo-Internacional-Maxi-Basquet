@@ -141,7 +141,7 @@ input:focus{
 #tab{
     width: 45%;
     margin: 0px auto;
-    background-color: white;
+    background-color: rgba(255, 255, 255, 0);
     padding: 0px;
 }
 
@@ -153,6 +153,19 @@ p{
     border-bottom: solid 2px white;
     padding: 0px;
     margin: 0px !important;
+}
+
+.deshabilitado{
+    background-color: rgba(255, 255, 255, 0) !important;
+    border: none !important;
+}
+
+td{
+    padding: 10px 5px !important;
+}
+
+table input{
+    padding: 0px !important;
 }
 @media only screen and (max-width: 950px) {
     .tablas{

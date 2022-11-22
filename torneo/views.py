@@ -1018,8 +1018,8 @@ def enfrentamiento(request, id,idEnf,equipoA,equipoB):
                 jugadoresB = Jugador.objects.filter(id_equipo=equipoB.first())
                 enfrentamiento = Enfrentamiento.objects.get(id=idEnf)
 
-                nuevoA = sorted(jugadoresA, key=lambda x: x.dorsal_jugador, reverse=False) 
-                nuevoB = sorted(jugadoresB, key=lambda x: x.dorsal_jugador, reverse=False) 
+                nuevoA = sorted(jugadoresA, key=lambda x: int(x.dorsal_jugador), reverse=False) 
+                nuevoB = sorted(jugadoresB, key=lambda x: int(x.dorsal_jugador), reverse=False) 
                 return render(request,'enfrentamiento.html',{
                     'equipoA':equipoA.first()
                 ,'equipoB':equipoB.first()

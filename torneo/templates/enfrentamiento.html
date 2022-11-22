@@ -127,21 +127,33 @@
                 table-borderless
                 table-primary
                 align-middle" id="tablaJugadores">
+                <colgroup>
+                    <col width="12%">
+                    <col width="78%">
+                    <col width="5%">
+                    <col width="5%">
+                </colgroup>
                         <thead class="table-primary" name="lista_jugadores">
                             <tr class="table-dark">
                                 <th>#</th>
-                                <th>NOMBRE</th>
-                                <th>PUNTOS</th>
-                                <th>FALTAS</th>
+                                <th>Nombre Jugador</th>
+                                <th>Puntos </th>
+                                <th>Faltas</th>
                             </tr>
                         </thead>
                         <tbody class="table-group-divider">
                             {% for jug in jugadoresA %}
-                            <tr class="">
-                                <td>{{jug.dorsal_jugador}}</td>
-                                <td>{{jug.nombre_jugador}} </td>
-                                <td>0</td>
-                                <td>0</td>
+                            <tr class="table-secondary position-relative">
+                                <td><input type="text" id="dorsalJug" name="dorsalJug" value="{{jug.dorsal_jugador}}" class="form-control text-center deshabilitado" onfocus="this.blur()" required>
+                                </td>
+                                <td><input type="text" id="nombreJug" name="nombreJug" value="{{jug.nombre_jugador}} " class="form-control text-center deshabilitado" onfocus="this.blur()" required>
+                                </td>
+                          
+                                <td> <input type="number" id="ptsJug" min="0" max="99" name="ptsJug" value="0" class="form-control text-center"  required>
+                                </td>
+                                <td><input type="number" id="faltasJug" min="0" max="99" name="ptsJug" value="0" class="form-control text-center"  required>
+                                </td>
+                                
                             </tr>
                             {% endfor %}
                         </tbody>
@@ -157,21 +169,32 @@
                 table-borderless
                 table-primary
                 align-middle" id="tablaJugadores">
+                <colgroup>
+                    <col width="12%">
+                    <col width="78%">
+                    <col width="5%">
+                    <col width="5%">
+                </colgroup>
                         <thead class="table-primary" name="lista_jugadores">
                             <tr class="table-dark">
                                 <th>#</th>
-                                <th>NOMBRE</th>
-                                <th>PUNTOS</th>
-                                <th>FALTAS</th>
+                                <th>Nombre Jugador</th>
+                                <th>Puntos</th>
+                                <th>Faltas</th>
                             </tr>
                         </thead>
                         <tbody class="table-group-divider">
                             {% for jug in jugadoresB %}
-                            <tr class="">
-                                <td>{{jug.dorsal_jugador}}</td>
-                                <td>{{jug.nombre_jugador}} </td>
-                                <td>0</td>
-                                <td>0</td>
+                            <tr class="table-secondary">
+                                <td><input type="text" id="dorsalJug" name="dorsalJug" value="{{jug.dorsal_jugador}}" class="form-control text-center deshabilitado" onfocus="this.blur()" required>
+                                </td>
+                                <td><input type="text" id="nombreJug" name="nombreJug" value="{{jug.nombre_jugador}} " class="form-control text-center deshabilitado" onfocus="this.blur()" required>
+                                </td>
+                          
+                                <td> <input type="number" id="ptsJug" min="0" max="100" name="ptsJug" value="0" class="form-control text-center"  required>
+                                </td>
+                                <td><input type="number" id="faltasJug" min="0" max="100" name="ptsJug" value="0" class="form-control text-center"  required>
+                                </td>
                             </tr>
                             {% endfor %}
                         </tbody>
