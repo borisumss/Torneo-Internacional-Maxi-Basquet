@@ -1,27 +1,30 @@
+html {
+    background-color: #000;
+}
 
-html { background-color: #000; } 
 body {
     max-width: 100%;
     min-height: 100vh;
     height: 100%;
-    background-color: papayawhip; 
+    background-color: papayawhip;
     margin: 0 auto;
-    font-family:'Montserrat', sans-serif;
+    font-family: 'Montserrat', sans-serif;
 }
-header{
+
+header {
     position: sticky !important;
-    top:0;
+    top: 0;
 }
 
 .navbar-custom {
     background-color: #003975;
 }
 
-.navbar-brand{
+.navbar-brand {
     color: white !important;
 }
 
-#side_nav{
+#side_nav {
     position: fixed;
     top: 58px;
     left: 0;
@@ -30,91 +33,364 @@ header{
     max-width: 300px;
     height: 100%;
 }
-.active{
+
+.active {
     background-color: #0d77e8;
     margin: 0px;
     padding: 0px;
     width: 100%;
 }
 
-.tabs{
+.tabs {
     padding: 0px !important;
     margin: 0px;
 }
-.header-box{
+
+.header-box {
     padding: 16px 0px 24px !important;
     box-sizing: border-box !important;
     overflow: hidden !important;
 }
 
-.item{
+.item {
     padding: 16px;
 }
 
-.burger{
+.burger {
     margin-left: 8px;
     cursor: pointer;
 }
 
 
-.title-sidebar{
+.title-sidebar {
     padding-top: 20px;
     padding-bottom: 20px;
 }
 
-.list-unstyled{
+.list-unstyled {
     font-size: 20px;
 }
 
-.item{
+.item {
     padding: 16;
 }
 
-.menu-expanded{
+.menu-expanded {
     transition: all 1000ms ease;
     width: 350px !important;
 }
 
-.menu-collapsed{
+.menu-collapsed {
     transition: all 500ms ease;
     width: 55px !important;
 }
 
-.menu-collapsed .header-box .tabs .item span, .menu-collapsed .header-box .title-sidebar span{
+.menu-collapsed .header-box .tabs .item span,
+.menu-collapsed .header-box .title-sidebar span {
     display: none;
 }
 
-header, #side_nav{
+header,
+#side_nav {
     z-index: 50;
 }
 
+#triggerId {
+    background-color: rgba(255, 255, 255, 0);
+    border: none;
+    color: white;
+    font-size: 20px;
+}
+
+#triggerIdD {
+    background-color: white;
+    padding: 0px 10px;
+    text-align: right;
+}
+
+#usuario {
+    font-size: 16px !important;
+    color: #003975 !important;
+}
+
+.fondoTab1 {
+    background-image: url(../images/test2.jpg) !important;
+}
+
+
+.fondoTab2 {
+    /* background-image:url(../images/fondoMix.jpg) !important;*/
+    background-image: url(../images/test2.jpg) !important;
+}
+
+.fondoTab3 {
+    background-image: url(../images/fondoSol.jpg) !important;
+}
+
 /*DISEÑO  CONTENEDOR*/
-body{
+body {
     /*min-height: 92vh;
     height: 100%;*/
-    background: linear-gradient(rgba(237, 28, 36, .5), rgba(237, 28, 36, .5)),url('../images/basquetbolrecorte.jpg') !important; 
+    background: linear-gradient(rgba(237, 28, 36, .5), rgba(237, 28, 36, .5)), url('../images/basquetbolrecorte.jpg') !important;
     background-repeat: no-repeat !important;
     background-size: cover !important;
     background-position: top !important;
     background-attachment: fixed !important;
 }
 
+
+
+/*DISEÑO TAB1*/
+#actual {
+    
+    background-image: -webkit-linear-gradient(180deg, #ffffff 65%, #009fb1 40%);
+    background-image: -webkit-linear-gradient(140deg, #009eb1 10.5%, #f1f1f1 10.5%, #f1f1f1 65%, #009eb1 65%);
+   
+    
+    margin-top: 50px;
+    margin-bottom: 50px;
+    padding: 15px 10px;
+    border-radius: 20px;
+    color: #000;
+}
+#conv{
+    text-decoration: underline;
+}
+
+#btn-ir{
+    background-color: #009eb1;
+    font-weight: bolder;
+}
+.img-fluid {
+    border-radius: 20px;
+    height: 100% !important;
+}
+#izq{
+    padding: 0px;
+    border-radius: 20px;
+    box-shadow: 8px 8px 8px 1px rgb(61, 59, 59);
+}
+
+.about-img {
+    height: 100%;
+}
+
+
+/*DISEÑO TAB1*/
+#Tab2{
+    margin: 30px auto;
+    max-width: 800px;
+    background-color: white;
+    padding: 20px;
+}
+#secPortada{
+    position: relative;
+    padding: 10px;
+}
+.escudo{
+    position: absolute;
+    height: 150px;
+    width: 150px;
+    top: 75%;
+    left: 50%;
+    margin: 0px 0px 0px -75px;    
+    border-radius: 50%;   
+    background-color: #000; 
+    border: solid 2px black;
+}
+
+#img-escudo{
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+.portada{
+    
+    height: 370px;
+    margin: 0 auto;
+    width: 100%;
+    border: solid 2px black;
+    position: relative;
+}
+
+#img-portada{
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+}
+
+#portadaLabel, #portadaInput{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    padding: 0px;
+    background-color: rgba(255, 0, 0, 0);
+}
+
+
+#input,#btn-coach,#btn-jug{
+    width: 95%;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 14px ;
+    padding-left: 12px;
+    padding-right: 12px;
+}
+
+.primer{
+    font-weight: bold;
+    color:#003975;
+    font-size: 16px !important;
+}
+
+input:disabled, select:disabled, input::placeholder{
+    background-color: rgba(255, 255, 255, 0) !important;
+    border: none;
+    color:#003975 !important;
+}
+
+
+
+input:enabled, select:enabled{
+    color: purple ;
+    border: solid 3px purple;
+}
+
+.subirImagenes{
+    border: solid 3px purple !important;
+}
+
+.nombreTorneo{
+    color: #003975 !important;
+    border: none !important;
+}
+
+#inforDoble{
+    margin-top: 10px;
+    display: grid;
+    grid-template-columns: 65% 35%;
+    width: 100%!important;
+}
+
+#inforDoble2{
+    margin-top: 10px;
+    display: grid;
+    grid-template-columns: 90% 10%;
+    width: 100%!important;
+}
+
+.guardar{
+    display: none;
+}
+
+.btn-guardarBlock{
+    display: inline-block;
+}
+
+#titleEntre{
+    padding-left: 12px !important;
+}
+
+.labelEntre{
+    color: #003975 !important;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.labelEquip{
+    font-size: 16px !important;
+    color: #003975 !important;
+    
+    padding-bottom: 0px;
+}
+
+
+.listaJugadores{
+    margin-top: 15px;
+}
+
+.entre{
+    width: auto !important;
+    padding: 5px 10px 3px!important;
+}
+
+.table{
+    min-width: 500px;
+    overflow: scroll !important;
+}
+
+#labelFile, #inputFile{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    bottom: 0;
+    left: 50%;
+    margin: 0px 0px 0px -75px;  
+    border-radius: 50%;
+    padding: 0px;
+}
+
+#inputFile{
+    width: 0px;
+}
+
+.inscripcion{
+    display: flex;
+}
+
+p{
+    margin-bottom: 0px !important;
+    margin: 0px auto;
+    font-weight: bold;
+}
+
+#btn-danger{
+    margin: 0px auto;
+}
+@media screen and (max-width: 800px) {
+    #secInfor #inforDoble{ 
+        display: inline-block !important;
+        margin: 0px;
+    }
+    input{
+        margin-bottom: 10px;
+    }
+}
+
 @media only screen and (max-width:600px) {
-    #Titulo, #usuario{
+
+    #Titulo,
+    #usuario {
         font-size: 15px !important;
     }
-    .menu-collapsed, .menu-expanded{
-        top:55px !important;
+
+    .menu-collapsed,
+    .menu-expanded {
+        top: 55px !important;
         transition: all 250ms ease !important;
     }
-    .menu-collapsed{
-       
+
+    .menu-collapsed {
+
         width: 0px !important;
     }
 }
 
+@media only screen and (max-width:992px) {
+    #actual{
+        background-image: -webkit-linear-gradient(110deg, #009eb1 16%, #f1f1f1 16%, #f1f1f1 60%, #009eb1 60%);
+    }
+    #izq{
+        box-shadow: 0px 0px 0px 0px black;
+    }
+}
 @media only screen and (max-width:475px) {
-    #Titulo, #usuario{
+
+    #Titulo,
+    #usuario {
         font-size: 10px !important;
     }
 }

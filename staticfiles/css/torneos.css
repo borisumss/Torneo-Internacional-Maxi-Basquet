@@ -82,7 +82,7 @@ nav.navbar {
 
 .izquierda{
     border-right: solid 5px white; 
-     
+    min-height: 100vh;
 }
 
 .filaIzq{

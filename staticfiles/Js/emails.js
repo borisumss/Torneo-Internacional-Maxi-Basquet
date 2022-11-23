@@ -29,3 +29,18 @@
     $('#modalEnviar').show();
     return false;
 });
+
+
+function cargar(){
+  Swal.fire({
+      title: "Enviando Correo...",
+      icon: "info",
+      closeOnConfirm: true,
+      closeOnCancel: true,
+      allowOutsideClick: false,
+      showCancelButton: false,
+      showConfirmButton: false,
+
+
+    });
+}

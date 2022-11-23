@@ -32,6 +32,9 @@ header{
 .header-box{
     padding: 16px 0px 24px !important;
 }
+#enlaces{
+    width: 23px;
+}
 
 .item{
     padding: 16px;
@@ -83,13 +86,27 @@ header{
 header, #side_nav{
     z-index: 50;
 }
-
+#triggerId{
+    background-color: rgba(255, 255, 255, 0);
+    border: none;
+    color: white;
+    font-size: 20px;
+}
+#triggerIdD{
+    background-color:white ;
+    padding: 0px 10px;
+    text-align: right;
+}
+#usuario{
+    font-size: 16px !important;
+    color: #003975 !important;
+}
 
 /*DISEÑO  CONTENEDOR*/
 body{
     /*min-height: 92vh;
     height: 100%;*/
-    background: linear-gradient(rgba(237, 28, 36, .5), rgba(237, 28, 36, .5)),url('../images/basquetbolrecorte.jpg') !important; 
+    background: linear-gradient(rgba(237, 28, 35, 0.103), rgba(237, 28, 36, .5)),url('../images/basquetbolrecorte.jpg') !important; 
     background-repeat: no-repeat !important;
     background-size: cover !important;
     background-position: top !important;
@@ -104,7 +121,7 @@ body{
     border-radius: 20px;
     
 }
-.card{
+#Tab1 .card{
     width: 97%;
     height: 480px;
     margin: 0px auto;
@@ -113,13 +130,10 @@ body{
     border: none;
 }
 
-#Tab2 .card{
-    height: 520px;
-}
 
-.card-body{
+#Tab1 .card-body {
     background-color: white;
-    overflow: scroll;
+
     min-height: 100%;
     
 }
@@ -135,15 +149,347 @@ th{
     border-bottom: 2px solid black; 
 }
 
-.card-header{
+#Tab1 .card-header{
     padding: 15px 0px;
 }
 
-#btn-ver, #btn-editar{
-    padding: 5px 0px;
-    width: 25px;
+#btn-ver, #btn-editar,#btn-bajaTorneo{
+    width: 100%;
+   
 }
 
+.fondoTab1{
+    
+    background: linear-gradient(rgba(237, 28, 35, 0.103), rgba(237, 28, 36, .5)),url('../images/basquetbolrecorte.jpg') !important; 
+}
+
+.fondoTab2{
+    background-image:url(../images/test2.jpg) !important;
+}
+
+.fondoTab3{
+    background-image: url(../images/fondoSol.jpg) !important;
+}
+
+.fondoTab4{
+    background-image:url(../images/fondoMix.jpg) !important;
+}
+
+.fondoTab5{
+    background-image: url(../images/fondoSol.jpg) !important;
+    
+}
+/*DISEÑO TAB5 SOLICITUDES*/
+#Tab5{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+
+.solicitud{
+    display: grid;
+    grid-template-columns: 40% 60%;
+    text-align: center;
+    width: 530px;
+    height: 310px;
+    background-color: white;
+    margin: 22px auto;
+    border-radius: 20px;
+}
+
+#Tab5 .tarjeta{
+    position: relative;
+    width: 530px !important;
+    height: 380px !important;
+    background-color: rgba(255, 255, 255, 0) !important; 
+    margin: 22px auto !important;
+    border-radius: 20px !important;
+}
+
+.informacion{
+    text-align: left !important;
+    
+}
+.solicitud{
+    padding: 0px 15px;
+}
+.padre {
+    display: flex;
+    align-items: center;
+ }
+
+.hijo{
+    margin: 0px auto;
+}
+.img_comprobante, #img{
+    height: 240px;
+    width: 100%;
+}
+
+.etiquetas{
+    color: black;
+    font-weight: bold;
+}
+.datos{
+    color: #003975;
+    
+}
+
+.botones .col-12{
+    margin-top: 10px;
+    padding: 0px !important;
+}
+.test{
+    line-height: px;
+}
+#modalValid{
+    padding-top: 0px;
+ }
+.modal-header{
+   width: 100%;
+   margin: 0;
+   padding: 20px 20px 0px 0px;
+}
+.modal-dialog{
+    height: 100%;
+    margin: 0px auto;
+}
+
+
+#Tab5 .tarjeta{
+    height: 100%;
+    width: 100%;
+    padding: 0 !important;
+}
+
+#Tab5 .tarjeta .front .card, #Tab5 .tarjeta .back .card{
+    width: 100%;
+    height: 100%;
+    background-image: url(../images/fondoCard2.jpg);
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+    background-position: center !important;
+    background-attachment: fixed !important;
+    border-bottom: none !important;
+}
+#Tab5 .tarjeta .front{
+    position: absolute;
+    height: 100%;
+    display: flex; 
+    backface-visibility: hidden;
+    transition: .5s;
+    transform: perspective(500px) rotateY(0deg);
+ }
+
+.back, .front{
+    width: 100%;
+    
+    height: 310px;
+    border-radius:20px !important;
+}
+#Tab5 .tarjeta .back{
+    position: absolute;
+    height: 100%;
+    display: flex; 
+    backface-visibility: hidden;
+    transition: .5s;
+   align-items: center;
+   justify-content: center;
+   transform: perspective(500px) rotateY(180deg);
+}
+/*#Tab5 .tarjeta:hover .front */
+.girar {
+   
+    transform: perspective(500px) rotateY(180deg) !important;
+ }
+
+ .girarDoble{
+    
+    transform: perspective(500px) rotateY(360deg) !important;
+ }
+
+ #cuerpoTarjeta{
+    padding: 0px ;
+    padding-top: 10px;
+    cursor: pointer !important;
+    
+ }
+ #Tab5 .tarjeta .back .card, #Tab5 .tarjeta .front .card .card-header{
+    cursor: pointer !important;
+ }
+
+ #cuerpoBack{
+    padding: 15px 0px ;
+    margin: 0px auto;
+ }
+
+
+#tituloCompro{
+    padding: 6px 0px;
+    font-weight: bold;
+    color: white;
+    background-color: #009eb1;
+}
+
+#Tab5 .tarjeta .front .card .card-footer{
+    border-top: none !important;
+    padding: 0px 0px 15px;
+}
+
+#boton-confirmar, #boton-rechazar{
+    width: 105px;
+    height: 35px;
+    padding: 4px 0px 2px;
+    margin: 0px;
+    transition: all 450ms ease !important;
+    font-size: 14px;
+}
+
+#boton-confirmar:hover{
+    background-color: green;
+    color: white;
+    transition: all 450ms ease !important;
+}
+
+#boton-rechazar:hover{
+    background-color: #ED1C24;
+    color: white;
+    transition: all 450ms ease !important;
+}
+
+
+#fotoExp{
+    width: 80%;
+    
+    background-color: rgba(0, 0, 0, 0.9);
+    color: white !important;
+    position: fixed;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-height: 100vh !important;
+    
+}
+#fotoExp #modalValid{
+   overflow: scroll;
+   overflow-x:auto;
+   overflow-y: auto;
+}
+
+#imgFull{
+    width: 100%;
+    max-width: 900px;
+    min-width: 500px;
+    
+}
+.btn-close{
+    background-color: white;
+    color: white !important;
+}
+
+
+
+/*DISEÑO TAB2 TORNEOS TERMINADOS*/
+#Tab2{
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0px auto;
+    margin-top: 50px;
+}
+
+#Tab2 .tarjeta2{
+    position: relative;
+    width: 350px !important;
+    height: 500px !important;
+    background-color: rgba(25, 219, 25, 0) !important; 
+    margin: 22px auto !important;
+    border-radius: 20px !important;
+}
+
+#card2, #card2H{
+    width: 100%;
+    height: 100%;
+}
+
+#card2{
+    background-color: rgba(255, 255, 255, 0);
+}
+#tab2header{
+    margin: 0px;
+    padding: 0px;
+    border: solid 10px #cda434;
+    border-bottom: none;
+    border-top: none;
+    height: 150px;
+    overflow: hidden;
+    border-bottom: none;
+}
+.img_logo{
+    
+    width: 100%;
+}
+
+#imgFull2{
+    width: 100%;  
+    max-height: 650px;
+}
+
+#fotoExp2{
+    background-color: rgba(0, 0, 0, 0.9);
+    color: white !important;
+    
+}
+
+#modalTab2Header{
+    border-bottom: none;
+    padding: 20px;
+}
+
+#ganador{
+    background-color: #cda434;
+    color: white !important;
+    border-top: none;
+}
+
+#tab2body{
+    padding: 15px 5px;
+    border-radius: 50% 50% 100% 100% / 35% 35% 0% 0%;
+    background-color: white;
+    border:solid 10px #cda434;
+    border-bottom: none;
+}
+
+#Tab2 p{
+    color: #000 !important;
+}
+
+#Tab2 h5{
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+#Tab2 hr{
+    color: #000;
+}
+
+#correo_modal, #name_modal, #exampleModalLabel{
+    color: #003975 !important;
+    font-weight: bold !important;
+}
+
+#Tab3 .card{
+    margin-top: 50px;
+    height: 100%;
+}
+
+
+@media only screen and (max-width: 775px) {
+    .informacion{
+        margin-top: 10px;
+        font-size: 14px;
+    }
+}
 @media only screen and (max-width:600px) {
     #Titulo, #usuario{
         font-size: 15px !important;
@@ -158,14 +504,37 @@ th{
     }
 }
 
+@media only screen and (max-width: 500px) {
+    .informacion{
+        margin-top: 30px;
+        font-size: 12px;
+    }
+
+    .informacion .btn{
+        width: 80px;
+        height: 30px;
+        font-size: 8px;
+        padding: 10px 0px;
+        text-align: center;
+    }
+
+    .padre .etiquetas{
+
+        font-size: 12px;
+    }
+}
+
+
 @media only screen and (max-width:475px) {
     #Titulo, #usuario{
         font-size: 10px !important;
     }
 }
 
-@media only screen and (max-height: 680px) {
+@media only screen and (height: 680px) {
     .box{
-        height: 500px;
+        height: 500px !important;
     }
 }
+
+

@@ -66,3 +66,180 @@ function cambiarPortada2(img_defecto) {
     imagenPrevisualizacion.src = objectURL2;
   }
 }
+
+let valInicio = document.getElementById('fechaIni_input').value;
+let valFin = document.getElementById('fechaFin_input').value;
+let valInicioPre = document.getElementById('fechaIniPre_input').value;
+let valFinPre = document.getElementById('fechaFinPre_input').value;
+let valInicioRez = document.getElementById('fechaIniRez_input').value;
+let valFinRez = document.getElementById('fechaFinRez_input').value;
+
+let fechaActual = new Date(Date.now());
+let now = moment(fechaActual).format('YYYY-MM-DD')
+
+function fechasTorneoIniPre() {
+  let inicio = document.getElementById('fechaIni_input');
+let fin = document.getElementById('fechaFin_input');
+let inicioPre = document.getElementById('fechaIniPre_input');
+let finPre = document.getElementById('fechaFinPre_input');
+let inicioRez = document.getElementById('fechaIniRez_input');
+let finRez = document.getElementById('fechaFinRez_input');
+
+      if (inicio.value == '' || fin.value == '' || inicioPre.value == '' || finPre.value == '' || inicioRez.value == '' || finRez.value == '') {
+        Swal.fire('No se permiten campos vacíos', '', 'error');    
+          inicio.value = valInicio;
+          fin.value = valFin;
+          inicioPre.value = valInicioPre;
+          inicioRez.value = valInicioRez;
+          finRez.value = valFinRez;
+          finPre.value = valFinPre;
+      } else {
+          
+          if(inicioPre.value < now) {
+            Swal.fire('', 'No se permiten fechas pasadas', 'error');   
+            inicioPre.value = valInicioPre;
+          }else if(inicioPre.value > finPre.value) {
+            Swal.fire('', 'La fecha inicial de Pre-inscripción debe ser menor a la final', 'error');   
+            inicioPre.value = valInicioPre;
+          }
+        }
+}
+
+function fechasTorneoFinPre() {
+  let inicio = document.getElementById('fechaIni_input');
+let fin = document.getElementById('fechaFin_input');
+let inicioPre = document.getElementById('fechaIniPre_input');
+let finPre = document.getElementById('fechaFinPre_input');
+let inicioRez = document.getElementById('fechaIniRez_input');
+let finRez = document.getElementById('fechaFinRez_input');
+
+  if (inicio.value == '' || fin.value == '' || inicioPre.value == '' || finPre.value == '' || inicioRez.value == '' || finRez.value == '') {
+    Swal.fire('No se permiten campos vacíos', '', 'error');    
+      inicio.value = valInicio;
+      fin.value = valFin;
+      inicioPre.value = valInicioPre;
+      inicioRez.value = valInicioRez;
+      finRez.value = valFinRez;
+      finPre.value = valFinPre;
+  } else {
+      //format('YYYY-MM-DD')
+      var fechaIniRez = new Date($('#fechaFinPre_input').val());
+      var dias =  2
+      fechaIniRez.setDate(fechaIniRez.getDate()+dias);  
+      fechaIniRez= moment(fechaIniRez).format('YYYY-MM-DD') 
+      inicioRez.value = fechaIniRez;
+
+      if(finPre.value < inicioPre.value || finPre.value >= inicioRez.value) {
+        Swal.fire('', 'La fecha Final de Preinscripción debe ser mayor a la inicial y menor a la fecha Inicial de Inscripción', 'error');   
+          finPre.value = valFinPre;
+          inicioRez.value = valInicioRez;
+      }
+      if(inicioRez.value <= finPre.value || inicioRez.value > finRez.value) {
+        Swal.fire('', 'La fecha inicial de Inscripción debe ser mayor a fecha final de Preinscripción y menor a la fecha Final de Inscripción', 'error');   
+          inicioRez.value = valInicioRez;
+          finPre.value = valFinPre;
+      }
+      
+  }
+}
+
+function fechasTorneoRezIni() {
+  let inicio = document.getElementById('fechaIni_input');
+let fin = document.getElementById('fechaFin_input');
+let inicioPre = document.getElementById('fechaIniPre_input');
+let finPre = document.getElementById('fechaFinPre_input');
+let inicioRez = document.getElementById('fechaIniRez_input');
+let finRez = document.getElementById('fechaFinRez_input');
+
+  if (inicio.value == '' || fin.value == '' || inicioPre.value == '' || finPre.value == '' || inicioRez.value == '' || finRez.value == '') {
+    Swal.fire('No se permiten campos vacíos', '', 'error');    
+      inicio.value = valInicio;
+      fin.value = valFin;
+      inicioPre.value = valInicioPre;
+      inicioRez.value = valInicioRez;
+      finRez.value = valFinRez;
+      finPre.value = valFinPre;
+  } else {  
+    if(inicioRez.value <= finPre.value || inicioRez.value > finRez.value) {
+      Swal.fire('', 'La fecha inicial de Inscripción debe ser mayor a fecha final de Preinscripción y menor a la fecha Final de Inscripción', 'error');   
+        inicioRez.value = valInicioRez;
+    }
+  }
+}
+
+
+
+function fechasTorneoRezFin() {
+  let inicio = document.getElementById('fechaIni_input');
+let fin = document.getElementById('fechaFin_input');
+let inicioPre = document.getElementById('fechaIniPre_input');
+let finPre = document.getElementById('fechaFinPre_input');
+let inicioRez = document.getElementById('fechaIniRez_input');
+let finRez = document.getElementById('fechaFinRez_input');
+
+
+  if (inicio.value == '' || fin.value == '' || inicioPre.value == '' || finPre.value == '' || inicioRez.value == '' || finRez.value == '') {
+    Swal.fire('No se permiten campos vacíos', '', 'error');    
+      inicio.value = valInicio;
+      fin.value = valFin;
+      inicioPre.value = valInicioPre;
+      inicioRez.value = valInicioRez;
+      finRez.value = valFinRez;
+      finPre.value = valFinPre;
+  } else {
+      
+    if(finRez.value < inicioRez.value || finRez.value >= inicio.value) {
+      Swal.fire('', 'La fecha final de Inscripción debe ser mayor a fecha inicial de Inscripción y menor a la fecha inicial del torneo', 'error');   
+        finRez.value = valFinRez;
+    }
+  }
+}
+
+function fechasTorneoIni() {
+  let inicio = document.getElementById('fechaIni_input');
+let fin = document.getElementById('fechaFin_input');
+let inicioPre = document.getElementById('fechaIniPre_input');
+let finPre = document.getElementById('fechaFinPre_input');
+let inicioRez = document.getElementById('fechaIniRez_input');
+let finRez = document.getElementById('fechaFinRez_input');
+
+  if (inicio.value == '' || fin.value == '' || inicioPre.value == '' || finPre.value == '' || inicioRez.value == '' || finRez.value == '') {
+    Swal.fire('No se permiten campos vacíos', '', 'error');    
+      inicio.value = valInicio;
+      fin.value = valFin;
+      inicioPre.value = valInicioPre;
+      inicioRez.value = valInicioRez;
+      finRez.value = valFinRez;
+      finPre.value = valFinPre;
+  } else {
+    if(inicio.value <= finRez.value || inicio.value >= fin.value) {
+      Swal.fire('', 'La fecha Inicial del torneo debe ser mayor a fecha final de Inscripción y menor a la fecha final del torneo', 'error');   
+        inicio.value = valInicio;
+    }
+  } 
+}
+
+function fechasTorneoFin() {
+  let inicio = document.getElementById('fechaIni_input');
+let fin = document.getElementById('fechaFin_input');
+let inicioPre = document.getElementById('fechaIniPre_input');
+let finPre = document.getElementById('fechaFinPre_input');
+let inicioRez = document.getElementById('fechaIniRez_input');
+let finRez = document.getElementById('fechaFinRez_input');
+
+
+  if (inicio.value == '' || fin.value == '' || inicioPre.value == '' || finPre.value == '' || inicioRez.value == '' || finRez.value == '') {
+    Swal.fire('No se permiten campos vacíos', '', 'error');    
+      inicio.value = valInicio;
+      fin.value = valFin;
+      inicioPre.value = valInicioPre;
+      inicioRez.value = valInicioRez;
+      finRez.value = valFinRez;
+      finPre.value = valFinPre;
+  } else {
+      if(fin.value <= inicio.value) {
+        Swal.fire('', 'La fecha Final del torneo debe ser mayor la fecha inicial del torneo', 'error');   
+          fin.value = valFin;
+      }
+  } 
+}

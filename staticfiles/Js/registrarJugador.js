@@ -57,7 +57,7 @@ let fechaNac = document.getElementById("fechaNac")
 let fechaActual = new Date(Date.now());
 let now = fechaActual.toLocaleString()
 
-function fechaNacimiento(){    
+function fechaNacimiento(categoriaMin,categoriaMax){    
     const anioActual = parseInt(fechaActual.getFullYear())
     const mesActual = parseInt(fechaActual.getMonth()) + 1
     const diaActual = parseInt(fechaActual.getDate())
@@ -76,11 +76,39 @@ function fechaNacimiento(){
         }
     }
 
-    if(edad < 30){
-        Swal.fire('La edad del jugador debe ser mínimo de 30 años','','error');
+    if(edad < categoriaMin){
+        Swal.fire('La edad del jugador debe ser mínimo de '+categoriaMin +' años','','error');
         fechaNac.value = '';
-    }else if(edad > 60){
-        Swal.fire('La edad del jugador debe ser máximo de 60 años','','error');
+    }else if(edad > categoriaMax){
+        Swal.fire('La edad del jugador debe ser máximo de '+categoriaMax +' años','','error');
+        fechaNac.value = '';
+    }
+}
+
+function fechaNacimientoEnt(){    
+    const anioActual = parseInt(fechaActual.getFullYear())
+    const mesActual = parseInt(fechaActual.getMonth()) + 1
+    const diaActual = parseInt(fechaActual.getDate())
+
+    //Obtener datos del input formato 2020-06-01 ejm
+    const anioNac = parseInt(String(fechaNac.value).substring(0, 4))
+    const mesNac = parseInt(String(fechaNac.value).substring(5, 7))
+    const diaNac = parseInt(String(fechaNac.value).substring(8, 10))
+
+    let edad = anioActual - anioNac
+    if(mesActual < mesNac){
+        edad--;
+    }else if(mesActual === mesNac){
+        if(diaActual < diaNac){
+            edad--;
+        }
+    }
+
+    if(edad < 18){
+        Swal.fire('La edad del jugador debe ser mínimo de 18 años','','error');
+        fechaNac.value = '';
+    }else if(edad > 100){
+        Swal.fire('La edad del jugador debe ser máximo de 100 años','','error');
         fechaNac.value = '';
     }
 }
@@ -132,3 +160,26 @@ function limpiarFormEn(){
     doc.value = ''
     telef.value = ''
 }
+
+
+function validarCI(aux){
+    let nombres = aux.split('*')
+    let input = document.getElementById("documento");
+    for(let i=0; i< nombres.length;i++){
+        if(input.value == nombres[i]){
+          Swal.fire('', 'Este C.I. ya está registrado', 'error');
+          input.value = "";
+        }
+    }
+  }
+
+  function validarDorsal(aux){
+    let nombres = aux.split('*')
+    let input = document.getElementById("camiseta");
+    for(let i=0; i< nombres.length;i++){
+        if(input.value == nombres[i]){
+          Swal.fire('', 'Este Número ya está registrado', 'error');
+          input.value = "";
+        }
+    }
+  }

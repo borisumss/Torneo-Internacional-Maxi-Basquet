@@ -1,21 +1,18 @@
-
 html { background-color: #000; } 
 body {
-    max-width: 100%;
-    min-height: 100vh;
-    height: 100%;
-    background-color: papayawhip; 
-    background-color: hsl(0, 0%, 100%);
-    background-image: -webkit-linear-gradient(120deg, #009eb1 50%, #70bbc3 50%);
+    background-image: url("/static/images/test2.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
-    min-height: 100vh;
     color: rgb(255, 255, 255);
-    margin: 0 auto;
     font-family:'Montserrat', sans-serif !important;
-   /* background-image: url("/static/images/fondoSol.jpg");*/
+   /* background-image: url("/static/images/fondoSol.jpg");**/
+   max-width: 100%;
+   min-height: 100vh;
+   height: 100%;
+   margin: 0 auto;
+  
 }
 
 
@@ -23,6 +20,8 @@ header{
     position: sticky !important;
     top:0;
 }
+
+
 .navbar-custom {
     background-color: #003975;
     
@@ -101,64 +100,100 @@ header, #side_nav{
     color: #003975 !important;
 }
 
-/*DISEÑO  CONTENEDOR*/
-#content{
-    margin: 50px auto;
+/*DISEÑO FORM REGISTRAR JUGADOR*/
+
+
+#infoTitle{
+    font-size: 25px;
+    margin:5px 0px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+#info{
+    margin:16px 0px;
+    font-size: 20px;
+}
+
+.qr{
+    object-fit: cover;
+    width: 70%;
+    height: 70%;
+    align-items: center;
+    border: solid 5px black;
+    border-radius: 20px;
     
 }
 
-article{
-    width: 100%;
-}
-.card{
-    color: #003975;
-    max-width: 850px;
-    height: 500px;
-    margin: 0px auto;
-    box-shadow: 15px 15px 15px 10px #373232;
-    border: solid 1px #000000;
+input{
+    color: #003975 !important;
+    font-weight: bold !important;
+    border: solid 2px #003975 !important;
 }
 
-.card .card-header{
-    color: white;
-    background-color: #003975;;
+/****************************/
+
+.inputfile {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
 }
 
-.card .card-body{
-    height: 100%;
-    font-size: 18px;
-    padding-bottom: 0px;
+.inputfile + label {
+    max-width: 100%;
+    font-size: 1.25rem;
+    font-weight: 700;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    cursor: pointer;
+    display: inline-block;
+    overflow: hidden;
+    padding: 0.625rem 1.25rem;
+    border-radius: 10px;
 }
 
-.card .card-footer #boton-rechazar, .card .card-footer #modalEnviar{
-   display: none;
+.inputfile + label svg {
+    width: 1em;
+    height: 1em;
+    vertical-align: middle;
+    fill: currentColor;
+    margin-top: -0.25em;
+    margin-right: 0.25em;
 }
 
-
-h5{
-    font-weight: bold;
-    margin: 5px auto;
-    font-size: 25px !important;
+.iborrainputfile {
+	font-size:16px; 
+	font-weight:normal;
+	font-family: 'Lato';
 }
 
-.btn {
-    width: 120px;
-    font-weight: bold ;
+/* style 1 */
+
+.inputfile-1 + label {
+    color: #fff;
+    background-color: #003975;
+    border: solid 2px white;
+    width: 100% !important;
 }
 
-#btn-Generar {
-   margin:10px auto;
-   font-size: 15px;
-  
-   width: 50%;
+#file-1{
+    width: 20px!important;
 }
 
-#aceptados{
-    max-width: 500px;
-    height: 450px;
-    border-right: none;
-    margin: 50px auto;
+.inputfile-1:focus + label,
+.inputfile-1.has-focus + label,
+.inputfile-1 + label:hover {
+    background-color: #307ed2;
 }
+@media (max-width: 576px) {
+    #cont{
+        width: 90%;
+    }
+}
+
 .form-control{
     margin: 0px !important;
 }
@@ -175,24 +210,13 @@ h5{
        
         width: 0px !important;
     }
-
-    #btn-Generar {
-       
-        font-size: 13px;
-        width: 70%;
-     }
 }
 
 
-@media only screen and (max-width:476px) {
+@media only screen and (max-width:475px) {
     #Titulo, #usuario{
         font-size: 10px !important;
     }
-    #btn-Generar {
-       
-        font-size: 11px;
-    
-     }
 }
 
 
