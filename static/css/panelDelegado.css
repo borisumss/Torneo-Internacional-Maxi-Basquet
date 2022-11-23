@@ -336,6 +336,20 @@ input:enabled, select:enabled{
 #inputFile{
     width: 0px;
 }
+
+.inscripcion{
+    display: flex;
+}
+
+p{
+    margin-bottom: 0px !important;
+    margin: 0px auto;
+    font-weight: bold;
+}
+
+#btn-danger{
+    margin: 0px auto;
+}
 @media screen and (max-width: 800px) {
     #secInfor #inforDoble{ 
         display: inline-block !important;

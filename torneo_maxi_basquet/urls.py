@@ -40,6 +40,7 @@ urlpatterns = [
     path('delegacion/', views.delegacion, name='delegacion'),
     path('delegacion/Torneo', views.delegacionTorneo, name='delegacionTorneo'),
     path('delegacion/equipo', views.delegacionEquipo, name='delegacionEquipo'),
+    path('delegacion/equipo/<int:id>', views.inscripcion, name='inscripcion'),
     path('delegacion/equipo/<int:id>/registrarJugador', views.inscribirEquipo, name='registrarJugador'),
     path('delegacion/equipo/<int:id>/registrarEntrenador', views.inscribirEntrenador, name='registrarEntrenador'),
     path('delegacion/credenciales', views.delegacionCredenciales, name='credenciales'),
