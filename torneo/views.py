@@ -495,10 +495,14 @@ def verTorneo(request, id):
     if request.method == 'GET':
         categorias = Categorias_Torneo.objects.filter(id_torneo=id)
         equipos = Equipo.objects.filter(estado_inscripcion_equipo="INSCRITO", id_torneo=id)
+        jugadores = Jugador.objects.all()
         enfrentamientos = Enfrentamiento.objects.filter(id_torneo=id) 
         nueva = sorted(tablas, key=lambda x: x.puntaje_total, reverse=True) 
         nuevaVs = sorted(enfrentamientos, key=lambda x: x.fecha_enfrentamiento) 
-        numeros = len(tablas)  
+        numeros = len(tablas) 
+        jugPuntos = sorted(jugadores, key=lambda x: x.anotaciones,reverse=True) 
+        jugFaltas =  sorted(jugadores, key=lambda x: x.faltas,reverse=True) 
+        print(jugPuntos)
         return render(request, 'Torneo.html', {
             "torneo": torneo,
             "categorias": categorias,
@@ -506,6 +510,8 @@ def verTorneo(request, id):
             "tablas": nueva,
             "numeros": numeros,
             "enfrentamientos": nuevaVs,
+            'jugPuntos':jugPuntos,
+            'jugFaltas':jugFaltas,
         })
     elif request.method == 'POST':
         for i in range(len(tablas)):

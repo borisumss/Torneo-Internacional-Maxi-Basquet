@@ -151,7 +151,7 @@
                                             class="escudo">
                                    
                                 </div>
-                                <div class="product-content d-block text-center py-3 text-white">
+                                <div class="product-content d-block text-center table-dark py-3 text-white">
                                     <span class="d-block text-uppercase">{{equipo.nombre_equipo}}</span>
                                     <i class="flag flag-{{equipo.pais_origen|lower}}"></i><span class="text-alert"> {{equipo.pais_origen|upper }}</span>
                                 </div>
@@ -179,7 +179,7 @@
                                 <col width="15%">
                             </colgroup>
                             <thead>
-                                <tr class="text-white" id="encabezados">
+                                <tr class="text-white table-dark" id="encabezados">
                                     <th class="text-center"> Nombre</th>
                                     <th class="text-center">PJ</th>
                                     <th class="text-center">PG</th>
@@ -211,6 +211,77 @@
                     </div>
                 </div>
                 <br><br>
+                <h4 class="text-white">ESTADISTICAS</h4>
+                
+                <div class="card-body">
+                <div class="container-fluid">
+                    <div class="row">
+                    <div class="col-lg-6 col-md-12 col-12 table-responsive" id="tablasEstadisticas" >
+                    <p class="text-white text-center table-dark estadisticas">Top Jugadores con más puntos</p>
+                    <table class="table table-stripped table-bordered" >
+                            <colgroup>
+                                <col width="45%">
+                                <col width="45%">
+                                <col width="10%">
+                            </colgroup>
+                            <thead class="">
+                                <tr class="table-dark" id="encabezados">
+                                    <th class="text-left">Jugador</th>
+                                    <th class="text-left">Equipo</th>
+                                    <th class="text-center">Puntos</th>
+                                </tr>
+                            </thead>
+                            <tbody class="">
+                                {% for i in jugPuntos %}
+                                {% if i.id_equipo.categoria_equipo == categoria.nombre_categoria %}
+                                <tr class="">
+                            
+                                    <td class="text-left">{{i.nombre_jugador}}</td>
+                                    <td class="text-left"><img src="{{i.id_equipo.escudo_equipo.url}}" width="30px">{{i.id_equipo.nombre_equipo}}</td>
+                                    <td class="text-center">{{i.anotaciones}}</td>
+                                
+                                </tr>
+                                {% endif %}
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                       </div>
+                    <div class="col-lg-6 col-md-12 col-12  table-responsive" id="tablasEstadisticas">
+
+                         <p class="text-white text-center table-dark estadisticas">Top Jugadores con más faltas</p>
+                        <table class="table table-stripped table-bordered" >
+                            <colgroup>
+                                <col width="45%">
+                                <col width="45%">
+                                <col width="10%">
+                            </colgroup>
+                            <thead>
+                                <tr class="text-white table-dark" id="encabezados">
+                                    <th class="text-left">Jugador</th>
+                                    <th class="text-left">Equipo</th>
+                                    <th class="text-center">Faltas</th>
+                                </tr>
+                            </thead>
+                            <tbody class=" table-responsive">
+                                {% for i in jugFaltas %}
+                                {% if i.id_equipo.categoria_equipo == categoria.nombre_categoria %}
+                                <tr class="">
+                                   
+                                    <td  class="text-left">{{i.nombre_jugador}}</td>
+                                    <td class="text-left"><img src="{{i.id_equipo.escudo_equipo.url}}" width="30px">{{i.id_equipo.nombre_equipo}}</td>
+                                    <td class="text-center">{{i.faltas}}</td>
+                    
+                                </tr>
+                                {% endif %}
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+               
+                    </div>
+                </div>
+                </div>
+                <br><br>
                 <h4 class="text-white" id="enfrentamientos">ENFRENTAMIENTOS</h4>
                  <div class="versus">
                     {% if not enfrentamientos%}
@@ -227,7 +298,7 @@
                        {% if user.username == 'admin' %}
                             <a href="{% url 'Enfrentamiento' vs.id_torneo.id vs.id vs.equipo_a vs.equipo_b %}" id="cardH">
                                 <div class="card" id="cardVs2">
-                                    <div class="card-header text-center">
+                                    <div class="card-header table-danger text-center">
                                         {% if vs.estado == 'PENDIENTE' %}
                                         TBD
                                         {% else %}
@@ -256,7 +327,7 @@
                             </a>
                        {% else %}
                        <div class="card" id="cardVs">
-                        <div class="card-header text-center">
+                        <div class="card-header table-dark text-center">
                             {% if vs.estado == 'PENDIENTE' %}
                             TBD
                             {% else %}

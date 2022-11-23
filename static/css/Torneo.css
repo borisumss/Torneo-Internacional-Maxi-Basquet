@@ -123,6 +123,7 @@ h4::after {
 .table{
     background-color: white;
     border: none;
+    margin-bottom: 0px !important; 
 }
 
 #equipos, .versus{
@@ -171,7 +172,7 @@ background-size: cover;
 }
 
 #cardVs .card-header ,#cardVs2 .card-header{
-    background-color: #000;
+    background-color: #332D2D;
     color: white;
     font-weight: bold;
 }
@@ -202,13 +203,31 @@ h4{
 .product-content{
     background-color: black;
 }
-#encabezados{
-    background-color: #000;
-    border: none !important;
-    font-weight: bold !important;
-}
+
 #cuerpo{
     padding: 0px;
+}
+
+.estadisticas{
+    background-color: #000;
+    border-bottom: solid 2px!important;
+    padding: 0px;
+    margin: 0px !important;
+    
+}
+
+thead{
+     position: sticky !important;
+     top:0;
+    z-index: 50;
+}
+#tablasEstadisticas{
+    
+    max-height: 400px !important;
+    padding-right: 0px !important;
+    padding-top: 0px !important;
+    padding-bottom: 0px !important;
+    margin-top: 20px;
 }
 @media only screen and (max-width: 767px) {
     .navbar-nav {
