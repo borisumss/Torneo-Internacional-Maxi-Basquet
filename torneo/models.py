@@ -19,6 +19,7 @@ class Organizador(models.Model):
         #return "%s %s" % (self.nombre_organizador, self.telefono_organizador)
     class Meta:
         ordering = ['nombre_organizador']
+        verbose_name_plural = "Organizadores"
 
 class Torneo(models.Model):
     nombre_torneo = models.CharField(max_length=50)
@@ -33,6 +34,8 @@ class Torneo(models.Model):
     def __str__(self):
         return self.nombre_torneo
     
+    class Meta:
+        verbose_name_plural = "Torneos"
     #class Meta:
     #    ordering = ['']
 
@@ -47,6 +50,9 @@ class Inscripcion(models.Model):
 
     def __str__(self):
         return "Rezagados del %s al %s" % (self.fecha_inicio, self.fecha_fin)
+    
+    class Meta:
+        verbose_name_plural = "Inscripcion"
 
 class Pre_Inscripcion(models.Model):
     fecha_inicioPre = models.DateField(auto_now=False, auto_now_add=False)
@@ -58,6 +64,9 @@ class Pre_Inscripcion(models.Model):
 
     def __str__(self):
         return "Preinscripción del %s al %s" % (self.fecha_inicioPre, self.fecha_finPre)
+    
+    class Meta:
+        verbose_name_plural = "Preinscripcion"
 
 ## REVISAR EL CAMPO DE 'ImageField si ocurrieran errores'
 class delegado_Inscripcion(models.Model):
@@ -71,6 +80,9 @@ class delegado_Inscripcion(models.Model):
     fecha_solicitud = models.DateTimeField(default=timezone.now)
     id_delegadoIns = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
 
+    class Meta:
+        verbose_name_plural = "Delegado inscripciones"
+
 class delegado_PreInscripcion(models.Model):
     nombre_delegado_Preinscripcion = models.CharField(max_length=50)
     estado_delegado_Preinscripcion = models.CharField(max_length=15)#Estados: ACEPTADO, RECHAZADO, PENDIENTE, BAJA
@@ -82,6 +94,9 @@ class delegado_PreInscripcion(models.Model):
     fecha_solicitud = models.DateTimeField(default=timezone.now)
     id_delegadoPreIns = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
 
+    class Meta:
+        verbose_name_plural = "Delegado preinscripciones"
+
 
 class Categorias_Torneo(models.Model):
     nombre_categoria = models.CharField(max_length=20)
@@ -91,6 +106,9 @@ class Categorias_Torneo(models.Model):
     
     def __str__(self):
         return self.nombre_categoria
+    
+    class Meta:
+        verbose_name_plural = "Categorias de torneo"
 
 class Delegado(models.Model):
     id_delegado = models.IntegerField(primary_key=True)
@@ -109,6 +127,9 @@ class Delegado(models.Model):
                     output_size = (200, 200)
                     imag.thumbnail(output_size)
                     imag.save(self.foto_delegado.path)
+    
+    class Meta:
+        verbose_name_plural = "Delegados"
 
 class Entrenador(models.Model):
     nombre_entrenador = models.CharField(max_length=50, null=True)
@@ -127,6 +148,9 @@ class Entrenador(models.Model):
             output_size = (200, 200)
             imag.thumbnail(output_size)
             imag.save(self.foto_entrenador.path)
+
+    class Meta:
+        verbose_name_plural = "Entrenadores"
 
 class Equipo(models.Model):
     nombre_equipo = models.CharField(max_length=50, null=True)
@@ -149,6 +173,9 @@ class Equipo(models.Model):
                 output_size = (200, 200)
                 imag.thumbnail(output_size)
                 imag.save(self.escudo_equipo.path)
+
+    class Meta:
+        verbose_name_plural = "Equipos"
     
 
 class Jugador(models.Model):
@@ -173,6 +200,9 @@ class Jugador(models.Model):
             imag.thumbnail(output_size)
             imag.save(self.foto_jugador.path)
 
+    class Meta:
+        verbose_name_plural = "Jugadores"
+
 class Tabla_posiciones(models.Model):
     id_equipo = models.IntegerField(primary_key=True)
     nombre_equipo = models.CharField(max_length=50, null=True)
@@ -185,8 +215,10 @@ class Tabla_posiciones(models.Model):
     puntos_encontra = models.IntegerField(null=True)
     diferencia = models.IntegerField(null=True)
     puntaje_total = models.IntegerField(null=True)
-   
     id_torneo = models.ForeignKey(Torneo, on_delete=models.CASCADE)
+
+    class Meta:
+        verbose_name_plural = "Tabla de posiciones"
 # @receiver(post_save, sender=Jugador)
 # def create_qr(sender, instance, **kwargs):
 #     code = instance.ci_jugador
@@ -207,8 +239,14 @@ class Enfrentamiento(models.Model):
     estado = models.CharField(max_length=50, null=True)
     id_torneo = models.ForeignKey(Torneo, on_delete=models.CASCADE)
 
+    class Meta:
+        verbose_name_plural = "Enfrentamientos"
+
 class Estadisticas_enfrentamiento(models.Model):
     faltas = models.IntegerField(null=True)
     anotaciones = models.IntegerField(null=True)
     id_jugador = models.ForeignKey(Jugador, on_delete=models.CASCADE)
     id_enfrentamiento = models.ForeignKey(Enfrentamiento, on_delete=models.CASCADE)
+
+    class Meta:
+        verbose_name_plural = "Estadisticas de enfrentamientos"
