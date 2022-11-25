@@ -16,11 +16,10 @@ class Organizador(models.Model):
     telefono_organizador = models.CharField(max_length=15)
 
     def __str__(self):
-        return self.nombre_organizador
+        return str(self.pk) + "-" + self.nombre_organizador
         # return "%s %s" % (self.nombre_organizador, self.telefono_organizador)
 
     class Meta:
-        ordering = ['nombre_organizador']
         verbose_name_plural = "Organizadores"
 
 
@@ -37,7 +36,7 @@ class Torneo(models.Model):
     id_organizador = models.ForeignKey(Organizador, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.nombre_torneo
+        return str(self.pk) + "-" + self.nombre_torneo
 
     class Meta:
         verbose_name_plural = "Torneos"
@@ -57,7 +56,7 @@ class Inscripcion(models.Model):
     id_torneo = models.ForeignKey(Torneo, on_delete=models.CASCADE)
 
     def __str__(self):
-        return "Rezagados del %s al %s" % (self.fecha_inicio, self.fecha_fin)
+        return str(self.pk) + "-" + "Rezagados del %s al %s" % (self.fecha_inicio, self.fecha_fin)
 
     class Meta:
         verbose_name_plural = "Inscripcion"
@@ -73,7 +72,7 @@ class Pre_Inscripcion(models.Model):
     id_torneo = models.ForeignKey(Torneo, on_delete=models.CASCADE)
 
     def __str__(self):
-        return "Preinscripción del %s al %s" % (self.fecha_inicioPre, self.fecha_finPre)
+        return str(self.pk) + "-" + "Preinscripción del %s al %s" % (self.fecha_inicioPre, self.fecha_finPre)
 
     class Meta:
         verbose_name_plural = "Preinscripcion"
@@ -95,7 +94,7 @@ class delegado_Inscripcion(models.Model):
         User, on_delete=models.CASCADE, null=True)
 
     def __str__(self):
-        return self.nombre_delegado_inscripcion
+        return str(self.pk) + "-" + self.nombre_delegado_inscripcion
 
     class Meta:
         verbose_name_plural = "Delegado inscripciones"
@@ -117,7 +116,7 @@ class delegado_PreInscripcion(models.Model):
         User, on_delete=models.CASCADE, null=True)
 
     def __str__(self):
-        return self.nombre_delegado_Preinscripcion
+        return str(self.pk) + "-" + self.nombre_delegado_Preinscripcion
 
     class Meta:
         verbose_name_plural = "Delegado preinscripciones"
@@ -130,7 +129,7 @@ class Categorias_Torneo(models.Model):
     id_torneo = models.ForeignKey(Torneo, on_delete=models.CASCADE)
 
     def __str__(self):
-        return "%s [%s-%s] " % (self.nombre_categoria, self.edad_minima, self.edad_maxima)
+        return str(self.pk) + "-" + "%s [%s-%s] " % (self.nombre_categoria, self.edad_minima, self.edad_maxima)
 
     class Meta:
         verbose_name_plural = "Categorias de torneo"
@@ -157,7 +156,7 @@ class Delegado(models.Model):
                 imag.save(self.foto_delegado.path)
 
     def __str__(self):
-        return self.nombre_delegado + "-" + self.ci_delegado
+        return str(self.pk) + "-" + self.nombre_delegado
 
     class Meta:
         verbose_name_plural = "Delegados"
@@ -184,7 +183,7 @@ class Entrenador(models.Model):
             imag.save(self.foto_entrenador.path)
 
     def __str__(self):
-        return self.nombre_entrenador + "-" + self.ci_entrenador
+        return str(self.pk) + "-" + self.nombre_entrenador
 
     class Meta:
         verbose_name_plural = "Entrenadores"
@@ -218,7 +217,7 @@ class Equipo(models.Model):
 
 
     def __str__(self):
-        return self.nombre_equipo
+        return str(self.id) + "-" + self.nombre_equipo
 
     class Meta:
         verbose_name_plural = "Equipos"
@@ -248,7 +247,7 @@ class Jugador(models.Model):
             imag.save(self.foto_jugador.path)
 
     def __str__(self):
-        return self.nombre_jugador + "-" + self.ci_jugador
+        return str(self.pk) + "-" + self.nombre_jugador
 
     class Meta:
         verbose_name_plural = "Jugadores"
@@ -270,7 +269,7 @@ class Tabla_posiciones(models.Model):
     id_torneo = models.ForeignKey(Torneo, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.nombre_equipo + "-" + self.id_equipo
+        return str(self.pk) + "-" + self.nombre_equipo
 
     class Meta:
         verbose_name_plural = "Tabla de posiciones"
@@ -299,7 +298,7 @@ class Enfrentamiento(models.Model):
     id_torneo = models.ForeignKey(Torneo, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.equipo_a + "vs" + self.equipo_b
+        return str(self.pk) + "-" + self.equipo_a + "vs" + self.equipo_b
 
     class Meta:
         verbose_name_plural = "Enfrentamientos"
@@ -312,7 +311,7 @@ class Estadisticas_enfrentamiento(models.Model):
     id_enfrentamiento = models.ForeignKey(Enfrentamiento, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.faltas + "-" + self.anotaciones
+        return str(self.pk) + "-" + self.faltas + "-" + self.anotaciones
 
     class Meta:
         verbose_name_plural = "Estadisticas de enfrentamientos"
