@@ -77,10 +77,10 @@ function fechaNacimiento(categoriaMin,categoriaMax){
     }
 
     if(edad < categoriaMin){
-        Swal.fire('La edad del jugador debe ser mínimo de '+categoriaMin +' años','','error');
+        Swal.fire('La edad del jugador es de '+edad+ ' años ,debe ser mínimo de '+categoriaMin +' años','','error');
         fechaNac.value = '';
     }else if(edad > categoriaMax){
-        Swal.fire('La edad del jugador debe ser máximo de '+categoriaMax +' años','','error');
+        Swal.fire('La edad del jugador es de '+edad+' años, debe ser máximo de '+categoriaMax +' años','','error');
         fechaNac.value = '';
     }
 }
@@ -105,10 +105,10 @@ function fechaNacimientoEnt(){
     }
 
     if(edad < 18){
-        Swal.fire('La edad del jugador debe ser mínimo de 18 años','','error');
+        Swal.fire('La edad del entrenador es de '+ edad+' años, debe ser mínimo de 18 años.','','error');
         fechaNac.value = '';
     }else if(edad > 100){
-        Swal.fire('La edad del jugador debe ser máximo de 100 años','','error');
+        Swal.fire('La edad del entrenador es de '+edad+' años, debe ser máximo de 100 años','','error');
         fechaNac.value = '';
     }
 }
