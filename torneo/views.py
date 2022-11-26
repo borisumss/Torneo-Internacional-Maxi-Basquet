@@ -367,7 +367,7 @@ def rechazar(request, tipo, id):
             from_email = settings.EMAIL_HOST_USER
             recipient_list = [correo]
             send_mail(subject, message, from_email, recipient_list, fail_silently=False)
-            messages.success(request, "Solictud rechazada correctamente")
+            messages.success(request, "Solicitud rechazada correctamente")
 
         elif tipo == 'PREINSCRIPCION':
             solicitud = delegado_PreInscripcion.objects.filter(id=id)
@@ -380,7 +380,7 @@ def rechazar(request, tipo, id):
             from_email = settings.EMAIL_HOST_USER
             recipient_list = [correo]
             send_mail(subject, message, from_email, recipient_list, fail_silently=False)
-            messages.success(request, "Solictud rechazada correctamente")
+            messages.success(request, "Solicitud rechazada correctamente")
         return redirect('solicitudes')
 
 
@@ -493,7 +493,7 @@ def aceptar(request, tipo, id):
         from_email = settings.EMAIL_HOST_USER
         recipient_list = [request.POST.get('email')]
         send_mail(subject, message, from_email, recipient_list, fail_silently=False)
-        messages.success(request, "Solictud Aceptada correctamente")
+        messages.success(request, "Solicitud Aceptada correctamente")
 
         return redirect('solicitudes')
 
