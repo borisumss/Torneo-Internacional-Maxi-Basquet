@@ -217,7 +217,10 @@ class Equipo(models.Model):
 
 
     def __str__(self):
-        return str(self.id) + "-" + self.nombre_equipo
+        if self.nombre_equipo:
+            return str(self.id)
+        else:
+            return str(self.id) + "-" + self.nombre_equipo
 
     class Meta:
         verbose_name_plural = "Equipos"
