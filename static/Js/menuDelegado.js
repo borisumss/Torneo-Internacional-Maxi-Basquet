@@ -71,8 +71,7 @@ $('#btn-infor').click(function () {
   $('.escudo').addClass('subirImagenes');
   $('.portada').addClass('subirImagenes');
   var billingItems = document.querySelectorAll('input');
-  var cate = document.querySelectorAll('select');
-  cate[0].disabled = false;
+  
   for (var i = 0; i < billingItems.length; i++) {
     billingItems[i].disabled = false;
   }

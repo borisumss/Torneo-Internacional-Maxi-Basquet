@@ -68,13 +68,9 @@
             <div class="position-relative" id="inforDoble">
                 <input type="text" class="nombreTorneo form-control" id="input" placeholder="TORNEO DEL EQUIPO"
                     value="{{equipo.id_torneo.nombre_torneo}}" onfocus="this.blur()" required>
-
-                <select class="form-select" id="input" name="categoria_equipo" disabled required>
-                    <option selected value="">Categoria: {{equipo.categoria_equipo}}</option>
-                    {% for c in categorias %}
-                    <option value="{{c.nombre_categoria}}">{{c.nombre_categoria}}</option>
-                    {% endfor %}
-                </select>
+                <input type="text" class="nombreTorneo form-control" id="input" placeholder="CATEGORIA DEL EQUIPO"
+                    value="{{equipo.categoria_equipo}}" onfocus="this.blur()"  required>
+                
             </div>
 
         </section>

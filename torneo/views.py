@@ -1002,7 +1002,9 @@ def inscribirEquipo(request, id):
         jugadores = Jugador.objects.filter(id_equipo=id_equipo.first())
         if len(jugadores) >= 5:
             id_equipo.update(estado_inscripcion_equipo="INSCRITO")
-
+            aux = id_equipo[0]
+            tabla = Tabla_posiciones(id_equipo=aux.id, nombre_equipo= aux.nombre_equipo, categoria_equipo = aux.categoria_equipo, partidos_jugados = 0, partidos_ganados=0, partidos_perdidos=0,puntos_favor=0, puntos_encontra=0, puntaje_total=0, id_torneo = aux.id_torneo, diferencia = 0, escudo_equipo = aux.escudo_equipo)
+            tabla.save()
         messages.success(request, "Jugador registrado correctamente")
         return redirect('delegacionEquipo')
 

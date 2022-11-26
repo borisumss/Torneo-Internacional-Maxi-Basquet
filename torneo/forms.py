@@ -29,7 +29,6 @@ class EquipoForm(forms.ModelForm):
     ciudad_origen = forms.CharField(max_length=250)
     escudo_equipo =  forms.ImageField()
     portada_equipo =  forms.ImageField()
-    categoria_equipo = forms.CharField(max_length=250)
 
 
     class Meta:
@@ -39,7 +38,6 @@ class EquipoForm(forms.ModelForm):
                   'ciudad_origen',
                   'escudo_equipo',
                   'portada_equipo',
-                  'categoria_equipo',
                   )
 
 class TorneoForm(forms.ModelForm):
