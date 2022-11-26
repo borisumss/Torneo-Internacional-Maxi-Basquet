@@ -218,9 +218,9 @@ class Equipo(models.Model):
 
     def __str__(self):
         if self.nombre_equipo:
-            return str(self.id)
-        else:
             return str(self.id) + "-" + self.nombre_equipo
+        else:
+            return str(self.id)
 
     class Meta:
         verbose_name_plural = "Equipos"

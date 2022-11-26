@@ -762,7 +762,7 @@ def delegacionEquipo(request):
                 fechas = Inscripcion.objects.filter(
                     id_torneo=equipo[0].id_torneo)
                 jugadores = Jugador.objects.filter(id_equipo=equipo[0])
-                print(equipo[0])
+                
                 return render(request, 'Tab2Del.html', {
                     'equipo': equipo[0],
                     'categorias': cate,
