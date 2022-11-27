@@ -19,7 +19,7 @@ from django.core.mail import send_mail
 from django.conf import settings
 import random as rd
 from qr_code.qrcode.utils import MeCard
-from .forms import EquipoForm, TorneoForm, TorneoPreInsForm, TorneoRezForm
+from .forms import EquipoFormIns,EquipoForm, TorneoForm, TorneoPreInsForm, TorneoRezForm
 # def email_check(user):
 #   return user.email.endswith('@admin2.com')
 # Create your views here.
@@ -937,7 +937,7 @@ def inscripcion(request, id):
     elif request.method == 'POST':
         equipo = Equipo.objects.get(id_delegado=request.user.id)
         print(equipo)
-        form = EquipoForm(request.POST or None, request.FILES or None, instance=equipo)
+        form = EquipoFormIns(request.POST or None, request.FILES or None, instance=equipo)
         print("*************"*4)
         print(form)
         print(form.is_valid())

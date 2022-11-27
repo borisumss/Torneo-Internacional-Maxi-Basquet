@@ -40,6 +40,25 @@ class EquipoForm(forms.ModelForm):
                   'portada_equipo',
                   )
 
+class EquipoFormIns(forms.ModelForm):
+
+    nombre_equipo = forms.CharField(max_length=250)
+    pais_origen = forms.CharField(max_length=250)
+    ciudad_origen = forms.CharField(max_length=250)
+    escudo_equipo =  forms.ImageField()
+    portada_equipo =  forms.ImageField()
+    categoria_equipo = forms.CharField(max_length=250)
+
+    class Meta:
+        model = Equipo
+        fields =  ('nombre_equipo',
+                  'pais_origen',
+                  'ciudad_origen',
+                  'escudo_equipo',
+                  'portada_equipo',
+                  'categoria_equipo',
+                  )
+
 class TorneoForm(forms.ModelForm):
 
     nombre_torneo = forms.CharField(max_length=250)
