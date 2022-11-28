@@ -514,6 +514,13 @@ def verTorneo(request, id):
             jugadores, key=lambda x: x.anotaciones, reverse=True)
         jugFaltas = sorted(jugadores, key=lambda x: x.faltas, reverse=True)
         print(jugPuntos)
+        fechaEnfrentamiento = Inscripcion.objects.get(id_torneo=id)
+        now = date.today()
+        generacion = False
+        if now > fechaEnfrentamiento.fecha_fin:
+            generacion = True
+        else:
+            generacion = False
         return render(request, 'Torneo.html', {
             "torneo": torneo,
             "categorias": categorias,
@@ -523,6 +530,7 @@ def verTorneo(request, id):
             "enfrentamientos": nuevaVs,
             'jugPuntos': jugPuntos,
             'jugFaltas': jugFaltas,
+            'generacion':generacion,
         })
     elif request.method == 'POST':
         for i in range(len(tablas)):

@@ -86,9 +86,9 @@ function insertarFila() {
                 let maxCell = tablaCategorias.insertCell(2);
                 nroCate = nroCate + 1;
 
-                nameCell.innerHTML = "<input class='tablaInput form-control' value='" + name.value + "' name='" + "nombreCategoria" + "'  >";
-                minCell.innerHTML = "<input class='tablaInput form-control' value='" + min.value + "' name='" + "minCategoria" + "' >";
-                maxCell.innerHTML = "<input class='tablaInput form-control' value='" + max.value + "' name='" + "maxCategoria" + "'>";
+                nameCell.innerHTML = "<input class='tablaInput form-control' onfocus='this.blur()' value='" + name.value + "' name='" + "nombreCategoria" + "'  >";
+                minCell.innerHTML = "<input class='tablaInput form-control' onfocus='this.blur()' value='" + min.value + "' name='" + "minCategoria" + "' >";
+                maxCell.innerHTML = "<input class='tablaInput form-control' onfocus='this.blur()' value='" + max.value + "' name='" + "maxCategoria" + "'>";
                 let cerrar = document.getElementById('modalCancelar');
                 cerrar.click();
             }

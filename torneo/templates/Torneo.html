@@ -285,12 +285,14 @@
                 <h4 class="text-white" id="enfrentamientos">ENFRENTAMIENTOS</h4>
                  <div class="versus">
                     {% if not enfrentamientos%}
-                        {% if user.username == 'admin' %}
-                        <form class="needs-validation" id="formulario" name="formulario" method="POST" enctype="multipart/form-data" novalidate>
-                        {% csrf_token %}
-             
-                        <button type="submit" class="btn btn-success" onclick="cargar()" id="generarVs">Generar Enfrentamientos</button>
-                        </form>
+                        {% if generacion %}
+                            {% if user.username == 'admin' %}
+                            <form class="needs-validation" id="formulario" name="formulario" method="POST" enctype="multipart/form-data" novalidate>
+                            {% csrf_token %}
+                
+                            <button type="submit" class="btn btn-success" onclick="cargar()" id="generarVs">Generar Enfrentamientos</button>
+                            </form>
+                            {% endif %}
                         {% endif %}
                     {% else %}
                     {% for vs in enfrentamientos %}
