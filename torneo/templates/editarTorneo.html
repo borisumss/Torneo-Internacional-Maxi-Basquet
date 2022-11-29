@@ -120,7 +120,7 @@
                                         <div class="col-lg-6 col-md-6 col-sm-12 col-md-12 position-relative">
                                             <label class="primera" id="montoPre_label" for="montoPre">Monto
                                                 Pre-inscripción($us)</label>
-                                                <input type="number" class="primer form-control" name="monto_Preinscripcion"
+                                                <input type="number" onchange="validarMontoPre()" class="primer form-control" name="monto_Preinscripcion"
                                                         id="montoPre_input" min="0" value="{{preIns.monto_Preinscripcion}}" max="1000000"
                                                         placeholder="Ingrese el costo de pre-inscripción" required>
                                                 <div class="invalid-tooltip">
@@ -178,8 +178,8 @@
                                         <div class="col-lg-6 col-md-6 col-sm-12 col-md-12 position-relative">
                                             <label class="primera" id="montoPre_label" for="montoPre">Monto
                                                 Inscripción($us)</label>
-                                                <input type="number" class="primer form-control" name="monto_inscripcion"
-                                                        id="montoPre_input" min="0" value="{{rez.monto_inscripcion}}" max="1000000"
+                                                <input onchange="validarMontoIns()" type="number" class="primer form-control" name="monto_inscripcion"
+                                                        id="montoIns_input" min="0" value="{{rez.monto_inscripcion}}" max="1000000"
                                                         placeholder="Ingrese el costo de pre-inscripción" required>
                                                 <div class="invalid-tooltip">
                                                         Valores desde 0-1000000

@@ -130,7 +130,7 @@
                                 <div class="row">
                                     <div class="col-10 position-relative">
                                         <input type="number" class="primer form-control" name="monto_preinscripcion"
-                                            id="montoPre_input" min="0" max="1000000"
+                                            id="montoPre_input" onchange="validarMontoPre()" min="0" max="1000000"
                                             placeholder="Ingrese el costo de pre-inscripción" required>
                                         <div class="invalid-tooltip">
                                             Valores desde 0-1000000
@@ -184,7 +184,7 @@
                                 <div class="row">
                                     <div class="col-10 position-relative">
                                         <input type="number" class="primer form-control" name="monto_inscripcion"
-                                            id="montoIns_input" min="0" max="1000000"
+                                            id="montoIns_input" onchange="validarMontoIns()" min="0" max="1000000"
                                             placeholder="Ingrese el costo para rezagados" required>
                                         <div class="invalid-tooltip">
                                             Valores desde 0-1000000

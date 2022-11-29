@@ -264,3 +264,26 @@ function validarLogo() {
         return false;
     }
 }
+
+function validarMontoIns(){
+    var montoIns = document.getElementById("montoIns_input");
+    var montoPre = document.getElementById("montoPre_input");
+
+    if (montoIns.value < montoPre.value) {
+        Swal.fire('El monto de Inscripción debe ser mayor o igual al monto de Preinscrición', '', 'error');
+        montoIns.value = parseInt(montoPre.value);
+      
+        return false;
+    }
+}
+
+function validarMontoPre(){
+    var montoIns = document.getElementById("montoIns_input");
+    var montoPre = document.getElementById("montoPre_input");
+
+    if (montoPre.value > montoIns.value  && montoIns.value != '') {
+        Swal.fire('El monto de Inscripción debe ser mayor o igual al monto de Preinscrición', '', 'error');
+        montoPre.value = parseInt(montoIns.value);
+        return false;
+    }
+}
