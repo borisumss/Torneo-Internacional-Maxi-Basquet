@@ -327,9 +327,9 @@
                                     Categoría:</label>
                                 <input type="text" class="primer form-control" name="nombre_categoria"
                                     id="nombreModal_input" placeholder="Ingrese nombre de la categoría"
-                                    minlength="5" maxlength="20" required>
+                                    pattern="^(?!\s)[a-zA-ZÁáÉéÍíÓóÚú]{5,20}" required>
                                 <div class="invalid-tooltip">
-                                    Máximo 20 caracteres de la A-Z
+                                    Máximo 20 números ó caracteres de la A-Z sin espacios
                                 </div>
                             </div>
                             <br>
