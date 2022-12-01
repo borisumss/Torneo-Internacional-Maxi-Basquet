@@ -64,8 +64,8 @@
           <a href="{% url 'torneos' %}" class="text-decoration-none"><li class="item {% block class %}  {% endblock %}"> <i
                 class="text-white bi bi-trophy-fill"></i><span class="text-white opciones"> Torneos</span></li></a>
           
-          <a href="{% url 'equipos' %}" class="text-decoration-none"><li class="item {% block class5 %}  {% endblock %}"><i
-                  class="text-white fa fa-user-group"></i><span class="text-white opciones"> Equipos Inscritos</span></li></a>
+          {% comment %} <a href="{% url 'equipos' %}" class="text-decoration-none"><li class="item {% block class5 %}  {% endblock %}"><i
+                  class="text-white fa fa-user-group"></i><span class="text-white opciones"> Equipos Inscritos</span></li></a> {% endcomment %}
 
           <a href="{% url 'torneosTerminados' %}" class="text-decoration-none"><li class="item {% block class2 %}  {% endblock %}" ><i class="text-white fa fa-medal"></i><span
                 class="text-white opciones"> Torneos Terminados</span></li></a>
