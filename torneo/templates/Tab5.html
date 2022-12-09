@@ -5,6 +5,7 @@
 {% block body %}  fondoTab5 {% endblock %}
 {% block class4 %}  active {% endblock %}
 {% block contenido %}
+{% load tz %}
 
 <article id="Tab5">
     {% for i in solPre %}
@@ -51,9 +52,8 @@
                 <div class="col-12">
                   <div><label class="etiquetas" id="" for="">Fecha y hora solicitud:</label></div>
                   {% language 'es' %}
-                       
-                  <div class="test"><label class="datos" id="" for="">{{i.fecha_solicitud}}</label></div>
-            {% endlanguage %}
+                  <div class="test"><label class="datos" id="" for="">{{i.fecha_solicitud|localtime}}</label></div>
+                  {% endlanguage %}
                 </div>
               </div>
             </div>
