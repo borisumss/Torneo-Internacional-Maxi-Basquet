@@ -34,7 +34,7 @@
                 <td>{{torneo.nombre_torneo}}</td>
                 <td>{{torneo.id_organizador.nombre_organizador}}</td>
                 <td>{{torneo.id_organizador.telefono_organizador}}</td>
-                <td>{{torneo.fecha_torneo_inicio}}</td>
+                <td>{{torneo.fecha_torneo_inicio|date:'d/m/Y'}}</td>
                 {% if torneo.torneo_estado == 1 %}
                 <td>En Proceso</td>
                 {% else %}
