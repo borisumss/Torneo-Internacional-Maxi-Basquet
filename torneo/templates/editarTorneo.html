@@ -121,7 +121,7 @@
                                             <label class="primera" id="montoPre_label" for="montoPre">Monto
                                                 Pre-inscripción($us)</label>
                                                 <input type="number" onchange="validarMontoPre()" class="primer form-control" name="monto_Preinscripcion"
-                                                        id="montoPre_input" min="0" value="{{preIns.monto_Preinscripcion}}" max="1000000"
+                                                        id="montoPre_input" min="0" value="{{preIns.monto_Preinscripcion|floatformat:0}}" max="1000000"
                                                         placeholder="Ingrese el costo de pre-inscripción" required>
                                                 <div class="invalid-tooltip">
                                                         Valores desde 0-1000000
@@ -179,7 +179,7 @@
                                             <label class="primera" id="montoPre_label" for="montoPre">Monto
                                                 Inscripción($us)</label>
                                                 <input onchange="validarMontoIns()" type="number" class="primer form-control" name="monto_inscripcion"
-                                                        id="montoIns_input" min="0" value="{{rez.monto_inscripcion}}" max="1000000"
+                                                        id="montoIns_input" min="0" value="{{rez.monto_inscripcion|floatformat:0}}" max="1000000"
                                                         placeholder="Ingrese el costo de pre-inscripción" required>
                                                 <div class="invalid-tooltip">
                                                         Valores desde 0-1000000
