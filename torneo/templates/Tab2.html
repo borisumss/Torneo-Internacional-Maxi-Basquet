@@ -1,6 +1,6 @@
 
 {% extends "panelAdmin.html" %}
-
+{% load i18n %}
 {% block css %} <link rel="stylesheet" href="../../../static/css/panelAdmin.css"> {% endblock %}
 {% block body %}  fondoTab2 {% endblock %}
 {% block class2 %}  active {% endblock %}
@@ -22,8 +22,11 @@
                     Torneo realizado en el país de "{{i.pais_torneo}}", organizao por <b>
                       {{i.id_organizador.nombre_organizador}}.</b>
                   </p>
+                  {% language 'es' %}
+                       
                   <p><b>Fecha de inicio:</b> {{i.fecha_torneo_inicio}} </p>
                     <p><b>Fecha final: </b>{{i.fecha_torneo_fin}}</p>
+                  {% endlanguage %}
                  
                 </div>
               </div>

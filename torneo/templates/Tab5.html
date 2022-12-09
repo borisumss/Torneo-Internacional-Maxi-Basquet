@@ -1,6 +1,6 @@
 
 {% extends "panelAdmin.html" %}
-
+{% load i18n %}
 {% block css %} <link rel="stylesheet" href="../../../static/css/panelAdmin.css"> {% endblock %}
 {% block body %}  fondoTab5 {% endblock %}
 {% block class4 %}  active {% endblock %}
@@ -50,7 +50,10 @@
               <div class="row">
                 <div class="col-12">
                   <div><label class="etiquetas" id="" for="">Fecha y hora solicitud:</label></div>
-                  <div class="test"><label class="datos" id="" for="">{{i.fecha_solicitud|date:'Y-m-d HH:mm:ss'}}</label></div>
+                  {% language 'es' %}
+                       
+                  <div class="test"><label class="datos" id="" for="">{{i.fecha_solicitud}}</label></div>
+            {% endlanguage %}
                 </div>
               </div>
             </div>
@@ -120,7 +123,10 @@
               <div class="row">
                 <div class="col-12">
                   <div><label class="etiquetas" id="" for="">Fecha y Hora Solicitud:</label></div>
-                  <div class="test"><label class="datos" id="" for="">{{i.fecha_solicitud|date:'d/m/Y H:i:s'}}</label></div>
+                  {% language 'es' %}
+                       
+                  <div class="test"><label class="datos" id="" for="">{{i.fecha_solicitud}}</label></div>
+            {% endlanguage %}
                 </div>
               </div>
             </div>

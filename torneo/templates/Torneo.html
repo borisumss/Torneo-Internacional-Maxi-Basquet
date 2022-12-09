@@ -1,4 +1,5 @@
 {% load static %}
+{% load i18n %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -103,12 +104,15 @@
                        <p>
                        Localidad: <b style=" text-transform: uppercase;">{{i.pais_torneo}} </b> <br>
                        </p>
+                       {% language 'es' %}
                        <p>
                         Fecha Inicio: <b style=" text-transform: uppercase;">{{i.fecha_torneo_inicio}} </b> <br>                    
                        </p>
                        <p>
                         Fecha Final: <b style=" text-transform: uppercase;">{{i.fecha_torneo_fin}} </b><br>                    
                        </p>
+                        {% endlanguage %}
+                      
                       <p> Número de equipos: <b>{{numeros}}</b>
                       </p>
                 </div>
@@ -236,7 +240,7 @@
                                 {% if i.id_equipo.categoria_equipo == categoria.nombre_categoria %}
                                 <tr class="">
                             
-                                    <td class="text-left">{{i.nombre_jugador}}</td>
+                                    <td class="text-left">{{i.dorsal_jugador}}. {{i.nombre_jugador}}</td>
                                     <td class="text-left"><img src="{{i.id_equipo.escudo_equipo.url}}" width="30px">{{i.id_equipo.nombre_equipo}}</td>
                                     <td class="text-center">{{i.anotaciones}}</td>
                                 
@@ -267,7 +271,7 @@
                                 {% if i.id_equipo.categoria_equipo == categoria.nombre_categoria %}
                                 <tr class="">
                                    
-                                    <td  class="text-left">{{i.nombre_jugador}}</td>
+                                    <td  class="text-left">{{i.dorsal_jugador}}. {{i.nombre_jugador}}</td>
                                     <td class="text-left"><img src="{{i.id_equipo.escudo_equipo.url}}" width="30px">{{i.id_equipo.nombre_equipo}}</td>
                                     <td class="text-center">{{i.faltas}}</td>
                     
@@ -304,7 +308,7 @@
                                         {% if vs.estado == 'PENDIENTE' %}
                                         TBD
                                         {% else %}
-                                        {{vs.fecha_enfrentamiento}}
+                                        {{vs.fecha_enfrentamiento|date:'d/m/Y'}}
                                         {% endif %}
                                     </div>
                                     <div class="card-body">
@@ -333,7 +337,7 @@
                             {% if vs.estado == 'PENDIENTE' %}
                             TBD
                             {% else %}
-                            {{vs.fecha_enfrentamiento}}
+                            {{vs.fecha_enfrentamiento|date:'d/m/Y'}}
                             {% endif %}
                         </div>
                         <div class="card-body">

@@ -1,4 +1,5 @@
-{% load static %}
+{% load static %}   
+{% load i18n %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -134,7 +135,10 @@
                                     <span class="d-block text-capitalize"><b>Nombre:</b> {{j.nombre_jugador}}</span>
                                     <span class="d-block text-capitalize"><b>Apodo:</b> {{j.apodo_jugador}}</span>
                                     <span class="d-block text-capitalize"><b>Posicion:</b> {{j.posicion_jugador}}</h>
-                                    <span class="d-block text-capitalize"><b>F. Nac.:</b> {{j.nacimiento_jugador}}</h>
+                                        {% language 'es' %}
+                       
+                                        <span class="d-block text-capitalize"><b>F. Nac.:</b> {{j.nacimiento_jugador}}</h>
+                                        {% endlanguage %}
                                 </div>
                             </div>
                         

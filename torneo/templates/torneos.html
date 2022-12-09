@@ -1,4 +1,5 @@
 {% load static %}
+{% load i18n %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -56,7 +57,10 @@
                             
                             Organizado por: <b style=" text-transform: uppercase;">{{i.id_organizador.nombre_organizador}} </b> <br>
                             En el país de: <b style=" text-transform: uppercase;">{{i.pais_torneo}} </b> <br>
-                            Dará inicio el <b style=" text-transform: uppercase;">{{i.fecha_torneo_inicio}} </b> y terminará el: <b style=" text-transform: uppercase;">{{equipo.id_torneo.fecha_torneo_fin}} </b><br>
+                            {% language 'es' %}
+                       
+                            Dará inicio el <b style=" text-transform: uppercase;">{{i.fecha_torneo_inicio}} </b> y terminará el: <b style=" text-transform: uppercase;">{{i.fecha_torneo_fin}} </b><br>
+            {% endlanguage %}
                             Mas detalles en:  <b><a target="_blank"  id="conv" href="/{{i.invitacion_documento}}" >Convocatoria Publica</a></b>
                           
                             <br>
@@ -103,9 +107,12 @@
                                   Torneo realizado en el país de "{{i.pais_torneo}}", organizao por <b>
                                     {{i.id_organizador.nombre_organizador}}.</b>
                                 </p>
+                                {% language 'es' %}
                                 <p><b>Fecha de inicio:</b> {{i.fecha_torneo_inicio}} </p>
                                   <p><b>Fecha final: </b>{{i.fecha_torneo_fin}}</p>
                                
+                       
+            {% endlanguage %}
                               </div>
                             </div>
                           </div>

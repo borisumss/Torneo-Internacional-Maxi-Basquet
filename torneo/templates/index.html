@@ -1,4 +1,5 @@
 {% load static %}
+{% load i18n %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -113,7 +114,11 @@
           <p>
          
             Torneo Internacional de Maxi básquet: "<b>{{i.nombre_torneo}}"</b>. El cual se realizará en {{i.pais_torneo}}
-            desde <b>{{i.fecha_torneo_inicio}} hasta {{i.fecha_torneo_fin}}</b>.
+            desde el 
+            {% language 'es' %}
+            <b>{{i.fecha_torneo_inicio}} hasta el {{i.fecha_torneo_fin}}</b>.
+                       
+            {% endlanguage %}
             
             </p>
             <br>
@@ -191,7 +196,10 @@
               
               Organizado por: <b style=" text-transform: uppercase;">{{i.id_organizador.nombre_organizador}} </b> <br>
               En el país de: <b style=" text-transform: uppercase;">{{i.pais_torneo}} </b> <br>
+              {% language 'es' %}
               Dará inicio el <b style=" text-transform: uppercase;">{{i.fecha_torneo_inicio}} </b> y terminará el: <b style=" text-transform: uppercase;">{{i.fecha_torneo_fin}} </b><br>
+                       
+            {% endlanguage %}
               Mas detalles en:  <b><a target="_blank" id="conv" href="/{{i.invitacion_documento}}" >Convocatoria Publica</a></b>
             
               <br>
