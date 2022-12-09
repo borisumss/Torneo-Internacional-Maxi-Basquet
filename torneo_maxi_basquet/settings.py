@@ -158,3 +158,4 @@ EMAIL_USE_TLS = True
 
 CSRF_TRUSTED_ORIGINS = ['https://web-production-efd8.up.railway.app']
 
+
