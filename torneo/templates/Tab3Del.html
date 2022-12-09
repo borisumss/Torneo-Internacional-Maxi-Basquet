@@ -47,24 +47,6 @@
                             </thead>
                             <tbody>
 
-                                {% comment %} entrenador {% endcomment %}
-                                {% if entrenador %}
-                                <tr>
-                                    <td class="text-center bg-success"><i class="bi bi-align-top"></i></td>
-                                    <td class="">{{entrenador.nacimiento_entrenador}}</td>
-                                    <td class="">{{entrenador.ci_entrenador}}</td>
-                                    <td class="">{{entrenador.nombre_entrenador}}</td>
-                                    <td class="">Entrenador</td>
-                                    <td class="text-center">
-                                        <a class="dropdown-item view_card" href="javascript:void(0)" data-url="{% url 'view-card' entrenador.ci_entrenador %}" >Ver ID</a>
-                                    </td>
-                                </tr>
-                                {% else %}
-                                <tr>
-                                    <th colspan="6" class="text-center">No hay entrenador registrado</th>
-                                </tr>
-                                {% endif %}
-
                                 {% comment %} delegado {% endcomment %}
                                 {% if delegado %}
                                 <tr>
@@ -82,7 +64,23 @@
                                     <th colspan="6" class="text-center">No hay delegado registrado</th>
                                 </tr>
                                 {% endif %}
-
+                                {% comment %} entrenador {% endcomment %}
+                                {% if entrenador %}
+                                <tr>
+                                    <td class="text-center bg-success"><i class="bi bi-align-top"></i></td>
+                                    <td class="">{{entrenador.nacimiento_entrenador}}</td>
+                                    <td class="">{{entrenador.ci_entrenador}}</td>
+                                    <td class="">{{entrenador.nombre_entrenador}}</td>
+                                    <td class="">Entrenador</td>
+                                    <td class="text-center">
+                                        <a class="dropdown-item view_card" href="javascript:void(0)" data-url="{% url 'view-card' entrenador.ci_entrenador %}" >Ver ID</a>
+                                    </td>
+                                </tr>
+                                {% else %}
+                                <tr>
+                                    <th colspan="6" class="text-center">No hay entrenador registrado</th>
+                                </tr>
+                                {% endif %}
                                 {% for jugador in jugadores %}
                                 <tr>
                                     <td class="text-center">{{jugador.dorsal_jugador}}</td>
