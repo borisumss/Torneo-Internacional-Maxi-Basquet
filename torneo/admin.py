@@ -36,6 +36,11 @@ class Torneo(admin.ModelAdmin):
     list_display = [f.name for f in Categorias_Torneo._meta.fields]
 
 
+@admin.register(Delegado)
+class Torneo(admin.ModelAdmin):
+    list_display = [f.name for f in Delegado._meta.fields]
+
+
 @admin.register(Entrenador)
 class Torneo(admin.ModelAdmin):
     list_display = [f.name for f in Entrenador._meta.fields]
