@@ -74,11 +74,22 @@ WSGI_APPLICATION = 'torneo_maxi_basquet.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
-
+'''
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
+'''
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'railway',
+        'USER': 'root',
+        'PASSWORD': 'IhWkpwpJRWqvlH6LNJ60',
+        'HOST': 'containers-us-west-124.railway.app',
+        'PORT': '7988',
     }
 }
 
@@ -156,6 +167,6 @@ EMAIL_USE_TLS = True
 #'''
 ######
 
-CSRF_TRUSTED_ORIGINS = ['https://web-production-efd8.up.railway.app']
+CSRF_TRUSTED_ORIGINS = ['https://torneomaxibasquet.up.railway.app']
 
 
