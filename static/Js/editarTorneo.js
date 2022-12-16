@@ -103,6 +103,7 @@ let finRez = document.getElementById('fechaFinRez_input');
             inicioPre.value = valInicioPre;
           }
         }
+        validarFechas();
 }
 
 function fechasTorneoFinPre() {
@@ -141,6 +142,7 @@ let finRez = document.getElementById('fechaFinRez_input');
       }
       
   }
+  validarFechas();
 }
 
 function fechasTorneoRezIni() {
@@ -165,6 +167,7 @@ let finRez = document.getElementById('fechaFinRez_input');
         inicioRez.value = valInicioRez;
     }
   }
+  validarFechas();
 }
 
 
@@ -193,6 +196,7 @@ let finRez = document.getElementById('fechaFinRez_input');
         finRez.value = valFinRez;
     }
   }
+  validarFechas();
 }
 
 function fechasTorneoIni() {
@@ -217,6 +221,7 @@ let finRez = document.getElementById('fechaFinRez_input');
         inicio.value = valInicio;
     }
   } 
+  validarFechas();
 }
 
 function fechasTorneoFin() {
@@ -242,6 +247,8 @@ let finRez = document.getElementById('fechaFinRez_input');
           fin.value = valFin;
       }
   } 
+
+  validarFechas();
 }
 
 function validarMontoIns(){
@@ -265,4 +272,42 @@ function validarMontoPre(){
       montoPre.value = parseInt(montoIns.value);
       return false;
   }
+}
+
+function validarFechas(){
+  let inicio = document.getElementById('fechaIni_input');
+  let fin = document.getElementById('fechaFin_input');
+  let inicioPre = document.getElementById('fechaIniPre_input');
+  let finPre = document.getElementById('fechaFinPre_input');
+  let inicioRez = document.getElementById('fechaIniRez_input');
+  let finRez = document.getElementById('fechaFinRez_input');
+
+  /*
+      inicio.value = valInicio;
+      fin.value = valFin;
+      inicioPre.value = valInicioPre;
+      inicioRez.value = valInicioRez;
+      finRez.value = valFinRez;
+      finPre.value = valFinPre;
+  */
+  if(finPre.value < inicioPre.value  || finPre.value >= inicioRez.value){
+      inicioPre.value = valInicioPre;
+      finPre.value = valFinPre;
+      inicioRez.value = valInicioRez;
+      validarFechas();
+  }
+
+  if(finRez.value < inicioRez.value  || finRez.value >= inicio.value){
+    inicioRez.value = valInicioRez;
+    finRez.value = valFinRez;
+    inicio.value = valInicio;
+    validarFechas();
+  }
+
+  if(fin.value < inicio.value ){
+    fin.value = valFin;
+    inicio.value = valInicio;
+    validarFechas();
+  }
+  return false;
 }

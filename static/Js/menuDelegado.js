@@ -153,6 +153,10 @@ function validarFechas(fechaIni, fechaFin) {
 
   let fechaRezFin = new Date(fechaFin);
   //fechaRezFin = fechaRezFin.toLocaleDateString();
+
+  if(fechaIni == fechaFin){
+    fechaRezFin.setTime(fechaRezFin.getTime() +23*60*60000+59*60000+59000);  
+  }
   let boton = document.getElementById("btn-infor");
   let boton2 = document.getElementById("btn-jug");
   let boton3 = document.getElementById("btn-coach");
