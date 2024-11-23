@@ -70,7 +70,7 @@ sqlparse==0.4.2
 stack-data==0.2.0
 svglib==1.4.1
 tinycss2==1.2.1
-tornado==6.1
+tornado==6.4.2
 tqdm==4.64.1
 traitlets==5.2.2.post1
 typing_extensions==4.4.0
